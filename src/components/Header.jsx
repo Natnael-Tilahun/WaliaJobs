@@ -65,7 +65,7 @@ function Header() {
         </div>
       </div>
       <div
-        className={`mr-auto lg:hidden flex-col gap-0 bg-white flex-1 h-screen absolute top-0 w-screen left-0 right-0  ${
+        className={`mr-auto lg:hidden flex-col gap-0 bg-white flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  ${
           collapseMenu ? "flex" : "hidden"
         }`}
       >
@@ -84,7 +84,7 @@ function Header() {
           </svg>
         </div>
 
-        <ul className="flex w-full flex-col gap-8 justify-center p-10 ">
+        <ul className="flex w-full flex-col gap-8 justify-center p-10 items-center font-medium text-gray-700">
           <li>
             <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
               Home
@@ -112,7 +112,7 @@ function Header() {
           </li>
           <li>
             <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
-              Blogs
+              Blog
             </a>
           </li>
         </ul>

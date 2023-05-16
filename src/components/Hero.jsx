@@ -2,12 +2,14 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="w-full h-[350px] bg-[#FAFAFA] rounded-b-[200px] flex flex-col justify-center items-center">
-      <h1 className="text-center text-4xl font-extrabold py-8 tracking-wider">
-        We hunt jobs like the wild Walia
+    <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-[#FAFAFA]  lg:rounded-b-[200px] rounded-b-[100px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
+      <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold py-8  tracking-wider">
+        We hunt{" "}
+        <span className=" text-[#f8451d] text-3xl md:text-5xl">jobs</span> like
+        the wild Walia
       </h1>
-      <div className="border-l-2 border-2 text-lg bg-white  h-12 gap-0 w-1/2 rounded-3xl pl-0  flex items-center justify-between">
-        <div className=" flex items-center gap-2 w-1/3  h-full pl-5 rounded-l-full bg-white">
+      <div className="border-l-2 border-2 text-lg bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
+        <div className=" flex items-center p-2 border-2 md:border-none gap-2 w-full md:w-1/3  h-full lg:pl-5 rounded-l-full bg-white">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +24,14 @@ function Hero() {
             name=""
             id=""
             placeholder="Enter Skills"
-            className=" focus:border-none focus:outline-none flex-1 h-full"
+            className=" focus:border-none w-full focus:outline-none flex-1 h-full"
           />
         </div>
         <select
           name=""
           id=""
           placeholder="Select Experience"
-          className=" h-full w-1/3 border-l-2  pl-3 mr-7 focus:outline-none text-gray-600 "
+          className=" h-full w-full md:w-1/3 md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option className="text-slate-300" value="" selected disabled>
             Select Location{" "}
@@ -47,7 +49,7 @@ function Hero() {
           name=""
           id=""
           placeholder="Select Experience"
-          className=" h-full w-1/3 border-l-2  pl-3 mr-7 focus:outline-none text-gray-600 "
+          className=" h-full w-full md:w-1/3 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option className="text-slate-300" value="" selected disabled>
             Select Experience{" "}
