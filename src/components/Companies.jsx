@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const Companies = () => {
-  var settings = {
+  const settings = {
     speed: 4000,
     swipeToSlide: true,
     // centerPadding: "100px",
@@ -47,15 +47,68 @@ export const Companies = () => {
   return (
     <div className="w-full text-center md:py-20 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Featured companies actively hiring</h1>
-      <Slider {...settings} className="py-10 w-full">
+      <Slider {...settings} className="py-10 w-full ">
         {/* <div className=""> */}
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
+        <CompanyCard
+          img="src/assets/images/cbelogo.jpg"
+          name="Commercial Bank of Ethiopia"
+          rate="7"
+          reviews="50+"
+        />
+        <CompanyCard
+          img="src/assets/images/boalogo.jpg"
+          name="Bank of Abyssinia"
+          rate="10"
+          reviews="90+"
+        />
+        <CompanyCard
+          img="src/assets/images/awashlogo.png"
+          name="Awash Bank"
+          rate="7"
+          reviews="40+"
+        />
+        <CompanyCard
+          img="src/assets/images/safaricomlogo.jpg"
+          name="Safaricom"
+          rate="10"
+          reviews="40+"
+        />
+        <CompanyCard
+          img="src/assets/images/airlineslogo.png"
+          name="Ethiopian Airlines"
+          rate="9"
+          reviews="70+"
+        />
+        <CompanyCard
+          img="src/assets/images/ethiotelecomlogo.jpg"
+          name="Ethio Telecom"
+          rate="7"
+          reviews="30+"
+        />
+        <CompanyCard
+          img="src/assets/images/totalethiopialogo.png"
+          name="Total Ethiopia"
+          rate="10"
+          reviews="10+"
+        />
+        <CompanyCard
+          img="src/assets/images/heinekenlogo.png"
+          name="Heineken"
+          rate="10"
+          reviews="30+"
+        />
+        <CompanyCard
+          img="src/assets/images/cocacolalogo.png"
+          name="Coca Cola"
+          rate="10"
+          reviews="30+"
+        />
+        <CompanyCard
+          img="src/assets/images/nyalamotorslogo.png"
+          name="Nyala Motors"
+          rate="10"
+          reviews="50+"
+        />
         {/* </div> */}
       </Slider>
 
