@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Jobs = () => {
+export const JobCatagories = () => {
   return (
     <div className="w-full grid  auto-cols-max grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-6 gap-y-10 md:gap-y-16 md:gap-10 justify-evenly py-20 px-5 md:px-10 lg:px-20">
       <div className="flex flex-col border-2 justify-center shadow-md items-center px-5 text-sm md:text-base py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl">

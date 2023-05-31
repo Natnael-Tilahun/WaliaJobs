@@ -109,6 +109,12 @@ export const Companies = () => {
           rate="10"
           reviews="50+"
         />
+        <CompanyCard
+          img="src/assets/images/gebeyalogo.png"
+          name="Gebeya"
+          rate="10"
+          reviews="50+"
+        />
         {/* </div> */}
       </Slider>
 
