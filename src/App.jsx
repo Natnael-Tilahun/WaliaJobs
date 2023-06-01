@@ -8,17 +8,15 @@ import { JobsList } from "./components/JobsList";
 import { BuildCvSection } from "./components/BuildCvSection";
 import { SubscribeSection } from "./components/SubscribeSection";
 import { Footer } from "./components/Footer";
+import { Home } from "./pages/Home";
+import { Jobs } from "./pages/Jobs";
 
 function App() {
   return (
     <div className="App w-full m-0">
       <Header />
-      <Hero />
-      <JobCatagories />
-      <Companies />
-      <JobsList />
-      <BuildCvSection />
-      <SubscribeSection />
+      {/* <Home /> */}
+      <Jobs />
       <Footer />
     </div>
   );

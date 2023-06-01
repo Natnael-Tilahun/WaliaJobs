@@ -51,7 +51,7 @@ export const JobsList = () => {
         <JobCard
           title="Frontend Developer"
           companyName="Gebeya"
-          jobType="Part Time"
+          jobType="Hybrid"
           jobStyle="Remote"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
           aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
