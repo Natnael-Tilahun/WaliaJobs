@@ -7,6 +7,7 @@ import { Companies } from "./components/Companies";
 import { JobsList } from "./components/JobsList";
 import { BuildCvSection } from "./components/BuildCvSection";
 import { SubscribeSection } from "./components/SubscribeSection";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <JobsList />
       <BuildCvSection />
       <SubscribeSection />
+      <Footer />
     </div>
   );
 }

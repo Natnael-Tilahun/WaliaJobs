@@ -2,7 +2,7 @@ import React from "react";
 
 export const SubscribeSection = () => {
   return (
-    <div className="w-full text-center md:py-20 py-10 px-10 items-start lg:justify-evenly md:items-center md:px-10 bg-[#F5F5F5] justify-between lg:px-20 flex flex-col lg:flex-row gap-8">
+    <div className="w-full text-center md:py-20 py-10 px-10 lg:justify-evenly md:items-center md:px-10 bg-[#F5F5F5] items-center md:justify-between lg:px-20 flex flex-col lg:flex-row gap-8">
       <div className="flex flex-col text-left gap-1 ">
         <h1 className="text-xl md:text-3xl font-medium tracking-wider">
           Get New Job Notificatons
@@ -11,7 +11,7 @@ export const SubscribeSection = () => {
           Free Subscribe Our Newsletter Now!
         </p>
       </div>
-      <div className="flex h-12 ">
+      <div className="flex h-10 ">
         <input
           type="text"
           placeholder="Type your email address"
