@@ -5,6 +5,8 @@ import Header from "../src/components/Header";
 import { JobCatagories } from "./components/JobCatagories";
 import { Companies } from "./components/Companies";
 import { JobsList } from "./components/JobsList";
+import { BuildCvSection } from "./components/BuildCvSection";
+import { SubscribeSection } from "./components/SubscribeSection";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <JobCatagories />
       <Companies />
       <JobsList />
+      <BuildCvSection />
+      <SubscribeSection />
     </div>
   );
 }
