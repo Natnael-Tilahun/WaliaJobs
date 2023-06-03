@@ -6,9 +6,11 @@ function Header() {
     setCollapseMenu(!collapseMenu);
   };
   return (
-    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 relative">
+    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-10 shadow-md relative">
       <div className="flex justify-between w-full lg:w-auto items-center md:pr-5 ">
-        <h1 className="font-bold lg:text-2xl">Walia Jobs</h1>
+        <h1 className="font-bold lg:text-2xl text-thm_primary_color">
+          Walia Jobs
+        </h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -23,43 +25,43 @@ function Header() {
       </div>
 
       <div className="mr-auto hidden lg:flex gap-10 justify-between flex-1 items-center">
-        <ul className="flex gap-8 text-gray-600 ">
+        <ul className="flex gap-8 text-thm_secondary_color ">
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Home
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Jobs
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Companies
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Build CV
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Contact
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Blogs
             </a>
           </li>
         </ul>
         <div className="flex gap-5">
-          <button className="border-2 border-blue-300 py-1 px-8 rounded-md ">
+          <button className="border-2 border-thm_root1_color py-1 px-8 rounded-md ">
             Login
           </button>
-          <button className="py-1 px-8 bg-[#fa6d4d] text-white rounded-md">
+          <button className="py-1 px-8 bg-thm_root2_color text-white rounded-md">
             Register
           </button>
         </div>
@@ -86,32 +88,32 @@ function Header() {
 
         <ul className="flex w-full flex-col gap-8 justify-center p-10 items-center font-medium text-gray-700">
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Home
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Jobs
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Companies
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Build CV
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Contact
             </a>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-[#fa6d4d] hover:text-gray-800">
+            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
               Blog
             </a>
           </li>
@@ -120,7 +122,7 @@ function Header() {
           <button className="border-2 border-blue-300 py-1 px-8 rounded-md ">
             Login
           </button>
-          <button className="py-1 px-8 bg-[#fa6d4d] text-white rounded-md">
+          <button className="py-1 px-8 bg-thm_root2_color text-white rounded-md">
             Register
           </button>
         </div>

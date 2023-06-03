@@ -10,9 +10,12 @@ export const JobCard = ({
   jobTags,
   timeLeft,
   img,
+  className,
 }) => {
   return (
-    <div className="lg:w-[30%] w-[90%] md:w-[45%] border-2 py-5 px-5 md:px-10 lg:p-5 flex flex-col gap-2 rounded-2xl">
+    <div
+      className={`lg:w-[30%] w-[90%] md:w-[45%] border-2 py-5 px-5 md:px-10 lg:p-5 flex flex-col gap-2 rounded-2xl ${className}`}
+    >
       <div className="flex justify-between items-center">
         <h1 className="font-bold text-base lg:text-xl">{title}</h1>
         <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
@@ -24,7 +27,7 @@ export const JobCard = ({
         </p>
         <p>{jobType}</p>
       </div>
-      <p className="text-left text-gray-500 text-sm leading-5 pb-2">
+      <p className="text-left text-gray-500 text-sm leading-5 pb-2 w-1/2">
         {description}
       </p>
       <div className="flex font-medium text-gray-600 gap-5 lg:gap-10 text-sm">
