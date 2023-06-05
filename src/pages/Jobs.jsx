@@ -19,14 +19,14 @@ export const Jobs = () => {
     setValue(event.target.value);
   };
   return (
-    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-24">
-      <div className="flex basis-[10%] md:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-col border-2 text-thm_primary_color shadow-lg gap-2 md:gap-6 p-2 md:p-10 ">
-        <h1 className="border-b-2 font-medium md:text-2xl pb-2 md:pb-7 w-full text-left">
+    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
+      <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
+        <h1 className="border-b-2 font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
         </h1>
-        <ul className="flex flex-col mx-auto border-b-2 pb-2 md:pb-8 w-full">
+        <ul className="flex flex-col mx-auto border-b-2 pb-2 md:pb-5 lg:pb-5 w-full">
           <div
-            className="font-medium md:text-2xl flex items-center justify-between w-full "
+            className="font-medium md:text-xl lg:text-xl flex items-center justify-between w-full "
             onClick={workModeAccordionToggleExpanded}
           >
             <h1>Work Mode</h1>
@@ -52,40 +52,49 @@ export const Jobs = () => {
             )}
           </div>
           <div
-            className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-100 ease-in flex flex-col pt-2 md:pt-4 gap-2 md:gap-5 ${
+            className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
               workModeExpanded ? "max-h-fit" : "max-h-0 "
             }`}
           >
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
               <input
                 type="checkbox"
                 name="office"
                 value="Wor from office"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="office" className="md:px-2 pl-1 font-medium">
+              <label
+                htmlFor="office"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Work from office
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
-              <input type="checkbox" name="remote" id="" className="md:w-5" />
-              <label htmlFor="remote" className="md:px-2 pl-1  font-medium">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+              <input type="checkbox" name="remote" id="" className="md:w-4" />
+              <label
+                htmlFor="remote"
+                className="md:px-2 pl-1 md:pl-2  font-medium"
+              >
                 Work from home
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
-              <input type="checkbox" name="hybrid" id="" className="md:w-5" />
-              <label htmlFor="hybrid" className="md:px-2 pl-1 font-medium">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+              <input type="checkbox" name="hybrid" id="" className="md:w-4" />
+              <label
+                htmlFor="hybrid"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Hybrid
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
               <input
                 type="checkbox"
                 name="temporary"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
               <label htmlFor="temporary" className="md:px-2 pl-1 font-medium">
                 Temp. WFH dut to covid
@@ -93,12 +102,14 @@ export const Jobs = () => {
             </li>
           </div>
         </ul>
-        <div className="flex flex-col md:gap-4  border-b-2 md:pb-8 pb-3 w-full">
+        <div className="flex flex-col md:gap-4  border-b-2 md:pb-5 lg:pb-5 pb-3 w-full">
           <div
-            className="font-medium md:text-2xl flex items-center justify-between w-full"
+            className="font-medium md:text-xl lg:text-xl flex items-center justify-between w-full"
             onClick={experienceAccordionToggleExpanded}
           >
-            <h1 className="font-medium md:text-2xl text-left">Experience</h1>
+            <h1 className="font-medium md:text-xl lg:text-xl text-left">
+              Experience
+            </h1>
             {experienceExpanded ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -133,21 +144,21 @@ export const Jobs = () => {
               value={value}
               onChange={handleChange}
             />
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-3 py-1 md:py-2 bg-gray-800 text-white text-xs md:text-sm rounded">
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 text-white text-xs md:text-sm rounded">
               <span className="font-bold">{value}</span>
             </div>
-            <div className="flex justify-between text-thm_secondary_color tracking-wide text-sm md:text-xl font-medium">
+            <div className="flex justify-between text-thm_secondary_color tracking-wide text-sm md:text-base lg:text-base font-medium">
               <p>O Yr</p>
               <p>30 Yrs</p>
             </div>
           </div>
         </div>
-        <ul className="flex flex-col gap-2 md:gap-6 items-start w-full border-b-2 md:pb-8">
+        <ul className="flex flex-col gap-2 md:gap-3 lg:gap-6 items-start w-full border-b-2 md:pb-5 lg:pb-2">
           <div
-            className="font-medium md:text-2xl flex items-center justify-between w-full"
+            className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
             onClick={locationAccordionToggleExpanded}
           >
-            <h1 className="font-medium md:text-2xl">Location</h1>
+            <h1 className="font-medium lg:text-xl">Location</h1>
             {locationAccordionExpanded ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -174,169 +185,205 @@ export const Jobs = () => {
               locationAccordionExpanded ? "max-h-full" : "max-h-0 "
             }`}
           >
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="addis abeba"
                 value="addis abeba"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="addis abeba" className="md:px-2 pl-1 font-medium">
+              <label
+                htmlFor="addis abeba"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Addis Abeba
               </label>
             </li>
-            <li className="md:text-xl text-sm flex  md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="hawassa"
                 value="hawassa"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="hawassa" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="hawassa"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Hawassa
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="adama"
                 value="adama"
                 id=""
-                className="md:w-5"
+                className=" md:w-4"
               />
-              <label htmlFor="adama" className="md:px-2 pl-1 font-medium">
+              <label
+                htmlFor="adama"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Adama
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="dire dawa"
                 value="dire dawa"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="dire dawa" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="dire dawa"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Dire Dawa
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="bahir dar"
                 value="bahir dar"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="bahir dar" className="md:px-2 pl-1   font-medium">
+              <label
+                htmlFor="bahir dar"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Bahir Dar
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="mekele"
                 value="mekele"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="mekele" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="mekele"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Mekele
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="jimma"
                 value="jimma"
                 id=""
-                className="md:w-5"
+                className=" md:w-4"
               />
-              <label htmlFor="jimma" className="md:px-2 pl-1   font-medium">
+              <label
+                htmlFor="jimma"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Jimma
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="gondar"
                 value="gondar"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="gondar" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="gondar"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Gondar
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="harar"
                 value="harar"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="harar" className="md:px-2 pl-1   font-medium">
+              <label
+                htmlFor="harar"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Harar
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="jijiga"
                 value="jijiga"
                 id=""
-                className="md:w-5"
+                className=" md:w-4"
               />
-              <label htmlFor="jijiga" className="md:px-2 pl-1   font-medium">
+              <label
+                htmlFor="jijiga"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Jijiga
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="dessie"
                 value="dessie"
                 id=""
-                className="md:w-5"
+                className=" md:w-4"
               />
-              <label htmlFor="dessie" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="dessie"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Dessie
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="debre birhan"
                 value="debre birhan"
                 id=""
-                className="md:w-5"
+                className=" md:w-4"
               />
               <label
                 htmlFor="debre birhan"
-                className="md:px-2 pl-1  font-medium"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
               >
                 Debre Birhan
               </label>
             </li>
-            <li className="md:text-xl text-sm flex md:gap-4">
+            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
               <input
                 type="checkbox"
                 name="aksum"
                 value="aksum"
                 id=""
-                className="md:w-5"
+                className="md:w-4"
               />
-              <label htmlFor="aksum" className="md:px-2 pl-1  font-medium">
+              <label
+                htmlFor="aksum"
+                className="md:px-2 pl-1 md:pl-2 font-medium"
+              >
                 Aksum
               </label>
             </li>
           </div>
         </ul>
       </div>
-      <div className="h-full basis-[90%] md:basis-3/4 rounded-xl w-full flex flex-col pxs-10">
+      <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
         <JobCard
           title="IT Officer"
           companyName="CBE"
@@ -350,7 +397,22 @@ export const Jobs = () => {
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="2 Days Ago"
           img="src/assets/images/cbelogo.jpg"
-          className="min-w-[75%] bg-thm_background shadow-lg"
+          className="min-w-[100%] bg-thm_background shadow-lg"
+        />
+        <JobCard
+          title="IT Officer"
+          companyName="CBE"
+          jobType="Full Time"
+          jobStyle="In Office"
+          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+          aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
+          iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda
+          corporis!"
+          address="Addis Abeba"
+          jobTags={["Programming", "Computer Expert", "Maintenance"]}
+          timeLeft="2 Days Ago"
+          img="src/assets/images/cbelogo.jpg"
+          className="min-w-[100%] bg-thm_background shadow-lg"
         />
       </div>
     </div>

@@ -10,13 +10,13 @@ import { SubscribeSection } from "./components/SubscribeSection";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Jobs } from "./pages/Jobs";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div className="App w-full m-0">
       <Header />
-      {/* <Home /> */}
-      <Jobs />
+      <Outlet />
       <Footer />
     </div>
   );

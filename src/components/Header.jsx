@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   const [collapseMenu, setCollapseMenu] = useState(false);
@@ -6,11 +7,14 @@ function Header() {
     setCollapseMenu(!collapseMenu);
   };
   return (
-    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-10 shadow-md relative">
+    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 lg:py-10 shadow-md relative">
       <div className="flex justify-between w-full lg:w-auto items-center md:pr-5 ">
-        <h1 className="font-bold lg:text-2xl text-thm_primary_color">
+        <NavLink
+          to="/"
+          className="font-bold lg:text-2xl text-thm_primary_color"
+        >
           Walia Jobs
-        </h1>
+        </NavLink>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -27,43 +31,67 @@ function Header() {
       <div className="mr-auto hidden lg:flex gap-10 justify-between flex-1 items-center">
         <ul className="flex gap-8 text-thm_secondary_color ">
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="/"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="/jobs"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Jobs
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="companies"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Companies
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="/buildcv"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Build CV
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="/contact"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Contact
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800">
+            <NavLink
+              to="/blogs"
+              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            >
               Blogs
-            </a>
+            </NavLink>
           </li>
         </ul>
         <div className="flex gap-5">
-          <button className="border-2 border-thm_root1_color py-1 px-8 rounded-md ">
+          <Link
+            to="/login"
+            className="border-2 border-thm_root1_color py-1 px-8 rounded-md "
+          >
             Login
-          </button>
-          <button className="py-1 px-8 bg-thm_root2_color text-white rounded-md">
+          </Link>
+          <Link
+            to="/signup"
+            className="py-1 px-8 bg-thm_root2_color text-white rounded-md"
+          >
             Register
-          </button>
+          </Link>
         </div>
       </div>
       <div
