@@ -1,18 +1,94 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
     <div className="w-full text-center md:py-16 py-5 my-0 md:my-0 flex bg-thm_background shadow shadow-thm_secondary_color  flex-col px-5 md:px-10 lg:px-20">
       <ul className="flex flex-col gap-2 text-center items-center md:flex-row font-medium text-sm  md:justify-between border-b-[1px] border-gray-500 pb-2">
-        <li>Jobs</li>
-        <li>Build CV</li>
-        <li>Company</li>
-        <li className="font-black text-[#f8451d] text-xl md:text-3xl -order-1 md:-order-none">
-          Walia Jobs
+        <li>
+          <NavLink
+            to="/jobs"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Jobs
+          </NavLink>
         </li>
-        <li>About Us</li>
-        <li>Blog</li>
-        <li>Contact Us</li>
+        <li>
+          <NavLink
+            to="/buildcv"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Build CV
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/company"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Company
+          </NavLink>
+        </li>
+        <li className="font-black text-[#f8451d] text-xl md:text-3xl -order-1 md:-order-none">
+          <NavLink
+            to="/"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Walia Jobs
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/about"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            About Us
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/blog"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Blog
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/contact"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? "3px solid #fa6d4d" : "",
+              };
+            }}
+          >
+            Contact Us
+          </NavLink>
+        </li>
       </ul>
       <ul className="flex justify-center gap-5 p-5">
         <li>

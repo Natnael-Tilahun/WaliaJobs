@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [collapseMenu, setCollapseMenu] = useState(false);
@@ -34,7 +34,12 @@ function Header() {
           <li>
             <NavLink
               to="/"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 `}
             >
               Home
             </NavLink>
@@ -42,15 +47,25 @@ function Header() {
           <li>
             <NavLink
               to="/jobs"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 }`}
             >
               Jobs
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="companies"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              to="/company"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Companies
             </NavLink>
@@ -58,7 +73,12 @@ function Header() {
           <li>
             <NavLink
               to="/buildcv"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Build CV
             </NavLink>
@@ -66,15 +86,25 @@ function Header() {
           <li>
             <NavLink
               to="/contact"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Contact
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/blogs"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+              to="/blog"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Blogs
             </NavLink>

@@ -1,5 +1,6 @@
 import React from "react";
 import { JobCard } from "./JobCard";
+import { NavLink } from "react-router-dom";
 
 export const JobsList = () => {
   return (
@@ -63,9 +64,12 @@ export const JobsList = () => {
           img="src/assets/images/gebeyalogo.png"
         />
       </div>
-      <button className="text-[#2F6EFC] font-bold hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg">
+      <NavLink
+        to="/jobs"
+        className="text-[#2F6EFC] font-bold hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg"
+      >
         View all jobs
-      </button>
+      </NavLink>
     </div>
   );
 };

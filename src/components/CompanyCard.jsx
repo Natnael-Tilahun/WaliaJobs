@@ -1,9 +1,11 @@
 import React from "react";
 
-export const CompanyCard = ({ name, rate, reviews, img }) => {
+export const CompanyCard = ({ name, rate, reviews, img, className }) => {
   return (
     <div>
-      <div className="shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-80 gap-1 p-5 border-[1px] items-center">
+      <div
+        className={`shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-80 gap-1 p-5 border-[1px] items-center ${className}`}
+      >
         <img src={img} className="w-full h-32 bg-cover" alt="Company Logo" />
         <h1 className="font-bold py-3">{name}</h1>
         <p className="font-semibold text-gray-600 flex items-center gap-1">
