@@ -14,7 +14,7 @@ export const Company = () => {
         </h1>
         <ul className="flex flex-col gap-2 md:gap-3 lg:gap-6 items-start w-full border-b-2 md:pb-5 lg:pb-2">
           <div
-            className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
+            className="font-medium text-base lg:text-xl flex items-center justify-between w-full"
             onClick={companyAccordionToggleExpanded}
           >
             <h1 className="font-medium lg:text-xl">Company Type</h1>
@@ -111,83 +111,83 @@ export const Company = () => {
           </div>
         </ul>
       </div>
-      <div className="h-full basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
+      <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
         <CompanyCard
           img="src/assets/images/cbelogo.jpg"
           name="Commercial Bank of Ethiopia"
           rate="7"
           reviews="50+"
-          className="lg:w-full bg-thm_background "
+          className="lg:w-full w-2/3 mx-auto bg-thm_background "
         />
         <CompanyCard
           img="src/assets/images/boalogo.jpg"
           name="Bank of Abyssinia"
           rate="10"
           reviews="90+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/awashlogo.png"
           name="Awash Bank"
           rate="7"
           reviews="40+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/safaricomlogo.jpg"
           name="Safaricom"
           rate="10"
           reviews="40+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/airlineslogo.png"
           name="Ethiopian Airlines"
           rate="9"
           reviews="70+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/ethiotelecomlogo.jpg"
           name="Ethio Telecom"
           rate="7"
           reviews="30+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/totalethiopialogo.png"
           name="Total Ethiopia"
           rate="10"
           reviews="10+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/heinekenlogo.png"
           name="Heineken"
           rate="10"
           reviews="30+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/cocacolalogo.png"
           name="Coca Cola"
           rate="10"
           reviews="30+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/nyalamotorslogo.png"
           name="Nyala Motors"
           rate="10"
           reviews="50+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
         <CompanyCard
           img="src/assets/images/gebeyalogo.png"
           name="Gebeya"
           rate="10"
           reviews="50+"
-          className="lg:w-full bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background"
         />
       </div>
     </div>

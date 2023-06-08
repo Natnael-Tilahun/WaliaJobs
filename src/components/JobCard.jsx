@@ -27,7 +27,7 @@ export const JobCard = ({
         </p>
         <p>{jobType}</p>
       </div>
-      <p className="text-left text-gray-500 text-sm leading-5 pb-2 md:w-1/2">
+      <p className="text-left text-gray-500 text-sm leading-5 pb-2 ">
         {description}
       </p>
       <div className="flex font-medium text-gray-600 gap-5 lg:gap-10 text-sm">

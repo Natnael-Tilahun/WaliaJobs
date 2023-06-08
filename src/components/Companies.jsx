@@ -3,6 +3,7 @@ import { CompanyCard } from "./CompanyCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { NavLink } from "react-router-dom";
 
 export const Companies = () => {
   const settings = {
@@ -45,9 +46,9 @@ export const Companies = () => {
     ],
   };
   return (
-    <div className="w-full text-center md:py-20 py-5 px-5 md:px-10 lg:px-20">
+    <div className="w-full text-center md:py-0 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Featured companies actively hiring</h1>
-      <Slider {...settings} className="py-10 w-full ">
+      <Slider {...settings} className="py-10 mb-10 w-full ">
         {/* <div className=""> */}
         <CompanyCard
           img="src/assets/images/cbelogo.jpg"
@@ -118,9 +119,12 @@ export const Companies = () => {
         {/* </div> */}
       </Slider>
 
-      <button className="text-[#2F6EFC] font-bold mt-10 hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg">
+      <NavLink
+        to="/company"
+        className="text-[#2F6EFC] font-bold mt-10 hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg"
+      >
         View all companies
-      </button>
+      </NavLink>
     </div>
   );
 };
