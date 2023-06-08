@@ -47,7 +47,7 @@ export const Signup = () => {
         </div>
         <div className="flex flex-col w-full gap-3">
           <label htmlFor="email">
-            Email Address{" "}
+            Email Address
             <span className="text-red-500 font-medium text-lg"> *</span>
           </label>
           <input
@@ -55,6 +55,10 @@ export const Signup = () => {
             className=" border-2 rounded-md py-1 px-5"
             placeholder="Enter your email address"
           />
+          <label htmlFor="email">
+            Password
+            <span className="text-red-500 font-medium text-lg"> *</span>
+          </label>
           <input
             type="password"
             className=" border-2 rounded-md py-1 px-5"

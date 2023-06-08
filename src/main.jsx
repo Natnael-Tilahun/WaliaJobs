@@ -11,6 +11,7 @@ import { Contact } from "./pages/Contact";
 import { Signup } from "./pages/Signup";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Company } from "./pages/Company";
+import { JobDetails } from "./pages/JobDetails";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/job_details" element={<JobDetails />} />
           <Route path="*" element={<ErrorPage />} />;
         </Route>
       </Routes>
