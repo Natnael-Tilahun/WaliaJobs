@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { JobCard } from "../components/JobCard";
-import { JobsList } from "../components/JobsList";
 import { Sidebar } from "../components/Sidebar";
 
 export const Jobs = () => {

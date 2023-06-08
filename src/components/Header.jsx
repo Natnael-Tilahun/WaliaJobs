@@ -220,7 +220,7 @@ function Header() {
             Login
           </NavLink>
           <NavLink
-            to="signup"
+            to="/signup"
             onClick={menuHandler}
             className="py-1 px-8 bg-thm_root2_color text-white rounded-md"
           >
