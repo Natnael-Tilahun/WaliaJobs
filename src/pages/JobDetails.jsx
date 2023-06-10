@@ -68,13 +68,13 @@ export const JobDetails = () => {
   };
 
   return (
-    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
-      <div className="h-full basis-full lg:basis-[70%]  bg-green-400 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
-        <div className="bg-white p-5 flex flex-col items-start rounded-xl">
-          <div className="flex justify-between w-full border-b-[1px]">
-            <div className="flex flex-col items-start">
-              <h1 className="font-medium text-xl">{job2.title}</h1>
-              <div className="flex gap-4 text-thm_secondary_color text-sm font-medium">
+    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-6 md:gap-2 lg:gap-10">
+      <div className="h-full basis-full lg:basis-[70%] rounded-xl w-full flex flex-col md:px-2 lg:px-0 justify-center gap-5 lg:gap-8">
+        <div className="bg-white py-5 px-4 md:px-10 flex flex-col items-start rounded-xl">
+          <div className="flex justify-between gap-2 w-full border-b-[1px]">
+            <div className="flex flex-col items-start ">
+              <h1 className="font-medium text-lg md:text-xl">{job2.title}</h1>
+              <div className="flex gap-4 text-thm_secondary_color text-sm font-medium border-2 items-center">
                 <p className="">{job2.companyName}</p>
                 <p className="flex items-center gap-1 ">
                   <img
@@ -140,11 +140,11 @@ export const JobDetails = () => {
             </div>
             <img
               src="src\assets\images\boalogo.jpg"
-              className="w-24 h-24 rounded-lg border-[1px]"
+              className="md:w-24 md:h-24 h-16 w-16 rounded-lg border-[1px]"
               alt="Company logo"
             />
           </div>
-          <div className="text-thm_secondary_color flex gap-3 py-2">
+          <div className="text-thm_secondary_color flex gap-3 py-2 text-sm">
             <p className="">
               Posted: <span className="font-medium">{job2.timeLeft}</span>
             </p>
@@ -155,9 +155,9 @@ export const JobDetails = () => {
             </p>
           </div>
         </div>
-        <div className="bg-white p-5 flex gap-2 flex-col items-start rounded-xl">
+        <div className="bg-white py-5 px-4 md:px-10 flex gap-2 flex-col items-start rounded-xl tracking-wide">
           <h1 className="text-lg font-medium">Job Description</h1>
-          <div className="flex flex-col gap-4 items-start">
+          <div className="flex flex-col gap-4 items-start border-b-2 pb-4 w-full">
             <div className="text-left">
               <h1 className=" font-medium">Job Responsibilities:</h1>
               <ul className="flex flex-col p-5 gap-1 list-disc text-thm_secondary_color text-sm text-left">
@@ -267,6 +267,100 @@ export const JobDetails = () => {
             <div className="flex text-sm gap-2 text-thm_secondary_color">
               <h1 className="font-medium text-black">Software Development</h1>
               <p> Software Development</p>
+            </div>
+            <div className="flex flex-col items-start">
+              <h1 className="font-medium text-black">Education</h1>
+              <div className="flex text-sm gap-2 text-thm_secondary_color">
+                <h1 className="font-medium text-black">UG:</h1>
+                <p> Any Graduate</p>
+              </div>
+            </div>
+            <div className="flex flex-col text-sm items-start gap-2 text-thm_secondary_color">
+              <h1 className="font-medium text-black">Key Skills</h1>
+              <div className="flex gap-5 w-full flex-wrap text-xs">
+                <p className="border-2 py-1 px-3 rounded-lg">Design</p>
+                <p className="border-2 py-1 px-3 rounded-lg">Development</p>
+                <p className="border-2 py-1 px-3 rounded-lg">Implementation</p>
+                <p className="border-2 py-1 px-3 rounded-lg">
+                  Oracle ATG Commerce implementation
+                </p>
+                <p className="border-2 py-1 px-3 rounded-lg">
+                  Oracle ATG Commerce Development
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between w-full">
+            <ul className="flex justify-center gap-5 py-2">
+              <li>
+                <img
+                  src="src/assets/images/telegramlogo.png"
+                  alt="Social media link logo"
+                  className="w-8"
+                />
+              </li>
+              <li>
+                <img
+                  src="src/assets/images/gmaillogo2.png"
+                  alt="Social media link logo"
+                  className="w-8"
+                />
+              </li>
+              <li>
+                <img
+                  src="src/assets/images/facebooklogo2.png"
+                  alt="Social media link logo"
+                  className="w-8"
+                />
+              </li>
+              <li>
+                <img
+                  src="src/assets/images/linkedinlogo2.png"
+                  alt="Social media link logo"
+                  className="w-8"
+                />
+              </li>
+            </ul>
+            <button className="bg-thm_root1_color shadow-md hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium px-6 rounded-3xl">
+              Apply Now
+            </button>
+          </div>
+        </div>
+        <div className="bg-white py-5 px-10 flex gap-2 flex-col items-start rounded-xl">
+          <h1 className="text-lg font-medium">About company</h1>
+          <p className="text-thm_secondary_color text-sm text-left tracking-wide">
+            A Silicon-Valley headquartered company, Infogain is a global
+            business oriented IT consulting provider of front-end,
+            customer-facing technologies, processes and applications, leading to
+            a more efficient and streamlined customer experience. We want our
+            clients€™ interactions with their customers to be fast, efficient,
+            and cost effective. With close to 4,000 employees in the United
+            States, India, the Middle East, U.K., Singapore and Malaysia, we
+            service 5 of the world€™s largest 50 companies, and 24 of the
+            Fortune 500. we have million-dollar engagements with over 25
+            customers, many of which have been with us for 5 years or more. At
+            Infogain, we place a high value on establishing long-term
+            relationships with our clients, ultimately becoming virtual
+            extensions of their organizations. In fact, more than 90% of our
+            medium and large deal size clients from five years ago remain
+            clients today. Why? Our consultants, project managers and
+            engineering teams listen and address our clients€™ specific
+            requirements with best-in-class solutions across a broad spectrum of
+            service areas. Infogain is an Oracle Knowledge Management Expert,
+            having the world€™s largest practice to improve customer support
+            operations and boost satisfaction in High Tech, Insurance, Travel &
+            Hospitality and Retail. We are also a global leader in Oracle
+            Retail€™s customer facing products. For insurance companies,
+            Infogain helps make the claims process more efficient, effective and
+          </p>
+          <div className="flex flex-col gap-1 items-start">
+            <h1 className="font-medium text-black">Company Info</h1>
+            <div className="flex text-sm gap-2 text-thm_secondary_color">
+              <h1 className="font-medium text-black">Address:</h1>
+              <p>
+                {" "}
+                A-16 and A-21,,,SECTOR 60,NOIDA, NOIDA, Uttar Pradesh, India
+              </p>
             </div>
           </div>
         </div>

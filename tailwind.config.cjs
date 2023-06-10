@@ -11,6 +11,9 @@ module.exports = {
         thm_secondary_background: `var(--thm-secondary-background)`, // define the background color of secondary elements such as panels, cards, and containers.
         thm_secondary_color: `var(--thm-secondary-color)`, //  define the color of secondary elements such as text, icons, and borders.
       },
+      fontFamily: {
+        sans: [`var(--thm-font)`, "Inter", "Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [],
