@@ -6,8 +6,18 @@ import { NavLink } from "react-router-dom";
 function JobDetail(props) {
   return (
     <div className="flex flex-col text-thm_secondary_color items-start w-full border-b-2 py-2">
-      <h1 className="font-medium text-black">{props.job.title}</h1>
-      <p>{props.job.companyName}</p>
+      <div className="flex justify-between w-full">
+        <div className="text-left">
+          <h1 className="font-medium text-black">{props.job.title}</h1>
+          <p>{props.job.companyName}</p>
+        </div>
+        {props.job.img && (
+          <div>
+            <img src={props.job.img} className="w-14 h-14" alt="" />
+          </div>
+        )}
+      </div>
+
       <div className="flex justify-between w-full py-2 items-center">
         <p className="flex  items-center gap-1">
           <svg
@@ -38,6 +48,7 @@ export const JobDetails = () => {
     address: "Addis Abeba",
     jobTags: ["Programming", "Computer Expert", "Maintenance"],
     timeLeft: "2 Days Ago",
+    img: "src/assets/images/boalogo.jpg",
   };
   const job2 = {
     title: "Programmer",
@@ -53,6 +64,7 @@ export const JobDetails = () => {
     rate: 5,
     salary: "Not Disclosed",
     applicant: 50,
+    img: "src/assets/images/boalogo.jpg",
   };
   const job3 = {
     title: "Frontend Developer",
@@ -65,16 +77,17 @@ export const JobDetails = () => {
     jobTags: ["Programming", "Computer Expert", "Maintenance"],
     timeLeft: "2 Days Ago",
     applicant: 30,
+    img: "src/assets/images/boalogo.jpg",
   };
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-6 md:gap-2 lg:gap-10">
-      <div className="h-full basis-full lg:basis-[70%] rounded-xl w-full flex flex-col md:px-2 lg:px-0 justify-center gap-5 lg:gap-8">
+      <div className="h-full basis-full md:basis-[60%] lg:basis-[70%] rounded-xl w-full flex flex-col md:px-2 lg:px-0 justify-center gap-5 lg:gap-8">
         <div className="bg-white py-5 px-4 md:px-10 flex flex-col items-start rounded-xl">
           <div className="flex justify-between gap-2 w-full border-b-[1px]">
             <div className="flex flex-col items-start ">
               <h1 className="font-medium text-lg md:text-xl">{job2.title}</h1>
-              <div className="flex gap-4 text-thm_secondary_color text-sm font-medium border-2 items-center">
+              <div className="flex gap-4 text-thm_secondary_color text-sm font-medium items-center">
                 <p className="">{job2.companyName}</p>
                 <p className="flex items-center gap-1 ">
                   <img
@@ -265,8 +278,8 @@ export const JobDetails = () => {
               <p> Full Time, Permanent</p>
             </div>
             <div className="flex text-sm gap-2 text-thm_secondary_color">
-              <h1 className="font-medium text-black">Software Development</h1>
-              <p> Software Development</p>
+              <h1 className="font-medium text-black">Role Category: </h1>
+              <p> IT & Information Security - Other</p>
             </div>
             <div className="flex flex-col items-start">
               <h1 className="font-medium text-black">Education</h1>
@@ -290,7 +303,7 @@ export const JobDetails = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-between w-full">
+          <div className="flex flex-col gap-3 md:flex-row justify-between w-full">
             <ul className="flex justify-center gap-5 py-2">
               <li>
                 <img
@@ -321,12 +334,12 @@ export const JobDetails = () => {
                 />
               </li>
             </ul>
-            <button className="bg-thm_root1_color shadow-md hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium px-6 rounded-3xl">
+            <button className="bg-thm_root1_color shadow-md py-2 hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium px-6 rounded-3xl">
               Apply Now
             </button>
           </div>
         </div>
-        <div className="bg-white py-5 px-10 flex gap-2 flex-col items-start rounded-xl">
+        <div className="bg-white py-5 px-6 md:px-10 flex gap-2 flex-col items-start rounded-xl">
           <h1 className="text-lg font-medium">About company</h1>
           <p className="text-thm_secondary_color text-sm text-left tracking-wide">
             A Silicon-Valley headquartered company, Infogain is a global
@@ -367,7 +380,7 @@ export const JobDetails = () => {
       </div>
 
       {/* Side bar */}
-      <div className="flex basis-full md:basis-[30%] xl:basis-[30%]   bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
+      <div className="flex basis-full md:basis-[40%] xl:basis-[30%]   bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-5 md:p-5 lg:p-10 ">
         <h1 className="font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-0 w-full text-left">
           Jobs you might be interested in
         </h1>
@@ -376,7 +389,7 @@ export const JobDetails = () => {
         <JobDetail job={job3} />
         <NavLink
           to="/jobs"
-          className="border-2 border-thm_root1_color px-4 rounded-lg self-center text-thm_root1_color"
+          className="border-2 border-thm_root1_color px-4 mx-auto rounded-lg self-center text-thm_root1_color"
         >
           View All
         </NavLink>

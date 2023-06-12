@@ -62,6 +62,12 @@ export const Login = () => {
           <button className="bg-thm_root1_color py-2 rounded-lg font-medium text-white">
             Login with email
           </button>
+          <p className="text-sm text-thm_secondary_color">
+            Don't have an account yet?{" "}
+            <NavLink to="/signup" className="text-thm_root1_color text-base">
+              Sign up Now
+            </NavLink>
+          </p>
         </div>
       </div>
     </div>
