@@ -31,7 +31,7 @@ function Hero() {
           name=""
           id=""
           placeholder="Select Experience"
-          className=" h-full w-full md:w-1/3 md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
+          className=" h-full w-full md:w-1/3 bg-white md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option className="text-slate-300" value="" selected disabled>
             Select Location{" "}
@@ -49,7 +49,7 @@ function Hero() {
           name=""
           id=""
           placeholder="Select Experience"
-          className=" h-full w-full md:w-1/3 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
+          className=" h-full bg-white w-full md:w-1/3 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option className="text-slate-300" value="" selected disabled>
             Select Experience{" "}

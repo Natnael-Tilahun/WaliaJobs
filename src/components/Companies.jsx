@@ -51,67 +51,67 @@ export const Companies = () => {
       <Slider {...settings} className="py-10 mb-10 w-full ">
         {/* <div className=""> */}
         <CompanyCard
-          img="src/assets/images/cbelogo.jpg"
+          img="/cbelogo.jpg"
           name="Commercial Bank of Ethiopia"
           rate="7"
           reviews="50+"
         />
         <CompanyCard
-          img="src/assets/images/boalogo.jpg"
+          img="/boalogo.jpg"
           name="Bank of Abyssinia"
           rate="10"
           reviews="90+"
         />
         <CompanyCard
-          img="src/assets/images/awashlogo.png"
+          img="/awashlogo.png"
           name="Awash Bank"
           rate="7"
           reviews="40+"
         />
         <CompanyCard
-          img="src/assets/images/safaricomlogo.jpg"
+          img="/safaricomlogo.jpg"
           name="Safaricom"
           rate="10"
           reviews="40+"
         />
         <CompanyCard
-          img="src/assets/images/airlineslogo.png"
+          img="/airlineslogo.png"
           name="Ethiopian Airlines"
           rate="9"
           reviews="70+"
         />
         <CompanyCard
-          img="src/assets/images/ethiotelecomlogo.jpg"
+          img="/ethiotelecomlogo.jpg"
           name="Ethio Telecom"
           rate="7"
           reviews="30+"
         />
         <CompanyCard
-          img="src/assets/images/totalethiopialogo.png"
+          img="/totalethiopialogo.png"
           name="Total Ethiopia"
           rate="10"
           reviews="10+"
         />
         <CompanyCard
-          img="src/assets/images/heinekenlogo.png"
+          img="/heinekenlogo.png"
           name="Heineken"
           rate="10"
           reviews="30+"
         />
         <CompanyCard
-          img="src/assets/images/cocacolalogo.png"
+          img="/cocacolalogo.png"
           name="Coca Cola"
           rate="10"
           reviews="30+"
         />
         <CompanyCard
-          img="src/assets/images/nyalamotorslogo.png"
+          img="/nyalamotorslogo.png"
           name="Nyala Motors"
           rate="10"
           reviews="50+"
         />
         <CompanyCard
-          img="src/assets/images/gebeyalogo.png"
+          img="/gebeyalogo.png"
           name="Gebeya"
           rate="10"
           reviews="50+"

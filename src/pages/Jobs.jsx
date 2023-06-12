@@ -19,12 +19,12 @@ export const Jobs = () => {
           address="Addis Abeba"
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="2 Days Ago"
-          img="src/assets/images/cbelogo.jpg"
+          img="/cbelogo.jpg"
           className="min-w-[100%] bg-thm_background shadow-lg"
         />
         <JobCard
-          title="IT Officer"
-          companyName="CBE"
+          title="Programmer"
+          companyName="Abyssinia"
           jobType="Full Time"
           jobStyle="In Office"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
@@ -34,7 +34,7 @@ export const Jobs = () => {
           address="Addis Abeba"
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="2 Days Ago"
-          img="src/assets/images/cbelogo.jpg"
+          img="/boalogo.jpg"
           className="min-w-[100%] bg-thm_background shadow-lg"
         />
       </div>

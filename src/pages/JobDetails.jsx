@@ -48,7 +48,7 @@ export const JobDetails = () => {
     address: "Addis Abeba",
     jobTags: ["Programming", "Computer Expert", "Maintenance"],
     timeLeft: "2 Days Ago",
-    img: "src/assets/images/boalogo.jpg",
+    img: "/boalogo.jpg",
   };
   const job2 = {
     title: "Programmer",
@@ -64,7 +64,7 @@ export const JobDetails = () => {
     rate: 5,
     salary: "Not Disclosed",
     applicant: 50,
-    img: "src/assets/images/boalogo.jpg",
+    img: "/boalogo.jpg",
   };
   const job3 = {
     title: "Frontend Developer",
@@ -77,7 +77,7 @@ export const JobDetails = () => {
     jobTags: ["Programming", "Computer Expert", "Maintenance"],
     timeLeft: "2 Days Ago",
     applicant: 30,
-    img: "src/assets/images/boalogo.jpg",
+    img: "/boalogo.jpg",
   };
 
   return (
@@ -91,7 +91,7 @@ export const JobDetails = () => {
                 <p className="">{job2.companyName}</p>
                 <p className="flex items-center gap-1 ">
                   <img
-                    src="src\assets\images\Icon.png"
+                    src="\Icon.png"
                     alt="Rate star icon"
                     className="w-4 h-4 inline-block"
                   />
@@ -152,7 +152,7 @@ export const JobDetails = () => {
               </div>
             </div>
             <img
-              src="src\assets\images\boalogo.jpg"
+              src="\boalogo.jpg"
               className="md:w-24 md:h-24 h-16 w-16 rounded-lg border-[1px]"
               alt="Company logo"
             />
@@ -307,28 +307,28 @@ export const JobDetails = () => {
             <ul className="flex justify-center gap-5 py-2">
               <li>
                 <img
-                  src="src/assets/images/telegramlogo.png"
+                  src="/telegramlogo.png"
                   alt="Social media link logo"
                   className="w-8"
                 />
               </li>
               <li>
                 <img
-                  src="src/assets/images/gmaillogo2.png"
+                  src="/gmaillogo2.png"
                   alt="Social media link logo"
                   className="w-8"
                 />
               </li>
               <li>
                 <img
-                  src="src/assets/images/facebooklogo2.png"
+                  src="/facebooklogo2.png"
                   alt="Social media link logo"
                   className="w-8"
                 />
               </li>
               <li>
                 <img
-                  src="src/assets/images/linkedinlogo2.png"
+                  src="/linkedinlogo2.png"
                   alt="Social media link logo"
                   className="w-8"
                 />

@@ -49,16 +49,16 @@ export const BuildCvSection = () => {
       <h1 className="font-bold text-3xl">Build your cv</h1>
       {/* <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between"> */}
       <Slider {...settings} className="py-16 w-full">
-        <CvTemplate img="src/assets/images/cvTemplate1.png" />
-        <CvTemplate img="src/assets/images/cvTemplate2.png" />
-        <CvTemplate img="src/assets/images/cvTemplate3.png" />
-        <CvTemplate img="src/assets/images/cvTemplate4.png" />
-        <CvTemplate img="src/assets/images/cvTemplate5.png" />
-        <CvTemplate img="src/assets/images/cvTemplate1.png" />
-        <CvTemplate img="src/assets/images/cvTemplate2.png" />
-        <CvTemplate img="src/assets/images/cvTemplate3.png" />
-        <CvTemplate img="src/assets/images/cvTemplate4.png" />
-        <CvTemplate img="src/assets/images/cvTemplate5.png" />
+        <CvTemplate img="/cvTemplate1.png" />
+        <CvTemplate img="/cvTemplate2.png" />
+        <CvTemplate img="/cvTemplate3.png" />
+        <CvTemplate img="/cvTemplate4.png" />
+        <CvTemplate img="/cvTemplate5.png" />
+        <CvTemplate img="/cvTemplate1.png" />
+        <CvTemplate img="/cvTemplate2.png" />
+        <CvTemplate img="/cvTemplate3.png" />
+        <CvTemplate img="/cvTemplate4.png" />
+        <CvTemplate img="/cvTemplate5.png" />
       </Slider>
       {/* </div> */}
     </div>

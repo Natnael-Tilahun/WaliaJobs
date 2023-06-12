@@ -109,42 +109,42 @@ export const Footer = () => {
       <ul className="flex justify-center gap-5 p-5">
         <li>
           <img
-            src="src/assets/images/telegramlogo.png"
+            src="/telegramlogo.png"
             alt="Social media link logo"
             className="w-8"
           />
         </li>
         <li>
           <img
-            src="src/assets/images/tiktoklogo.png"
+            src="/tiktoklogo.png"
             alt="Social media link logo"
             className="w-8"
           />
         </li>
         <li>
           <img
-            src="src/assets/images/youtubelogo.png"
+            src="/youtubelogo.png"
             alt="Social media link logo"
             className="w-8"
           />
         </li>
         <li>
           <img
-            src="src/assets/images/gmaillogo2.png"
+            src="/gmaillogo2.png"
             alt="Social media link logo"
             className="w-8"
           />
         </li>
         <li>
           <img
-            src="src/assets/images/facebooklogo2.png"
+            src="/facebooklogo2.png"
             alt="Social media link logo"
             className="w-8"
           />
         </li>
         <li>
           <img
-            src="src/assets/images/linkedinlogo2.png"
+            src="/linkedinlogo2.png"
             alt="Social media link logo"
             className="w-8"
           />
