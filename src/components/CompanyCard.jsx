@@ -10,7 +10,7 @@ export const CompanyCard = ({ name, rate, reviews, img, className }) => {
         <h1 className="font-bold py-3">{name}</h1>
         <p className="font-semibold text-gray-600 flex items-center gap-1">
           <img
-            src="src\assets\images\Icon.png"
+            src="/Icon.png"
             className="w-5 h-5 inline-block mx-0"
             alt="Review Star"
           />
