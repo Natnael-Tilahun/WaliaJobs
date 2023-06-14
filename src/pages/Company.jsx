@@ -17,7 +17,7 @@ export const Company = () => {
             className="font-medium text-base lg:text-xl flex items-center justify-between w-full"
             onClick={companyAccordionToggleExpanded}
           >
-            <h1 className="font-medium lg:text-xl">Company Type</h1>
+            <h1 className="font-medium md:text-lg text-base">Company Type</h1>
             {companyExpanded ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export const Company = () => {
               companyExpanded ? "max-h-full" : "max-h-0 "
             }`}
           >
-            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+            <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
               <input
                 type="checkbox"
                 name="private"
@@ -60,7 +60,7 @@ export const Company = () => {
                 Private
               </label>
             </li>
-            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+            <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
               <input
                 type="checkbox"
                 name="governmental"
@@ -76,7 +76,7 @@ export const Company = () => {
                 Governmental
               </label>
             </li>
-            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+            <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
               <input
                 type="checkbox"
                 name="corporate"
@@ -92,7 +92,7 @@ export const Company = () => {
                 Corporate
               </label>
             </li>
-            <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+            <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
               <input
                 type="checkbox"
                 name="startup"
@@ -111,7 +111,7 @@ export const Company = () => {
           </div>
         </ul>
       </div>
-      <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
+      <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
         <CompanyCard
           img="/cbelogo.jpg"
           name="Commercial Bank of Ethiopia"

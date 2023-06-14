@@ -24,15 +24,15 @@ export const Sidebar = () => {
   };
   return (
     <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
-      <h1 className="border-b-2 font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
+      <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
         All Filters
       </h1>
-      <ul className="flex flex-col mx-auto border-b-2 pb-2 md:pb-5 lg:pb-5 w-full">
+      <div className="flex flex-col mx-auto border-b-2 pb-2 md:pb-5 lg:pb-5 w-full">
         <div
-          className="font-medium md:text-xl lg:text-xl flex items-center justify-between w-full "
+          className="font-medium md:text-lg text-sm lg:text-base flex items-center justify-between w-full "
           onClick={workModeAccordionToggleExpanded}
         >
-          <h1>Work Mode</h1>
+          <h1 className="md:text-lg text-base">Work Mode</h1>
           {workModeExpanded ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,12 +54,12 @@ export const Sidebar = () => {
             </svg>
           )}
         </div>
-        <div
-          className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
+        <ul
+          className={`overflow-hidden transition-[max-height] text-left text-sm text-thm_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
             workModeExpanded ? "max-h-fit" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
             <input
               type="checkbox"
               name="office"
@@ -75,7 +75,7 @@ export const Sidebar = () => {
               Work from office
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
             <input
               type="checkbox"
               name="remote"
@@ -90,7 +90,7 @@ export const Sidebar = () => {
               Work from home
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
             <input
               type="checkbox"
               name="hybrid"
@@ -105,7 +105,7 @@ export const Sidebar = () => {
               Hybrid
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-0">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
             <input
               type="checkbox"
               name="temporary"
@@ -120,14 +120,14 @@ export const Sidebar = () => {
               Temp. WFH dut to covid
             </label>
           </li>
-        </div>
-      </ul>
+        </ul>
+      </div>
       <div className="flex flex-col md:gap-4  border-b-2 md:pb-5 lg:pb-5 pb-3 w-full">
         <div
           className="font-medium md:text-xl lg:text-xl flex items-center justify-between w-full"
           onClick={experienceAccordionToggleExpanded}
         >
-          <h1 className="font-medium md:text-xl lg:text-xl text-left">
+          <h1 className="font-medium  md:text-lg lg:text-lg text-left">
             Experience
           </h1>
           {experienceExpanded ? (
@@ -178,7 +178,7 @@ export const Sidebar = () => {
           className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
           onClick={locationAccordionToggleExpanded}
         >
-          <h1 className="font-medium lg:text-xl">Location</h1>
+          <h1 className="font-medium text-base lg:text-lg">Location</h1>
           {locationAccordionExpanded ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -201,11 +201,11 @@ export const Sidebar = () => {
           )}
         </div>
         <div
-          className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             locationAccordionExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs flex lg:gap-1">
             <input
               type="checkbox"
               name="addis abeba"
@@ -220,7 +220,7 @@ export const Sidebar = () => {
               Addis Abeba
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="hawassa"
@@ -235,7 +235,7 @@ export const Sidebar = () => {
               Hawassa
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="adama"
@@ -247,7 +247,7 @@ export const Sidebar = () => {
               Adama
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="dire dawa"
@@ -262,7 +262,7 @@ export const Sidebar = () => {
               Dire Dawa
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="bahir dar"
@@ -277,7 +277,7 @@ export const Sidebar = () => {
               Bahir Dar
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="mekele"
@@ -292,7 +292,7 @@ export const Sidebar = () => {
               Mekele
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="jimma"
@@ -304,7 +304,7 @@ export const Sidebar = () => {
               Jimma
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="gondar"
@@ -319,7 +319,7 @@ export const Sidebar = () => {
               Gondar
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="harar"
@@ -331,7 +331,7 @@ export const Sidebar = () => {
               Harar
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="jijiga"
@@ -346,7 +346,7 @@ export const Sidebar = () => {
               Jijiga
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="dessie"
@@ -361,7 +361,7 @@ export const Sidebar = () => {
               Dessie
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="debre birhan"
@@ -376,7 +376,7 @@ export const Sidebar = () => {
               Debre Birhan
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="aksum"
@@ -395,7 +395,7 @@ export const Sidebar = () => {
           className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
           onClick={departmentAccordionToggleExpanded}
         >
-          <h1 className="font-medium lg:text-xl">Department</h1>
+          <h1 className="font-medium md:text-lg text-base">Department</h1>
           {departmentExpanded ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -418,11 +418,11 @@ export const Sidebar = () => {
           )}
         </div>
         <div
-          className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             departmentExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="bankingandinsurance"
@@ -437,7 +437,7 @@ export const Sidebar = () => {
               Banking & Insurance
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="salesandmarketing"
@@ -452,7 +452,7 @@ export const Sidebar = () => {
               Sales & Marketing
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="management"
@@ -467,7 +467,7 @@ export const Sidebar = () => {
               Management
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="softwareEng"
@@ -482,7 +482,7 @@ export const Sidebar = () => {
               Software Engineering
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="financeandaccounting"
@@ -497,7 +497,7 @@ export const Sidebar = () => {
               Finance & Accounting
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="engineering"
@@ -512,7 +512,7 @@ export const Sidebar = () => {
               Engineering
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="human resource"
@@ -527,7 +527,7 @@ export const Sidebar = () => {
               Human Resource
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="health"
@@ -542,7 +542,7 @@ export const Sidebar = () => {
               Health
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="legal"
@@ -554,7 +554,7 @@ export const Sidebar = () => {
               Legal
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="ngo"
@@ -566,7 +566,7 @@ export const Sidebar = () => {
               NGO
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="analytics"
@@ -581,7 +581,7 @@ export const Sidebar = () => {
               Analytics
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="remote"
@@ -603,7 +603,7 @@ export const Sidebar = () => {
           className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
           onClick={companyAccordionToggleExpanded}
         >
-          <h1 className="font-medium lg:text-xl">Company Type</h1>
+          <h1 className="font-medium md:text-lg text-base">Company Type</h1>
           {companyExpanded ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -630,7 +630,7 @@ export const Sidebar = () => {
             companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="private"
@@ -646,7 +646,7 @@ export const Sidebar = () => {
               Private
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="governmental"
@@ -662,7 +662,7 @@ export const Sidebar = () => {
               Governmental
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="corporate"
@@ -678,7 +678,7 @@ export const Sidebar = () => {
               Corporate
             </label>
           </li>
-          <li className="lg:text-lg md:text-lg text-sm flex lg:gap-1">
+          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
             <input
               type="checkbox"
               name="startup"

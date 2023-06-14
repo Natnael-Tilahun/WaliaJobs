@@ -15,6 +15,13 @@ module.exports = {
         sans: [`var(--thm-font)`, "Inter", "Poppins", "sans-serif"],
       },
     },
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1150px",
+      xl: "1280px",
+      "2xl": "1500px", // Custom screen size
+    },
   },
   plugins: [],
 };
