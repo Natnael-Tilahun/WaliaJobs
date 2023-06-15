@@ -12,13 +12,17 @@ import { Signup } from "./pages/Signup";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Company } from "./pages/Company";
 import { JobDetails } from "./pages/JobDetails";
+import { BuildCV } from "./pages/BuildCV";
+import { CVTemplates } from "./features/CVTemplates";
+import { RecommendedCV } from "./features/RecommendedCV";
+import { CVDetails } from "./pages/CVDetails";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/company" element={<Company />} />
           <Route path="/login" element={<Login />} />
@@ -27,6 +31,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/job_details" element={<JobDetails />} />
+          <Route path="buildcv" element={<BuildCV />}>
+            <Route index element={<RecommendedCV />} />
+            <Route path="alltemplates" element={<CVTemplates />} />
+          </Route>
+          <Route path="/cv_details/:id" element={<CVDetails />} />
           <Route path="*" element={<ErrorPage />} />;
         </Route>
       </Routes>

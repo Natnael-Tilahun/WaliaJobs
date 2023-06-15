@@ -1,12 +1,12 @@
 import React from "react";
 
-export const CvTemplate = ({ img }) => {
+export const CvTemplate = ({ img, className }) => {
   return (
     <>
       <img
         src={img}
         alt="Cv Template image"
-        className="xl:px-20 px-5 mx-auto"
+        className={` mx-auto ${className}`}
       />
     </>
   );
