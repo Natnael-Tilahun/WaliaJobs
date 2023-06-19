@@ -14,7 +14,7 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App w-full m-0 box-border">
+    <div className="App w-full m-0 box-border bg-thm_secondary_background">
       <Header />
       <Outlet />
       <Footer />

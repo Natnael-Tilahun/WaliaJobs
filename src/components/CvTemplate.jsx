@@ -6,7 +6,7 @@ export const CvTemplate = ({ img, className }) => {
       <img
         src={img}
         alt="Cv Template image"
-        className={` mx-auto ${className}`}
+        className={`mx-auto ${className}`}
       />
     </>
   );

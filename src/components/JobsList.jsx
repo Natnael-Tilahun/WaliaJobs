@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export const JobsList = () => {
   return (
-    <div className="w-full text-center md:py-20 py-5 px-5 md:px-10 lg:px-20">
+    <div className="w-full bg-thm_background text-center md:py-20 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Recent Jobs</h1>
       <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between">
         <JobCard

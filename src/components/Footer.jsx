@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="w-full text-center md:py-16 py-5 my-0 md:my-0 flex bg-thm_background shadow shadow-thm_secondary_color  flex-col px-5 md:px-10 lg:px-10">
+    <div className="w-full rounded-3xl  bg-gradient-to-r from-thm_root1_color to-thm_root2_color text-center md:py-16 py-5 my-0 md:my-0 flex bg-thm_background shadow shadow-thm_secondary_color  flex-col px-5 md:px-10 lg:px-10">
       <div className="flex justify-evenly border-b-[1px] flex-wrap border-gray-500 gap-5">
         <NavLink
           to="/"
-          className="font-black  basis-full md:basis-auto text-[#f8451d] self-center text-xl md:text-3xl -order-1 md:-order-none"
+          className="font-black  basis-full md:basis-auto text-[#e96c51] self-center text-xl md:text-3xl -order-1 md:-order-none"
           style={({ isActive }) => {
             return {
               borderBottom: isActive ? "3px solid #fa6d4d" : "",
@@ -16,8 +16,8 @@ export const Footer = () => {
         >
           Walia Jobs
         </NavLink>
-        <ul className="flex flex-col gap-2 text-center items-start text-thm_secondary_color  font-medium text-sm md:text-base   md:justify-between  pb-2">
-          <li className="font-medium text-base md:text-lg text-black">
+        <ul className="flex flex-col gap-2 text-center items-start text-gray-200  font-medium text-sm md:text-base   md:justify-between  pb-2">
+          <li className="font-semibold text-base md:text-lg text-white">
             Walia Jobs
           </li>
           <li>
@@ -83,8 +83,8 @@ export const Footer = () => {
             </NavLink>
           </li>
         </ul>
-        <ul className="flex flex-col items-start gap-2 text-sm text-thm_secondary_color md:text-base font-medium">
-          <h1 className="font-medium text-base md:text-lg text-black">
+        <ul className="flex flex-col items-start gap-2 text-sm text-gray-200 md:text-base font-medium">
+          <h1 className="font-semibold text-base md:text-lg text-white">
             Community
           </h1>
           <li>
@@ -150,7 +150,7 @@ export const Footer = () => {
           />
         </li>
       </ul>
-      <p className="text-gray-500 tracking-wide text-sm">
+      <p className="text-gray-200 tracking-wide text-sm">
         @WaliaJobs, Inc 2023. We love our users!
       </p>
     </div>

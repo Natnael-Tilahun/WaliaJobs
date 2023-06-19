@@ -13,9 +13,9 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { Company } from "./pages/Company";
 import { JobDetails } from "./pages/JobDetails";
 import { BuildCV } from "./pages/BuildCV";
-import { CVTemplates } from "./features/CVTemplates";
-import { RecommendedCV } from "./features/RecommendedCV";
 import { CVDetails } from "./pages/CVDetails";
+import { RecommendedCV } from "./pages/BuildCV/RecommendedCV";
+import { CVTemplates } from "./pages/BuildCV/CVTemplates";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

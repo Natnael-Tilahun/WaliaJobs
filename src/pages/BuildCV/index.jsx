@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { CvTemplate } from "../components/CvTemplate";
+import { CvTemplate } from "../../components/CvTemplate";
 
 export const BuildCV = () => {
   return (
-    <div className="w-full h-full md:py-10 bg-thm_secondary_background py-5 flex-col  my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
-      <div className="flex flex-col border-b-2 gap-3 md:gap-2 py-4 px-5   w-full">
+    <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
+      <div className="flex bg-thm_background md:py-10  py-5 flex-col  my-0  md:my-0 md:px-3 lg:px-20   border-b-2 gap-3 md:gap-2 px-5   w-full">
         <h1 className="text-xl md:text-3xl text-center font-medium">
           Choose a template for your CV
         </h1>

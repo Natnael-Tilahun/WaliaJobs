@@ -1,27 +1,27 @@
 import React from "react";
-import { CvTemplate } from "../components/CvTemplate";
 import { NavLink } from "react-router-dom";
+import { CvTemplate } from "../../components/CvTemplate";
 
 export const RecommendedCV = () => {
   return (
-    <div className="flex flex-col gap-5">
-      <div className="grid grid-cols-2 md:grid-cols-3 flex-col gap-6 md:flex-row py-5">
-        <NavLink to="/cv_details/1">
+    <div className="flex flex-col gap-10   md:py-10  py-5  md:px-3 lg:px-20 px-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 flex-col gap-6 md:gap-20 lg:gap-5 md:flex-row py-5">
+        <NavLink to="/cv_details/1" className=" md:w-[100%] lg:w-1/2">
           <CvTemplate
             img="/cvTemplate1.png"
-            className="rounded-md basis-1/5   shadow-md"
+            className="rounded-md  shadow-md w-full"
           />
         </NavLink>
-        <NavLink to="/cv_details/2">
+        <NavLink to="/cv_details/2" className=" lg:w-1/2">
           <CvTemplate
             img="/cvTemplate2.png"
-            className="rounded-md basis-1/5 shadow-md"
+            className="rounded-md  shadow-md w-full"
           />
         </NavLink>
-        <NavLink to="/cv_details/3">
+        <NavLink to="/cv_details/3" className=" lg:w-1/2">
           <CvTemplate
             img="/cvTemplate3.png"
-            className="rounded-md basis-1/5  shadow-md"
+            className="rounded-md   shadow-md w-full"
           />
         </NavLink>
       </div>

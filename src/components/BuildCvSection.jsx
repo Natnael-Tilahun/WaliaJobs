@@ -45,7 +45,7 @@ export const BuildCvSection = () => {
     ],
   };
   return (
-    <div className="w-full text-center md:py-10 py-5 my-5 md:my-0 px-5 md:px-10 lg:px-20">
+    <div className="w-full bg-thm_background text-center md:py-10 py-5 my-5 md:my-0 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Build your cv</h1>
       {/* <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between"> */}
       <Slider {...settings} className="py-16 w-full">

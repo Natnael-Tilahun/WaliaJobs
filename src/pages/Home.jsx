@@ -9,13 +9,13 @@ import { SubscribeSection } from "../components/SubscribeSection";
 
 export const Home = () => {
   return (
-    <>
+    <div className="bg-thm_background">
       <Hero />
       <JobCatagories />
       <Companies />
       <JobsList />
       <BuildCvSection />
       <SubscribeSection />
-    </>
+    </div>
   );
 };
