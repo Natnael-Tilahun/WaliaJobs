@@ -14,13 +14,25 @@ module.exports = {
       fontFamily: {
         sans: [`var(--thm-font)`, "Inter", "Poppins", "sans-serif"],
       },
+      fontSize: {
+        xxxxxxs: "0.25rem", // Sextuple extra small
+        xxxxxs: "0.3125rem", // Quintuple extra small
+        xxxxs: "0.375rem", // Quadruple extra small
+        xxxs: "0.5rem", // Triple extra small
+        xxs: "0.625rem", // Extra extra small
+        "3xl": "1.875rem", // Triple extra small
+        "4xl": "2.25rem", // Quadruple extra small
+        "5xl": "3rem", // Quintuple extra small
+        "6xl": "4rem", // Sextuple extra large
+        // Add more custom font sizes here
+      },
     },
     screens: {
       sm: "640px",
       md: "768px",
       lg: "1150px",
-      xl: "1280px",
-      "2xl": "1500px", // Custom screen size
+      xl: "1350px",
+      "2xl": "1500px", // Custom screen size,
     },
   },
   plugins: [],
