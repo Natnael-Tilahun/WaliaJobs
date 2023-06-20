@@ -12,10 +12,11 @@ import { Signup } from "./pages/Signup";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Company } from "./pages/Company";
 import { JobDetails } from "./pages/JobDetails";
-import { BuildCV } from "./pages/BuildCV";
-import { CVDetails } from "./pages/CVDetails";
 import { RecommendedCV } from "./pages/BuildCV/RecommendedCV";
 import { CVTemplates } from "./pages/BuildCV/CVTemplates";
+import { ContactSection } from "./pages/CVDetails/ContactSection";
+import { BuildCV } from "./pages/BuildCV";
+import { ExperienceSection } from "./pages/CVDetails/ExperienceSection";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -35,7 +36,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route index element={<RecommendedCV />} />
             <Route path="alltemplates" element={<CVTemplates />} />
           </Route>
-          <Route path="/cv_details/:id" element={<CVDetails />} />
+          <Route path="/Contact-Section/:id" element={<ContactSection />} />
+          <Route
+            path="/Experience-Section/:id"
+            element={<ExperienceSection />}
+          />
           <Route path="*" element={<ErrorPage />} />;
         </Route>
       </Routes>

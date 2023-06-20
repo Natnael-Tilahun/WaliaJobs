@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
-export const CVDetails = () => {
+export const ExperienceSection = () => {
   const data = {
     name: "John Doe",
     jobTitle: "Software Engineer",
@@ -54,23 +54,21 @@ export const CVDetails = () => {
     interests: ["Reading", "Traveling", "Playing guitar"],
     references: ["Available upon request"],
   };
-  const [firstname, setFirstname] = useState("Natnael");
-  const [lastname, setLastname] = useState("Tilahun");
-  const [position, setPosition] = useState("Software Engineer");
+  const [jobTitle, setJobTitle] = useState("Developer");
+  const [employer, setEmployer] = useState("Dagi's Spa");
   const [city, setCity] = useState("Addis Abeba");
   const [country, setCountry] = useState("Ethiopia");
-  const [postcode, setPostcode] = useState("0000");
-  const [phone, setPhone] = useState("0933654654");
-  const [email, setEmail] = useState("natnaeltilahun97@gmail.com");
+  const [startDate, setStartDate] = useState("01/02/2021");
+  const [endDate, setEndDate] = useState("10/07/2023");
+  const [isCurrentlyWorkingThere, setIsCurrentlyWorkingThere] = useState(false);
 
-  const firstnameRef = useRef();
-  const lastnameRef = useRef();
-  const positionRef = useRef();
+  const jobTitleRef = useRef();
+  const employerRef = useRef();
   const cityRef = useRef();
   const countryRef = useRef();
-  const postcodeRef = useRef();
-  const phoneRef = useRef();
-  const emailRef = useRef();
+  const startDateRef = useRef();
+  const endDateRef = useRef();
+  const isCurrentlyWorkingThereRef = useRef();
 
   return (
     <div className="flex flex-col md:flex-row py-5 px-5 md:px-0 lg:px-10 w-full justify-center gap-5 md:gap-2 lg:gap-0">
@@ -80,73 +78,59 @@ export const CVDetails = () => {
       >
         <div className="text-center flex flex-col gap-3">
           <h1 className="text-xl md:text-2xl xl:text-4xl font-medium">
-            Let's start with your header
+            Add your experience
           </h1>
           <p className="text-sm md:text-base text-thm_secondary_color">
-            Include your full name and at least one way for employers to contact
-            you.
+            Start with your most recent job first. You can also add voluntary
+            work, internships or extracurricular activities.
           </p>
         </div>
         <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
           <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
-            <label htmlFor="firstname" for="firstname">
-              First Name
+            <label htmlFor="jobtitle" for="jobtitle">
+              Job Title
             </label>
             <input
               type="text"
-              name="firstname"
-              id="firstname"
-              ref={firstnameRef}
-              placeholder="Natnael"
+              name="jobtitle"
+              id="jobtitle"
+              ref={jobTitleRef}
+              placeholder="Developer"
               className="p-2 border-2 rounded-md"
-              onChange={(e) => setFirstname(e.target.value)}
+              onChange={(e) => setJobTitle(e.target.value)}
             />
           </div>
           <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-            <label htmlFor="lastname" for="lastname">
-              Last Name
+            <label htmlFor="employer" for="employer">
+              Employer
             </label>
             <input
               type="text"
-              name="lastname"
-              id="lastname"
-              placeholder="Tilahun"
-              onChange={(e) => setLastname(e.target.value)}
-              ref={lastnameRef}
-              className="p-2 border-2 rounded-md"
-            />
-          </div>
-          <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-            <label htmlFor="position" for="position">
-              Position
-            </label>
-            <input
-              type="text"
-              name="position"
-              id="position"
-              onChange={(e) => setPosition(e.target.value)}
-              ref={positionRef}
-              placeholder="Software Engineer"
+              name="employer"
+              id="employer"
+              placeholder="Dagi's Spa"
+              onChange={(e) => setEmployer(e.target.value)}
+              ref={employerRef}
               className="p-2 border-2 rounded-md"
             />
           </div>
           <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
             <label htmlFor="city" for="city">
-              City
+              City - State
             </label>
             <input
               type="text"
               name="city"
               id="city"
-              placeholder="Addis Abeba"
               onChange={(e) => setCity(e.target.value)}
               ref={cityRef}
+              placeholder="Addis Abeba"
               className="p-2 border-2 rounded-md"
             />
           </div>
           <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
             <label htmlFor="country" for="country">
-              Country/Region
+              Country
             </label>
             <input
               type="text"
@@ -159,49 +143,48 @@ export const CVDetails = () => {
             />
           </div>
           <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-            <label htmlFor="postcode" for="postcode">
-              PostCode
+            <label htmlFor="startdate" for="startdate">
+              Start Date
             </label>
             <input
-              type="text"
-              name="postcode"
-              id="postcode"
-              placeholder="0000"
-              onChange={(e) => setPostcode(e.target.value)}
-              ref={postcodeRef}
+              type="date"
+              name="startdate"
+              id="startdate"
+              placeholder="Start Date"
+              onChange={(e) => setStartDate(e.target.value)}
+              ref={startDateRef}
               className="p-2 border-2 rounded-md"
             />
           </div>
           <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-            <label htmlFor="phone" for="phone">
-              Phone
+            <label htmlFor="enddate" for="enddate">
+              End Date
             </label>
             <input
-              type="tel"
-              name="phone"
-              id="phone"
-              placeholder="0911223344"
-              onChange={(e) => setPhone(e.target.value)}
-              ref={phoneRef}
+              type="date"
+              name="enddate"
+              id="enddate"
+              placeholder="End Date"
+              onChange={(e) => setEndDate(e.target.value)}
+              ref={endDateRef}
               className="p-2 border-2 rounded-md"
             />
           </div>
-          <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-            <label htmlFor="email" for="email">
-              Email
-            </label>
+          <div className="basis-full justify-end flex gap-3 items-center">
             <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="natnaeltilahun97@gmail.com"
-              onChange={(e) => setEmail(e.target.value)}
-              ref={emailRef}
-              className="p-2 border-2 rounded-md"
+              type="checkbox"
+              id="current work"
+              className="w-6 h-6"
+              checked={isCurrentlyWorkingThere}
+              ref={isCurrentlyWorkingThereRef}
+              onChange={(e) => setIsCurrentlyWorkingThere(e.target.checked)}
             />
+            <label htmlFor="current work" for="current work">
+              I Currently Work Here
+            </label>
           </div>
           <NavLink
-            to="/buildcv"
+            to="/Contact-Section/:1"
             className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
           >
             Back
@@ -224,10 +207,12 @@ export const CVDetails = () => {
               </div>
               <div className="ml-4">
                 <h1 className="md:text-xl font-bold text-white">
-                  {firstname} {lastname}
+                  {/* {firstname} {lastname} */}
+                  Natnael Tilahun
                 </h1>
                 <h2 className="md:text-sm text-xs font-medium text-white">
-                  {position}
+                  {/* {position} */}
+                  Software Developer
                 </h2>
               </div>
             </div>
@@ -244,7 +229,8 @@ export const CVDetails = () => {
                   <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
                 </svg>
                 <p className="">
-                  {city}, {country}, {postcode}
+                  {/* {city}, {country}, {postcode} */}
+                  Addis Abeba, Ethiopia, 0000
                 </p>
               </div>
               <div className="flex items-center gap-1">
@@ -255,7 +241,10 @@ export const CVDetails = () => {
                 >
                   <path d="M9.36556 10.6821C10.302 12.3288 11.6712 13.698 13.3179 14.6344L14.2024 13.3961C14.4965 12.9845 15.0516 12.8573 15.4956 13.0998C16.9024 13.8683 18.4571 14.3353 20.0789 14.4637C20.599 14.5049 21 14.9389 21 15.4606V19.9234C21 20.4361 20.6122 20.8657 20.1022 20.9181C19.5723 20.9726 19.0377 21 18.5 21C9.93959 21 3 14.0604 3 5.5C3 4.96227 3.02742 4.42771 3.08189 3.89776C3.1343 3.38775 3.56394 3 4.07665 3H8.53942C9.0611 3 9.49513 3.40104 9.5363 3.92109C9.66467 5.54288 10.1317 7.09764 10.9002 8.50444C11.1427 8.9484 11.0155 9.50354 10.6039 9.79757L9.36556 10.6821ZM6.84425 10.0252L8.7442 8.66809C8.20547 7.50514 7.83628 6.27183 7.64727 5H5.00907C5.00303 5.16632 5 5.333 5 5.5C5 12.9558 11.0442 19 18.5 19C18.667 19 18.8337 18.997 19 18.9909V16.3527C17.7282 16.1637 16.4949 15.7945 15.3319 15.2558L13.9748 17.1558C13.4258 16.9425 12.8956 16.6915 12.3874 16.4061L12.3293 16.373C10.3697 15.2587 8.74134 13.6303 7.627 11.6707L7.59394 11.6126C7.30849 11.1044 7.05754 10.5742 6.84425 10.0252Z"></path>
                 </svg>
-                <p className="">{phone}</p>
+                <p className="">
+                  {/* {phone} */}
+                  0933654654
+                </p>
               </div>
               <div className="flex gap-1 items-center">
                 <svg
@@ -265,7 +254,10 @@ export const CVDetails = () => {
                 >
                   <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
                 </svg>
-                <p className="">{email}</p>
+                <p className="">
+                  {/* {email} */}
+                  natnaeltilahun97@gmail.com
+                </p>
               </div>
               <hr className="my-1" />
               <h3 className="md:text-xs font-semibold mt-1">Skills</h3>
@@ -274,7 +266,18 @@ export const CVDetails = () => {
                   <li key={index}>{skill}</li>
                 ))}
               </ul>
-              <hr className="my-1" />
+              <hr className="my-1 mb-auto" />
+              <NavLink
+                to="/"
+                className="font-black   basis-full md:basis-auto text-[#e96c51] self-center text-sm "
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                  };
+                }}
+              >
+                Walia Jobs
+              </NavLink>
             </div>
 
             <div className="md:p-3 text-xxxs md:text-xxs p-2 basis-[75%]">
@@ -289,11 +292,11 @@ export const CVDetails = () => {
               {data.workExperience.map((experience, index) => (
                 <div key={index} className="md:my-2 my-1 md:text-xxs">
                   <h4 className=" font-semibold">
-                    {experience.company} - {experience.jobTitle}
+                    {employer} - {jobTitle}
                   </h4>
                   <p className="">
-                    {experience.location} | {experience.startDate} -{" "}
-                    {experience.endDate}
+                    {city}, {country} | {startDate} -{" "}
+                    {isCurrentlyWorkingThere ? "Current" : endDate}
                   </p>
                   <ul className=" list-disc list-inside">
                     {experience.responsibilities.map((responsibility, idx) => (
