@@ -26,6 +26,21 @@ module.exports = {
         "6xl": "4rem", // Sextuple extra large
         // Add more custom font sizes here
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            // "ul > li::before": {
+            //   content: '"•"',
+            //   marginRight: theme("spacing.2"),
+            //   color: theme("colors.gray.700"),
+            // },
+            "ol > li::before": {
+              marginRight: theme("spacing.2"),
+              color: theme("colors.gray.900"),
+            },
+          },
+        },
+      }),
     },
     screens: {
       sm: "640px",
@@ -35,5 +50,5 @@ module.exports = {
       "2xl": "1500px", // Custom screen size,
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

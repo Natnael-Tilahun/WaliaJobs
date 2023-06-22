@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CvTemplate } from "./CvTemplate";
+import { NavLink } from "react-router-dom";
 
 export const BuildCvSection = () => {
   const settings = {
@@ -49,16 +50,36 @@ export const BuildCvSection = () => {
       <h1 className="font-bold text-3xl">Build your cv</h1>
       {/* <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between"> */}
       <Slider {...settings} className="py-16 w-full">
-        <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
-        <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
+        <NavLink to="/Contact-Section/1">
+          <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/2">
+          <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/3">
+          <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/4">
+          <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/5">
+          <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/6">
+          <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/7">
+          <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/8">
+          <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/9">
+          <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
+        </NavLink>
+        <NavLink to="/Contact-Section/10">
+          <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
+        </NavLink>
       </Slider>
       {/* </div> */}
     </div>

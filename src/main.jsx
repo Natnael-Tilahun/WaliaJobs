@@ -17,6 +17,8 @@ import { CVTemplates } from "./pages/BuildCV/CVTemplates";
 import { ContactSection } from "./pages/CVDetails/ContactSection";
 import { BuildCV } from "./pages/BuildCV";
 import { ExperienceSection } from "./pages/CVDetails/ExperienceSection";
+import { ExperienceDetailSection } from "./pages/CVDetails/ExperienceDetailSection";
+import { CVDetails } from "./pages/CVDetails";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -36,11 +38,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route index element={<RecommendedCV />} />
             <Route path="alltemplates" element={<CVTemplates />} />
           </Route>
-          <Route path="/Contact-Section/:id" element={<ContactSection />} />
-          <Route
-            path="/Experience-Section/:id"
-            element={<ExperienceSection />}
-          />
+          <Route path="CV-Details/:id" element={<CVDetails />}>
+            <Route index element={<ContactSection />} />
+            <Route path="Experience-Section" element={<ExperienceSection />} />
+            <Route
+              path="Experience-Detail"
+              element={<ExperienceDetailSection />}
+            />
+          </Route>
           <Route path="*" element={<ErrorPage />} />;
         </Route>
       </Routes>
