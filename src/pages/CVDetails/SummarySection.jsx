@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { NavLink } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-export const ExperienceSection = () => {
+export const SummarySection = () => {
   const data = {
     name: "John Doe",
     jobTitle: "Software Engineer",
@@ -70,117 +72,32 @@ export const ExperienceSection = () => {
   const endDateRef = useRef();
   const isCurrentlyWorkingThereRef = useRef();
 
+  const [editorValue, setEditorValue] = useState("");
+
+  const handleEditorChange = (value) => {
+    setEditorValue(value);
+  };
+
   return (
     <form
       action=""
       className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
-        <h1 className="text-xl md:text-2xl xl:text-4xl font-medium">
-          Add your experience
+        <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
+          Add your summary
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
-          Start with your most recent job first. You can also add voluntary
-          work, internships or extracurricular activities.
+          Now, let's add a summary.
         </p>
       </div>
       <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
-        <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
-          <label htmlFor="jobtitle" for="jobtitle">
-            Job Title
-          </label>
-          <input
-            type="text"
-            name="jobtitle"
-            id="jobtitle"
-            ref={jobTitleRef}
-            placeholder="Developer"
-            className="p-2 border-2 rounded-md"
-            onChange={(e) => setJobTitle(e.target.value)}
+        <div className=" w-full lg:h-full h-40">
+          <ReactQuill
+            value={editorValue}
+            onChange={handleEditorChange}
+            className="lg:h-full h-1/2"
           />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="employer" for="employer">
-            Employer
-          </label>
-          <input
-            type="text"
-            name="employer"
-            id="employer"
-            placeholder="Dagi's Spa"
-            onChange={(e) => setEmployer(e.target.value)}
-            ref={employerRef}
-            className="p-2 border-2 rounded-md"
-          />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="city" for="city">
-            City - State
-          </label>
-          <input
-            type="text"
-            name="city"
-            id="city"
-            onChange={(e) => setCity(e.target.value)}
-            ref={cityRef}
-            placeholder="Addis Abeba"
-            className="p-2 border-2 rounded-md"
-          />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="country" for="country">
-            Country
-          </label>
-          <input
-            type="text"
-            name="country"
-            id="country"
-            placeholder="Ethiopia"
-            onChange={(e) => setCountry(e.target.value)}
-            ref={countryRef}
-            className="p-2 border-2 rounded-md"
-          />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="startdate" for="startdate">
-            Start Date
-          </label>
-          <input
-            type="date"
-            name="startdate"
-            id="startdate"
-            placeholder="Start Date"
-            onChange={(e) => setStartDate(e.target.value)}
-            ref={startDateRef}
-            className="p-2 border-2 w-full rounded-md"
-          />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="enddate" for="enddate">
-            End Date
-          </label>
-          <input
-            type="date"
-            name="enddate"
-            id="enddate"
-            placeholder="End Date"
-            onChange={(e) => setEndDate(e.target.value)}
-            ref={endDateRef}
-            className="p-2 border-2 w-full rounded-md"
-          />
-        </div>
-        <div className="basis-full justify-end flex gap-3 items-center">
-          <input
-            type="checkbox"
-            id="current work"
-            className="w-6 h-6"
-            checked={isCurrentlyWorkingThere}
-            ref={isCurrentlyWorkingThereRef}
-            onChange={(e) => setIsCurrentlyWorkingThere(e.target.checked)}
-          />
-          <label htmlFor="current work" for="current work">
-            I Currently Work Here
-          </label>
         </div>
         <NavLink
           to={-1}
@@ -189,11 +106,16 @@ export const ExperienceSection = () => {
           Back
         </NavLink>
         <NavLink
-          to="/CV-Details/1/Experience-Detail"
+          to="/CV-Details/1/Experience-Review"
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue
         </NavLink>
+        {/* <div
+          className="w-full prose"
+          dangerouslySetInnerHTML={{ __html: editorValue }}
+        /> */}
+        {/* <FormattedTextDisplay value={quillValue} /> */}
       </div>
     </form>
   );

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useCallback } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-export const ExperienceDetailSection = () => {
+export const ExperienceReviewSection = () => {
   const data = {
     name: "John Doe",
     jobTitle: "Software Engineer",
@@ -71,7 +71,6 @@ export const ExperienceDetailSection = () => {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const isCurrentlyWorkingThereRef = useRef();
-
   const [editorValue, setEditorValue] = useState("");
 
   const handleEditorChange = (value) => {
@@ -85,19 +84,57 @@ export const ExperienceDetailSection = () => {
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Tell us what you did as a Full-Stack Developer
+          Review your experience
         </h1>
-        <p className="text-sm md:text-base text-thm_secondary_color">
-          Use the recommended phrases below or write your own.
-        </p>
       </div>
       <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
-        <div className=" w-full lg:h-full h-40">
-          <ReactQuill
-            value={editorValue}
-            onChange={handleEditorChange}
-            className="lg:h-full h-1/2"
-          />
+        <div className=" w-full h-auto flex flex-col gap-5">
+          <div className="flex justify-between border-2 rounded-md py-5 px-10 items-center">
+            <div className="flex gap-10 items-center">
+              <p className="font-medium text-xl">1.</p>
+              <div className="flex flex-col gap-1">
+                <h1 className=" font-semibold">Dagi's Spa</h1>
+                <p className="text-lg">Full-Stack Developer</p>
+                <div className="flex text-xs gap-5 text-thm_secondary_color">
+                  <p>Addis Abeba</p>
+                  <p>
+                    <span>Feb 2021</span> - <span>Current</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-9 fill-orange-400"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12.8995 6.85431L17.1421 11.0969L7.24264 20.9964H3V16.7538L12.8995 6.85431ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"></path>
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-9 fill-red-600"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+              </svg>
+            </div>
+          </div>
+          <NavLink
+            to="/CV-Details/1/Experience-Section"
+            className="flex gap-2 justify-end items-center px-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 fill-thm_root1_color"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11H7V13H11V17H13V13H17V11H13V7H11V11Z"></path>
+            </svg>
+            <p className="font-semibold text-thm_root1_color uppercase">
+              Add More Experience
+            </p>
+          </NavLink>
         </div>
         <NavLink
           to={-1}
@@ -106,7 +143,7 @@ export const ExperienceDetailSection = () => {
           Back
         </NavLink>
         <NavLink
-          to="/CV-Details/1/Experience-Review"
+          to="/CV-Details/1/Education-Section"
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue

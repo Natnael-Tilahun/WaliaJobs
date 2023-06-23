@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
-export const ExperienceSection = () => {
+export const EducationSection = () => {
   const data = {
     name: "John Doe",
     jobTitle: "Software Engineer",
@@ -77,40 +77,25 @@ export const ExperienceSection = () => {
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-4xl font-medium">
-          Add your experience
+          Add your education
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
-          Start with your most recent job first. You can also add voluntary
-          work, internships or extracurricular activities.
+          List all qualifications or degrees you’ve earned or in progress
         </p>
       </div>
       <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
         <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
-          <label htmlFor="jobtitle" for="jobtitle">
-            Job Title
+          <label htmlFor="institution" for="institution">
+            Institution
           </label>
           <input
             type="text"
-            name="jobtitle"
-            id="jobtitle"
+            name="jobtiinstitutiontle"
+            id="institution"
             ref={jobTitleRef}
-            placeholder="Developer"
+            placeholder="Addis Abeba University"
             className="p-2 border-2 rounded-md"
             onChange={(e) => setJobTitle(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="employer" for="employer">
-            Employer
-          </label>
-          <input
-            type="text"
-            name="employer"
-            id="employer"
-            placeholder="Dagi's Spa"
-            onChange={(e) => setEmployer(e.target.value)}
-            ref={employerRef}
-            className="p-2 border-2 rounded-md"
           />
         </div>
         <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
@@ -128,60 +113,49 @@ export const ExperienceSection = () => {
           />
         </div>
         <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="country" for="country">
-            Country
+          <label htmlFor="qualification" for="qualification">
+            Qualification
           </label>
           <input
             type="text"
-            name="country"
-            id="country"
-            placeholder="Ethiopia"
+            name="qualification"
+            id="qualification"
+            placeholder="Bachelor's Degree"
+            onChange={(e) => setEmployer(e.target.value)}
+            ref={employerRef}
+            className="p-2 border-2 rounded-md"
+          />
+        </div>
+        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
+          <label htmlFor="fieldofstudy" for="fieldofstudy">
+            Field Of Study
+          </label>
+          <input
+            type="text"
+            name="fieldofstudy"
+            id="fieldofstudy"
+            placeholder="Management"
             onChange={(e) => setCountry(e.target.value)}
             ref={countryRef}
             className="p-2 border-2 rounded-md"
           />
         </div>
         <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="startdate" for="startdate">
-            Start Date
+          <label htmlFor="yearofgraduation" for="yearofgraduation">
+            Year of Graduation
           </label>
           <input
             type="date"
-            name="startdate"
-            id="startdate"
-            placeholder="Start Date"
+            name="yearofgraduation"
+            id="yearofgraduation"
+            placeholder="10/10/2020"
             onChange={(e) => setStartDate(e.target.value)}
             ref={startDateRef}
-            className="p-2 border-2 w-full rounded-md"
+            className="p-2 border-2 rounded-md"
           />
         </div>
-        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-          <label htmlFor="enddate" for="enddate">
-            End Date
-          </label>
-          <input
-            type="date"
-            name="enddate"
-            id="enddate"
-            placeholder="End Date"
-            onChange={(e) => setEndDate(e.target.value)}
-            ref={endDateRef}
-            className="p-2 border-2 w-full rounded-md"
-          />
-        </div>
-        <div className="basis-full justify-end flex gap-3 items-center">
-          <input
-            type="checkbox"
-            id="current work"
-            className="w-6 h-6"
-            checked={isCurrentlyWorkingThere}
-            ref={isCurrentlyWorkingThereRef}
-            onChange={(e) => setIsCurrentlyWorkingThere(e.target.checked)}
-          />
-          <label htmlFor="current work" for="current work">
-            I Currently Work Here
-          </label>
-        </div>
+        <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2"></div>
+
         <NavLink
           to={-1}
           className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
@@ -189,7 +163,7 @@ export const ExperienceSection = () => {
           Back
         </NavLink>
         <NavLink
-          to="/CV-Details/1/Experience-Detail"
+          to="/CV-Details/1/Skills-Section"
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue
