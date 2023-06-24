@@ -76,7 +76,7 @@ export const EducationSection = () => {
       className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
-        <h1 className="text-xl md:text-2xl xl:text-4xl font-medium">
+        <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
           Add your education
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
@@ -151,7 +151,7 @@ export const EducationSection = () => {
             placeholder="10/10/2020"
             onChange={(e) => setStartDate(e.target.value)}
             ref={startDateRef}
-            className="p-2 border-2 rounded-md"
+            className="p-2 border-2 w-full rounded-md"
           />
         </div>
         <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2"></div>

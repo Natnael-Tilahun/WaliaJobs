@@ -214,8 +214,181 @@ export const CVDetails = () => {
           </NavLink>
         </div>
       </form> */}
-
-      <Outlet />
+      <div className="basis-full  md:basis-[50%]">
+        <ol className="flex h-auto flex-wrap gap-y-4 mb-7 xl:h-12 items-center w-full p-2 md:p-2 md:py-4 space-x-1 md:space-x-2 text-xxs font-medium text-center text-gray-500 bg-white  border-gray-200 rounded-lg shadow-sm dark:text-gray-400 md:text-xs lg:text-base dark:bg-gray-800 dark:border-gray-700 lg:p-4 lg:space-x-4">
+          <NavLink
+            to="/CV-Details/:id"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center ">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                1
+              </span>
+              Heading
+              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Experience-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                2
+              </span>
+              Experience
+              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Education-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                3
+              </span>
+              Education
+              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Skills-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                4
+              </span>
+              Skills
+              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Summary-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                5
+              </span>
+              Summary
+              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Additional-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li class="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                6
+              </span>
+              Review
+            </li>
+          </NavLink>
+        </ol>
+        <Outlet />
+      </div>
       <div className="bg-gray-100 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
         <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="bg-blue-500 py-2 px-6">

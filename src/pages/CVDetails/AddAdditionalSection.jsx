@@ -1,9 +1,9 @@
 import React, { useState, useRef, useCallback } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-export const SummarySection = () => {
+export const AddAdditionalSection = () => {
   const data = {
     name: "John Doe",
     jobTitle: "Software Engineer",
@@ -71,7 +71,6 @@ export const SummarySection = () => {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const isCurrentlyWorkingThereRef = useRef();
-
   const [editorValue, setEditorValue] = useState("");
 
   const handleEditorChange = (value) => {
@@ -85,19 +84,57 @@ export const SummarySection = () => {
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Add your summary
+          Need to add any more sections?
         </h1>
-        <p className="text-sm md:text-base text-thm_secondary_color">
-          Now, let's add a summary.
-        </p>
       </div>
-      <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
-        <div className=" w-full  h-40">
-          <ReactQuill
-            value={editorValue}
-            onChange={handleEditorChange}
-            className="lg:h-full h-1/2"
-          />
+      <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full lg:p-5">
+        <div className=" w-full h-auto flex flex-col gap-3 md:gap-5 lg:py-5">
+          {/* <div className="flex flex-col gap-4 justify-center p-5"> */}
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="language"
+              className="w-4"
+              name="language"
+            />
+            <label htmlFor="language" for="language">
+              Language
+            </label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="certifications"
+              className="w-4"
+              name="certifications"
+            />
+            <label htmlFor="certifications" for="certifications">
+              Certifications
+            </label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="accomplishments"
+              className="w-4"
+              name="accomplishments"
+            />
+            <label htmlFor="accomplishments" for="accomplishments">
+              Accomplishments
+            </label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="additionalInformation"
+              className="w-4"
+              name="additionalInformation"
+            />
+            <label htmlFor="additionalInformation" for="additionalInformation">
+              Additional Information
+            </label>
+          </div>
+          {/* </div> */}
         </div>
         <NavLink
           to={-1}
@@ -106,7 +143,7 @@ export const SummarySection = () => {
           Back
         </NavLink>
         <NavLink
-          to="/CV-Details/1/Additional-Section"
+          to="/CV-Details/1/Education-Section"
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue

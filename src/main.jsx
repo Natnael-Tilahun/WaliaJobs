@@ -23,6 +23,7 @@ import { ExperienceReviewSection } from "./pages/CVDetails/ExperienceReviewSecti
 import { EducationSection } from "./pages/CVDetails/EducationSection";
 import { SkillSection } from "./pages/CVDetails/SkillSection";
 import { SummarySection } from "./pages/CVDetails/SummarySection";
+import { AddAdditionalSection } from "./pages/CVDetails/AddAdditionalSection";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -49,13 +50,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               path="Experience-Detail"
               element={<ExperienceDetailSection />}
             />
-            <Route path="Experience-Review" element={<EducationSection />} />
             <Route
-              path="Education-Section"
+              path="Experience-Review"
               element={<ExperienceReviewSection />}
             />
+            <Route path="Education-Section" element={<EducationSection />} />
             <Route path="Skills-Section" element={<SkillSection />} />
             <Route path="Summary-Section" element={<SummarySection />} />
+            <Route
+              path="Additional-Section"
+              element={<AddAdditionalSection />}
+            />
           </Route>
           <Route path="*" element={<ErrorPage />} />;
         </Route>
