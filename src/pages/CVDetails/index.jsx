@@ -214,7 +214,7 @@ export const CVDetails = () => {
           </NavLink>
         </div>
       </form> */}
-      <div className="basis-full  md:basis-[50%]">
+      <div className="basis-full  md:basis-[50%] shadow-lg">
         <ol className="flex h-auto flex-wrap gap-y-4 mb-7 xl:h-12 items-center w-full p-2 md:p-2 md:py-4 space-x-1 md:space-x-2 text-xxs font-medium text-center text-gray-500 bg-white  border-gray-200 rounded-lg shadow-sm dark:text-gray-400 md:text-xs lg:text-base dark:bg-gray-800 dark:border-gray-700 lg:p-4 lg:space-x-4">
           <NavLink
             to="/CV-Details/:id"

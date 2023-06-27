@@ -92,7 +92,7 @@ export const SkillSection = () => {
         </p>
       </div>
       <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
-        <div className=" w-full lg:h-full h-40">
+        <div className=" w-full  h-40">
           <ReactQuill
             value={editorValue}
             onChange={handleEditorChange}

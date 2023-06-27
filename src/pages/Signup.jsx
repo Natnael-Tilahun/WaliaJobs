@@ -16,7 +16,7 @@ export const Signup = () => {
         Walia Jobs
       </NavLink>
 
-      <div className="w-full md:w-[90%] lg:w-1/2 xl:w-[60%] shadow-md gap-1 bg-thm_background flex flex-col justify-center py-10 px-10 rounded-md">
+      <div className="w-full md:w-[90%] lg:w-[80%] xl:w-[60%] shadow-md gap-1 bg-thm_background flex flex-col justify-center py-10 px-10 rounded-md">
         <h1 className="text-xl pb-2 font-medium text-thm_primary_color">
           Ready to take the next step?
         </h1>
