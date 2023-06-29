@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 export const JobCard = ({
   title,
   companyName,
-  address,
+  location,
   jobType,
-  jobStyle,
+  workMode,
   description,
   jobTags,
   timeLeft,
@@ -28,7 +28,7 @@ export const JobCard = ({
       <div className="flex gap-7 lg:gap-14 font-semibold text-gray-700 text-xs md:text-sm">
         <p>{companyName}</p>
         <p>
-          <span>{jobStyle}</span>, {address}
+          <span>{workMode}</span>, {location}
         </p>
         <p>{jobType}</p>
       </div>

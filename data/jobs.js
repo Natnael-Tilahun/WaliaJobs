@@ -1,0 +1,36 @@
+export const JobsData = [
+  {
+    id: 0,
+    title: "IT Officer",
+    companyName: "CBE",
+    companyType: "corporate",
+    jobType: "Full Time",
+    workMode: "In Office",
+    department: "IT",
+    experience: 0,
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda corporis!",
+    location: "Addis Abeba",
+    jobTags: ["Programming", "Computer Expert", "Maintenance"],
+    timeLeft: "2 Days Ago",
+    img: "/cbelogo.jpg",
+    className: "min-w-[100%] bg-thm_background shadow-lg",
+  },
+  {
+    id: 1,
+    title: "Programmer",
+    companyName: "Abyssinia",
+    companyType: "private",
+    jobType: "Full Time",
+    workMode: "In Office",
+    department: "software engineering",
+    experience: 2,
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda corporis!",
+    location: "Addis Abeba",
+    jobTags: ["Programming", "Computer Expert", "Maintenance"],
+    timeLeft: "2 Days Ago",
+    img: "/boalogo.jpg",
+    className: "min-w-[100%] bg-thm_background shadow-lg",
+  },
+];

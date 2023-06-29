@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const Sidebar = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(30);
@@ -8,6 +9,8 @@ export const Sidebar = () => {
   const [companyExpanded, setCompanyExpanded] = useState(false);
   const [locationAccordionExpanded, setLocationAccordionExpanded] =
     useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -22,11 +25,58 @@ export const Sidebar = () => {
   const handleYearsOfExperienceChange = (event) => {
     setYearsOfExperience(event.target.value);
   };
+
+  const checkboxRef = useRef({});
+
+  useEffect(() => {
+    console.log(searchParams.toString());
+  }, []);
+
+  const handleCheckboxChange = () => {
+    const officeValue = checkboxRef.current.office.checked;
+    const remoteValue = checkboxRef.current.remote.checked;
+    const hybridValue = checkboxRef.current.hybrid.checked;
+    const temporarywfhValue = checkboxRef.current.temporarywfh.checked;
+
+    officeValue
+      ? handleFilterChange("Work Mode", checkboxRef.current.office.value)
+      : handleFilterChange("Work Mode", null);
+    const remoteVal = remoteValue
+      ? handleFilterChange("Work Mode", checkboxRef.current.remote.value)
+      : handleFilterChange("Work Mode", null);
+    const hybridVal = hybridValue
+      ? handleFilterChange("Work Mode", checkboxRef.current.hybrid.value)
+      : handleFilterChange("Work Mode", null);
+    const temporarywfhVal = temporarywfhValue
+      ? checkboxRef.current.temporarywfh.value
+      : handleFilterChange("Work Mode", null);
+
+    // handleFilterChange();
+    // alert(officeValue, remoteValue, hybridValue, temporarywfhValue);
+    // Use the checkbox values as needed
+  };
+
+  function handleFilterChange(key, value) {
+    alert(key + value);
+    setSearchParams((prevParams) => {
+      if (value === null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  }
   return (
-    <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
-      <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
-        All Filters
-      </h1>
+    <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
+      <div className="flex justify-between w-full">
+        <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
+          All Filters
+        </h1>
+        <h1 className="border-b-2 text-base text-right font-medium md:text-xl lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full">
+          Clear Filters
+        </h1>
+      </div>
       <div className="flex flex-col mx-auto border-b-2 pb-2 md:pb-5 lg:pb-5 w-full">
         <div
           className="font-medium md:text-lg text-sm lg:text-base flex items-center justify-between w-full "
@@ -63,9 +113,11 @@ export const Sidebar = () => {
             <input
               type="checkbox"
               name="office"
-              value="Wor from office"
+              value="In Office"
               id="office"
               className="md:w-4"
+              ref={(ref) => (checkboxRef.current.office = ref)}
+              onChange={handleCheckboxChange}
             />
             <label
               htmlFor="office"
@@ -81,6 +133,9 @@ export const Sidebar = () => {
               name="remote"
               id="remote"
               className="md:w-4"
+              value="Remote"
+              ref={(ref) => (checkboxRef.current.remote = ref)}
+              onChange={handleCheckboxChange}
             />
             <label
               htmlFor="remote"
@@ -96,6 +151,9 @@ export const Sidebar = () => {
               name="hybrid"
               id="hybrid"
               className="md:w-4"
+              value="Hybrid"
+              ref={(ref) => (checkboxRef.current.hybrid = ref)}
+              onChange={handleCheckboxChange}
             />
             <label
               htmlFor="hybrid"
@@ -111,6 +169,9 @@ export const Sidebar = () => {
               name="temporary"
               id="temporary"
               className="md:w-4"
+              value="Temporarly work from home"
+              ref={(ref) => (checkboxRef.current.temporarywfh = ref)}
+              onChange={handleCheckboxChange}
             />
             <label
               htmlFor="temporary"
