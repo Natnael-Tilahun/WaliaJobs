@@ -9,9 +9,17 @@ export const Company = () => {
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
       <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
-        <h1 className="border-b-2 font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
+        {/* <h1 className="border-b-2 font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
-        </h1>
+        </h1> */}
+        <div className="flex justify-between w-full items-center">
+          <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
+            All Filters
+          </h1>
+          <h1 className="border-b-2 cursor-pointer hover:text-blue-400 text-sm text-right font-medium  lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full">
+            Clear Filters
+          </h1>
+        </div>
         <ul className="flex flex-col gap-2 md:gap-3 lg:gap-6 items-start w-full border-b-2 md:pb-5 lg:pb-2">
           <div
             className="font-medium text-base lg:text-xl flex items-center justify-between w-full"
@@ -45,66 +53,50 @@ export const Company = () => {
             }`}
           >
             <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
-              <input
-                type="checkbox"
-                name="private"
-                value="private"
-                id="private"
-                className="md:w-4"
-              />
-              <label
-                htmlFor="private"
-                for="private"
-                className="md:px-2 pl-1 md:pl-2 font-medium"
-              >
+              <label htmlFor="private" className="font-medium">
+                <input
+                  type="checkbox"
+                  name="private"
+                  value="private"
+                  id="private"
+                  className="md:w-4 mr-2"
+                />
                 Private
               </label>
             </li>
             <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
-              <input
-                type="checkbox"
-                name="governmental"
-                value="governmental"
-                id="governmental"
-                className="md:w-4"
-              />
-              <label
-                htmlFor="governmental"
-                for="governmental"
-                className="md:px-2 pl-1 md:pl-2 font-medium"
-              >
+              <label htmlFor="governmental" className="font-medium">
+                <input
+                  type="checkbox"
+                  name="governmental"
+                  value="governmental"
+                  id="governmental"
+                  className="md:w-4 mr-2"
+                />
                 Governmental
               </label>
             </li>
             <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
-              <input
-                type="checkbox"
-                name="corporate"
-                value="corporate"
-                id="corporate"
-                className=" md:w-4"
-              />
-              <label
-                htmlFor="corporate"
-                for="corporate"
-                className="md:px-2 pl-1 md:pl-2 font-medium"
-              >
+              <label htmlFor="corporate" className="font-medium">
+                <input
+                  type="checkbox"
+                  name="corporate"
+                  value="corporate"
+                  id="corporate"
+                  className=" md:w-4 mr-2"
+                />
                 Corporate
               </label>
             </li>
             <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
-              <input
-                type="checkbox"
-                name="startup"
-                value="startup"
-                id="startup"
-                className="md:w-4"
-              />
-              <label
-                htmlFor="startup"
-                for="startup"
-                className="md:px-2 pl-1 md:pl-2 font-medium"
-              >
+              <label htmlFor="startup" className="font-medium">
+                <input
+                  type="checkbox"
+                  name="startup"
+                  value="startup"
+                  id="startup"
+                  className="md:w-4 mr-2"
+                />
                 Startup
               </label>
             </li>

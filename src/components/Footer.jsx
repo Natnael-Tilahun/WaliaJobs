@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="w-full rounded-3xl  bg-gradient-to-r from-thm_root1_color to-thm_root2_color text-center md:py-16 py-5 my-0 md:my-0 flex bg-thm_background shadow shadow-thm_secondary_color  flex-col px-5 md:px-10 lg:px-10">
+    <div className="w-full rounded-t-3xl   bg-gradient-to-r from-thm_root1_color to-thm_root2_color text-center md:py-16 py-5 my-0 md:my-0 flex bg-thm_background shadow shadow-thm_secondary_color  flex-col px-5 md:px-10 lg:px-10">
       <div className="flex justify-evenly border-b-[1px] flex-wrap border-gray-500 gap-5">
         <NavLink
           to="/"

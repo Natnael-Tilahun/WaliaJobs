@@ -9,8 +9,14 @@ export const Sidebar = () => {
   const [companyExpanded, setCompanyExpanded] = useState(false);
   const [locationAccordionExpanded, setLocationAccordionExpanded] =
     useState(false);
+  const [workModeType, setWorkModeType] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+  });
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams("");
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -29,51 +35,41 @@ export const Sidebar = () => {
   const checkboxRef = useRef({});
 
   useEffect(() => {
-    console.log(searchParams.toString());
+    // console.log(searchParams.toString());
+    // alert(searchParams);
   }, []);
 
-  const handleCheckboxChange = () => {
-    const officeValue = checkboxRef.current.office.checked;
-    const remoteValue = checkboxRef.current.remote.checked;
-    const hybridValue = checkboxRef.current.hybrid.checked;
-    const temporarywfhValue = checkboxRef.current.temporarywfh.checked;
-
-    officeValue
-      ? handleFilterChange("Work Mode", checkboxRef.current.office.value)
-      : handleFilterChange("Work Mode", null);
-    const remoteVal = remoteValue
-      ? handleFilterChange("Work Mode", checkboxRef.current.remote.value)
-      : handleFilterChange("Work Mode", null);
-    const hybridVal = hybridValue
-      ? handleFilterChange("Work Mode", checkboxRef.current.hybrid.value)
-      : handleFilterChange("Work Mode", null);
-    const temporarywfhVal = temporarywfhValue
-      ? checkboxRef.current.temporarywfh.value
-      : handleFilterChange("Work Mode", null);
-
-    // handleFilterChange();
-    // alert(officeValue, remoteValue, hybridValue, temporarywfhValue);
-    // Use the checkbox values as needed
-  };
-
-  function handleFilterChange(key, value) {
-    alert(key + value);
+  function handleFilterChange(key, value, checked, workModeType) {
     setSearchParams((prevParams) => {
-      if (value === null) {
-        prevParams.delete(key);
+      const params = new URLSearchParams(prevParams.toString());
+
+      if (!checked) {
+        // Remove the filter from the URL query parameters
+        const values = params.getAll(key);
+        const updatedValues = values.filter((val) => val !== value);
+        params.delete(key);
+        updatedValues.forEach((val) => params.append(key, val));
       } else {
-        prevParams.set(key, value);
+        // Add the filter to the URL query parameters
+        const values = params.getAll(key);
+        !values.includes(value) && params.append(key, value);
       }
-      return prevParams;
+
+      return params.toString();
     });
   }
   return (
-    <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
-      <div className="flex justify-between w-full">
+    <div className="flex basis-full md:basis-[40%] dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
+      <div className="flex justify-between w-full items-center">
         <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
         </h1>
-        <h1 className="border-b-2 text-base text-right font-medium md:text-xl lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full">
+        <h1
+          onClick={() => {
+            setSearchParams("");
+          }}
+          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-xl lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
+        >
           Clear Filters
         </h1>
       </div>
@@ -110,74 +106,86 @@ export const Sidebar = () => {
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <input
-              type="checkbox"
-              name="office"
-              value="In Office"
-              id="office"
-              className="md:w-4"
-              ref={(ref) => (checkboxRef.current.office = ref)}
-              onChange={handleCheckboxChange}
-            />
-            <label
-              htmlFor="office"
-              for="office"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+            <label htmlFor="office" className=" font-medium">
+              <input
+                type="checkbox"
+                name="workMode"
+                value="In Office"
+                id="office"
+                className="md:w-4 mr-2"
+                ref={(ref) => (checkboxRef.current.office = ref)}
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked,
+                    1
+                  )
+                }
+              />
               Work from office
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <input
-              type="checkbox"
-              name="remote"
-              id="remote"
-              className="md:w-4"
-              value="Remote"
-              ref={(ref) => (checkboxRef.current.remote = ref)}
-              onChange={handleCheckboxChange}
-            />
-            <label
-              htmlFor="remote"
-              for="remote"
-              className="md:px-2 pl-1 md:pl-2  font-medium"
-            >
+            <label htmlFor="remote" className=" font-medium">
+              <input
+                type="checkbox"
+                name="workMode"
+                id="remote"
+                className="md:w-4 mr-2"
+                value="Remote"
+                ref={(ref) => (checkboxRef.current.remote = ref)}
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked,
+                    2
+                  )
+                }
+              />
               Work from home
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <input
-              type="checkbox"
-              name="hybrid"
-              id="hybrid"
-              className="md:w-4"
-              value="Hybrid"
-              ref={(ref) => (checkboxRef.current.hybrid = ref)}
-              onChange={handleCheckboxChange}
-            />
-            <label
-              htmlFor="hybrid"
-              for="hybrid"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+            <label htmlFor="hybrid" className="font-medium">
+              <input
+                type="checkbox"
+                name="workMode"
+                id="hybrid"
+                className="md:w-4 mr-2"
+                value="Hybrid"
+                ref={(ref) => (checkboxRef.current.hybrid = ref)}
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked,
+                    3
+                  )
+                }
+              />
               Hybrid
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <input
-              type="checkbox"
-              name="temporary"
-              id="temporary"
-              className="md:w-4"
-              value="Temporarly work from home"
-              ref={(ref) => (checkboxRef.current.temporarywfh = ref)}
-              onChange={handleCheckboxChange}
-            />
-            <label
-              htmlFor="temporary"
-              for="temporary"
-              className="md:px-2 pl-1 font-medium"
-            >
+            <label htmlFor="temporary" className="font-medium">
+              <input
+                type="checkbox"
+                id="temporary"
+                name="workMode"
+                className="md:w-4 mr-2"
+                value="TWFH"
+                ref={(ref) => (checkboxRef.current.temporarywfh = ref)}
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked,
+                    4
+                  )
+                }
+              />
               Temp. WFH dut to covid
             </label>
           </li>
@@ -266,186 +274,159 @@ export const Sidebar = () => {
             locationAccordionExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-sm text-xs flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="addis abeba"
-              value="addis abeba"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="addis abeba"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
+            <label htmlFor="addis abeba" className=" font-medium">
+              <input
+                type="checkbox"
+                name="addis abeba"
+                value="addis abeba"
+                id="addis abeba"
+                className="md:w-4 mr-2"
+              />
               Addis Abeba
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="hawassa"
-              value="hawassa"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="hawassa"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="hawassa" className=" font-medium">
+              <input
+                type="checkbox"
+                name="hawassa"
+                value="hawassa"
+                id="hawassa"
+                className="md:w-4 mr-2"
+              />
               Hawassa
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="adama"
-              value="adama"
-              id=""
-              className=" md:w-4"
-            />
-            <label htmlFor="adama" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="adama" className=" font-medium">
+              <input
+                type="checkbox"
+                name="adama"
+                value="adama"
+                id="adama"
+                className=" md:w-4 mr-2"
+              />
               Adama
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="dire dawa"
-              value="dire dawa"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="dire dawa"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="dire dawa" className=" font-medium">
+              <input
+                type="checkbox"
+                name="dire dawa"
+                value="dire dawa"
+                id="dire dawa"
+                className="md:w-4 mr-2"
+              />
               Dire Dawa
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="bahir dar"
-              value="bahir dar"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="bahir dar"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="bahir dar" className=" font-medium">
+              <input
+                type="checkbox"
+                name="bahir dar"
+                value="bahir dar"
+                id="bahir dar"
+                className="md:w-4 mr-2"
+              />
               Bahir Dar
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="mekele"
-              value="mekele"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="mekele"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="mekele" className=" font-medium">
+              <input
+                type="checkbox"
+                name="mekele"
+                value="mekele"
+                id="mekele"
+                className="md:w-4 mr-2"
+              />
               Mekele
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="jimma"
-              value="jimma"
-              id=""
-              className=" md:w-4"
-            />
-            <label htmlFor="jimma" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="jimma" className=" font-medium">
+              <input
+                type="checkbox"
+                name="jimma"
+                value="jimma"
+                id="jimma"
+                className=" md:w-4 mr-2"
+              />
               Jimma
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="gondar"
-              value="gondar"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="gondar"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="gondar" className=" font-medium">
+              <input
+                type="checkbox"
+                name="gondar"
+                value="gondar"
+                id="gondar"
+                className="md:w-4 mr-2"
+              />
               Gondar
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="harar"
-              value="harar"
-              id=""
-              className="md:w-4"
-            />
-            <label htmlFor="harar" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="harar" className=" font-medium">
+              <input
+                type="checkbox"
+                name="harar"
+                value="harar"
+                id="harar"
+                className="md:w-4 mr-2"
+              />
               Harar
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="jijiga"
-              value="jijiga"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="jijiga"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="jijiga" className=" font-medium">
+              <input
+                type="checkbox"
+                name="jijiga"
+                value="jijiga"
+                id="jijiga"
+                className=" md:w-4 mr-2"
+              />
               Jijiga
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="dessie"
-              value="dessie"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="dessie"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="dessie" className="font-medium">
+              <input
+                type="checkbox"
+                name="dessie"
+                value="dessie"
+                id="dessie"
+                className=" md:w-4 mr-2"
+              />
               Dessie
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="debre birhan"
-              value="debre birhan"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="debre birhan"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="debre birhan" className=" font-medium">
+              <input
+                type="checkbox"
+                name="debre birhan"
+                value="debre birhan"
+                id="debre birhan"
+                className=" md:w-4 mr-2"
+              />
               Debre Birhan
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="aksum"
-              value="aksum"
-              id=""
-              className="md:w-4"
-            />
-            <label htmlFor="aksum" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="aksum" className="font-medium">
+              <input
+                type="checkbox"
+                name="aksum"
+                value="aksum"
+                id="aksum"
+                className="md:w-4 mr-2"
+              />
               Aksum
             </label>
           </li>
@@ -483,180 +464,150 @@ export const Sidebar = () => {
             departmentExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="bankingandinsurance"
-              value="banking and insurance"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="bankingandinsurance"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="bankingandinsurance" className=" font-medium">
+              <input
+                type="checkbox"
+                name="bankingandinsurance"
+                value="banking and insurance"
+                id="bankingandinsurance"
+                className="md:w-4 mr-2"
+              />
               Banking & Insurance
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="salesandmarketing"
-              value="sales and markating"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="salesandmarketing"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="salesandmarketing" className=" font-medium">
+              <input
+                type="checkbox"
+                name="salesandmarketing"
+                value="sales and markating"
+                id="salesandmarketing"
+                className="md:w-4 mr-2"
+              />
               Sales & Marketing
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="management"
-              value="management"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="management"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="management" className=" font-medium">
+              <input
+                type="checkbox"
+                name="management"
+                value="management"
+                id="management"
+                className=" md:w-4 mr-2"
+              />
               Management
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="softwareEng"
-              value="software engineering"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="softwareEng"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="softwareEng" className=" font-medium">
+              <input
+                type="checkbox"
+                name="softwareEng"
+                value="software engineering"
+                id="softwareEng"
+                className="md:w-4 mr-2"
+              />
               Software Engineering
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="financeandaccounting"
-              value="finance and accounting"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="financeandaccounting"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="financeandaccounting" className=" font-medium">
+              <input
+                type="checkbox"
+                name="financeandaccounting"
+                value="finance and accounting"
+                id="financeandaccounting"
+                className="md:w-4 mr-2"
+              />
               Finance & Accounting
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="engineering"
-              value="engineering"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="engineering"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="engineering" className=" font-medium">
+              <input
+                type="checkbox"
+                name="engineering"
+                value="engineering"
+                id="engineering"
+                className="md:w-4 mr-2"
+              />
               Engineering
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="human resource"
-              value="human resource"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="human resource"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="human resource" className=" font-medium">
+              <input
+                type="checkbox"
+                name="human resource"
+                value="human resource"
+                id="human resource"
+                className=" md:w-4 mr-2"
+              />
               Human Resource
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="health"
-              value="health"
-              id=""
-              className="md:w-4"
-            />
-            <label
-              htmlFor="health"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="health" className=" font-medium">
+              <input
+                type="checkbox"
+                name="health"
+                value="health"
+                id="health"
+                className="md:w-4 mr-2"
+              />
               Health
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="legal"
-              value="legal"
-              id=""
-              className="md:w-4"
-            />
-            <label htmlFor="legal" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="legal" className=" font-medium">
+              <input
+                type="checkbox"
+                name="legal"
+                value="legal"
+                id="legal"
+                className="md:w-4 mr-2"
+              />
               Legal
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="ngo"
-              value="ngo"
-              id=""
-              className=" md:w-4"
-            />
-            <label htmlFor="ngo" className="md:px-2 pl-1 md:pl-2 font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="ngo" className=" font-medium">
+              <input
+                type="checkbox"
+                name="ngo"
+                value="ngo"
+                id="ngo"
+                className=" md:w-4 mr-2"
+              />
               NGO
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="analytics"
-              value="analytics"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="analytics"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="analytics" className=" font-medium">
+              <input
+                type="checkbox"
+                name="analytics"
+                value="analytics"
+                id="analytics"
+                className=" md:w-4 mr-2"
+              />
               Analytics
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="remote"
-              value="remote"
-              id=""
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="remote"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          {/* <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="remote" className=" font-medium">
+              <input
+                type="checkbox"
+                name="remote"
+                value="remote"
+                id="remote"
+                className=" md:w-4 mr-2"
+              />
               Remote
             </label>
-          </li>
+          </li> */}
         </div>
       </ul>
       <ul className="flex flex-col gap-2 md:gap-3 lg:gap-6 items-start w-full border-b-2 md:pb-5 lg:pb-2">
@@ -691,67 +642,51 @@ export const Sidebar = () => {
             companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="private"
-              value="private"
-              id="private"
-              className="md:w-4"
-            />
-            <label
-              htmlFor="private"
-              for="private"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="private" className=" font-medium">
+              <input
+                type="checkbox"
+                name="private"
+                value="private"
+                id="private"
+                className="md:w-4 mr-2"
+              />
               Private
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="governmental"
-              value="governmental"
-              id="governmental"
-              className="md:w-4"
-            />
-            <label
-              htmlFor="governmental"
-              for="governmental"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="governmental" className=" font-medium">
+              <input
+                type="checkbox"
+                name="governmental"
+                value="governmental"
+                id="governmental"
+                className="md:w-4 mr-2"
+              />
               Governmental
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="corporate"
-              value="corporate"
-              id="corporate"
-              className=" md:w-4"
-            />
-            <label
-              htmlFor="corporate"
-              for="corporate"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="corporate" className=" font-medium">
+              <input
+                type="checkbox"
+                name="corporate"
+                value="corporate"
+                id="corporate"
+                className=" md:w-4 mr-2"
+              />
               Corporate
             </label>
           </li>
-          <li className="lg:text-lg md:text-sm text-xs  flex lg:gap-1">
-            <input
-              type="checkbox"
-              name="startup"
-              value="startup"
-              id="startup"
-              className="md:w-4"
-            />
-            <label
-              htmlFor="startup"
-              for="startup"
-              className="md:px-2 pl-1 md:pl-2 font-medium"
-            >
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="startup" className=" font-medium">
+              <input
+                type="checkbox"
+                name="startup"
+                value="startup"
+                id="startup"
+                className="md:w-4 mr-2"
+              />
               Startup
             </label>
           </li>

@@ -22,7 +22,7 @@ export const JobsData = [
     companyName: "Abyssinia",
     companyType: "private",
     jobType: "Full Time",
-    workMode: "In Office",
+    workMode: "Remote",
     department: "software engineering",
     experience: 2,
     description:

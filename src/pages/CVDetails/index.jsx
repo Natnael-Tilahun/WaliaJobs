@@ -389,7 +389,7 @@ export const CVDetails = () => {
         </ol>
         <Outlet />
       </div>
-      <div className="bg-gray-100 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
+      <div className="bg-gray-100 dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
         <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="bg-blue-500 py-2 px-6">
             <div className="flex items-center">

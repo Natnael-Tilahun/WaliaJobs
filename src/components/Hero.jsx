@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[100px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
+    <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
       <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold py-8  tracking-wider">
         We hunt{" "}
         <span className=" text-[#f8451d] text-3xl md:text-5xl">jobs</span> like
