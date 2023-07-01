@@ -9,14 +9,8 @@ export const Sidebar = () => {
   const [companyExpanded, setCompanyExpanded] = useState(false);
   const [locationAccordionExpanded, setLocationAccordionExpanded] =
     useState(false);
-  const [workModeType, setWorkModeType] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-  });
-
-  const [searchParams, setSearchParams] = useSearchParams("");
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -34,25 +28,88 @@ export const Sidebar = () => {
 
   const checkboxRef = useRef({});
 
+  // Function to save checkbox state to storage
+  const saveCheckboxStateToStorage = (state) => {
+    localStorage.setItem("checkboxState", JSON.stringify(state));
+  };
+
+  // Function to retrieve checkbox state from storage
+  const getCheckboxStateFromStorage = () => {
+    const storedState = localStorage.getItem("checkboxState");
+    return storedState ? JSON.parse(storedState) : {};
+  };
+  let checkboxState = getCheckboxStateFromStorage();
+
   useEffect(() => {
-    // console.log(searchParams.toString());
-    // alert(searchParams);
+    console.log("local storage value side bar", checkboxState);
+    const params = new URLSearchParams();
+    checkboxState.forEach((val) => params.append("workMode", val));
+    console.log("side bar Params", params.toString());
   }, []);
 
   function handleFilterChange(key, value, checked, workModeType) {
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-
+      const values = params.getAll(key);
+      alert(values);
       if (!checked) {
         // Remove the filter from the URL query parameters
-        const values = params.getAll(key);
+        // const values = params.getAll(key);
+        // const updatedValues = values.filter((val) => val !== value);
+        // params.delete(key);
+        // updatedValues.forEach((val) => params.append(key, val));
+        // console.log(key, value);
+
+        const values = [...selectedFilters];
         const updatedValues = values.filter((val) => val !== value);
         params.delete(key);
         updatedValues.forEach((val) => params.append(key, val));
+        setSelectedFilters(updatedValues);
+
+        // filters = filters.filter((val) => val !== value);
+        console.log("filterss", updatedValues);
+        saveCheckboxStateToStorage(updatedValues);
+        // filters.array.forEach((element) => {
+        //   params.append(key, value);
+        // });
+        // const index = filters.indexOf(value);
+        // console.log("indexss", filters.includes(value));
+        // filters.splice(index, 1);
+        // setSelectedFilters(filters);
+        // setSearchParams("workMode", filters);
+        console.log(
+          "search params filters",
+          params.getAll(key),
+          "filters",
+          updatedValues,
+          "setSelectedFilters",
+          selectedFilters
+        );
       } else {
+        console.log("filters after refresh");
         // Add the filter to the URL query parameters
         const values = params.getAll(key);
+        // !values.includes(value) && params.append(key, value);
+
+        const filters = [...selectedFilters];
+        const index = filters.indexOf(value);
+        if (index === -1) {
+          filters.push(value);
+        } else {
+          filters.splice(index, 1);
+        }
+
+        // console.log("filers", filters);
+        setSelectedFilters(filters);
+        setSearchParams("workMode", filters);
         !values.includes(value) && params.append(key, value);
+        saveCheckboxStateToStorage(filters);
+        console.log(
+          "search paramssss",
+          params.getAll("workMode"),
+          "selectedFilters",
+          selectedFilters
+        );
       }
 
       return params.toString();
@@ -113,7 +170,7 @@ export const Sidebar = () => {
                 value="In Office"
                 id="office"
                 className="md:w-4 mr-2"
-                ref={(ref) => (checkboxRef.current.office = ref)}
+                checked={checkboxState.includes("In Office")}
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -134,7 +191,7 @@ export const Sidebar = () => {
                 id="remote"
                 className="md:w-4 mr-2"
                 value="Remote"
-                ref={(ref) => (checkboxRef.current.remote = ref)}
+                checked={checkboxState.includes("Remote")}
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -155,7 +212,7 @@ export const Sidebar = () => {
                 id="hybrid"
                 className="md:w-4 mr-2"
                 value="Hybrid"
-                ref={(ref) => (checkboxRef.current.hybrid = ref)}
+                checked={checkboxState.includes("Hybrid")}
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -176,7 +233,7 @@ export const Sidebar = () => {
                 name="workMode"
                 className="md:w-4 mr-2"
                 value="TWFH"
-                ref={(ref) => (checkboxRef.current.temporarywfh = ref)}
+                checked={checkboxState.includes("TWFH")}
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
