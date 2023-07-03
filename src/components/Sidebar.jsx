@@ -41,17 +41,37 @@ export const Sidebar = () => {
   let checkboxState = getCheckboxStateFromStorage();
 
   useEffect(() => {
-    console.log("local storage value side bar", checkboxState);
-    const params = new URLSearchParams();
-    checkboxState.forEach((val) => params.append("workMode", val));
-    console.log("side bar Params", params.toString());
+    console.log("checkbox state", checkboxState);
+    if (checkboxState.length) {
+      console.log(
+        "local storage value side bar selectd filters",
+        selectedFilters
+      );
+      setSelectedFilters(checkboxState);
+
+      const params = new URLSearchParams(); // Create a new URLSearchParams object
+      checkboxState.forEach((val) => {
+        params.append("workMode", val); // Append each value to the 'workMode' parameter
+      });
+
+      const searchString = params.toString(); // Get the search string from the URLSearchParams object
+      console.log("side bar Params", searchString);
+
+      const newUrl = window.location.pathname + "?" + searchString;
+      window.history.replaceState(null, null, newUrl);
+    } else {
+      // checkboxState = [];
+      console.log("dsafdshfkjds");
+    }
   }, []);
 
   function handleFilterChange(key, value, checked, workModeType) {
     setSearchParams((prevParams) => {
+      console.log("prevParams", prevParams.toString());
       const params = new URLSearchParams(prevParams.toString());
       const values = params.getAll(key);
-      alert(values);
+      console.log("values at start", values);
+      // alert(values);
       if (!checked) {
         // Remove the filter from the URL query parameters
         // const values = params.getAll(key);
@@ -94,12 +114,13 @@ export const Sidebar = () => {
         const filters = [...selectedFilters];
         const index = filters.indexOf(value);
         if (index === -1) {
+          console.log("index", index);
           filters.push(value);
         } else {
           filters.splice(index, 1);
         }
 
-        // console.log("filers", filters);
+        console.log("filers", filters, values);
         setSelectedFilters(filters);
         setSearchParams("workMode", filters);
         !values.includes(value) && params.append(key, value);
@@ -170,7 +191,9 @@ export const Sidebar = () => {
                 value="In Office"
                 id="office"
                 className="md:w-4 mr-2"
-                checked={checkboxState.includes("In Office")}
+                checked={
+                  checkboxState.length && checkboxState.includes("In Office")
+                }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -191,7 +214,9 @@ export const Sidebar = () => {
                 id="remote"
                 className="md:w-4 mr-2"
                 value="Remote"
-                checked={checkboxState.includes("Remote")}
+                checked={
+                  checkboxState.length && checkboxState.includes("Remote")
+                }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -212,7 +237,9 @@ export const Sidebar = () => {
                 id="hybrid"
                 className="md:w-4 mr-2"
                 value="Hybrid"
-                checked={checkboxState.includes("Hybrid")}
+                checked={
+                  checkboxState.length && checkboxState.includes("Hybrid")
+                }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
@@ -233,7 +260,7 @@ export const Sidebar = () => {
                 name="workMode"
                 className="md:w-4 mr-2"
                 value="TWFH"
-                checked={checkboxState.includes("TWFH")}
+                checked={checkboxState.length && checkboxState.includes("TWFH")}
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,

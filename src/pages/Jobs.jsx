@@ -9,7 +9,9 @@ export const Jobs = () => {
   const [jobs, setJobs] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const typeFilter = searchParams.getAll("workMode");
+  const queryParams = new URLSearchParams(window.location.search);
+  const typeFilter = queryParams.getAll("workMode");
+  console.log("type filters jobs page", typeFilter);
 
   // Function to retrieve checkbox state from storage
   const getCheckboxStateFromStorage = () => {
@@ -19,11 +21,16 @@ export const Jobs = () => {
 
   useEffect(() => {
     setJobs(JobsData);
-    const checkboxState = getCheckboxStateFromStorage();
-    // console.log("local storage value", checkboxState);
-    const params = new URLSearchParams();
-    checkboxState.forEach((val) => params.append("workMode", val));
+    // const checkboxState = getCheckboxStateFromStorage();
+    // // console.log("local storage value", checkboxState);
+    // const params = new URLSearchParams();
+    // !checkboxState == undefined &&
+    //   checkboxState.forEach((val) => params.append("workMode", val));
     // console.log("Params", params.toString());
+
+    // const workModes = queryParams.getAll("workMode");
+
+    // console.log("workModes jobs page", workModes);
   }, []);
 
   const displayedJobs = useMemo(() => {

@@ -47,7 +47,7 @@ module.exports = {
       md: "768px",
       lg: "1150px",
       xl: "1400px",
-      "2xl": "1500px", // Custom screen size,
+      "2xl": "1650px", // Custom screen size,
     },
   },
   plugins: [require("@tailwindcss/typography")],
