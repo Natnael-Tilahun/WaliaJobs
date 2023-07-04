@@ -17,7 +17,7 @@ export const Sidebar = () => {
     useState(false);
   const [selectedFilters, setSelectedFilters] = useState({
     workMode: [],
-    experience: "",
+    experience: 0,
     location: [],
     department: [],
   });
@@ -33,8 +33,9 @@ export const Sidebar = () => {
     setDepartmentExpanded((current) => !current);
   const companyAccordionToggleExpanded = () =>
     setCompanyExpanded((current) => !current);
-  const handleYearsOfExperienceChange = (event) => {
-    setYearsOfExperience(event.target.value);
+  const handleYearsOfExperienceChange = (e) => {
+    setYearsOfExperience(e.target.value);
+    handleFilterChange(e.target.name, e.target.value, "EXP");
   };
 
   let filterCheckboxState = getFilterStateFromStorage("filterState");
@@ -69,7 +70,8 @@ export const Sidebar = () => {
   function handleFilterChange(key, value, checked) {
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-      if (!checked) {
+      if (checked == "WM_OFF") {
+        console.log("uncheckedddd............");
         const values = [...selectedFilters.workMode];
         const updatedValues = values.filter((val) => val !== value);
         params.delete(key);
@@ -78,13 +80,12 @@ export const Sidebar = () => {
           ...prevState,
           workMode: updatedValues,
         }));
-        const filterState = {
-          workMode: updatedValues,
-          location: [], // Add your location filter state here
-          department: [], // Add your department filter state here
-        };
+        const filterState = { ...selectedFilters };
+        filterState.workMode = updatedValues;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else {
+      } else if (checked == "WM_ON") {
+        console.log("checkedddd==================");
+
         // Add the filter to the URL query parameters
         const values = params.getAll(key);
         const filters = [...selectedFilters.workMode];
@@ -111,15 +112,24 @@ export const Sidebar = () => {
         } else {
           params.append(key, value);
         }
-        // saveworkModeCheckboxStateToStorage("workModeCheckboxState", filters);
-        const filterState = {
-          workMode: filters,
-          location: [], // Add your location filter state here
-          department: [], // Add your department filter state here
-        };
+        const filterState = { ...selectedFilters };
+        filterState.workMode = filters;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "EXP") {
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          experience: value,
+        }));
+        const filters = {
+          ...selectedFilters,
+        };
+        filters.experience = value;
+        saveFilterStateToStorage("filterState", JSON.stringify(filters));
+        params.set(key, value);
+        // console.log("sssss", params.toString());
+        return params.toString();
+        // });
       }
-
       return params.toString();
     });
   }
@@ -133,6 +143,7 @@ export const Sidebar = () => {
       location: [],
       department: [],
     });
+    setYearsOfExperience("any");
   }
   return (
     <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
@@ -197,7 +208,7 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -220,7 +231,7 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -243,7 +254,7 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -266,7 +277,7 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -311,6 +322,7 @@ export const Sidebar = () => {
         >
           <input
             type="range"
+            name="experience"
             className="range w-full h-2 bg-gray-700 accent-gray-800 rounded-full outline-none"
             min="0"
             max="30"

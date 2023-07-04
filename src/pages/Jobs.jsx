@@ -10,19 +10,28 @@ export const Jobs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedFilters, setSelectedFilters] = useState([]);
   const queryParams = new URLSearchParams(window.location.search);
-  const typeFilter = queryParams.getAll("workMode");
+  const workModeFilter = queryParams.getAll("workMode");
+  const experienceFilter = queryParams.getAll("experience");
 
   useEffect(() => {
     setJobs(JobsData);
   }, []);
 
   const displayedJobs = useMemo(() => {
-    if (!typeFilter.length || !jobs) {
+    if ((!workModeFilter.length && !experienceFilter.length) || !jobs) {
       return jobs; // No filter applied, return all jobs
+    } else if (!experienceFilter.length) {
+      return jobs.filter((job) => workModeFilter.includes(job.workMode));
+    } else if (!workModeFilter.length) {
+      return jobs.filter((job) => experienceFilter == job.experience);
     } else {
-      return jobs.filter((job) => typeFilter.includes(job.workMode));
+      return jobs.filter(
+        (job) =>
+          workModeFilter.includes(job.workMode) &&
+          experienceFilter == job.experience
+      );
     }
-  }, [jobs, typeFilter]);
+  }, [jobs, workModeFilter]);
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">
