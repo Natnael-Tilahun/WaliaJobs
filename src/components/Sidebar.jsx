@@ -1,15 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import {
+  getFilterStateFromStorage,
+  saveFilterStateToStorage,
+  clearFilterFromStorage,
+  isEmpty,
+} from "../utils/helperFunctions";
 
 export const Sidebar = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(30);
-  const [workModeExpanded, setWorkModeExpanded] = useState(false);
+  const [workModeExpanded, setWorkModeExpanded] = useState(true);
   const [experienceExpanded, setExperienceExpanded] = useState(false);
   const [departmentExpanded, setDepartmentExpanded] = useState(false);
   const [companyExpanded, setCompanyExpanded] = useState(false);
   const [locationAccordionExpanded, setLocationAccordionExpanded] =
     useState(false);
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState({
+    workMode: [],
+    experience: "",
+    location: [],
+    department: [],
+  });
   const [searchParams, setSearchParams] = useSearchParams();
 
   const workModeAccordionToggleExpanded = () =>
@@ -26,127 +37,114 @@ export const Sidebar = () => {
     setYearsOfExperience(event.target.value);
   };
 
-  const checkboxRef = useRef({});
-
-  // Function to save checkbox state to storage
-  const saveCheckboxStateToStorage = (state) => {
-    localStorage.setItem("checkboxState", JSON.stringify(state));
-  };
-
-  // Function to retrieve checkbox state from storage
-  const getCheckboxStateFromStorage = () => {
-    const storedState = localStorage.getItem("checkboxState");
-    return storedState ? JSON.parse(storedState) : {};
-  };
-  let checkboxState = getCheckboxStateFromStorage();
+  let filterCheckboxState = getFilterStateFromStorage("filterState");
+  let workModeCheckboxState = isEmpty(filterCheckboxState)
+    ? []
+    : JSON.parse(filterCheckboxState).workMode;
 
   useEffect(() => {
-    console.log("checkbox state", checkboxState);
-    if (checkboxState.length) {
+    if (workModeCheckboxState.length) {
       console.log(
         "local storage value side bar selectd filters",
-        selectedFilters
+        workModeCheckboxState
       );
-      setSelectedFilters(checkboxState);
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        workMode: workModeCheckboxState,
+      }));
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
-      checkboxState.forEach((val) => {
+      workModeCheckboxState.forEach((val) => {
         params.append("workMode", val); // Append each value to the 'workMode' parameter
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      console.log("side bar Params", searchString);
-
       const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     } else {
-      // checkboxState = [];
-      console.log("dsafdshfkjds");
+      console.log("No data in the local storage");
     }
   }, []);
 
-  function handleFilterChange(key, value, checked, workModeType) {
+  function handleFilterChange(key, value, checked) {
     setSearchParams((prevParams) => {
-      console.log("prevParams", prevParams.toString());
       const params = new URLSearchParams(prevParams.toString());
-      const values = params.getAll(key);
-      console.log("values at start", values);
-      // alert(values);
       if (!checked) {
-        // Remove the filter from the URL query parameters
-        // const values = params.getAll(key);
-        // const updatedValues = values.filter((val) => val !== value);
-        // params.delete(key);
-        // updatedValues.forEach((val) => params.append(key, val));
-        // console.log(key, value);
-
-        const values = [...selectedFilters];
+        const values = [...selectedFilters.workMode];
         const updatedValues = values.filter((val) => val !== value);
         params.delete(key);
         updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters(updatedValues);
-
-        // filters = filters.filter((val) => val !== value);
-        console.log("filterss", updatedValues);
-        saveCheckboxStateToStorage(updatedValues);
-        // filters.array.forEach((element) => {
-        //   params.append(key, value);
-        // });
-        // const index = filters.indexOf(value);
-        // console.log("indexss", filters.includes(value));
-        // filters.splice(index, 1);
-        // setSelectedFilters(filters);
-        // setSearchParams("workMode", filters);
-        console.log(
-          "search params filters",
-          params.getAll(key),
-          "filters",
-          updatedValues,
-          "setSelectedFilters",
-          selectedFilters
-        );
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          workMode: updatedValues,
+        }));
+        const filterState = {
+          workMode: updatedValues,
+          location: [], // Add your location filter state here
+          department: [], // Add your department filter state here
+        };
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       } else {
-        console.log("filters after refresh");
         // Add the filter to the URL query parameters
         const values = params.getAll(key);
-        // !values.includes(value) && params.append(key, value);
-
-        const filters = [...selectedFilters];
+        const filters = [...selectedFilters.workMode];
         const index = filters.indexOf(value);
         if (index === -1) {
-          console.log("index", index);
           filters.push(value);
         } else {
           filters.splice(index, 1);
         }
 
-        console.log("filers", filters, values);
-        setSelectedFilters(filters);
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          workMode: filters,
+        }));
         setSearchParams("workMode", filters);
-        !values.includes(value) && params.append(key, value);
-        saveCheckboxStateToStorage(filters);
-        console.log(
-          "search paramssss",
-          params.getAll("workMode"),
-          "selectedFilters",
-          selectedFilters
-        );
+        if (values.length) {
+          !values.includes(value) && params.append(key, value);
+        } else if (workModeCheckboxState.length) {
+          !workModeCheckboxState.includes(value) &&
+            workModeCheckboxState.push(value);
+          workModeCheckboxState.forEach((val) => {
+            params.append(key, val); // Append each value to the 'workMode' parameter
+          });
+        } else {
+          params.append(key, value);
+        }
+        // saveworkModeCheckboxStateToStorage("workModeCheckboxState", filters);
+        const filterState = {
+          workMode: filters,
+          location: [], // Add your location filter state here
+          department: [], // Add your department filter state here
+        };
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       }
 
       return params.toString();
     });
   }
+
+  function removeFilterHandler() {
+    setSearchParams("");
+    clearFilterFromStorage();
+    setSelectedFilters({
+      workMode: [],
+      experience: "",
+      location: [],
+      department: [],
+    });
+  }
   return (
-    <div className="flex basis-full md:basis-[40%] dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
+    <div className="flex basis-full md:basis-[35%] dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
       <div className="flex justify-between w-full items-center">
         <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
         </h1>
         <h1
           onClick={() => {
-            setSearchParams("");
+            removeFilterHandler();
           }}
-          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-xl lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
+          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-lg lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
         >
           Clear Filters
         </h1>
@@ -183,8 +181,8 @@ export const Sidebar = () => {
             workModeExpanded ? "max-h-fit" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <label htmlFor="office" className=" font-medium">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
+            <label htmlFor="office" className=" font-medium  w-full">
               <input
                 type="checkbox"
                 name="workMode"
@@ -192,22 +190,22 @@ export const Sidebar = () => {
                 id="office"
                 className="md:w-4 mr-2"
                 checked={
-                  checkboxState.length && checkboxState.includes("In Office")
+                  workModeCheckboxState.length &&
+                  workModeCheckboxState.includes("In Office")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked,
-                    1
+                    e.target.checked
                   )
                 }
               />
               Work from office
             </label>
           </li>
-          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <label htmlFor="remote" className=" font-medium">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
+            <label htmlFor="remote" className=" font-medium w-full">
               <input
                 type="checkbox"
                 name="workMode"
@@ -215,22 +213,22 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Remote"
                 checked={
-                  checkboxState.length && checkboxState.includes("Remote")
+                  workModeCheckboxState.length &&
+                  workModeCheckboxState.includes("Remote")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked,
-                    2
+                    e.target.checked
                   )
                 }
               />
               Work from home
             </label>
           </li>
-          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <label htmlFor="hybrid" className="font-medium">
+          <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
+            <label htmlFor="hybrid" className="font-medium  w-full">
               <input
                 type="checkbox"
                 name="workMode"
@@ -238,14 +236,14 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Hybrid"
                 checked={
-                  checkboxState.length && checkboxState.includes("Hybrid")
+                  workModeCheckboxState.length &&
+                  workModeCheckboxState.includes("Hybrid")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked,
-                    3
+                    e.target.checked
                   )
                 }
               />
@@ -253,20 +251,22 @@ export const Sidebar = () => {
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0">
-            <label htmlFor="temporary" className="font-medium">
+            <label htmlFor="temporary" className="font-medium  w-full">
               <input
                 type="checkbox"
                 id="temporary"
                 name="workMode"
-                className="md:w-4 mr-2"
+                className="md:w-4 mr-2 "
                 value="TWFH"
-                checked={checkboxState.length && checkboxState.includes("TWFH")}
+                checked={
+                  workModeCheckboxState.length &&
+                  workModeCheckboxState.includes("TWFH")
+                }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked,
-                    4
+                    e.target.checked
                   )
                 }
               />

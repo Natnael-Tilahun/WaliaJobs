@@ -20,6 +20,7 @@ export const JobsList = () => {
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="2 Days Ago"
           img="/cbelogo.jpg"
+          className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <JobCard
           title="Programmer"
@@ -34,6 +35,7 @@ export const JobsList = () => {
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="1 Days Ago"
           img="/boalogo.jpg"
+          className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <JobCard
           title="FullStack Developer"
@@ -48,6 +50,7 @@ export const JobsList = () => {
           jobTags={["Programming", "Node.js", "React.js"]}
           timeLeft="1 Days Ago"
           img="/gebeyalogo.png"
+          className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <JobCard
           title="Frontend Developer"
@@ -62,6 +65,7 @@ export const JobsList = () => {
           jobTags={["Programming", "HTML", "React.js"]}
           timeLeft="1 Days Ago"
           img="/gebeyalogo.png"
+          className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
       </div>
       <NavLink

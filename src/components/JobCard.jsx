@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 export const JobCard = ({
   title,
@@ -13,10 +13,12 @@ export const JobCard = ({
   img,
   className,
   showShareAndSaveBtn,
+  searchParams,
 }) => {
   return (
     <NavLink
       to="/job_details"
+      state={{ search: searchParams }}
       className={`lg:w-[30%] w-[95%] md:w-[46%] border-2 py-5 px-5 md:px-10 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
     >
       <div className="flex justify-between items-center">

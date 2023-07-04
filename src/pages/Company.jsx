@@ -109,77 +109,77 @@ export const Company = () => {
           name="Commercial Bank of Ethiopia"
           rate="7"
           reviews="50+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background "
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/boalogo.jpg"
           name="Bank of Abyssinia"
           rate="10"
           reviews="90+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/awashlogo.png"
           name="Awash Bank"
           rate="7"
           reviews="40+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/safaricomlogo.jpg"
           name="Safaricom"
           rate="10"
           reviews="40+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/airlineslogo.png"
           name="Ethiopian Airlines"
           rate="9"
           reviews="70+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/ethiotelecomlogo.jpg"
           name="Ethio Telecom"
           rate="7"
           reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/totalethiopialogo.png"
           name="Total Ethiopia"
           rate="10"
           reviews="10+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/heinekenlogo.png"
           name="Heineken"
           rate="10"
           reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/cocacolalogo.png"
           name="Coca Cola"
           rate="10"
           reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/nyalamotorslogo.png"
           name="Nyala Motors"
           rate="10"
           reviews="50+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
         <CompanyCard
           img="/gebeyalogo.png"
           name="Gebeya"
           rate="10"
           reviews="50+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background"
+          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
         />
       </div>
     </div>

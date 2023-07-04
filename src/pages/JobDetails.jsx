@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { JobCard } from "../components/JobCard";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function JobDetail(props) {
   return (
@@ -80,6 +80,10 @@ export const JobDetails = () => {
     img: "/boalogo.jpg",
   };
 
+  const locationParams = useLocation();
+  useEffect(() => {
+    console.log("search params state", locationParams);
+  }, []);
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-6 md:gap-2 lg:gap-10">
       <div className="h-full basis-full md:basis-[60%] lg:basis-[70%] rounded-xl w-full flex flex-col md:px-2 lg:px-0 justify-center gap-5 lg:gap-8">

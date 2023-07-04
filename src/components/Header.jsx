@@ -8,11 +8,11 @@ function Header() {
   };
 
   return (
-    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 lg:py-10 shadow-md relative bg-thm_background">
+    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 lg:py-5 shadow-md relative bg-thm_background">
       <div className="flex justify-between w-full lg:w-auto items-center md:pr-5 ">
         <NavLink
           to="/"
-          className="font-bold lg:text-2xl text-thm_primary_color"
+          className="font-bold lg:text-2xl text-thm_primary_color first-letter:text-4xl"
         >
           Walia Jobs
         </NavLink>

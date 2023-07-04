@@ -11,26 +11,9 @@ export const Jobs = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const queryParams = new URLSearchParams(window.location.search);
   const typeFilter = queryParams.getAll("workMode");
-  console.log("type filters jobs page", typeFilter);
-
-  // Function to retrieve checkbox state from storage
-  const getCheckboxStateFromStorage = () => {
-    const storedState = localStorage.getItem("checkboxState");
-    return storedState ? JSON.parse(storedState) : {};
-  };
 
   useEffect(() => {
     setJobs(JobsData);
-    // const checkboxState = getCheckboxStateFromStorage();
-    // // console.log("local storage value", checkboxState);
-    // const params = new URLSearchParams();
-    // !checkboxState == undefined &&
-    //   checkboxState.forEach((val) => params.append("workMode", val));
-    // console.log("Params", params.toString());
-
-    // const workModes = queryParams.getAll("workMode");
-
-    // console.log("workModes jobs page", workModes);
   }, []);
 
   const displayedJobs = useMemo(() => {
@@ -41,10 +24,8 @@ export const Jobs = () => {
     }
   }, [jobs, typeFilter]);
 
-  // console.log(displayedJobs);
-
   return (
-    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
+    <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">
       <Sidebar />
       <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
         {displayedJobs && displayedJobs.length > 0 ? (
@@ -61,6 +42,7 @@ export const Jobs = () => {
               timeLeft={job.timeLeft}
               img={job.img}
               className="min-w-[100%] bg-thm_background shadow-lg"
+              searchParams={searchParams.toString()}
             />
           ))
         ) : (
