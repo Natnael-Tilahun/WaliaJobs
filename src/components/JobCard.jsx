@@ -19,7 +19,7 @@ export const JobCard = ({
     <NavLink
       to="/job_details"
       state={{ search: searchParams }}
-      className={`lg:w-[30%] w-[95%] md:w-[46%] border-2 py-5 px-5 md:px-10 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
+      className={`lg:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-5 px-5 md:px-10 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
     >
       <div className="flex justify-between items-center">
         <h1 className="font-bold text-base lg:text-xl text-left">{title}</h1>
@@ -27,7 +27,7 @@ export const JobCard = ({
           <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
         )}
       </div>
-      <div className="flex gap-7 lg:gap-14 font-semibold text-gray-700 text-xs md:text-sm">
+      <div className="flex gap-7 lg:gap-14 font-semibold text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
         <p>{companyName}</p>
         <p>
           <span>{workMode}</span>, {location}
@@ -35,7 +35,7 @@ export const JobCard = ({
         <p>{jobType}</p>
       </div>
       {description && (
-        <div className="text-left text-gray-500 text-xs md:text-sm flex gap-0 h-4 md:h-6">
+        <div className="text-left text-gray-500 dark:text-thm_dark_secondary_color text-xs md:text-sm flex gap-0 h-4 md:h-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-8 h-6 fill-gray-400"
@@ -46,7 +46,7 @@ export const JobCard = ({
           <span>...</span>
         </div>
       )}
-      <div className="flex font-medium text-gray-600 gap-5 lg:gap-5 text-xs lg:text-sm">
+      <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xs lg:text-sm">
         {jobTags &&
           jobTags.map((item, index) => <span key={index}>{item}</span>)}
       </div>

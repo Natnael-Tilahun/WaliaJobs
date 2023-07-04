@@ -135,7 +135,7 @@ export const Sidebar = () => {
     });
   }
   return (
-    <div className="flex basis-full md:basis-[35%] dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
+    <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
       <div className="flex justify-between w-full items-center">
         <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
@@ -144,7 +144,7 @@ export const Sidebar = () => {
           onClick={() => {
             removeFilterHandler();
           }}
-          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-lg lg:text-base text-thm_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
+          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-lg lg:text-base text-thm_root1_color dark:text-thm_dark_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
         >
           Clear Filters
         </h1>
@@ -177,7 +177,7 @@ export const Sidebar = () => {
           )}
         </div>
         <ul
-          className={`overflow-hidden transition-[max-height] text-left text-sm text-thm_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-left text-sm text-thm_secondary_color dark:text-thm_dark_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
             workModeExpanded ? "max-h-fit" : "max-h-0 "
           }`}
         >
@@ -317,10 +317,10 @@ export const Sidebar = () => {
             value={yearsOfExperience}
             onChange={handleYearsOfExperienceChange}
           />
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 text-white text-xs md:text-sm rounded">
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 dark:bg-thm_secondary_color text-white text-xs md:text-sm rounded">
             <span className="font-bold">{yearsOfExperience}</span>
           </div>
-          <div className="flex justify-between text-thm_secondary_color tracking-wide text-sm md:text-base lg:text-base font-medium">
+          <div className="flex justify-between text-thm_secondary_color dark:text-thm_dark_secondary_color tracking-wide text-sm md:text-base lg:text-base font-medium">
             <p>O Yr</p>
             <p>30 Yrs</p>
           </div>
@@ -354,7 +354,7 @@ export const Sidebar = () => {
           )}
         </div>
         <div
-          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             locationAccordionExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
@@ -544,7 +544,7 @@ export const Sidebar = () => {
           )}
         </div>
         <div
-          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             departmentExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
@@ -722,7 +722,7 @@ export const Sidebar = () => {
           )}
         </div>
         <div
-          className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
+          className={`overflow-hidden transition-[max-height] text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
