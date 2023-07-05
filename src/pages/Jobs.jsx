@@ -8,30 +8,116 @@ import { NoResultFound } from "../components/NoResultFound";
 export const Jobs = () => {
   const [jobs, setJobs] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  // const [selectedFilters, setSelectedFilters] = useState();
+
   const queryParams = new URLSearchParams(window.location.search);
-  const workModeFilter = queryParams.getAll("workMode");
-  const experienceFilter = queryParams.getAll("experience");
+  const selectedFilters = {
+    experienceFilter: queryParams.getAll("experience"),
+    workModeFilter: queryParams.getAll("workMode"),
+    locationFilter: queryParams.getAll("location"),
+    departmentFilter: queryParams.getAll("department"),
+    companyTypeFilter: queryParams.getAll("companyType"),
+  };
+
+  // const workModeFilter = queryParams.getAll("workMode");
+  // const experienceFilter = queryParams.getAll("experience");
+  // const locationFilter = queryParams.getAll("location");
+  // const departmentFilter = queryParams.getAll("department");
+  // const companyTypeFilter = queryParams.getAll("companyType");
+
+  // console.log("locationlocationlocation", location);
 
   useEffect(() => {
     setJobs(JobsData);
   }, []);
 
   const displayedJobs = useMemo(() => {
-    if ((!workModeFilter.length && !experienceFilter.length) || !jobs) {
+    if (
+      (!selectedFilters.workModeFilter.length &&
+        !selectedFilters.experienceFilter.length &&
+        !selectedFilters.locationFilter.length) ||
+      !jobs
+    ) {
       return jobs; // No filter applied, return all jobs
-    } else if (!experienceFilter.length) {
-      return jobs.filter((job) => workModeFilter.includes(job.workMode));
-    } else if (!workModeFilter.length) {
-      return jobs.filter((job) => experienceFilter == job.experience);
+    } else if (!selectedFilters.experienceFilter.length) {
+      return jobs.filter((job) =>
+        selectedFilters.workModeFilter.includes(job.workMode)
+      );
+    } else if (!selectedFilters.workModeFilter.length) {
+      return jobs.filter(
+        (job) => selectedFilters.experienceFilter == job.experience
+      );
     } else {
       return jobs.filter(
         (job) =>
-          workModeFilter.includes(job.workMode) &&
-          experienceFilter == job.experience
+          selectedFilters.workModeFilter.includes(job.workMode) &&
+          selectedFilters.experienceFilter == job.experience
       );
     }
-  }, [jobs, workModeFilter]);
+  }, [jobs, selectedFilters]);
+
+  // const displayedJobs = useMemo(() => {
+  //   // Assuming the job data is available in an array called 'jobs'
+
+  //   // 1. Initialize an empty array to store the filtered jobs
+  //   let filteredJobs = [];
+
+  //   // 2. Check the selected filters and filter the jobs accordingly
+  //   if (
+  //     selectedFilters.workModeFilter.length &&
+  //     selectedFilters.experienceFilter.length &&
+  //     selectedFilters.locationFilter.length &&
+  //     selectedFilters.departmentFilter.length &&
+  //     selectedFilters.companyTypeFilter.length
+  //   ) {
+  //     alert("All are selecteddd");
+  //     // All filters are selected, filter by all criteria
+  //     filteredJobs = jobs.filter(
+  //       (job) =>
+  //         selectedFilters.workModeFilter.includes(job.workMode) &&
+  //         selectedFilters.experienceFilter.includes(job.experience) &&
+  //         selectedFilters.locationFilter.includes(job.location) &&
+  //         selectedFilters.departmentFilter.includes(job.department) &&
+  //         selectedFilters.companyTypeFilter.includes(job.companyType)
+  //     );
+  //   } else if (selectedFilters.workModeFilter.length) {
+  //     // alert("work mde selected");
+  //     // Only work mode filter is selected, filter by work mode
+  //     filteredJobs = jobs.filter((job) =>
+  //       selectedFilters.workModeFilter.includes(job.workMode)
+  //     );
+  //     console.log("selected jobssss", filteredJobs);
+  //   } else if (selectedFilters.experienceFilter.length) {
+  //     alert("exp mde selected");
+
+  //     // Only experience filter is selected, filter by experience
+  //     filteredJobs = jobs.filter(
+  //       (job) => selectedFilters.experienceFilter == job.experience
+  //     );
+  //   } else if (selectedFilters.locationFilter.length) {
+  //     // Only location filter is selected, filter by location
+  //     filteredJobs = jobs.filter((job) =>
+  //       selectedFilters.locationFilter.includes(job.location)
+  //     );
+  //   } else if (selectedFilters.departmentFilter.length) {
+  //     // Only department filter is selected, filter by department
+  //     filteredJobs = jobs.filter((job) =>
+  //       selectedFilters.departmentFilter.includes(job.department)
+  //     );
+  //   } else if (selectedFilters.companyTypeFilter.length) {
+  //     // Only company type filter is selected, filter by company type
+  //     filteredJobs = jobs.filter((job) =>
+  //       selectedFilters.companyTypeFilter.includes(job.companyType)
+  //     );
+  //   } else {
+  //     // No filters selected, return all jobs
+  //     filteredJobs = jobs;
+  //   }
+  //   console.log("jobssssssssssssss", filteredJobs);
+  //   return filteredJobs;
+
+  //   // 3. Use the 'filteredJobs' array to display the filtered job list
+  // }, [jobs, selectedFilters]);
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">

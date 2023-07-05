@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import {
   getFilterStateFromStorage,
   saveFilterStateToStorage,
@@ -42,6 +42,14 @@ export const Sidebar = () => {
   let workModeCheckboxState = isEmpty(filterCheckboxState)
     ? []
     : JSON.parse(filterCheckboxState).workMode;
+  let experienceCheckboxState = isEmpty(filterCheckboxState)
+    ? 0
+    : JSON.parse(filterCheckboxState).experience;
+  let locationCheckboxState = isEmpty(filterCheckboxState)
+    ? []
+    : JSON.parse(filterCheckboxState).location;
+
+  console.log("Location local storeage value -----", locationCheckboxState);
 
   useEffect(() => {
     if (workModeCheckboxState.length) {
@@ -62,30 +70,72 @@ export const Sidebar = () => {
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
       const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
+    }
+    if (experienceCheckboxState) {
+      console.log(
+        "experience local storage value side bar selectd filters",
+        experienceCheckboxState
+      );
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        experience: experienceCheckboxState,
+      }));
+
+      const params = new URLSearchParams(); // Create a new URLSearchParams object
+      // workModeCheckboxState.forEach((val) => {
+      params.append("experience", experienceCheckboxState); // Append each value to the 'workMode' parameter
+      // });
+
+      const searchString = params.toString(); // Get the search string from the URLSearchParams objectc
+      console.log("url---", window.location, "search string", searchString);
+
+      const newUrl = workModeCheckboxState.length
+        ? window.location.href + "&" + searchString
+        : window.location.pathname + "?" + searchString;
+      window.history.replaceState(null, null, newUrl);
+    }
+    if (locationCheckboxState.length) {
+      console.log(
+        "location local storage value side bar selectd filters",
+        locationCheckboxState
+      );
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        location: locationCheckboxState,
+      }));
+
+      const params = new URLSearchParams(); // Create a new URLSearchParams object
+      locationCheckboxState.forEach((val) => {
+        params.append("location", val); // Append each value to the 'workMode' parameter
+      });
+
+      const searchString = params.toString(); // Get the search string from the URLSearchParams object
+      const newUrl =
+        workModeCheckboxState.length || locationCheckboxState.length
+          ? window.location.href + "&" + searchString
+          : window.location.pathname + "?" + searchString;
+
+      // const newUrl = window.location.pathname + "?" + searchString;
+      window.history.replaceState(null, null, newUrl);
     } else {
       console.log("No data in the local storage");
     }
   }, []);
 
   function handleFilterChange(key, value, checked) {
+    // alert(checked);
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-      if (checked == "WM_OFF") {
-        console.log("uncheckedddd............");
-        const values = [...selectedFilters.workMode];
-        const updatedValues = values.filter((val) => val !== value);
-        params.delete(key);
-        updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          workMode: updatedValues,
-        }));
-        const filterState = { ...selectedFilters };
-        filterState.workMode = updatedValues;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "WM_ON") {
-        console.log("checkedddd==================");
 
+      if (checked == "WM_ON") {
+        // handleAddSearchParams(
+        //   "workMode",
+        //   workModeCheckboxState,
+        //   key,
+        //   value,
+        //   prevParams
+        // );
+        // console.log("checkedddd==================");
         // Add the filter to the URL query parameters
         const values = params.getAll(key);
         const filters = [...selectedFilters.workMode];
@@ -115,6 +165,19 @@ export const Sidebar = () => {
         const filterState = { ...selectedFilters };
         filterState.workMode = filters;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "WM_OFF") {
+        console.log("uncheckedddd............");
+        const values = [...selectedFilters.workMode];
+        const updatedValues = values.filter((val) => val !== value);
+        params.delete(key);
+        updatedValues.forEach((val) => params.append(key, val));
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          workMode: updatedValues,
+        }));
+        const filterState = { ...selectedFilters };
+        filterState.workMode = updatedValues;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       } else if (checked == "EXP") {
         setSelectedFilters((prevState) => ({
           ...prevState,
@@ -125,13 +188,99 @@ export const Sidebar = () => {
         };
         filters.experience = value;
         saveFilterStateToStorage("filterState", JSON.stringify(filters));
+        // alert(value);
         params.set(key, value);
         // console.log("sssss", params.toString());
         return params.toString();
         // });
+      } else if (checked == "LOC_ON") {
+        console.log("Location checkedddd==================");
+        // Add the filter to the URL query parameters
+        const values = params.getAll(key);
+        const filters = [...selectedFilters.location];
+        const index = filters.indexOf(value);
+        if (index === -1) {
+          filters.push(value);
+        } else {
+          filters.splice(index, 1);
+        }
+
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          location: filters,
+        }));
+        setSearchParams("location", filters);
+        if (values.length) {
+          !values.includes(value) && params.append(key, value);
+        } else if (locationCheckboxState.length) {
+          !locationCheckboxState.includes(value) &&
+            locationCheckboxState.push(value);
+          locationCheckboxState.forEach((val) => {
+            params.append(key, val); // Append each value to the 'workMode' parameter
+          });
+        } else {
+          params.append(key, value);
+        }
+        const filterState = { ...selectedFilters };
+        filterState.location = filters;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "LOC_OFF") {
+        console.log("LOcation uncheckedddd............");
+        const values = [...selectedFilters.location];
+        const updatedValues = values.filter((val) => val !== value);
+        params.delete(key);
+        updatedValues.forEach((val) => params.append(key, val));
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          location: updatedValues,
+        }));
+        const filterState = { ...selectedFilters };
+        filterState.location = updatedValues;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       }
       return params.toString();
     });
+  }
+
+  function handleAddSearchParams(
+    filterType,
+    filterTypeState,
+    key,
+    value,
+    prevParams
+  ) {
+    // setSearchParams((prevParams) => {
+    const params = new URLSearchParams(prevParams.toString());
+    const values = params.getAll(key);
+    const filters = [...selectedFilters[filterType]];
+    const index = filters.indexOf(value);
+    if (index === -1) {
+      filters.push(value);
+    } else {
+      filters.splice(index, 1);
+    }
+
+    setSelectedFilters((prevState) => ({
+      ...prevState,
+      [filterType]: filters,
+    }));
+    setSearchParams(filterType, filters);
+    if (values.length) {
+      !values.includes(value) && params.append(key, value);
+    } else if (filterTypeState.length) {
+      !filterTypeState.includes(value) && filterTypeState.push(value);
+      filterTypeState.forEach((val) => {
+        params.append(key, val); // Append each value to the 'workMode' parameter
+      });
+    } else {
+      params.append(key, value);
+    }
+    const filterState = { ...selectedFilters };
+    filterState.filterType = filters;
+    console.log("handler parmas ----", filterState);
+    saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+    return params.toString();
+    // });
   }
 
   function removeFilterHandler() {
@@ -326,11 +475,11 @@ export const Sidebar = () => {
             className="range w-full h-2 bg-gray-700 accent-gray-800 rounded-full outline-none"
             min="0"
             max="30"
-            value={yearsOfExperience}
+            value={experienceCheckboxState}
             onChange={handleYearsOfExperienceChange}
           />
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 dark:bg-thm_secondary_color text-white text-xs md:text-sm rounded">
-            <span className="font-bold">{yearsOfExperience}</span>
+            <span className="font-bold">{experienceCheckboxState}</span>
           </div>
           <div className="flex justify-between text-thm_secondary_color dark:text-thm_dark_secondary_color tracking-wide text-sm md:text-base lg:text-base font-medium">
             <p>O Yr</p>
@@ -374,10 +523,21 @@ export const Sidebar = () => {
             <label htmlFor="addis abeba" className=" font-medium">
               <input
                 type="checkbox"
-                name="addis abeba"
-                value="addis abeba"
+                name="location"
+                value="Addis Abeba"
                 id="addis abeba"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Addis Abeba")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Addis Abeba
             </label>
@@ -386,10 +546,21 @@ export const Sidebar = () => {
             <label htmlFor="hawassa" className=" font-medium">
               <input
                 type="checkbox"
-                name="hawassa"
-                value="hawassa"
+                name="location"
+                value="Hawassa"
                 id="hawassa"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Hawassa")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Hawassa
             </label>
@@ -398,10 +569,21 @@ export const Sidebar = () => {
             <label htmlFor="adama" className=" font-medium">
               <input
                 type="checkbox"
-                name="adama"
-                value="adama"
+                name="location"
+                value="Adama"
                 id="adama"
                 className=" md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Adama")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Adama
             </label>
@@ -410,10 +592,21 @@ export const Sidebar = () => {
             <label htmlFor="dire dawa" className=" font-medium">
               <input
                 type="checkbox"
-                name="dire dawa"
-                value="dire dawa"
+                name="location"
+                value="Dire Dawa"
                 id="dire dawa"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Dire Dawa")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Dire Dawa
             </label>
@@ -422,10 +615,21 @@ export const Sidebar = () => {
             <label htmlFor="bahir dar" className=" font-medium">
               <input
                 type="checkbox"
-                name="bahir dar"
-                value="bahir dar"
+                name="location"
+                value="Bahir Dar"
                 id="bahir dar"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Bahir Dar")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Bahir Dar
             </label>
@@ -434,10 +638,21 @@ export const Sidebar = () => {
             <label htmlFor="mekele" className=" font-medium">
               <input
                 type="checkbox"
-                name="mekele"
-                value="mekele"
+                name="location"
+                value="Mekele"
                 id="mekele"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Mekele")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Mekele
             </label>
@@ -446,10 +661,21 @@ export const Sidebar = () => {
             <label htmlFor="jimma" className=" font-medium">
               <input
                 type="checkbox"
-                name="jimma"
-                value="jimma"
+                name="location"
+                value="Jimma"
                 id="jimma"
                 className=" md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Jimma")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Jimma
             </label>
@@ -458,10 +684,21 @@ export const Sidebar = () => {
             <label htmlFor="gondar" className=" font-medium">
               <input
                 type="checkbox"
-                name="gondar"
-                value="gondar"
+                name="location"
+                value="Gondar"
                 id="gondar"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Gondar")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Gondar
             </label>
@@ -470,10 +707,21 @@ export const Sidebar = () => {
             <label htmlFor="harar" className=" font-medium">
               <input
                 type="checkbox"
-                name="harar"
-                value="harar"
+                name="location"
+                value="Harar"
                 id="harar"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Harar")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Harar
             </label>
@@ -482,10 +730,21 @@ export const Sidebar = () => {
             <label htmlFor="jijiga" className=" font-medium">
               <input
                 type="checkbox"
-                name="jijiga"
-                value="jijiga"
+                name="location"
+                value="Jijiga"
                 id="jijiga"
                 className=" md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Jijiga")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Jijiga
             </label>
@@ -494,10 +753,21 @@ export const Sidebar = () => {
             <label htmlFor="dessie" className="font-medium">
               <input
                 type="checkbox"
-                name="dessie"
-                value="dessie"
+                name="location"
+                value="Dessie"
                 id="dessie"
                 className=" md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Dessie")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Dessie
             </label>
@@ -506,10 +776,21 @@ export const Sidebar = () => {
             <label htmlFor="debre birhan" className=" font-medium">
               <input
                 type="checkbox"
-                name="debre birhan"
-                value="debre birhan"
+                name="location"
+                value="Debre Birhan"
                 id="debre birhan"
                 className=" md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Debre Birhan")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Debre Birhan
             </label>
@@ -518,10 +799,21 @@ export const Sidebar = () => {
             <label htmlFor="aksum" className="font-medium">
               <input
                 type="checkbox"
-                name="aksum"
-                value="aksum"
+                name="location"
+                value="Aksum"
                 id="aksum"
                 className="md:w-4 mr-2"
+                checked={
+                  locationCheckboxState.length &&
+                  locationCheckboxState.includes("Aksum")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
+                  )
+                }
               />
               Aksum
             </label>
