@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CompanyCard } from "../components/CompanyCard";
+import { CompaniesData } from "../../data/companies";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);
@@ -104,83 +105,23 @@ export const Company = () => {
         </ul>
       </div>
       <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
-        <CompanyCard
+        {/* <CompanyCard
           img="/cbelogo.jpg"
           name="Commercial Bank of Ethiopia"
           rate="7"
           reviews="50+"
           className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/boalogo.jpg"
-          name="Bank of Abyssinia"
-          rate="10"
-          reviews="90+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/awashlogo.png"
-          name="Awash Bank"
-          rate="7"
-          reviews="40+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/safaricomlogo.jpg"
-          name="Safaricom"
-          rate="10"
-          reviews="40+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/airlineslogo.png"
-          name="Ethiopian Airlines"
-          rate="9"
-          reviews="70+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/ethiotelecomlogo.jpg"
-          name="Ethio Telecom"
-          rate="7"
-          reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/totalethiopialogo.png"
-          name="Total Ethiopia"
-          rate="10"
-          reviews="10+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/heinekenlogo.png"
-          name="Heineken"
-          rate="10"
-          reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/cocacolalogo.png"
-          name="Coca Cola"
-          rate="10"
-          reviews="30+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/nyalamotorslogo.png"
-          name="Nyala Motors"
-          rate="10"
-          reviews="50+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
-        <CompanyCard
-          img="/gebeyalogo.png"
-          name="Gebeya"
-          rate="10"
-          reviews="50+"
-          className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-        />
+        /> */}
+        {CompaniesData.map(({ id, img, name, rate, reviews, className }) => (
+          <CompanyCard
+            key={id}
+            img={img}
+            name={name}
+            rate={rate}
+            reviews={reviews}
+            className={className}
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import {
   getFilterStateFromStorage,
@@ -107,7 +107,6 @@ export const Sidebar = () => {
         ? window.location.href + "&" + searchString
         : window.location.pathname + "?" + searchString;
 
-      // const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     }
     if (departmentCheckboxState.length) {
@@ -127,7 +126,6 @@ export const Sidebar = () => {
           ? window.location.href + "&" + searchString
           : window.location.pathname + "?" + searchString;
 
-      // const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     }
     if (companyTypeCheckboxState.length) {
@@ -149,7 +147,6 @@ export const Sidebar = () => {
           ? window.location.href + "&" + searchString
           : window.location.pathname + "?" + searchString;
 
-      // const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     } else {
       console.log("No data in the local storage");
@@ -159,19 +156,16 @@ export const Sidebar = () => {
   function handleFilterChange(key, value, checked) {
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-      if (checked == "WM_ON") {
-        // handleAddSearchParams(
-        //   "workMode",
-        //   workModeCheckboxState,
-        //   key,
-        //   value,
-        //   prevParams
-        // );
-        // console.log("checkedddd==================");
-        // Add the filter to the URL query parameters
+
+      const handleFilter = (
+        filterType,
+        filterStateKey,
+        checkboxState,
+        filters
+      ) => {
         const values = params.getAll(key);
-        const filters = [...selectedFilters.workMode];
         const index = filters.indexOf(value);
+
         if (index === -1) {
           filters.push(value);
         } else {
@@ -180,214 +174,134 @@ export const Sidebar = () => {
 
         setSelectedFilters((prevState) => ({
           ...prevState,
-          workMode: filters,
+          [filterStateKey]: filters,
         }));
-        setSearchParams("workMode", filters);
+
+        setSearchParams(filterType, filters);
+
         if (values.length) {
           !values.includes(value) && params.append(key, value);
-        } else if (workModeCheckboxState.length) {
-          !workModeCheckboxState.includes(value) &&
-            workModeCheckboxState.push(value);
-          workModeCheckboxState.forEach((val) => {
-            params.append(key, val); // Append each value to the 'workMode' parameter
+        } else if (checkboxState.length) {
+          !checkboxState.includes(value) && checkboxState.push(value);
+          checkboxState.forEach((val) => {
+            params.append(key, val);
           });
         } else {
           params.append(key, value);
-        }
-        const filterState = { ...selectedFilters };
-        filterState.workMode = filters;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "WM_OFF") {
-        const values = [...selectedFilters.workMode];
-        const updatedValues = values.filter((val) => val !== value);
-        params.delete(key);
-        updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          workMode: updatedValues,
-        }));
-        const filterState = { ...selectedFilters };
-        filterState.workMode = updatedValues;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "EXP") {
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          experience: value,
-        }));
-        const filters = {
-          ...selectedFilters,
-        };
-        filters.experience = value;
-        saveFilterStateToStorage("filterState", JSON.stringify(filters));
-        params.set(key, value);
-        // console.log("sssss", params.toString());
-        return params.toString();
-        // });
-      } else if (checked == "LOC_ON") {
-        // Add the filter to the URL query parameters
-        const values = params.getAll(key);
-        const filters = [...selectedFilters.location];
-        const index = filters.indexOf(value);
-        if (index === -1) {
-          filters.push(value);
-        } else {
-          filters.splice(index, 1);
         }
 
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          location: filters,
-        }));
-        setSearchParams("location", filters);
-        if (values.length) {
-          !values.includes(value) && params.append(key, value);
-        } else if (locationCheckboxState.length) {
-          !locationCheckboxState.includes(value) &&
-            locationCheckboxState.push(value);
-          locationCheckboxState.forEach((val) => {
-            params.append(key, val); // Append each value to the 'workMode' parameter
-          });
-        } else {
-          params.append(key, value);
-        }
         const filterState = { ...selectedFilters };
-        filterState.location = filters;
+        filterState[filterStateKey] = filters;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "LOC_OFF") {
-        const values = [...selectedFilters.location];
-        const updatedValues = values.filter((val) => val !== value);
+      };
+
+      const handleFilterRemoval = (
+        filterType,
+        filterStateKey,
+        checkboxState,
+        filters,
+        value
+      ) => {
+        const updatedValues = filters.filter((val) => val !== value);
         params.delete(key);
         updatedValues.forEach((val) => params.append(key, val));
         setSelectedFilters((prevState) => ({
           ...prevState,
-          location: updatedValues,
+          [filterStateKey]: updatedValues,
         }));
         const filterState = { ...selectedFilters };
-        filterState.location = updatedValues;
+        filterState[filterStateKey] = updatedValues;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "DEP_ON") {
-        const values = params.getAll(key);
-        const filters = [...selectedFilters.department];
-        const index = filters.indexOf(value);
-        if (index === -1) {
-          filters.push(value);
-        } else {
-          filters.splice(index, 1);
-        }
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          department: filters,
-        }));
-        setSearchParams("department", filters);
-        if (values.length) {
-          !values.includes(value) && params.append(key, value);
-        } else if (departmentCheckboxState.length) {
-          !departmentCheckboxState.includes(value) &&
-            departmentCheckboxState.push(value);
-          departmentCheckboxState.forEach((val) => {
-            params.append(key, val); // Append each value to the 'workMode' parameter
-          });
-        } else {
-          params.append(key, value);
-        }
-        const filterState = { ...selectedFilters };
-        filterState.department = filters;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "DEP_OFF") {
-        const values = [...selectedFilters.department];
-        const updatedValues = values.filter((val) => val !== value);
-        params.delete(key);
-        updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          department: updatedValues,
-        }));
-        const filterState = { ...selectedFilters };
-        filterState.department = updatedValues;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "CT_ON") {
-        const values = params.getAll(key);
-        const filters = [...selectedFilters.companyType];
-        const index = filters.indexOf(value);
-        if (index === -1) {
-          filters.push(value);
-        } else {
-          filters.splice(index, 1);
-        }
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          companyType: filters,
-        }));
-        setSearchParams("companyType", filters);
-        if (values.length) {
-          !values.includes(value) && params.append(key, value);
-        } else if (companyTypeCheckboxState.length) {
-          !companyTypeCheckboxState.includes(value) &&
-            companyTypeCheckboxState.push(value);
-          companyTypeCheckboxState.forEach((val) => {
-            params.append(key, val); // Append each value to the 'workMode' parameter
-          });
-        } else {
-          params.append(key, value);
-        }
-        const filterState = { ...selectedFilters };
-        filterState.companyType = filters;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      } else if (checked == "CT_OFF") {
-        const values = [...selectedFilters.companyType];
-        const updatedValues = values.filter((val) => val !== value);
-        params.delete(key);
-        updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          companyType: updatedValues,
-        }));
-        const filterState = { ...selectedFilters };
-        filterState.companyType = updatedValues;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      };
+
+      switch (checked) {
+        case "WM_ON":
+          handleFilter(
+            "workMode",
+            "workMode",
+            workModeCheckboxState,
+            selectedFilters.workMode
+          );
+          break;
+        case "WM_OFF":
+          handleFilterRemoval(
+            "workMode",
+            "workMode",
+            workModeCheckboxState,
+            selectedFilters.workMode,
+            value
+          );
+          break;
+        case "EXP":
+          setSelectedFilters((prevState) => ({
+            ...prevState,
+            experience: value,
+          }));
+          const experienceFilters = {
+            ...selectedFilters,
+          };
+          experienceFilters.experience = value;
+          saveFilterStateToStorage(
+            "filterState",
+            JSON.stringify(experienceFilters)
+          );
+          params.set(key, value);
+          break;
+        case "LOC_ON":
+          handleFilter(
+            "location",
+            "location",
+            locationCheckboxState,
+            selectedFilters.location
+          );
+          break;
+        case "LOC_OFF":
+          handleFilterRemoval(
+            "location",
+            "location",
+            locationCheckboxState,
+            selectedFilters.location,
+            value
+          );
+          break;
+        case "DEP_ON":
+          handleFilter(
+            "department",
+            "department",
+            departmentCheckboxState,
+            selectedFilters.department
+          );
+          break;
+        case "DEP_OFF":
+          handleFilterRemoval(
+            "department",
+            "department",
+            departmentCheckboxState,
+            selectedFilters.department,
+            value
+          );
+          break;
+        case "CT_ON":
+          handleFilter(
+            "companyType",
+            "companyType",
+            companyTypeCheckboxState,
+            selectedFilters.companyType
+          );
+          break;
+        case "CT_OFF":
+          handleFilterRemoval(
+            "companyType",
+            "companyType",
+            companyTypeCheckboxState,
+            selectedFilters.companyType,
+            value
+          );
+          break;
       }
+
       return params.toString();
     });
-  }
-
-  function handleAddSearchParams(
-    filterType,
-    filterTypeState,
-    key,
-    value,
-    prevParams
-  ) {
-    // setSearchParams((prevParams) => {
-    const params = new URLSearchParams(prevParams.toString());
-    const values = params.getAll(key);
-    const filters = [...selectedFilters[filterType]];
-    const index = filters.indexOf(value);
-    if (index === -1) {
-      filters.push(value);
-    } else {
-      filters.splice(index, 1);
-    }
-
-    setSelectedFilters((prevState) => ({
-      ...prevState,
-      [filterType]: filters,
-    }));
-    setSearchParams(filterType, filters);
-    if (values.length) {
-      !values.includes(value) && params.append(key, value);
-    } else if (filterTypeState.length) {
-      !filterTypeState.includes(value) && filterTypeState.push(value);
-      filterTypeState.forEach((val) => {
-        params.append(key, val); // Append each value to the 'workMode' parameter
-      });
-    } else {
-      params.append(key, value);
-    }
-    const filterState = { ...selectedFilters };
-    filterState.filterType = filters;
-    saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-    return params.toString();
-    // });
   }
 
   function removeFilterHandler() {
