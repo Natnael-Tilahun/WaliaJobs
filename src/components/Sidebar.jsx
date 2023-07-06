@@ -20,6 +20,7 @@ export const Sidebar = () => {
     experience: 0,
     location: [],
     department: [],
+    companyType: [],
   });
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -49,14 +50,16 @@ export const Sidebar = () => {
     ? []
     : JSON.parse(filterCheckboxState).location;
 
-  console.log("Location local storeage value -----", locationCheckboxState);
+  let departmentCheckboxState = isEmpty(filterCheckboxState)
+    ? []
+    : JSON.parse(filterCheckboxState).department;
+
+  let companyTypeCheckboxState = isEmpty(filterCheckboxState)
+    ? []
+    : JSON.parse(filterCheckboxState).companyType;
 
   useEffect(() => {
     if (workModeCheckboxState.length) {
-      console.log(
-        "local storage value side bar selectd filters",
-        workModeCheckboxState
-      );
       setSelectedFilters((prevState) => ({
         ...prevState,
         workMode: workModeCheckboxState,
@@ -72,10 +75,6 @@ export const Sidebar = () => {
       window.history.replaceState(null, null, newUrl);
     }
     if (experienceCheckboxState) {
-      console.log(
-        "experience local storage value side bar selectd filters",
-        experienceCheckboxState
-      );
       setSelectedFilters((prevState) => ({
         ...prevState,
         experience: experienceCheckboxState,
@@ -87,18 +86,12 @@ export const Sidebar = () => {
       // });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams objectc
-      console.log("url---", window.location, "search string", searchString);
-
       const newUrl = workModeCheckboxState.length
         ? window.location.href + "&" + searchString
         : window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     }
     if (locationCheckboxState.length) {
-      console.log(
-        "location local storage value side bar selectd filters",
-        locationCheckboxState
-      );
       setSelectedFilters((prevState) => ({
         ...prevState,
         location: locationCheckboxState,
@@ -110,8 +103,49 @@ export const Sidebar = () => {
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
+      const newUrl = workModeCheckboxState.length
+        ? window.location.href + "&" + searchString
+        : window.location.pathname + "?" + searchString;
+
+      // const newUrl = window.location.pathname + "?" + searchString;
+      window.history.replaceState(null, null, newUrl);
+    }
+    if (departmentCheckboxState.length) {
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        department: departmentCheckboxState,
+      }));
+
+      const params = new URLSearchParams(); // Create a new URLSearchParams object
+      departmentCheckboxState.forEach((val) => {
+        params.append("department", val); // Append each value to the 'workMode' parameter
+      });
+
+      const searchString = params.toString(); // Get the search string from the URLSearchParams object
       const newUrl =
         workModeCheckboxState.length || locationCheckboxState.length
+          ? window.location.href + "&" + searchString
+          : window.location.pathname + "?" + searchString;
+
+      // const newUrl = window.location.pathname + "?" + searchString;
+      window.history.replaceState(null, null, newUrl);
+    }
+    if (companyTypeCheckboxState.length) {
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        companyType: companyTypeCheckboxState,
+      }));
+
+      const params = new URLSearchParams(); // Create a new URLSearchParams object
+      companyTypeCheckboxState.forEach((val) => {
+        params.append("companyType", val); // Append each value to the 'workMode' parameter
+      });
+
+      const searchString = params.toString(); // Get the search string from the URLSearchParams object
+      const newUrl =
+        workModeCheckboxState.length ||
+        locationCheckboxState.length ||
+        departmentCheckboxState.length
           ? window.location.href + "&" + searchString
           : window.location.pathname + "?" + searchString;
 
@@ -123,10 +157,8 @@ export const Sidebar = () => {
   }, []);
 
   function handleFilterChange(key, value, checked) {
-    // alert(checked);
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-
       if (checked == "WM_ON") {
         // handleAddSearchParams(
         //   "workMode",
@@ -166,7 +198,6 @@ export const Sidebar = () => {
         filterState.workMode = filters;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       } else if (checked == "WM_OFF") {
-        console.log("uncheckedddd............");
         const values = [...selectedFilters.workMode];
         const updatedValues = values.filter((val) => val !== value);
         params.delete(key);
@@ -188,13 +219,11 @@ export const Sidebar = () => {
         };
         filters.experience = value;
         saveFilterStateToStorage("filterState", JSON.stringify(filters));
-        // alert(value);
         params.set(key, value);
         // console.log("sssss", params.toString());
         return params.toString();
         // });
       } else if (checked == "LOC_ON") {
-        console.log("Location checkedddd==================");
         // Add the filter to the URL query parameters
         const values = params.getAll(key);
         const filters = [...selectedFilters.location];
@@ -225,7 +254,6 @@ export const Sidebar = () => {
         filterState.location = filters;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       } else if (checked == "LOC_OFF") {
-        console.log("LOcation uncheckedddd............");
         const values = [...selectedFilters.location];
         const updatedValues = values.filter((val) => val !== value);
         params.delete(key);
@@ -236,6 +264,86 @@ export const Sidebar = () => {
         }));
         const filterState = { ...selectedFilters };
         filterState.location = updatedValues;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "DEP_ON") {
+        const values = params.getAll(key);
+        const filters = [...selectedFilters.department];
+        const index = filters.indexOf(value);
+        if (index === -1) {
+          filters.push(value);
+        } else {
+          filters.splice(index, 1);
+        }
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          department: filters,
+        }));
+        setSearchParams("department", filters);
+        if (values.length) {
+          !values.includes(value) && params.append(key, value);
+        } else if (departmentCheckboxState.length) {
+          !departmentCheckboxState.includes(value) &&
+            departmentCheckboxState.push(value);
+          departmentCheckboxState.forEach((val) => {
+            params.append(key, val); // Append each value to the 'workMode' parameter
+          });
+        } else {
+          params.append(key, value);
+        }
+        const filterState = { ...selectedFilters };
+        filterState.department = filters;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "DEP_OFF") {
+        const values = [...selectedFilters.department];
+        const updatedValues = values.filter((val) => val !== value);
+        params.delete(key);
+        updatedValues.forEach((val) => params.append(key, val));
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          department: updatedValues,
+        }));
+        const filterState = { ...selectedFilters };
+        filterState.department = updatedValues;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "CT_ON") {
+        const values = params.getAll(key);
+        const filters = [...selectedFilters.companyType];
+        const index = filters.indexOf(value);
+        if (index === -1) {
+          filters.push(value);
+        } else {
+          filters.splice(index, 1);
+        }
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          companyType: filters,
+        }));
+        setSearchParams("companyType", filters);
+        if (values.length) {
+          !values.includes(value) && params.append(key, value);
+        } else if (companyTypeCheckboxState.length) {
+          !companyTypeCheckboxState.includes(value) &&
+            companyTypeCheckboxState.push(value);
+          companyTypeCheckboxState.forEach((val) => {
+            params.append(key, val); // Append each value to the 'workMode' parameter
+          });
+        } else {
+          params.append(key, value);
+        }
+        const filterState = { ...selectedFilters };
+        filterState.companyType = filters;
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+      } else if (checked == "CT_OFF") {
+        const values = [...selectedFilters.companyType];
+        const updatedValues = values.filter((val) => val !== value);
+        params.delete(key);
+        updatedValues.forEach((val) => params.append(key, val));
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          companyType: updatedValues,
+        }));
+        const filterState = { ...selectedFilters };
+        filterState.companyType = updatedValues;
         saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       }
       return params.toString();
@@ -277,7 +385,6 @@ export const Sidebar = () => {
     }
     const filterState = { ...selectedFilters };
     filterState.filterType = filters;
-    console.log("handler parmas ----", filterState);
     saveFilterStateToStorage("filterState", JSON.stringify(filterState));
     return params.toString();
     // });
@@ -291,6 +398,7 @@ export const Sidebar = () => {
       experience: "",
       location: [],
       department: [],
+      companyType: [],
     });
     setYearsOfExperience("any");
   }
@@ -342,7 +450,7 @@ export const Sidebar = () => {
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
-            <label htmlFor="office" className=" font-medium  w-full">
+            <label htmlFor="office" className=" font-medium  w-full border-2">
               <input
                 type="checkbox"
                 name="workMode"
@@ -520,7 +628,7 @@ export const Sidebar = () => {
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
-            <label htmlFor="addis abeba" className=" font-medium">
+            <label htmlFor="addis abeba" className=" font-medium w-full">
               <input
                 type="checkbox"
                 name="location"
@@ -856,10 +964,21 @@ export const Sidebar = () => {
             <label htmlFor="bankingandinsurance" className=" font-medium">
               <input
                 type="checkbox"
-                name="bankingandinsurance"
-                value="banking and insurance"
+                name="department"
+                value="Banking and Insurance"
                 id="bankingandinsurance"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Banking and Insurance")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Banking & Insurance
             </label>
@@ -868,10 +987,21 @@ export const Sidebar = () => {
             <label htmlFor="salesandmarketing" className=" font-medium">
               <input
                 type="checkbox"
-                name="salesandmarketing"
-                value="sales and markating"
+                name="department"
+                value="Sales and Markating"
                 id="salesandmarketing"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Sales and Markating")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Sales & Marketing
             </label>
@@ -880,10 +1010,21 @@ export const Sidebar = () => {
             <label htmlFor="management" className=" font-medium">
               <input
                 type="checkbox"
-                name="management"
-                value="management"
+                name="department"
+                value="Management"
                 id="management"
                 className=" md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Management")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Management
             </label>
@@ -892,10 +1033,21 @@ export const Sidebar = () => {
             <label htmlFor="softwareEng" className=" font-medium">
               <input
                 type="checkbox"
-                name="softwareEng"
-                value="software engineering"
+                name="department"
+                value="Software Engineering"
                 id="softwareEng"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Software Engineering")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Software Engineering
             </label>
@@ -904,10 +1056,21 @@ export const Sidebar = () => {
             <label htmlFor="financeandaccounting" className=" font-medium">
               <input
                 type="checkbox"
-                name="financeandaccounting"
-                value="finance and accounting"
+                name="department"
+                value="Finance and Accounting"
                 id="financeandaccounting"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Finance and Accounting")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Finance & Accounting
             </label>
@@ -916,10 +1079,21 @@ export const Sidebar = () => {
             <label htmlFor="engineering" className=" font-medium">
               <input
                 type="checkbox"
-                name="engineering"
-                value="engineering"
+                name="department"
+                value="Engineering"
                 id="engineering"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Engineering")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Engineering
             </label>
@@ -928,22 +1102,67 @@ export const Sidebar = () => {
             <label htmlFor="human resource" className=" font-medium">
               <input
                 type="checkbox"
-                name="human resource"
-                value="human resource"
+                name="department"
+                value="Human Resource"
                 id="human resource"
                 className=" md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Human Resource")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Human Resource
+            </label>
+          </li>
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="it" className=" font-medium">
+              <input
+                type="checkbox"
+                name="department"
+                value="IT"
+                id="it"
+                className=" md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("IT")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
+              />
+              IT
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
             <label htmlFor="health" className=" font-medium">
               <input
                 type="checkbox"
-                name="health"
-                value="health"
+                name="department"
+                value="Health"
                 id="health"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Health")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Health
             </label>
@@ -952,50 +1171,48 @@ export const Sidebar = () => {
             <label htmlFor="legal" className=" font-medium">
               <input
                 type="checkbox"
-                name="legal"
-                value="legal"
+                name="department"
+                value="Legal"
                 id="legal"
                 className="md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Legal")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Legal
-            </label>
-          </li>
-          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
-            <label htmlFor="ngo" className=" font-medium">
-              <input
-                type="checkbox"
-                name="ngo"
-                value="ngo"
-                id="ngo"
-                className=" md:w-4 mr-2"
-              />
-              NGO
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
             <label htmlFor="analytics" className=" font-medium">
               <input
                 type="checkbox"
-                name="analytics"
-                value="analytics"
+                name="department"
+                value="Analytics"
                 id="analytics"
                 className=" md:w-4 mr-2"
+                checked={
+                  departmentCheckboxState.length &&
+                  departmentCheckboxState.includes("Analytics")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
+                  )
+                }
               />
               Analytics
             </label>
           </li>
-          {/* <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
-            <label htmlFor="remote" className=" font-medium">
-              <input
-                type="checkbox"
-                name="remote"
-                value="remote"
-                id="remote"
-                className=" md:w-4 mr-2"
-              />
-              Remote
-            </label>
-          </li> */}
         </div>
       </ul>
       <ul className="flex flex-col gap-2 md:gap-3 lg:gap-6 items-start w-full border-b-2 md:pb-5 lg:pb-2">
@@ -1030,26 +1247,48 @@ export const Sidebar = () => {
             companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
-            <label htmlFor="private" className=" font-medium">
+          <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
+            <label htmlFor="private" className="w-full font-medium">
               <input
                 type="checkbox"
-                name="private"
-                value="private"
+                name="companyType"
+                value="Private"
                 id="private"
-                className="md:w-4 mr-2"
+                className="md:w-4 mr-2 w-full"
+                checked={
+                  companyTypeCheckboxState.length &&
+                  companyTypeCheckboxState.includes("Private")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "CT_ON" : "CT_OFF"
+                  )
+                }
               />
               Private
             </label>
           </li>
-          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
-            <label htmlFor="governmental" className=" font-medium">
+          <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
+            <label htmlFor="governmental" className="w-full font-medium">
               <input
                 type="checkbox"
-                name="governmental"
-                value="governmental"
+                name="companyType"
+                value="Governmental"
                 id="governmental"
-                className="md:w-4 mr-2"
+                className="md:w-4 mr-2 w-full"
+                checked={
+                  companyTypeCheckboxState.length &&
+                  companyTypeCheckboxState.includes("Governmental")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "CT_ON" : "CT_OFF"
+                  )
+                }
               />
               Governmental
             </label>
@@ -1058,22 +1297,67 @@ export const Sidebar = () => {
             <label htmlFor="corporate" className=" font-medium">
               <input
                 type="checkbox"
-                name="corporate"
-                value="corporate"
+                name="companyType"
+                value="Corporate"
                 id="corporate"
-                className=" md:w-4 mr-2"
+                className=" md:w-4 mr-2 w-full"
+                checked={
+                  companyTypeCheckboxState.length &&
+                  companyTypeCheckboxState.includes("Corporate")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "CT_ON" : "CT_OFF"
+                  )
+                }
               />
               Corporate
             </label>
           </li>
-          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
-            <label htmlFor="startup" className=" font-medium">
+          <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
+            <label htmlFor="ngo" className="font-medium w-full">
               <input
                 type="checkbox"
-                name="startup"
-                value="startup"
+                name="companyType"
+                value="NGO"
+                id="ngo"
+                className="md:w-4 mr-2 w-full"
+                checked={
+                  companyTypeCheckboxState.length &&
+                  companyTypeCheckboxState.includes("NGO")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "CT_ON" : "CT_OFF"
+                  )
+                }
+              />
+              NGO
+            </label>
+          </li>
+          <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
+            <label htmlFor="startup" className=" font-medium w-full">
+              <input
+                type="checkbox"
+                name="companyType"
+                value="Startup"
                 id="startup"
-                className="md:w-4 mr-2"
+                className="md:w-4 mr-2 w-full"
+                checked={
+                  companyTypeCheckboxState.length &&
+                  companyTypeCheckboxState.includes("Startup")
+                }
+                onChange={(e) =>
+                  handleFilterChange(
+                    e.target.name,
+                    e.target.value,
+                    e.target.checked ? "CT_ON" : "CT_OFF"
+                  )
+                }
               />
               Startup
             </label>

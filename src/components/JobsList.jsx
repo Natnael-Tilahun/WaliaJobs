@@ -11,12 +11,12 @@ export const JobsList = () => {
           title="IT Officer"
           companyName="CBE"
           jobType="Full Time"
-          jobStyle="In Office"
+          workMode="In Office"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
           aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
           iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda
           corporis!"
-          address="Addis Abeba"
+          location="Addis Abeba"
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="2 Days Ago"
           img="/cbelogo.jpg"
@@ -26,12 +26,12 @@ export const JobsList = () => {
           title="Programmer"
           companyName="Abyssinia"
           jobType="Full Time"
-          jobStyle="In Office"
+          workMode="In Office"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
           aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
           iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda
           corporis!"
-          address="Addis Abeba"
+          location="Addis Abeba"
           jobTags={["Programming", "Computer Expert", "Maintenance"]}
           timeLeft="1 Days Ago"
           img="/boalogo.jpg"
@@ -41,12 +41,12 @@ export const JobsList = () => {
           title="FullStack Developer"
           companyName="Gebeya"
           jobType="Full Time"
-          jobStyle="Remote"
+          workMode="Remote"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
           aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
           iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda
           corporis!"
-          address="Addis Abeba"
+          location="Addis Abeba"
           jobTags={["Programming", "Node.js", "React.js"]}
           timeLeft="1 Days Ago"
           img="/gebeyalogo.png"
@@ -56,12 +56,12 @@ export const JobsList = () => {
           title="Frontend Developer"
           companyName="Gebeya"
           jobType="Hybrid"
-          jobStyle="Remote"
+          workMode="Remote"
           description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
           aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus
           iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda
           corporis!"
-          address="Addis Abeba"
+          location="Addis Abeba"
           jobTags={["Programming", "HTML", "React.js"]}
           timeLeft="1 Days Ago"
           img="/gebeyalogo.png"
