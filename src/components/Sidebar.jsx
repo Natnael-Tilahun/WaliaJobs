@@ -588,6 +588,7 @@ export const Sidebar = () => {
             </svg>
           )}
         </div>
+
         <div
           className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
             locationAccordionExpanded ? "max-h-full" : "max-h-0 "
@@ -1213,14 +1214,14 @@ export const Sidebar = () => {
             companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
-          <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
-            <label htmlFor="private" className="w-full font-medium">
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="private" className=" font-medium">
               <input
                 type="checkbox"
                 name="companyType"
                 value="Private"
                 id="private"
-                className="md:w-4 mr-2 w-full"
+                className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
                   companyTypeCheckboxState.includes("Private")
@@ -1237,13 +1238,13 @@ export const Sidebar = () => {
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
-            <label htmlFor="governmental" className="w-full font-medium">
+            <label htmlFor="governmental" className=" font-medium">
               <input
                 type="checkbox"
                 name="companyType"
                 value="Governmental"
                 id="governmental"
-                className="md:w-4 mr-2 w-full"
+                className="md:w-4 mr-2"
                 checked={
                   companyTypeCheckboxState.length &&
                   companyTypeCheckboxState.includes("Governmental")
@@ -1266,7 +1267,7 @@ export const Sidebar = () => {
                 name="companyType"
                 value="Corporate"
                 id="corporate"
-                className=" md:w-4 mr-2 w-full"
+                className=" md:w-4 mr-2"
                 checked={
                   companyTypeCheckboxState.length &&
                   companyTypeCheckboxState.includes("Corporate")
@@ -1283,13 +1284,13 @@ export const Sidebar = () => {
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
-            <label htmlFor="ngo" className="font-medium w-full">
+            <label htmlFor="ngo" className="font-medium ">
               <input
                 type="checkbox"
                 name="companyType"
                 value="NGO"
                 id="ngo"
-                className="md:w-4 mr-2 w-full"
+                className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
                   companyTypeCheckboxState.includes("NGO")
@@ -1306,13 +1307,13 @@ export const Sidebar = () => {
             </label>
           </li>
           <li className="lg:text-base md:text-sm text-xs text-left  flex lg:gap-1">
-            <label htmlFor="startup" className=" font-medium w-full">
+            <label htmlFor="startup" className=" font-medium">
               <input
                 type="checkbox"
                 name="companyType"
                 value="Startup"
                 id="startup"
-                className="md:w-4 mr-2 w-full"
+                className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
                   companyTypeCheckboxState.includes("Startup")

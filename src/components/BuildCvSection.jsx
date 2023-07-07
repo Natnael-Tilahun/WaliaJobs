@@ -50,34 +50,34 @@ export const BuildCvSection = () => {
       <h1 className="font-bold text-3xl">Build your cv</h1>
       {/* <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between"> */}
       <Slider {...settings} className="py-16 w-full">
-        <NavLink to="/Contact-Section/1">
+        <NavLink to="//CV-Details/1">
           <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/2">
+        <NavLink to="/CV-Details/2">
           <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/3">
+        <NavLink to="/CV-Details/3">
           <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/4">
+        <NavLink to="/CV-Details/4">
           <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/5">
+        <NavLink to="/CV-Details/5">
           <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/6">
+        <NavLink to="/CV-Details/6">
           <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/7">
+        <NavLink to="/CV-Details/7">
           <CvTemplate img="/cvTemplate2.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/8">
+        <NavLink to="/CV-Details/8">
           <CvTemplate img="/cvTemplate3.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/9">
+        <NavLink to="/CV-Details/9">
           <CvTemplate img="/cvTemplate4.png" className="xl:px-20 px-5" />
         </NavLink>
-        <NavLink to="/Contact-Section/10">
+        <NavLink to="/CV-Details/10">
           <CvTemplate img="/cvTemplate5.png" className="xl:px-20 px-5" />
         </NavLink>
       </Slider>
