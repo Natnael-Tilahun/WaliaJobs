@@ -10,6 +10,7 @@ export const Jobs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const queryParams = new URLSearchParams(window.location.search);
+
   const selectedFilters = {
     experienceFilter: queryParams.getAll("experience"),
     workModeFilter: queryParams.getAll("workMode"),
@@ -17,6 +18,10 @@ export const Jobs = () => {
     departmentFilter: queryParams.getAll("department"),
     companyTypeFilter: queryParams.getAll("companyType"),
   };
+  console.log(
+    "search params in the jobs page========",
+    selectedFilters.departmentFilter
+  );
   let filteredJobs = [];
 
   useEffect(() => {

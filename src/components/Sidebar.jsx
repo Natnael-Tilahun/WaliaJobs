@@ -23,6 +23,14 @@ export const Sidebar = () => {
     companyType: [],
   });
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryParams = new URLSearchParams(window.location.search);
+  const selectedFiltersFromSearchParams = {
+    experienceFilter: queryParams.getAll("experience"),
+    workModeFilter: queryParams.getAll("workMode"),
+    locationFilter: queryParams.getAll("location"),
+    departmentFilter: queryParams.getAll("department"),
+    companyTypeFilter: queryParams.getAll("companyType"),
+  };
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -116,6 +124,7 @@ export const Sidebar = () => {
       }));
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
+      console.log("departmentCheckboxState", departmentCheckboxState);
       departmentCheckboxState.forEach((val) => {
         params.append("department", val); // Append each value to the 'workMode' parameter
       });
@@ -128,6 +137,33 @@ export const Sidebar = () => {
 
       window.history.replaceState(null, null, newUrl);
     }
+    // Check if department filter is present in the search parameters
+    else if (selectedFiltersFromSearchParams.departmentFilter.length) {
+      const decodedDepartmentFilter =
+        selectedFiltersFromSearchParams.departmentFilter.map((filter) =>
+          decodeURIComponent(filter)
+        );
+      console.log("Yes ther is searhc params====", decodedDepartmentFilter);
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        department: decodedDepartmentFilter,
+      }));
+
+      const filterState = { ...selectedFilters };
+      filterState.department = decodedDepartmentFilter;
+      // setSelectedFilters((prevState) => ({
+      //   filterState,
+      // }));
+      // handleFilterChange("department", decodedDepartmentFilter, "DEP_ON");
+      // setSelectedFilters((prevState) => ({
+      //   ...prevState,
+      //   department: selectedFiltersFromSearchParams.departmentFilter,
+      // }));
+      // const filterState = { ...selectedFilters };
+      // filterState.department = decodedDepartmentFilter;
+      saveFilterStateToStorage("filterState", JSON.stringify(filterState));
+    }
+
     if (companyTypeCheckboxState.length) {
       setSelectedFilters((prevState) => ({
         ...prevState,
@@ -153,9 +189,15 @@ export const Sidebar = () => {
     }
   }, []);
 
-  function handleFilterChange(key, value, checked) {
+  function handleFilterChange(key, value, checked, filtersss) {
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
+      console.log(
+        "filtersfiltersfiltersfilters",
+        selectedFilters,
+        "departmentCheckboxState",
+        departmentCheckboxState
+      );
 
       const handleFilter = (
         filterType,
@@ -165,6 +207,16 @@ export const Sidebar = () => {
       ) => {
         const values = params.getAll(key);
         const index = filters.indexOf(value);
+        console.log(
+          "filterType",
+          filterType,
+          "filterStateKey",
+          filterStateKey,
+          "checkboxState",
+          checkboxState,
+          "filters",
+          filters
+        );
 
         if (index === -1) {
           filters.push(value);

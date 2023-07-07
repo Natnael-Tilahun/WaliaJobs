@@ -5,8 +5,7 @@ export const CompaniesData = [
     name: "Commercial Bank of Ethiopia",
     rate: "7",
     reviews: "50+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Corporate",
   },
   {
     id: 1,
@@ -14,8 +13,7 @@ export const CompaniesData = [
     name: "Bank of Abyssinia",
     rate: "10",
     reviews: "90+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 2,
@@ -23,8 +21,7 @@ export const CompaniesData = [
     name: "Awash Bank",
     rate: "7",
     reviews: "40+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 3,
@@ -32,8 +29,7 @@ export const CompaniesData = [
     name: "Safaricom",
     rate: "10",
     reviews: "40+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 4,
@@ -41,8 +37,7 @@ export const CompaniesData = [
     name: "Ethiopian Airlines",
     rate: "9",
     reviews: "70+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Corporate",
   },
   {
     id: 5,
@@ -50,8 +45,7 @@ export const CompaniesData = [
     name: "Ethio Telecom",
     rate: "7",
     reviews: "30+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Corporate",
   },
   {
     id: 6,
@@ -59,8 +53,7 @@ export const CompaniesData = [
     name: "Total Ethiopia",
     rate: "10",
     reviews: "10+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 7,
@@ -68,8 +61,7 @@ export const CompaniesData = [
     name: "Heineken",
     rate: "10",
     reviews: "30+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 8,
@@ -77,8 +69,7 @@ export const CompaniesData = [
     name: "Coca Cola",
     rate: "10",
     reviews: "30+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 9,
@@ -86,8 +77,7 @@ export const CompaniesData = [
     name: "Nyala Motors",
     rate: "10",
     reviews: "50+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
   {
     id: 10,
@@ -95,7 +85,6 @@ export const CompaniesData = [
     name: "Gebeya",
     rate: "10",
     reviews: "50+",
-    className:
-      "lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 ",
+    companyType: "Private",
   },
 ];
