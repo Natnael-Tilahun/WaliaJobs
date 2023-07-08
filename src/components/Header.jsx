@@ -46,7 +46,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/jobs"
+              to="jobs"
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? "3px solid #fa6d4d" : "",
@@ -59,7 +59,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/company"
+              to="company"
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? "3px solid #fa6d4d" : "",
@@ -85,7 +85,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/contact"
+              to="contact"
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? "3px solid #fa6d4d" : "",
@@ -98,7 +98,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/blog"
+              to="blogs"
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? "3px solid #fa6d4d" : "",
@@ -112,13 +112,13 @@ function Header() {
         </ul>
         <div className="flex gap-5">
           <NavLink
-            to="/login"
+            to="login"
             className="border-2 border-thm_root1_color py-1 px-8 rounded-md "
           >
             Login
           </NavLink>
           <NavLink
-            to="/signup"
+            to="signup"
             className="py-1 px-8 bg-thm_root2_color text-white rounded-md"
           >
             Register
@@ -174,7 +174,7 @@ function Header() {
           </li>
           <li onClick={menuHandler}>
             <NavLink
-              to="/jobs"
+              to="jobs"
               className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Jobs
@@ -182,7 +182,7 @@ function Header() {
           </li>
           <li onClick={menuHandler}>
             <NavLink
-              to="/company"
+              to="company"
               className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Companies
@@ -206,7 +206,7 @@ function Header() {
           </li>
           <li onClick={menuHandler}>
             <NavLink
-              to="blog"
+              to="blogs"
               className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
             >
               Blog
@@ -215,21 +215,21 @@ function Header() {
         </ul>
         <div className="flex gap-5 justify-center">
           <NavLink
-            to="/login"
+            to="login"
             onClick={menuHandler}
             className="border-2 border-blue-300 py-1 px-8 rounded-md "
           >
             Login
           </NavLink>
           <NavLink
-            to="/signup"
+            to="signup"
             onClick={menuHandler}
             className="py-1 px-8 bg-thm_root2_color text-white rounded-md"
           >
             Register
           </NavLink>
           <NavLink
-            to="/savedjobs"
+            to="savedjobs"
             className="text-black flex items-center justify-center rounded-md"
           >
             <svg

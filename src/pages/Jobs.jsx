@@ -86,6 +86,7 @@ export const Jobs = () => {
               img={job.img}
               className="min-w-[100%] bg-thm_background shadow-lg"
               searchParams={searchParams.toString()}
+              showShareAndSaveBtn={true}
             />
           ))
         ) : (

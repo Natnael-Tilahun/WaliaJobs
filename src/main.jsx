@@ -24,6 +24,9 @@ import { EducationSection } from "./pages/CVDetails/EducationSection";
 import { SkillSection } from "./pages/CVDetails/SkillSection";
 import { SummarySection } from "./pages/CVDetails/SummarySection";
 import { AddAdditionalSection } from "./pages/CVDetails/AddAdditionalSection";
+import { Blogs } from "./pages/Blogs";
+import { Tips } from "./pages/Blogs/Tips";
+import { Interviews } from "./pages/Blogs/Interviews";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -36,6 +39,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />}>
+            <Route index element={<Tips />} />
+            <Route path="interviews" element={<Interviews />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/job_details" element={<JobDetails />} />
