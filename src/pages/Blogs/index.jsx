@@ -9,7 +9,7 @@ export const Blogs = () => {
           Career Tips
         </h1>
         <p className="text-sm text-thm_secondary_color md:text-lg text-center">
-          You can always change your template later.
+          Prepare yourself with this tips and sample interview questions.
         </p>
         <ul className="md:px-20 flex text-sm pt-6 md:text-base gap-10 font-medium">
           <li>

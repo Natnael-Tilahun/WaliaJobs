@@ -1,38 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { JobCard } from "../components/JobCard";
+import { ShareLinks } from "../components/ShareLinks.jsx";
 import { NavLink, useLocation } from "react-router-dom";
-import {
-  EmailShareButton,
-  EmailIcon,
-  FacebookShareButton,
-  FacebookIcon,
-  HatenaShareButton,
-  InstapaperShareButton,
-  InstapaperIcon,
-  LineShareButton,
-  LinkedinShareButton,
-  LinkedinIcon,
-  LivejournalShareButton,
-  MailruShareButton,
-  OKShareButton,
-  PinterestShareButton,
-  PinterestIcon,
-  PocketShareButton,
-  RedditShareButton,
-  RedditIcon,
-  TelegramShareButton,
-  TelegramIcon,
-  TumblrShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  ViberIcon,
-  VKShareButton,
-  WhatsappShareButton,
-  WhatsappIcon,
-  WorkplaceShareButton,
-  TwitterIcon,
-} from "react-share";
 
 function JobDetail(props) {
   return (
@@ -70,8 +40,6 @@ function JobDetail(props) {
 
 export const JobDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
-
-  const shareUrl = "http://localhost:5173/job_details"; // URL you want to share
 
   const handleButtonClick = () => {
     setShowPopup(!showPopup);
@@ -241,37 +209,7 @@ export const JobDetails = () => {
               </div>
             </div>
           </div>
-          {showPopup && (
-            <div className="share-popup gap-1 md:gap-4 flex">
-              <LinkedinShareButton url={shareUrl}>
-                <LinkedinIcon size={32} round />
-              </LinkedinShareButton>
-              <FacebookShareButton url={shareUrl}>
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-              <TelegramShareButton url={shareUrl}>
-                <TelegramIcon size={32} round />
-              </TelegramShareButton>
-              <WhatsappShareButton url={shareUrl}>
-                <WhatsappIcon size={32} round />
-              </WhatsappShareButton>
-              <ViberShareButton url={shareUrl}>
-                <ViberIcon size={32} round />
-              </ViberShareButton>
-              <EmailShareButton url={shareUrl}>
-                <EmailIcon size={32} round />
-              </EmailShareButton>
-              <TwitterShareButton url={shareUrl}>
-                <TwitterIcon size={32} round />
-              </TwitterShareButton>
-              <PinterestShareButton url={shareUrl}>
-                <PinterestIcon size={32} round />
-              </PinterestShareButton>
-              <RedditShareButton url={shareUrl}>
-                <RedditIcon size={32} round />
-              </RedditShareButton>
-            </div>
-          )}
+          {showPopup && <ShareLinks />}
         </div>
         <div className="bg-white py-5 px-4 md:px-10 flex gap-2 flex-col items-start rounded-xl tracking-wide">
           <h1 className="text-lg font-medium">Job Description</h1>

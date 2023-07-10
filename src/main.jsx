@@ -27,6 +27,7 @@ import { AddAdditionalSection } from "./pages/CVDetails/AddAdditionalSection";
 import { Blogs } from "./pages/Blogs";
 import { Tips } from "./pages/Blogs/Tips";
 import { Interviews } from "./pages/Blogs/Interviews";
+import { BlogDetails } from "./pages/BlogDetails";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -43,6 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route index element={<Tips />} />
             <Route path="interviews" element={<Interviews />} />
           </Route>
+          <Route path="blog-details/:id" element={<BlogDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/job_details" element={<JobDetails />} />
