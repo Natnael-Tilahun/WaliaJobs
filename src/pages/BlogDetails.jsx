@@ -1,8 +1,16 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useParams } from "react-router-dom";
 import { ShareLinks } from "../components/ShareLinks";
+import { BlogsData } from "../../data/blogs";
 
 export const BlogDetails = () => {
+  const { id } = useParams();
+  const [blogDetail, setBlogDetail] = useState();
+  console.log("searchParams", id);
+  useEffect(() => {
+    const BlogDetail = BlogsData.filter((blog) => (blog.id = id));
+    setBlogDetail(BlogDetail);
+  }, [id]);
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
       <div className="flex bg-thm_background py-2 lg:py-5 flex-col  my-0  md:my-0 md:px-7 lg:px-32   border-b-2 gap-3 md:gap-2 px-5  lg:gap-5 w-full">
