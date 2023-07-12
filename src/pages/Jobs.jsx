@@ -75,6 +75,7 @@ export const Jobs = () => {
           displayedJobs.map((job) => (
             <JobCard
               key={job.id}
+              id={job.id}
               title={job.title}
               companyName={job.companyName}
               jobType={job.jobType}
@@ -87,6 +88,7 @@ export const Jobs = () => {
               className="min-w-[100%] bg-thm_background shadow-lg"
               searchParams={searchParams.toString()}
               showShareAndSaveBtn={true}
+              isFavorite={job.isFavorite}
             />
           ))
         ) : (

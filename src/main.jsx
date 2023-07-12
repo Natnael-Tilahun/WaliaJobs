@@ -28,6 +28,7 @@ import { Blogs } from "./pages/Blogs";
 import { Tips } from "./pages/Blogs/Tips";
 import { Interviews } from "./pages/Blogs/Interviews";
 import { BlogDetails } from "./pages/BlogDetails";
+import { SavedJobs } from "./pages/SavedJobs";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -47,7 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="blog-details/:id" element={<BlogDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/job_details" element={<JobDetails />} />
+          <Route path="/job_details/:id" element={<JobDetails />} />
           <Route path="buildcv" element={<BuildCV />}>
             <Route index element={<RecommendedCV />} />
             <Route path="alltemplates" element={<CVTemplates />} />
@@ -71,6 +72,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               element={<AddAdditionalSection />}
             />
           </Route>
+          <Route path="/savedJobs" element={<SavedJobs />} />
           <Route path="*" element={<ErrorPage />} />;
         </Route>
       </Routes>
