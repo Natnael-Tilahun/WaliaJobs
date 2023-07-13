@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CvTemplate } from "./CvTemplate";
+import { CvTemplate } from "../components/CvTemplate";
 import { NavLink } from "react-router-dom";
 
 export const BuildCvSection = () => {

@@ -53,7 +53,7 @@ export const Footer = () => {
                 };
               }}
             >
-              Company
+              Companies
             </NavLink>
           </li>
 
@@ -89,7 +89,7 @@ export const Footer = () => {
           </h1>
           <li>
             <NavLink
-              to="/blog"
+              to="/blogs"
               className="pb-[1px]"
               style={({ isActive }) => {
                 return {
@@ -100,9 +100,45 @@ export const Footer = () => {
               Blogs
             </NavLink>
           </li>
-          <li>Privacy Policy</li>
-          <li>Terms & conditions</li>
-          <li>Trust & safety</li>
+          <li>
+            <NavLink
+              to="/privacy_policy"
+              className="pb-[1px]"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+            >
+              Privacy Policy
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/terms&conditions"
+              className="pb-[1px]"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+            >
+              Terms & conditions
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/trust&safety"
+              className="pb-[1px]"
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                };
+              }}
+            >
+              Trust & safety
+            </NavLink>
+          </li>
         </ul>
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { JobCard } from "./JobCard";
+import { JobCard } from "../components/JobCard";
 import { NavLink } from "react-router-dom";
 import { JobsData } from "../../data/jobs";
 

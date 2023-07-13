@@ -29,6 +29,10 @@ import { Tips } from "./pages/Blogs/Tips";
 import { Interviews } from "./pages/Blogs/Interviews";
 import { BlogDetails } from "./pages/BlogDetails";
 import { SavedJobs } from "./pages/SavedJobs";
+import { CompanyDetails } from "./pages/CompanyDetails";
+import { AboutCompany } from "./pages/CompanyDetails/AboutCompany";
+import { Reviews } from "./pages/CompanyDetails/Reviews";
+import { Benefits } from "./pages/CompanyDetails/Benefits";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -44,6 +48,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/blogs" element={<Blogs />}>
             <Route index element={<Tips />} />
             <Route path="interviews" element={<Interviews />} />
+          </Route>
+          <Route path="/company-details/:id" element={<CompanyDetails />}>
+            <Route index element={<AboutCompany />} />
+            <Route path="jobs" element={<Jobs />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="benefits" element={<Benefits />} />
           </Route>
           <Route path="blog-details/:id" element={<BlogDetails />} />
           <Route path="/login" element={<Login />} />

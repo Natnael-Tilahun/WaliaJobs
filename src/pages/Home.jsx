@@ -1,11 +1,11 @@
 import React from "react";
 
-import Hero from "../components/Hero";
-import { JobCatagories } from "../components/JobCatagories";
-import { Companies } from "../components/Companies";
-import { JobsList } from "../components/JobsList";
-import { BuildCvSection } from "../components/BuildCvSection";
-import { SubscribeSection } from "../components/SubscribeSection";
+import Hero from "../containers/HeroSection";
+import { JobCatagories } from "../containers/JobCatagoriesSection";
+import { Companies } from "../containers/CompaniesSection";
+import { JobsList } from "../containers/JobsListSection";
+import { BuildCvSection } from "../containers/BuildCvSection";
+import { SubscribeSection } from "../containers/SubscribeSection";
 
 export const Home = () => {
   return (
