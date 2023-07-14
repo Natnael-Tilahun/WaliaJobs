@@ -10,17 +10,17 @@ export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
       <h1 className="font-bold py-3">{name}</h1>
       <p className="font-semibold text-gray-600 flex items-center gap-1">
         <img
-          src="/Icon.png"
+          src="/rateIcon.png"
           className="w-5 h-5 inline-block mx-0"
           alt="Review Star"
         />
         <span>{rate}</span> | <span>{reviews}</span>Reviews
       </p>
       <NavLink
-        to={`company-details/${id}`}
+        to={`/company-details/${id}`}
         className="border-2 mt-5 px-4 py-1 font-bold rounded-lg hover:bg-[#97d1f8] text-[#2F6EFC] border-[#18A0FB]"
       >
-        View Jobs
+        View Jobs {id}
       </NavLink>
     </div>
   );

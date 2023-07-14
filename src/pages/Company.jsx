@@ -317,6 +317,7 @@ export const Company = () => {
             ({ id, img, name, rate, reviews, className }) => (
               <CompanyCard
                 key={id}
+                id={id}
                 img={img}
                 name={name}
                 rate={rate}

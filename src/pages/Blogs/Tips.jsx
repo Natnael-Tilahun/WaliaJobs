@@ -5,19 +5,18 @@ import { NavLink, useParams } from "react-router-dom";
 
 export const Tips = () => {
   const { id } = useParams();
-
-  const [tipsBlogData, setTipsBlogData] = useState([]);
-  useEffect(() => {
-    const tipsBlog = BlogsData.filter((blog) => blog.type == "tips");
-    setTipsBlogData(tipsBlog);
-  }, [id]);
+  // const [tipsBlogData, setTipsBlogData] = useState([]);
+  // useEffect(() => {
+  const tipsBlogData = BlogsData.filter((blog) => blog.type == "tips");
+  // setTipsBlogData(tipsBlog);
+  // });
   return (
     <div className="flex gap-10 md:py-10  py-5  md:px-5 lg:px-10 px-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-col gap-6 md:gap-10 lg:gap-10 xl:gap-14 md:flex-row py-5">
-        {tipsBlogData.map(({ id, title, img, date, description }) => (
+        {tipsBlogData.map(({ id, title, img, date, description }, index) => (
           <BlogCard
             blogId={id}
-            key={id}
+            key={index}
             img={img}
             title={title}
             date={date}

@@ -5,12 +5,12 @@ import { BlogsData } from "../../data/blogs";
 
 export const BlogDetails = () => {
   const { id } = useParams();
-  const [blogDetail, setBlogDetail] = useState();
+  // const [blogDetail, setBlogDetail] = useState();
   console.log("searchParams", id);
-  useEffect(() => {
-    const BlogDetail = BlogsData.filter((blog) => (blog.id = id));
-    setBlogDetail(BlogDetail);
-  }, [id]);
+  // useEffect(() => {
+  const blogDetail = BlogsData.filter((blog) => blog.id == id);
+  // setBlogDetail(BlogDetail);
+  // },
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
       <div className="flex bg-thm_background py-2 lg:py-5 flex-col  my-0  md:my-0 md:px-7 lg:px-32   border-b-2 gap-3 md:gap-2 px-5  lg:gap-5 w-full">
@@ -20,15 +20,15 @@ export const BlogDetails = () => {
           className="shadow-md w-[65%] hidden xl:w-[35%] self-center bg-center "
         />
         <h1 className="text-2xl md:text-4xl pt-10 pb-3 text-center uppercase font-bold">
-          5 Best carrier tips for young people
+          {blogDetail[0].title}
         </h1>
         <div className="flex flex-col md:flex-row justify-between md:items-center gap-5 md:gap-0">
           <div>
             <p className="text-xs md:text-sm text-thm_root1_color text-left underline py-1">
-              Author: Natnael Tilahun
+              Author: {blogDetail[0].author}
             </p>
             <p className="text-sm text-thm_secondary_color  text-left">
-              published Jul 8, 2023
+              published {blogDetail[0].date}
             </p>
           </div>
           <div className="flex gap-1 md:gap-3 text-xs items-center text-thm_secondary_color">
@@ -61,9 +61,9 @@ export const BlogDetails = () => {
       </div>
       <div className="flex flex-col lg:flex-row py-10 tracking-wide leading-8 text-thm_secondary_color  md:px-7 lg:px-32 gap-5 md:gap-10 px-5  w-full">
         <img
-          src="https://media.licdn.com/dms/image/C5612AQFzCuX3aPtzCQ/article-cover_image-shrink_720_1280/0/1643204087014?e=2147483647&v=beta&t=xR7m4MgyepAMXJJEiESgtDVtKP_wMDavGMd8_-GEUlM"
+          src={blogDetail[0].img}
           alt="blog caption image"
-          className="shadow-md w-[100%]  lg:w-[35%] self-center bg-center "
+          className="shadow-md w-[100%]  lg:w-[50%] xl:w-[100%] self-center bg-center "
         />
         <div className="flex flex-col gap-2">
           <p className="py-2">

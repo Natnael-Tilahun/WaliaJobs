@@ -9,23 +9,21 @@ export const CompanyDetails = () => {
 
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
-      <div className="flex relative bg-thm_background  py-3 flex-col  my-0  md:my-0 md:px-3 lg:px-20   border-b-2 gap-3 md:gap-2 px-5   w-full">
-        <div className="bg-thm_root1_color w-[90%] h-20 opacity-30 absolute top-0"></div>
-        <div className="z-50 px-10 flex flex-col gap-2">
+      <div className="flex relative bg-thm_background  py-3 flex-col  md:px-5 lg:px-20   border-b-2 gap-3 md:gap-2 px-5   w-full">
+        <div className="bg-thm_root1_color w-[90%] h-12 md:h-20 opacity-30 absolute top-0"></div>
+        <div className="z-50 px-5 lg:px-10 flex flex-col gap-2">
           <img
             src={companyDetail[0].img}
-            className="w-24 bg-contain h-24 border-2 shadow-md"
+            className="w-16 md:w-24 md:h-24 bg-contain rounded-md h-16 border-2 shadow-md"
             alt=""
           />
-          <h1 className="text-lg md:text-xl font-semibold">
-            {companyDetail[0].name}
-          </h1>
+          <h1 className=" md:text-xl font-semibold">{companyDetail[0].name}</h1>
           <div className="flex items-center gap-3">
-            <div className="bg-yellow-500 text-lg text-white w-fit py-0 px-3 flex rounded-md items-center gap-2">
+            <div className="bg-yellow-500 text-sm md:text-lg text-white w-fit py-0 px-3 flex rounded-md items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                className="w-5"
+                className="w-4 md:w-5"
               >
                 <path
                   className="fill-white"
@@ -34,20 +32,20 @@ export const CompanyDetails = () => {
               </svg>{" "}
               <p>{companyDetail[0].rate}</p>
             </div>
-            <p className="text-thm_secondary_color text-sm">
+            <p className="text-thm_secondary_color text-xs md:text-sm">
               Based on {companyDetail[0].reviews} Reviews
             </p>
           </div>
 
-          <p className="text-sm text-thm_secondary_color font-light ">
+          <p className="text-xs md:text-sm text-thm_secondary_color font-light ">
             {companyDetail[0].headoffice} | {companyDetail[0].mainService} |{" "}
             {companyDetail[0].employeeNumber}
           </p>
         </div>
-        <ul className=" flex text-sm pt-6 md:text-base gap-10 font-medium">
+        <ul className=" flex text-sm pt-3 md:pt-6 md:text-base gap-10 font-medium">
           <li>
             <NavLink
-              to="/company-details/1"
+              to={`/company-details/${id}`}
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? "3px solid #fa6d4d" : "",

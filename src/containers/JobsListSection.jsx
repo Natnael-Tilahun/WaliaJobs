@@ -10,9 +10,9 @@ export const JobsList = () => {
   }, []);
 
   return (
-    <div className="w-full bg-thm_background text-center md:py-20 py-5 px-5 md:px-10 lg:px-20">
+    <div className="w-full bg-thm_background text-center md:py-16 xl:py-20 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Recent Jobs</h1>
-      <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between">
+      <div className="flex gap-10 flex-wrap py-12 justify-center lg:justify-between">
         {jobsData.map(
           ({
             id,
@@ -49,7 +49,7 @@ export const JobsList = () => {
       </div>
       <NavLink
         to="/jobs"
-        className="text-[#2F6EFC] font-bold hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg"
+        className="text-[#2F6EFC] font-bold hover:bg-[#5dbeff] border-2  border-[#97d1f8] px-5 py-1 rounded-lg"
       >
         View all jobs
       </NavLink>

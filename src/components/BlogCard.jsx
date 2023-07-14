@@ -12,7 +12,6 @@ export const BlogCard = ({ blogId, img, title, date, description }) => {
         alt="blog caption image"
         className="shadow-md rounded-t-3xl"
       />
-      {blogId}
       <div className="p-4 flex flex-col gap-2 lg:gap-4">
         <h1 className="font-medium text-thm_primary_color dark:text-thm_dark_primary_color lg:text-lg">
           {title}
