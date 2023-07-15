@@ -111,7 +111,7 @@ export const JobDetails = () => {
                 <p className="">{jobDetail[0].companyName}</p>
                 <p className="flex items-center gap-1 ">
                   <img
-                    src="\Icon.png"
+                    src="/rateIcon.png"
                     alt="Rate star icon"
                     className="w-4 h-4 inline-block"
                   />

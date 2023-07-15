@@ -15,7 +15,7 @@ export const CompanyReviews = ({
 }) => {
   return (
     <div
-      className={`shadow-md rounded-lg bg-thm_background   shadow-gray-400 flex flex-col gap-5 h-82 py-5 px-7 border-[1px]  ${className}`}
+      className={`shadow-sm rounded-xl bg-thm_background  flex flex-col gap-4 h-82 py-5 px-5 border-[1px]  ${className}`}
     >
       <div className="flex gap-4">
         <img
@@ -25,7 +25,7 @@ export const CompanyReviews = ({
         />
         <div className="flex flex-col gap-1">
           <h1 className="font-bold text-xl">{companyName}</h1>
-          <h1 className="font-medium">{name}</h1>
+          <h1 className="font-semibold text-thm_secondary_color">{name}</h1>
           <h1>{jobTitle}</h1>
           <p className="font-semibold flex text-lg opacity-90 bg-green-600 w-fit px-3 text-white rounded-md items-center gap-2">
             <img
@@ -37,13 +37,14 @@ export const CompanyReviews = ({
           </p>
         </div>
       </div>
-      <p>
-        <span className="font-medium">Like: </span> {reviewLike}
-      </p>
-      <p>
-        {" "}
-        <span className="font-medium">Dislike: </span> {reviewDislike}
-      </p>
+      <div>
+        <p className="font-medium text-lg">Like:</p>
+        <p className="text-thm_secondary_color">{reviewLike}</p>
+      </div>
+      <div>
+        <p className="font-medium text-lg">Dislike:</p>
+        <p className="text-thm_secondary_color">{reviewDislike}</p>
+      </div>
       <p className="text-right text-thm_secondary_color">{date}</p>
     </div>
   );

@@ -20,7 +20,7 @@ export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
         to={`/company-details/${id}`}
         className="border-2 mt-5 px-4 py-1 font-bold rounded-lg hover:bg-[#97d1f8] text-[#2F6EFC] border-[#18A0FB]"
       >
-        View Jobs {id}
+        View Jobs
       </NavLink>
     </div>
   );

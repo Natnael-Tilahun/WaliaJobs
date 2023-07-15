@@ -2,6 +2,7 @@ export const JobsData = [
   {
     id: 0,
     title: "IT Officer",
+    rate: 4,
     companyName: "CBE",
     companyType: "Corporate",
     jobType: "Full Time",
@@ -28,6 +29,7 @@ export const JobsData = [
   {
     id: 1,
     title: "Programmer",
+    rate: 4.5,
     companyName: "Abyssinia",
     companyType: "Private",
     jobType: "Full Time",
@@ -48,6 +50,7 @@ export const JobsData = [
   {
     id: 2,
     title: "Senior Programmer",
+    rate: 4.5,
     companyName: "Abyssinia",
     companyType: "Private",
     jobType: "Full Time",
@@ -68,6 +71,7 @@ export const JobsData = [
   {
     id: 3,
     title: "Senior Programmer",
+    rate: 4,
     companyName: "Abyssinia",
     companyType: "Private",
     jobType: "Full Time",
