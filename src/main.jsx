@@ -33,6 +33,7 @@ import { CompanyDetails } from "./pages/CompanyDetails";
 import { AboutCompany } from "./pages/CompanyDetails/AboutCompany";
 import { Reviews } from "./pages/CompanyDetails/Reviews";
 import { Benefits } from "./pages/CompanyDetails/Benefits";
+import { WriteReview } from "./pages/WriteReview";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -55,6 +56,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="reviews" element={<Reviews />} />
             <Route path="benefits" element={<Benefits />} />
           </Route>
+          <Route path="/write-review" element={<WriteReview />} />
           <Route path="blog-details/:id" element={<BlogDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

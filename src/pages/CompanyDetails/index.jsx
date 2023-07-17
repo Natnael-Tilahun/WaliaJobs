@@ -10,14 +10,24 @@ export const CompanyDetails = () => {
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
       <div className="flex relative bg-thm_background  py-3 flex-col  md:px-5 lg:px-20   border-b-2 gap-3 md:gap-2 px-5   w-full">
-        <div className="bg-thm_root1_color w-[90%] h-12 md:h-20 opacity-30 absolute top-0"></div>
+        <div className="bg-thm_root1_color w-[93%] h-12 md:h-20 opacity-30 absolute top-0"></div>
         <div className="z-50 px-5 lg:px-10 flex flex-col gap-2">
           <img
             src={companyDetail[0].img}
             className="w-16 md:w-24 md:h-24 bg-contain rounded-md h-16 border-2 shadow-md"
             alt=""
           />
-          <h1 className=" md:text-xl font-semibold">{companyDetail[0].name}</h1>
+          <div className="flex gap-5  justify-between">
+            <h1 className=" md:text-xl font-semibold">
+              {companyDetail[0].name}
+            </h1>
+            <NavLink
+              to="/write-review"
+              className="bg-thm_root1_color text-xxs whitespace-nowrap md:text-base text-white h-fit p-2  md:px-4 rounded-lg md:rounded-2xl font-medium tracking-wide"
+            >
+              Write a Review
+            </NavLink>
+          </div>
           <div className="flex items-center gap-3">
             <div className="bg-yellow-500 text-sm md:text-lg text-white w-fit py-0 px-3 flex rounded-md items-center gap-2">
               <svg
@@ -37,9 +47,9 @@ export const CompanyDetails = () => {
             </p>
           </div>
 
-          <p className="text-xs md:text-sm text-thm_secondary_color font-light ">
+          <p className="text-xs md:text-sm text-thm_secondary_color ">
             {companyDetail[0].headoffice} | {companyDetail[0].mainService} |{" "}
-            {companyDetail[0].employeeNumber}
+            {companyDetail[0].employeeNumber} employees
           </p>
         </div>
         <ul className=" flex text-sm pt-3 md:pt-6 md:text-base gap-10 font-medium">
