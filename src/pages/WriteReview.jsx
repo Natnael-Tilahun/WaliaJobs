@@ -24,6 +24,26 @@ export const WriteReview = () => {
     ["Company Culture"]: 0,
   });
 
+  const [isCurrentlyWorkingThereRadio, setIsCurrentlyWorkingThereRadio] =
+    useState();
+
+  const [selectGenderRadio, setSelectGenderRadio] = useState();
+
+  const [selectCompanyWorkingPolicyRadio, setSelectCompanyWorkingPolicyRadio] =
+    useState();
+
+  const handleCurrentWorkingStatusState = (event) => {
+    setIsCurrentlyWorkingThereRadio(event.target.value);
+  };
+
+  const handleSelectGenderRadio = (event) => {
+    setSelectGenderRadio(event.target.value);
+  };
+
+  const handleSelectCompanyWorkingPolicyRadio = (event) => {
+    setSelectCompanyWorkingPolicyRadio(event.target.value);
+  };
+
   function handleSetReviewTextAndIcon(rateValue, hoverValue) {
     if ((hoverValue || rateValue) == 5) {
       return (
@@ -126,7 +146,7 @@ export const WriteReview = () => {
         </p>
       </div>
       <div className="flex gap-10 md:pb-10 flex-col items-center text-sm md:text-base lg:text-lg py-5  md:px-5 lg:px-20 px-3">
-        <div className="grid bg-thm_background grid-cols-1 shadow-xl border-[1px] md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 xl:w-[70%] flex-col gap-3 md:gap-7 lg:gap-16 lg:gap-y-8 xl:gap-10 md:flex-row py-5 lg:py-14 px-6">
+        <div className="grid bg-thm_background grid-cols-1 shadow-xl border-[1px] md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 xl:w-[70%] flex-col gap-3 md:gap-7 lg:gap-16 lg:gap-y-8 xl:gap-10 md:flex-row py-5 md:py-14  px-6">
           <label className="p-2 flex flex-col gap-2 col-span-1 lg:col-span-2 font-medium">
             <p>
               Company Name <span className="text-red-500">*</span>
@@ -160,25 +180,29 @@ export const WriteReview = () => {
                   className="w-full  flex gap-3 rounded-lg p-1 bg-blue-100"
                 >
                   <input
-                    type="checkbox"
-                    name="Yes"
+                    type="radio"
                     id="yes"
                     className="w-5"
                     value="Yes"
+                    checked={isCurrentlyWorkingThereRadio == "Yes"}
+                    onChange={handleCurrentWorkingStatusState}
                   />
                   <span>Yes</span>
                 </label>
-                <label className=" flex flex-col gap-2 font-medium">
-                  <p>
-                    Started working on
-                    <span className=" text-red-500">*</span>
-                  </p>
-                  <input
-                    type="date"
-                    placeholder="Company Name"
-                    className="p-2 border-2 relative rounded-md ring-thm_root1_color"
-                  />
-                </label>
+                {(isCurrentlyWorkingThereRadio == "Yes" ||
+                  isCurrentlyWorkingThereRadio == "No") && (
+                  <label className=" flex flex-col gap-2 font-medium">
+                    <p>
+                      Started working on
+                      <span className=" text-red-500">*</span>
+                    </p>
+                    <input
+                      type="date"
+                      placeholder="Company Name"
+                      className="p-2 border-2 relative rounded-md ring-thm_root1_color"
+                    />
+                  </label>
+                )}
               </div>
               <div className="w-full flex flex-col gap-3 lg:gap-5">
                 <label
@@ -186,25 +210,28 @@ export const WriteReview = () => {
                   className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
                 >
                   <input
-                    type="checkbox"
-                    name="No"
+                    type="radio"
                     id="no"
                     className="w-5"
                     value="No"
+                    checked={isCurrentlyWorkingThereRadio == "No"}
+                    onChange={handleCurrentWorkingStatusState}
                   />
                   <span>No</span>
                 </label>
-                <label className=" flex flex-col gap-2 font-medium">
-                  <p>
-                    Employment ended on
-                    <span className="text-red-500">*</span>
-                  </p>
-                  <input
-                    type="date"
-                    placeholder="Company Name"
-                    className="p-2 border-2 relative rounded-md ring-thm_root1_color"
-                  />
-                </label>
+                {isCurrentlyWorkingThereRadio == "No" && (
+                  <label className=" flex flex-col gap-2 font-medium">
+                    <p>
+                      Employment ended on
+                      <span className="text-red-500">*</span>
+                    </p>
+                    <input
+                      type="date"
+                      placeholder="Company Name"
+                      className="p-2 border-2 relative rounded-md ring-thm_root1_color"
+                    />
+                  </label>
+                )}
               </div>
             </div>
           </label>
@@ -369,6 +396,185 @@ export const WriteReview = () => {
               className="p-2 border-2 relative rounded-md ring-thm_root1_color"
             />
           </label>
+          <label className="p-2 flex flex-col gap-2 col-span-full lg:col-span-4 font-medium">
+            <p>
+              What gender do you identify with?
+              <span className=" text-red-500">*</span>
+            </p>
+            <div className="flex flex-col md:flex-row gap-8 py-2  lg:gap-20">
+              <div className="w-full flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="female"
+                  className="w-full  flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="female"
+                    className="w-5"
+                    value="Female"
+                    checked={selectGenderRadio == "Female"}
+                    onChange={handleSelectGenderRadio}
+                  />
+                  <span>Female</span>
+                </label>
+              </div>
+              <div className="w-full flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="male"
+                  className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="male"
+                    className="w-5"
+                    value="Male"
+                    checked={selectGenderRadio == "Male"}
+                    onChange={handleSelectGenderRadio}
+                  />
+                  <span>Male</span>
+                </label>
+              </div>
+              <div className="w-full flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="Prefer not to say"
+                  className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="Prefer not to say"
+                    className="w-5"
+                    value="Prefer not to say"
+                    checked={selectGenderRadio == "Prefer not to say"}
+                    onChange={handleSelectGenderRadio}
+                  />
+                  <span>Prefer not to say</span>
+                </label>
+              </div>
+            </div>
+          </label>
+          <label className="p-2 flex flex-col gap-2 col-span-full lg:col-span-4 font-medium">
+            <p>
+              What is the work policy at your company?
+              <span className=" text-red-500">*</span>
+            </p>
+            <div className="flex flex-col md:flex-wrap  md:flex-row gap-8 py-3">
+              <div className="w-full basis-full md:basis-[47%] lg:basis-[46%]  flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="Permanent work from home"
+                  className="w-full  flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="Permanent work from home"
+                    className="w-5"
+                    value="Permanent work from home"
+                    checked={
+                      selectCompanyWorkingPolicyRadio ==
+                      "Permanent work from home"
+                    }
+                    onChange={handleSelectCompanyWorkingPolicyRadio}
+                  />
+                  <span>Permanent work from home</span>
+                </label>
+              </div>
+              <div className="w-full basis-full md:basis-[47%] lg:basis-[46%] flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="Working from office"
+                  className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="Working from office"
+                    className="w-5"
+                    value="Working from office"
+                    checked={
+                      selectCompanyWorkingPolicyRadio == "Working from office"
+                    }
+                    onChange={handleSelectCompanyWorkingPolicyRadio}
+                  />
+                  <span>Working from office</span>
+                </label>
+              </div>
+              <div className="w-full basis-full md:basis-[47%] lg:basis-[46%]  flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="Hybrid (working from office & home)"
+                  className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="Hybrid (working from office & home)"
+                    className="w-5"
+                    value="Hybrid (working from office & home)"
+                    checked={
+                      selectCompanyWorkingPolicyRadio ==
+                      "Hybrid (working from office & home)"
+                    }
+                    onChange={handleSelectCompanyWorkingPolicyRadio}
+                  />
+                  <span>Hybrid (working from office & home)</span>
+                </label>
+              </div>
+              <div className="w-full basis-full md:basis-[47%] lg:basis-[46%]  flex flex-col gap-3 lg:gap-5">
+                <label
+                  htmlFor="Unclear at the moment"
+                  className="w-full flex gap-3 rounded-lg p-1 bg-blue-100"
+                >
+                  <input
+                    type="radio"
+                    id="Unclear at the moment"
+                    className="w-5"
+                    value="Unclear at the moment"
+                    checked={
+                      selectCompanyWorkingPolicyRadio == "Unclear at the moment"
+                    }
+                    onChange={handleSelectCompanyWorkingPolicyRadio}
+                  />
+                  <span>Unclear at the moment</span>
+                </label>
+              </div>
+            </div>
+          </label>
+          <label className="p-2 flex flex-col gap-2 col-span-1 lg:col-span-2 font-medium">
+            <p>
+              Select Employment type <span className="text-red-500">*</span>
+            </p>
+            <select
+              name="employmentType"
+              id="employmentType"
+              className="p-2 border-[1px] relative rounded-lg ring-thm_root1_color"
+            >
+              <option value="" defaultValue="select employment type" disabled>
+                Select employment type
+              </option>
+              <option value="Full Time">Full Time</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Contractual">Contractual</option>
+              <option value="Intern">Intern</option>
+              <option value="Freelancer">Freelancer</option>
+            </select>
+          </label>
+          <label className="p-2 flex flex-col gap-2 col-span-1 lg:col-span-2 font-medium">
+            <p>
+              Department <span className="text-red-500">*</span>
+            </p>
+            <select
+              name="department"
+              id="department"
+              className="p-2 border-[1px] relative rounded-lg ring-thm_root1_color"
+            >
+              <option value="" defaultValue="Select department" disabled>
+                Select department
+              </option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Management">Management</option>
+              <option value="Accounting">Accounting</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Banking Operation">Banking Operation</option>
+            </select>
+          </label>
+          <button className="bg-thm_root1_color text-white p-2 rounded-2xl text-base md:w-1/3 place-self-center shadow-md col-span-full">
+            Submit Anonymously
+          </button>
         </div>
       </div>
     </div>
