@@ -10,8 +10,8 @@ export const CompanyDetails = () => {
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
       <div className="flex relative bg-thm_background  py-3 flex-col  md:px-5 lg:px-20   border-b-2 gap-3 md:gap-2 px-5   w-full">
-        <div className="bg-thm_root1_color w-[93%] h-12 md:h-20 opacity-30 absolute top-0"></div>
-        <div className="z-50 px-5 lg:px-10 flex flex-col gap-2">
+        <div className="bg-thm_root1_color w-[90%] md:w-[93%] lg:w-[85%] rounded-lg h-12 md:h-20 opacity-30 absolute top-0"></div>
+        <div className="z-30 px-5 lg:px-10 flex flex-col gap-2">
           <img
             src={companyDetail[0].img}
             className="w-16 md:w-24 md:h-24 bg-contain rounded-md h-16 border-2 shadow-md"

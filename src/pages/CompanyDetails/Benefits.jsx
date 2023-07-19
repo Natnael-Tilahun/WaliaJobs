@@ -15,7 +15,7 @@ export const Benefits = () => {
   //     // Return true if the value is true
   //     return value === true;
   //   });
-  console.log("benefits", reviewDetail, "benefits", benefits["Job Training"]);
+  console.log("benefits", reviewDetail, "benefits", benefits["Cafeteria"]);
   //   console.log("benefits", reviewDetail, benefits);
   return (
     <div className="flex gap-10 md:pb-10 flex-col  py-5  md:px-5 lg:px-20 px-5">
@@ -27,8 +27,8 @@ export const Benefits = () => {
       <div className="grid grid-cols-1 shadow-xl border-[1px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 flex-col gap-6 md:gap-10 lg:gap-16 xl:gap-14 md:flex-row py-5 lg:py-14 px-5">
         {/* {benefits} */}
         <div
-          className={` bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["International Relocation"] ? "opacity-100" : ""
+          className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
+            benefits["International Relocation"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -41,8 +41,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">International Relocation</h1>
         </div>
         <div
-          className={` bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Free Transport"] ? "opacity-100" : ""
+          className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
+            benefits["Free Transport"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -57,8 +57,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Free Transport</h1>
         </div>
         <div
-          className={` bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Child Care"] ? "opacity-100" : ""
+          className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
+            benefits["Child Care"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -71,8 +71,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Child Care</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Gymnasium"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Gymnasium"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -85,8 +85,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Gymnasium</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Cafeteria"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Cafeteria"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -99,8 +99,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Cafeteria</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Work From Home"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Work From Home"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -113,8 +113,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Work From Home</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Free Food"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Free Food"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -127,8 +127,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Free Food</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Team Outings"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Team Outings"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -141,8 +141,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Team Outings</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Education Assistance"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Education Assistance"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -155,8 +155,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Education Assistance</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Soft Skill Training"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Soft Skill Training"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -169,8 +169,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Soft Skill Training</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2 ${
-            benefits["Health Insurance"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["Health Insurance"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
@@ -183,8 +183,8 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Health Insurance</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col opacity-30 items-center rounded-xl gap-2${
-            benefits["Job Training"] ? "opacity-100" : ""
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2${
+            benefits["Job Training"] ? "opacity-100" : "opacity-30"
           }`}
         >
           <svg
