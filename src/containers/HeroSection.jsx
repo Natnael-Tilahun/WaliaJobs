@@ -1,6 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const navigate = useNavigate();
+  const [selectedSkills, setSelectedSkills] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedExperience, setSelectedExperience] = useState("");
+
+  console.log(
+    "selectedSkills",
+    selectedSkills,
+    "experence",
+    selectedExperience,
+    "selectedLocation",
+    selectedLocation
+  );
+
+  const goToPosts = () => {
+    // console.log(departmentFilter);
+    const encodedSkillsFilter = selectedSkills
+      ? encodeURIComponent(selectedSkills)
+      : "";
+    const encodedLocationFilter = selectedLocation
+      ? encodeURIComponent(selectedLocation)
+      : "";
+    const encodedExperienceFilter = selectedExperience
+      ? encodeURIComponent(selectedExperience)
+      : "";
+
+    navigate({
+      pathname: "/jobs",
+      search: `?experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
+    });
+  };
   return (
     <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
       <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold py-8  tracking-wider">
@@ -23,17 +55,26 @@ function Hero() {
             type="text"
             name=""
             id=""
+            value={selectedSkills}
             placeholder="Enter Skills"
+            onChange={(e) => setSelectedSkills(e.target.value)}
             className=" focus:border-none w-full focus:outline-none flex-1 h-full"
           />
         </div>
         <select
           name=""
           id=""
+          value={selectedLocation}
+          onChange={(e) => setSelectedLocation(e.target.value)}
           placeholder="Select Experience"
           className=" h-full w-full md:w-1/3 bg-white md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
-          <option className="text-slate-300" value="" selected disabled>
+          <option
+            className="text-slate-300"
+            value=""
+            defaultValue="select location"
+            disabled
+          >
             Select Location{" "}
           </option>
           <option value="addis abeba">Addis Abeba</option>
@@ -49,9 +90,16 @@ function Hero() {
           name=""
           id=""
           placeholder="Select Experience"
+          value={selectedExperience}
+          onChange={(e) => setSelectedExperience(e.target.value)}
           className=" h-full bg-white w-full md:w-1/3 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
-          <option className="text-slate-300" value="" selected disabled>
+          <option
+            className="text-slate-300"
+            value=""
+            defaultValue="select experience"
+            disabled
+          >
             Select Experience{" "}
           </option>
           <option value="0">Fresher (Less than a year)</option>
@@ -63,7 +111,10 @@ function Hero() {
           <option value="6">6 Years</option>
           <option value="7">7 Years</option>
         </select>
-        <button className="bg-blue-800  text-white py-2 px-10 rounded-3xl">
+        <button
+          onClick={goToPosts}
+          className="bg-blue-800  text-white py-2 px-10 rounded-3xl"
+        >
           Search
         </button>
       </div>
