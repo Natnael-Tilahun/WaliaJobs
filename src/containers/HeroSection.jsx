@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 function Hero() {
   const navigate = useNavigate();
-  const [selectedSkills, setSelectedSkills] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedExperience, setSelectedExperience] = useState("");
 
   console.log(
     "selectedSkills",
-    selectedSkills,
+    selectedDepartment,
     "experence",
     selectedExperience,
     "selectedLocation",
@@ -18,8 +18,8 @@ function Hero() {
 
   const goToPosts = () => {
     // console.log(departmentFilter);
-    const encodedSkillsFilter = selectedSkills
-      ? encodeURIComponent(selectedSkills)
+    const encodedDepartmentFilter = selectedDepartment
+      ? encodeURIComponent(selectedDepartment)
       : "";
     const encodedLocationFilter = selectedLocation
       ? encodeURIComponent(selectedLocation)
@@ -30,7 +30,7 @@ function Hero() {
 
     navigate({
       pathname: "/jobs",
-      search: `?experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
+      search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
     });
   };
   return (
@@ -40,8 +40,8 @@ function Hero() {
         <span className=" text-[#f8451d] text-3xl md:text-5xl">jobs</span> like
         the wild Walia
       </h1>
-      <div className="border-l-2 border-2 text-lg bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
-        <div className=" flex items-center p-2 border-2 md:border-none gap-2 w-full md:w-1/3  h-full lg:pl-5 rounded-l-full bg-white">
+      <form className="border-l-2 border-2 text-base bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
+        <div className=" flex items-center pl-2 border-2 md:border-none gap-2 w-full md:w-[45%] h-full lg:pl-5 rounded-l-full bg-white">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,15 +51,38 @@ function Hero() {
               <path d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z"></path>
             </svg>
           </span>
-          <input
-            type="text"
+
+          <select
             name=""
             id=""
-            value={selectedSkills}
-            placeholder="Enter Skills"
-            onChange={(e) => setSelectedSkills(e.target.value)}
-            className=" focus:border-none w-full focus:outline-none flex-1 h-full"
-          />
+            value={selectedDepartment}
+            onChange={(e) => setSelectedDepartment(e.target.value)}
+            placeholder="Select Experience"
+            className="border-r-4  h-full w-full bg-white md:rounded-none rounded-l-full p-0  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-2 lg:mr-0 focus:outline-none text-gray-600 "
+          >
+            <option
+              className="text-slate-300"
+              value=""
+              defaultValue="select department"
+              disabled
+            >
+              Select Department{" "}
+            </option>
+            <option value="Banking and Insurance">Banking and Insurance</option>
+            <option value="Sales and Markating">Sales and Markating</option>
+            <option value="Management">Management</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Finance and Accounting">
+              Finance and Accounting
+            </option>
+            <option value="Engineering">Engineering</option>
+            <option value="Human Resource">Human Resource</option>
+            <option value="IT">IT</option>
+            <option value="Health">Health</option>
+            <option value="Legal">Legal</option>
+            <option value="Analytics">Analytics</option>
+            <option value="Engineering">Engineering</option>
+          </select>
         </div>
         <select
           name=""
@@ -89,6 +112,7 @@ function Hero() {
         <select
           name=""
           id=""
+          required
           placeholder="Select Experience"
           value={selectedExperience}
           onChange={(e) => setSelectedExperience(e.target.value)}
@@ -117,7 +141,7 @@ function Hero() {
         >
           Search
         </button>
-      </div>
+      </form>
     </div>
   );
 }
