@@ -224,55 +224,24 @@ export const CVDetails = () => {
               };
             }}
           >
-            <li class="flex items-center ">
+            <li className="flex items-center ">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 1
               </span>
               Heading
-              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
-                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                ></path>
-              </svg>
-            </li>
-          </NavLink>
-          <NavLink
-            to="Experience-Section"
-            style={({ isActive }) => {
-              return {
-                color: isActive ? "#1e40af" : "",
-              };
-            }}
-          >
-            <li class="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
-                2
-              </span>
-              Experience
-              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
-              <svg
-                aria-hidden="true"
-                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5l7 7-7 7M5 5l7 7-7 7"
                 ></path>
               </svg>
@@ -286,24 +255,55 @@ export const CVDetails = () => {
               };
             }}
           >
-            <li class="flex items-center">
+            <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
-                3
+                2
               </span>
               Education
-              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
-                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Experience-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? "#1e40af" : "",
+              };
+            }}
+          >
+            <li className="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                3
+              </span>
+              Experience
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5l7 7-7 7M5 5l7 7-7 7"
                 ></path>
               </svg>
@@ -317,24 +317,24 @@ export const CVDetails = () => {
               };
             }}
           >
-            <li class="flex items-center">
+            <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 4
               </span>
               Skills
-              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
-                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5l7 7-7 7M5 5l7 7-7 7"
                 ></path>
               </svg>
@@ -348,24 +348,24 @@ export const CVDetails = () => {
               };
             }}
           >
-            <li class="flex items-center">
+            <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 5
               </span>
               Summary
-              {/* <span class="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
-                class="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 5l7 7-7 7M5 5l7 7-7 7"
                 ></path>
               </svg>
@@ -379,7 +379,7 @@ export const CVDetails = () => {
               };
             }}
           >
-            <li class="flex items-center">
+            <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 6
               </span>

@@ -143,7 +143,7 @@ export const ExperienceReviewSection = () => {
           Back
         </NavLink>
         <NavLink
-          to="/CV-Details/1/Education-Section"
+          to="/CV-Details/1/Skills-Section"
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue
