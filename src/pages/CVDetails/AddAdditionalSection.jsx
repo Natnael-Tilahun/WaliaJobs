@@ -97,9 +97,7 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="language"
             />
-            <label htmlFor="language" for="language">
-              Language
-            </label>
+            <label htmlFor="language">Language</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -108,9 +106,7 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="certifications"
             />
-            <label htmlFor="certifications" for="certifications">
-              Certifications
-            </label>
+            <label htmlFor="certifications">Certifications</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -119,9 +115,7 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="accomplishments"
             />
-            <label htmlFor="accomplishments" for="accomplishments">
-              Accomplishments
-            </label>
+            <label htmlFor="accomplishments">Accomplishments</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -130,7 +124,7 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="additionalInformation"
             />
-            <label htmlFor="additionalInformation" for="additionalInformation">
+            <label htmlFor="additionalInformation">
               Additional Information
             </label>
           </div>

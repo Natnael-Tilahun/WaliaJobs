@@ -1,31 +1,17 @@
 import React, { useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink, useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
-
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(4, "Too Short!")
-    .max(50, "Too Long!")
-    .required("FirstName Required"),
-  lastName: Yup.string().required("LastName Required"),
-  position: Yup.string().required("Position Required"),
-  city: Yup.string().required("City Required"),
-  country: Yup.string().required("Country Required"),
-  postCode: Yup.string(),
-  phone: Yup.string()
-    .min(9, "Too Short!")
-    .max(20, "Too Long!")
-    .required("Phone Number Required!"),
-  email: Yup.string().email("Invalid Email").required("Required"),
-});
+import { personalInfoValidationSchema } from "../../validations/personalInfoSchema";
 
 export const ContactSection = () => {
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     console.log("values", values);
     navigate("/CV-Details/1/Education-Section");
+  };
+  const handleBack = () => {
+    navigate(-1);
   };
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5">
@@ -49,7 +35,7 @@ export const ContactSection = () => {
           phone: "",
           email: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={personalInfoValidationSchema}
         onSubmit={handleSubmit}
         className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full"
       >
@@ -151,12 +137,12 @@ export const ContactSection = () => {
                 name="email"
               />
             </div>
-            <NavLink
-              to={-1}
-              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+            <button
+              onClick={handleBack}
+              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-1  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Back
-            </NavLink>
+            </button>
             <button
               // to="/CV-Details/1/Experience-Section"
               type="submit"
