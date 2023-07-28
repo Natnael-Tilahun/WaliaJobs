@@ -1,32 +1,37 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { JobCard } from "../components/JobCard";
-import { Sidebar } from "../components/Sidebar";
-import { JobsData } from "../../data/jobs";
-import { useSearchParams } from "react-router-dom";
-import { NoResultFound } from "../components/NoResultFound";
+import React, { useEffect, useState, useMemo } from 'react';
+import { JobCard } from '../components/JobCard';
+import { Sidebar } from '../components/Sidebar';
+import { JobsData } from '../../data/jobs';
+import { useSearchParams } from 'react-router-dom';
+import { NoResultFound } from '../components/NoResultFound';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Jobs = () => {
-  const [jobs, setJobs] = useState();
+  // const [jobs, setJobs] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { jobsList } = useSelector((state) => state.jobs);
+  const jobs = jobsList[0];
 
   const queryParams = new URLSearchParams(window.location.search);
 
   const selectedFilters = {
-    experienceFilter: queryParams.getAll("experience"),
-    workModeFilter: queryParams.getAll("workMode"),
-    locationFilter: queryParams.getAll("location"),
-    departmentFilter: queryParams.getAll("department"),
-    companyTypeFilter: queryParams.getAll("companyType"),
+    experienceFilter: queryParams.getAll('experience'),
+    workModeFilter: queryParams.getAll('workMode'),
+    locationFilter: queryParams.getAll('location'),
+    departmentFilter: queryParams.getAll('department'),
+    companyTypeFilter: queryParams.getAll('companyType'),
   };
-  console.log(
-    "search params in the jobs page========",
-    selectedFilters.departmentFilter
-  );
-  let filteredJobs = [];
+  // console.log(
+  //   'search params in the jobs page========',
+  //   selectedFilters.departmentFilter
+  // );
+  // let filteredJobs = [];
 
-  useEffect(() => {
-    setJobs(JobsData);
-  }, []);
+  // useEffect(() => {
+  //   setJobs(JobsData);
+  // }, []);
+  console.log('dataddddddddddd', jobs[0]);
 
   const displayedJobs = useMemo(() => {
     // Assuming the job data is available in an array called 'jobs'
@@ -72,9 +77,9 @@ export const Jobs = () => {
       <Sidebar />
       <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
         {displayedJobs && displayedJobs.length > 0 ? (
-          displayedJobs.map((job) => (
+          displayedJobs.map((job, index) => (
             <JobCard
-              key={job.id}
+              key={index}
               id={job.id}
               title={job.title}
               companyName={job.companyName}
