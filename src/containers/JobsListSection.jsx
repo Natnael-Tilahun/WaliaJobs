@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { JobCard } from "../components/JobCard";
 import { NavLink } from "react-router-dom";
 import { JobsData } from "../../data/jobs";
+import { useSelector } from "react-redux";
 
 export const JobsList = () => {
-  const [jobsData, setJobsData] = useState([]);
-  useEffect(() => {
-    setJobsData(JobsData);
-  }, []);
+  // const [jobsData, setJobsData] = useState([]);
+  const { jobsList:jobsData } = useSelector((state) => state.jobs);
+  // console.log('dafddsss',jobsData)
+  // const jobsData = jobsList
+  // useEffect(() => {
+  //   // setJobsData(JobsData);
+  // }, []);
 
   return (
     <div className="w-full bg-thm_background text-center md:py-16 xl:py-20 py-5 px-5 md:px-10 lg:px-20">

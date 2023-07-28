@@ -1,9 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ShareLinks } from "../components/ShareLinks.jsx";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-import { JobsData } from "../../data/jobs";
+// import { JobsData } from "../../data/jobs";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavouriteJob, removeFavouriteJobs } from "../redux/favouriteJobsSlice.jsx";
+
 
 function JobDetail(props) {
+
   return (
     <div className="flex flex-col text-thm_secondary_color items-start w-full border-b-2 py-2">
       <div className="flex justify-between w-full">
@@ -40,8 +44,10 @@ function JobDetail(props) {
 export const JobDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { id } = useParams();
-  // console.log("searchParams", id);
+const dispatch = useDispatch()
 
+  // console.log("searchParams", id);
+  const { jobsList:JobsData } = useSelector((state) => state.jobs);
   const jobDetail = JobsData.filter((job) => job.id == id);
   const [isFavorite, setIsFavorite] = useState(jobDetail[0].isFavorite);
 
@@ -51,10 +57,10 @@ export const JobDetails = () => {
     setShowPopup(!showPopup);
   };
 
-  const handleSaveJob = () => {
-    setIsFavorite((prevState) => !prevState);
-    jobDetail[0].isFavorite = isFavorite;
-  };
+  // const handleSaveJob = () => {
+  //   setIsFavorite((prevState) => !prevState);
+  //   // jobDetail[0].isFavorite = isFavorite;
+  // };
 
   const job1 = {
     title: "IT Officer",
@@ -204,13 +210,14 @@ export const JobDetails = () => {
                 </svg>
                 {/* <p>Share</p> */}
               </div>
-              <div>
+              <div >
                 {isFavorite ? (
                   <svg
                     className="w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    onClick={handleSaveJob}
+                    // onClick={handleSaveJob}
+                    onClick={() => dispatch(removeFavouriteJobs(jobDetail[0].id))}
                   >
                     <path
                       className="fill-thm_root2_color"
@@ -220,9 +227,10 @@ export const JobDetails = () => {
                 ) : (
                   <svg
                     className="w-6"
-                    onClick={handleSaveJob}
+                    // onClick={handleSaveJob}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
+                    onClick={() => dispatch(addFavouriteJob(jobDetail[0]))}
                   >
                     <path
                       className="fill-thm_primary_color"

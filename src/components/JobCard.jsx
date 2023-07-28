@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { addFavouriteJob, removeFavouriteJobs } from "../redux/favouriteJobsSlice";
+import { useDispatch } from "react-redux";
 
 export const JobCard = ({
   title,
@@ -16,12 +18,17 @@ export const JobCard = ({
   searchParams,
   id,
   isFavorite,
+  jobDetail
 }) => {
+  const dispatch = useDispatch()
   return (
+    <div
+    className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
+    >
     <NavLink
       to={`/job_details/${id}`}
       state={{ search: searchParams }}
-      className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
+      className="flex flex-col gap-2 "
     >
       <div className="flex justify-between items-center">
         <h1 className="font-bold text-base lg:text-xl text-left">{title}</h1>
@@ -54,6 +61,8 @@ export const JobCard = ({
             (item, index) => index < 3 && <span key={index}>{item}</span>
           )}
       </div>
+    </NavLink>
+
       <div className="flex justify-between gap-3 text-sm lg:text-base">
         <button className="bg-[#C9FEB1] px-3  lg:px-8 rounded-md font-medium text-gray-800">
           {timeLeft}
@@ -73,12 +82,14 @@ export const JobCard = ({
               </svg>
               {/* <p>Share</p> */}
             </div>
-            <div>
+              
+            <div >
               {isFavorite ? (
                 <svg
                   className="w-7"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
+                  onClick={() => dispatch(removeFavouriteJobs(id))}
                 >
                   <path
                     className="fill-thm_root2_color"
@@ -90,6 +101,7 @@ export const JobCard = ({
                   className="w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
+                  onClick={() => dispatch(addFavouriteJob(jobDetail))}
                 >
                   <path
                     className="fill-thm_primary_color"
@@ -101,6 +113,6 @@ export const JobCard = ({
           </div>
         )}
       </div>
-    </NavLink>
+    </div>
   );
 };

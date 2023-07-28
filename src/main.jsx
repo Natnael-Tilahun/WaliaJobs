@@ -31,6 +31,7 @@ import { BlogDetails } from './pages/BlogDetails';
 import { SavedJobs } from './pages/SavedJobs';
 import { CompanyDetails } from './pages/CompanyDetails';
 import { AboutCompany } from './pages/CompanyDetails/AboutCompany';
+import { CompanyJobs } from './pages/CompanyDetails/CompanyJobs';
 import { Reviews } from './pages/CompanyDetails/Reviews';
 import { Benefits } from './pages/CompanyDetails/Benefits';
 import { WriteReview } from './pages/WriteReview';
@@ -55,7 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Route>
             <Route path="/company-details/:id" element={<CompanyDetails />}>
               <Route index element={<AboutCompany />} />
-              <Route path="jobs" element={<Jobs />} />
+              <Route path="jobs" element={<CompanyJobs />} />
               <Route path="reviews" element={<Reviews />} />
               <Route path="benefits" element={<Benefits />} />
             </Route>
