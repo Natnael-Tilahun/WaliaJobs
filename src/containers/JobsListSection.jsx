@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { JobCard } from "../components/JobCard";
-import { NavLink } from "react-router-dom";
-import { JobsData } from "../../data/jobs";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { JobCard } from '../components/JobCard';
+import { NavLink } from 'react-router-dom';
+import { JobsData } from '../../data/jobs';
+import { useSelector } from 'react-redux';
 
 export const JobsList = () => {
   // const [jobsData, setJobsData] = useState([]);
-  const { jobsList:jobsData } = useSelector((state) => state.jobs);
+  const { jobsList: jobsData } = useSelector((state) => state.jobs);
   // console.log('dafddsss',jobsData)
   // const jobsData = jobsList
   // useEffect(() => {
@@ -17,39 +17,24 @@ export const JobsList = () => {
     <div className="w-full bg-thm_background text-center md:py-16 xl:py-20 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Recent Jobs</h1>
       <div className="flex gap-10 flex-wrap py-12 justify-center lg:justify-between">
-        {jobsData.map(
-          ({
-            id,
-            title,
-            companyName,
-            companyType,
-            jobType,
-            description,
-            workMode,
-            department,
-            experience,
-            location,
-            timeLeft,
-            img,
-            isFavorite,
-            jobTags,
-          }) => (
-            <JobCard
-              key={id}
-              id={id}
-              title={title}
-              companyName={companyName}
-              jobType={companyType}
-              workMode={workMode}
-              description={description}
-              location={location}
-              jobTags={jobTags}
-              timeLeft={timeLeft}
-              img={img}
-              className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
-            />
-          )
-        )}
+        {jobsData.map((job) => (
+          <JobCard
+            key={job.id}
+            id={job.id}
+            title={job.title}
+            companyName={job.companyName}
+            jobType={job.companyType}
+            workMode={job.workMode}
+            description={job.description}
+            location={job.location}
+            jobTags={job.jobTags}
+            timeLeft={job.timeLeft}
+            img={job.img}
+            showShareAndSaveBtn={true}
+            jobDetail={job}
+            className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
+          />
+        ))}
       </div>
       <NavLink
         to="/jobs"

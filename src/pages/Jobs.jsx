@@ -5,13 +5,16 @@ import { JobsData } from '../../data/jobs';
 import { useSearchParams } from 'react-router-dom';
 import { NoResultFound } from '../components/NoResultFound';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavouriteJob, removeFavouriteJobs } from '../redux/favouriteJobsSlice';
+import {
+  addFavouriteJob,
+  removeFavouriteJobs,
+} from '../redux/favouriteJobsSlice';
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const { jobsList:jobs } = useSelector((state) => state.jobs);
+  const { jobsList: jobs } = useSelector((state) => state.jobs);
   // const jobs = jobsList;a
   // alert(jobs[0].isFavorite)
 
@@ -95,6 +98,7 @@ export const Jobs = () => {
               searchParams={searchParams.toString()}
               showShareAndSaveBtn={true}
               isFavorite={job.isFavorite}
+              jobDetail={job}
             />
           ))
         ) : (

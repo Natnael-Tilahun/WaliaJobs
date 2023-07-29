@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { addFavouriteJob, removeFavouriteJobs } from "../redux/favouriteJobsSlice";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import {
+  addFavouriteJob,
+  removeFavouriteJobs,
+} from '../redux/favouriteJobsSlice';
+import { useDispatch } from 'react-redux';
 
 export const JobCard = ({
   title,
@@ -18,50 +21,50 @@ export const JobCard = ({
   searchParams,
   id,
   isFavorite,
-  jobDetail
+  jobDetail,
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <div
-    className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
+      className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
     >
-    <NavLink
-      to={`/job_details/${id}`}
-      state={{ search: searchParams }}
-      className="flex flex-col gap-2 "
-    >
-      <div className="flex justify-between items-center">
-        <h1 className="font-bold text-base lg:text-xl text-left">{title}</h1>
-        {img && (
-          <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
-        )}
-      </div>
-      <div className="flex gap-7 lg:gap-14 font-semibold text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
-        <p>{companyName}</p>
-        <p>
-          <span>{workMode}</span>, {location}
-        </p>
-        <p>{jobType}</p>
-      </div>
-      {description && (
-        <div className="text-left text-gray-500 dark:text-thm_dark_secondary_color text-xs md:text-sm flex gap-0 h-4 md:h-6">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-8 h-6 fill-gray-400"
-          >
-            <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path>
-          </svg>
-          <p className="overflow-hidden w-full">{description}</p>
-          {/* <span>...</span> */}
-        </div>
-      )}
-      <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-sm">
-        {jobTags &&
-          jobTags.map(
-            (item, index) => index < 3 && <span key={index}>{item}</span>
+      <NavLink
+        to={`/job_details/${id}`}
+        state={{ search: searchParams }}
+        className="flex flex-col gap-2 "
+      >
+        <div className="flex justify-between items-center">
+          <h1 className="font-bold text-base lg:text-xl text-left">{title}</h1>
+          {img && (
+            <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
           )}
-      </div>
-    </NavLink>
+        </div>
+        <div className="flex gap-7 lg:gap-14 font-semibold text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
+          <p>{companyName}</p>
+          <p>
+            <span>{workMode}</span>, {location}
+          </p>
+          <p>{jobType}</p>
+        </div>
+        {description && (
+          <div className="text-left text-gray-500 dark:text-thm_dark_secondary_color text-xs md:text-sm flex gap-0 h-4 md:h-6">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-6 fill-gray-400"
+            >
+              <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path>
+            </svg>
+            <p className="overflow-hidden w-full">{description}</p>
+            {/* <span>...</span> */}
+          </div>
+        )}
+        <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-sm">
+          {jobTags &&
+            jobTags.map(
+              (item, index) => index < 3 && <span key={index}>{item}</span>
+            )}
+        </div>
+      </NavLink>
 
       <div className="flex justify-between gap-3 text-sm lg:text-base">
         <button className="bg-[#C9FEB1] px-3  lg:px-8 rounded-md font-medium text-gray-800">
@@ -82,8 +85,8 @@ export const JobCard = ({
               </svg>
               {/* <p>Share</p> */}
             </div>
-              
-            <div >
+
+            <div>
               {isFavorite ? (
                 <svg
                   className="w-7"

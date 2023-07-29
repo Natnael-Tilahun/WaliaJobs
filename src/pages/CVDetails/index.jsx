@@ -1,67 +1,16 @@
-import React, { useState, useRef } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useState, useRef } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { CVDetail } from './CVDetail';
 
 export const CVDetails = () => {
-  const data = {
-    name: "John Doe",
-    jobTitle: "Software Engineer",
-    contactInformation: {
-      email: "john.doe@example.com",
-      phone: "123-456-7890",
-      address: "123 Main Street, City, Country",
-    },
-    profileSummary:
-      "Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.",
-    workExperience: [
-      {
-        company: "ABC Company",
-        jobTitle: "Software Engineer",
-        location: "City, Country",
-        startDate: "2018",
-        endDate: "Present",
-        responsibilities: [
-          "Developed and maintained web applications using React and Node.js.",
-          "Collaborated with cross-functional teams to deliver high-quality software solutions.",
-          "Implemented efficient algorithms to optimize application performance.",
-        ],
-      },
-      {
-        company: "XYZ Corporation",
-        jobTitle: "Frontend Developer",
-        location: "City, Country",
-        startDate: "2016",
-        endDate: "2018",
-        responsibilities: [
-          "Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.",
-          "Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.",
-          "Performed code reviews and provided technical guidance to junior developers.",
-        ],
-      },
-    ],
-    education: {
-      degree: "Bachelor of Science in Computer Science",
-      university: "University of ABC",
-      location: "City, Country",
-      graduationYear: "2016",
-    },
-    skills: ["JavaScript", "React", "Node.js", "HTML", "CSS"],
-    awards: ["Best Employee of the Year", "Outstanding Achievement Award"],
-    personalProjects: [
-      "Personal Blog - Built a blog website using React and Express.",
-      "Portfolio Website - Developed a portfolio website to showcase my projects.",
-    ],
-    languages: ["English", "Spanish"],
-    interests: ["Reading", "Traveling", "Playing guitar"],
-    references: ["Available upon request"],
-  };
-  const [firstname, setFirstname] = useState("Natnael");
-  const [lastname, setLastname] = useState("Tilahun");
-  const [position, setPosition] = useState("Software Engineer");
-  const [city, setCity] = useState("Addis Abeba");
-  const [country, setCountry] = useState("Ethiopia");
-  const [postcode, setPostcode] = useState("0000");
-  const [phone, setPhone] = useState("0933654654");
-  const [email, setEmail] = useState("natnaeltilahun97@gmail.com");
+  const [firstname, setFirstname] = useState('Natnael');
+  const [lastname, setLastname] = useState('Tilahun');
+  const [position, setPosition] = useState('Software Engineer');
+  const [city, setCity] = useState('Addis Abeba');
+  const [country, setCountry] = useState('Ethiopia');
+  const [postcode, setPostcode] = useState('0000');
+  const [phone, setPhone] = useState('0933654654');
+  const [email, setEmail] = useState('natnaeltilahun97@gmail.com');
 
   const firstnameRef = useRef();
   const lastnameRef = useRef();
@@ -80,7 +29,7 @@ export const CVDetails = () => {
             to="/CV-Details/:id"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -111,7 +60,7 @@ export const CVDetails = () => {
             to="Education-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -142,7 +91,7 @@ export const CVDetails = () => {
             to="Experience-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -173,7 +122,7 @@ export const CVDetails = () => {
             to="Skills-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -204,7 +153,7 @@ export const CVDetails = () => {
             to="Summary-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -235,7 +184,7 @@ export const CVDetails = () => {
             to="Additional-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -249,7 +198,7 @@ export const CVDetails = () => {
         </ol>
         <Outlet />
       </div>
-      <div className="bg-gray-100 dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
+      {/* <div className="bg-gray-100 border-4 border-red-800 dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
         <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="bg-blue-500 py-2 px-6">
             <div className="flex items-center">
@@ -318,7 +267,7 @@ export const CVDetails = () => {
                 className="font-black   basis-full md:basis-auto text-[#e96c51] self-center text-sm "
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
                   };
                 }}
               >
@@ -341,7 +290,7 @@ export const CVDetails = () => {
                     {experience.company} - {experience.jobTitle}
                   </h4>
                   <p className="">
-                    {experience.location} | {experience.startDate} -{" "}
+                    {experience.location} | {experience.startDate} -{' '}
                     {experience.endDate}
                   </p>
                   <ul className=" list-disc list-inside">
@@ -399,7 +348,8 @@ export const CVDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <CVDetail />
     </div>
   );
 };

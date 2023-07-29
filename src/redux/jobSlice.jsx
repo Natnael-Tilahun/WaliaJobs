@@ -9,15 +9,16 @@ const jobSlice = createSlice({
   name: 'jobs',
   initialState,
   reducers: {
-    toogleFavorite(state, action){
+    toogleFavorite(state, action) {
+      alert('toggle');
       const jobId = action.payload;
-      state.jobs = state.jobsList.map(job => {
+      state.jobs = state.jobsList.map((job) => {
         if (job.id === jobId) {
           job.isFavorite = !job.isFavorite;
         }
         return job;
       });
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getJobsData.fulfilled, (state, action) => {
@@ -28,7 +29,7 @@ const jobSlice = createSlice({
 });
 
 export default jobSlice.reducer;
-export const {toogleFavorite} = jobSlice.actions
+export const { toogleFavorite } = jobSlice.actions;
 
 export const getJobsData = createAsyncThunk('jobs/get', async () => {
   return JobsData;
