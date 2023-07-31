@@ -1,17 +1,21 @@
-import React, { useState, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { experienceValidationSchema } from "../../validations/experienceSchema";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import React, { useState, useRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { experienceValidationSchema } from '../../validations/experienceSchema';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { useDispatch } from 'react-redux';
+import { SET_EXPERIENCE } from '../../redux/experienceInfoSlice';
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     if (values.isCurrentlyWorkingThere) {
-      values.endDate = "Present";
+      values.endDate = 'Present';
     }
     console.log(values);
-    navigate("/CV-Details/1/Experience-Detail");
+    dispatch(SET_EXPERIENCE(values));
+    navigate('/CV-Details/1/Experience-Detail');
   };
   const handleBack = () => navigate(-1);
 
@@ -32,12 +36,12 @@ export const ExperienceSection = () => {
 
       <Formik
         initialValues={{
-          jobTitle: "",
-          employer: "",
-          city: "",
-          country: "",
-          startDate: "",
-          endDate: "",
+          jobTitle: '',
+          employer: '',
+          city: '',
+          country: '',
+          startDate: '',
+          endDate: '',
           isCurrentlyWorkingThere: false,
         }}
         validationSchema={experienceValidationSchema}
@@ -149,7 +153,7 @@ export const ExperienceSection = () => {
             </div>
             <button
               onClick={handleBack}
-              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Back
             </button>

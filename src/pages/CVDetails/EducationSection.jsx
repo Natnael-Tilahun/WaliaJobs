@@ -1,14 +1,30 @@
-import React, { useState, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { educationValidationSchema } from "../../validations/educationSchema";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import React, { useState, useRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { educationValidationSchema } from '../../validations/educationSchema';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import educationInfoSlice, {
+  SET_QUALIFICATION,
+  SET_INSTITUTION,
+  SET_LOCATION,
+  SET_GRADUATION_YEAR,
+  SET_FIELD_OF_STUDY,
+} from '../../redux/educationInfoSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const EducationSection = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { qualification, institution, fieldOfStudy, location, graduationYear } =
+    useSelector((state) => state.educationInfo);
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
-    navigate("/CV-Details/1/Experience-Section");
+    dispatch(SET_QUALIFICATION(values.qualification));
+    dispatch(SET_FIELD_OF_STUDY(values.fieldOfStudy));
+    dispatch(SET_INSTITUTION(values.institution));
+    dispatch(SET_LOCATION(values.location));
+    dispatch(SET_GRADUATION_YEAR(values.graduationYear));
+    navigate('/CV-Details/1/Experience-Section');
   };
   const handleBack = () => navigate(-1);
   return (
@@ -24,11 +40,11 @@ export const EducationSection = () => {
 
       <Formik
         initialValues={{
-          institution: "",
-          city: "",
-          qualification: "",
-          fieldOfStudy: "",
-          yearOfGraduation: "",
+          institution: institution,
+          location: location,
+          qualification: qualification,
+          fieldOfStudy: fieldOfStudy,
+          graduationYear: graduationYear,
         }}
         validateOn
         validationSchema={educationValidationSchema}
@@ -51,17 +67,17 @@ export const EducationSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="city">City - State</label>
+              <label htmlFor="location">City - State</label>
               <Field
                 type="text"
-                name="city"
-                id="city"
+                name="location"
+                id="location"
                 placeholder="Addis Abeba"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="city"
+                name="location"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
@@ -93,17 +109,17 @@ export const EducationSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="yearOfGraduation">Year of Graduation</label>
+              <label htmlFor="graduationYear">Year of Graduation</label>
               <Field
                 type="date"
-                name="yearOfGraduation"
-                id="yearOfGraduation"
+                name="graduationYear"
+                id="graduationYear"
                 placeholder="10/10/2020"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="yearOfGraduation"
+                name="graduationYear"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2"></div>

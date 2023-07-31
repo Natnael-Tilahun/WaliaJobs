@@ -1,20 +1,24 @@
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { summaryValidationSchema } from "../../validations/summarySchema";
-import { Formik, Form, ErrorMessage } from "formik";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { summaryValidationSchema } from '../../validations/summarySchema';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { useDispatch } from 'react-redux';
+import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
 
 export const SummarySection = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const quillRef = useRef(null);
 
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
     console.log(values.summaryDetails);
-    navigate("/CV-Details/1/Additional-Section");
+    dispatch(SET_SUMMARY(values.summaryDetails));
+    navigate('/CV-Details/1/Additional-Section');
   };
 
   const handleBack = navigate(-1);
@@ -35,7 +39,7 @@ export const SummarySection = () => {
 
       <Formik
         initialValues={{
-          summaryDetails: "",
+          summaryDetails: '',
         }}
         validationSchema={summaryValidationSchema}
         onSubmit={handleSubmit}
@@ -48,7 +52,7 @@ export const SummarySection = () => {
                 value={formik.values.summaryDetails}
                 name="summaryDetails"
                 onChange={(value) =>
-                  formik.setFieldValue("summaryDetails", value)
+                  formik.setFieldValue('summaryDetails', value)
                 }
                 className="lg:h-full h-1/2"
               />

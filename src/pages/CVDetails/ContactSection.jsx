@@ -1,14 +1,44 @@
-import React, { useState, useRef } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { NavLink, useNavigate } from "react-router-dom";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
-import { personalInfoValidationSchema } from "../../validations/personalInfoSchema";
+import React, { useState, useRef } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { personalInfoValidationSchema } from '../../validations/personalInfoSchema';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  SET_FIRST_NAME,
+  SET_LAST_NAME,
+  SET_POSITION,
+  CLEAR_CV_DATA,
+} from '../../redux/personalInfoSlice';
+import {
+  SET_CITY,
+  SET_POSTCODE,
+  SET_PHONE,
+  SET_EMAIL,
+  SET_COUNTRY,
+} from '../../redux/contactInfoSlice';
 
 export const ContactSection = () => {
+  const dispatch = useDispatch();
+  const { firstName, lastName, position } = useSelector(
+    (state) => state.personalInfo
+  );
+  const { city, phone, postCode, email, country } = useSelector(
+    (state) => state.contactInfo
+  );
+
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
-    console.log("values", values);
-    navigate("/CV-Details/1/Education-Section");
+    console.log('values', values);
+    dispatch(SET_FIRST_NAME(values.firstName));
+    dispatch(SET_LAST_NAME(values.lastName));
+    dispatch(SET_POSITION(values.position));
+    dispatch(SET_CITY(values.city));
+    dispatch(SET_COUNTRY(values.country));
+    dispatch(SET_PHONE(values.phone));
+    dispatch(SET_POSTCODE(values.postCode));
+    dispatch(SET_EMAIL(values.email));
+    navigate('/CV-Details/1/Education-Section');
   };
   const handleBack = () => {
     navigate(-1);
@@ -26,14 +56,14 @@ export const ContactSection = () => {
       </div>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
-          position: "",
-          city: "",
-          country: "",
-          postCode: "",
-          phone: "",
-          email: "",
+          firstName: firstName,
+          lastName: lastName,
+          position: position,
+          city: city,
+          country: country,
+          postCode: postCode,
+          phone: phone,
+          email: email,
         }}
         validationSchema={personalInfoValidationSchema}
         onSubmit={handleSubmit}

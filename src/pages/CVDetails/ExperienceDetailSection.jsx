@@ -1,23 +1,28 @@
-import React, { useState, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { Formik, Form, ErrorMessage } from "formik";
-import { experienceDetailValidationSchema } from "../../validations/experienceDetailSchema";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import React, { useState, useRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { experienceDetailValidationSchema } from '../../validations/experienceDetailSchema';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { useDispatch } from 'react-redux';
+import { SET_EXPERIENCE_DETAILS } from '../../redux/experienceInfoSlice';
 
 export const ExperienceDetailSection = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const quillRef = useRef(null);
 
   const handleSubmit = (values) => {
+    alert('llll');
     // Handle form submission and access form values
     console.log(values.experienceDetails);
-    navigate("/CV-Details/1/Experience-Review");
+    console.log(SET_EXPERIENCE_DETAILS);
+    dispatch(SET_EXPERIENCE_DETAILS(values.experienceDetails));
+    navigate('/CV-Details/1/Experience-Review');
   };
 
-  const handleBack = navigate(-1);
+  const handleBack = () => navigate(-1);
 
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5">
@@ -31,7 +36,7 @@ export const ExperienceDetailSection = () => {
       </div>
       <Formik
         initialValues={{
-          experienceDetails: "",
+          experienceDetails: '',
         }}
         validationSchema={experienceDetailValidationSchema}
         onSubmit={handleSubmit}
@@ -43,7 +48,7 @@ export const ExperienceDetailSection = () => {
                 ref={quillRef}
                 value={formik.values.experienceDetails}
                 onChange={(value) =>
-                  formik.setFieldValue("experienceDetails", value)
+                  formik.setFieldValue('experienceDetails', value)
                 }
                 onBlur={formik.handleBlur}
                 className="lg:h-full h-1/2 focus:border-thm_root1_color focus:outline-none"
