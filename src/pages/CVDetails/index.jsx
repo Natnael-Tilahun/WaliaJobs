@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { CVDetail } from './CVDetail';
+import { CVTemplate } from './CVTemplate';
 
 export const CVDetails = () => {
   const [firstname, setFirstname] = useState('Natnael');
@@ -349,7 +349,7 @@ export const CVDetails = () => {
           </div>
         </div>
       </div> */}
-      <CVDetail />
+      <CVTemplate />
     </div>
   );
 };
