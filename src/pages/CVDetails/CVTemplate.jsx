@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { DeltaView } from './DeltaView';
 
 export const CVTemplate = () => {
   const personalInfoData = useSelector((state) => state.personalInfo);
@@ -75,9 +77,14 @@ export const CVTemplate = () => {
   //     references: ['Available upon request'],
   //   };
   console.log('cv data', personalInfoData, experienceInfoData);
+
+  //   experience.responsibilities.map((responsibility, idx) => (
+  //     <li key={idx}>{responsibility}</li>
+  //   ))}
+
   return (
-    <div className="bg-gray-100 border-4 max:h-[800px] border-red-800 dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
-      <div className="max-w-xl  mx-auto h-full border-4 border-green-700 bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-gray-100 max:h-[800px]  dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
+      <div className="max-w-xl  mx-auto h-full bg-white shadow-lg rounded-lg overflow-hidden">
         {/* personal info  */}
         <div className="bg-blue-500 py-2 px-6">
           <div className="flex items-center">
@@ -98,8 +105,8 @@ export const CVTemplate = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-0 h-full">
-          <div className="bg-slate-300 border-4 h-[90%] border-blue-800 basis-[25%] text-xxxs md:text-xxs p-2 md:p-3 flex flex-col gap-1 ">
+        <div className="flex gap-0 h-screen">
+          <div className="bg-slate-300 h-full  basis-[25%] text-xxxs md:text-xxs p-2 md:p-3 flex flex-col gap-1 ">
             {/* contact info */}
             <h1 className="font-medium md:text-xs py-1">Contact</h1>
             <div className="flex items-center gap-1">
@@ -138,16 +145,16 @@ export const CVTemplate = () => {
             <hr className="my-1" />
             {/* skills info */}
             <h3 className="md:text-xs font-semibold mt-1">Skills</h3>
-            <ul className="list-disc list-inside md:text-xxs mb-auto">
+            <ul className="list-disc list-inside md:text-xxs">
               {skillsInfoData.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
             </ul>
-            {/* <hr className="my-1" /> */}
+            <hr className="my-1" />
 
             <NavLink
               to="/"
-              className="font-black border-4 basis-full md:basis-auto text-[#e96c51] self-center text-sm "
+              className="font-black mt-auto basis-full md:basis-auto text-[#e96c51] self-center text-sm "
               style={({ isActive }) => {
                 return {
                   borderBottom: isActive ? '3px solid #fa6d4d' : '',
@@ -172,22 +179,26 @@ export const CVTemplate = () => {
             {experienceInfoData.map((experience, index) => (
               <div key={index} className="md:my-2 my-1 md:text-xxs">
                 <h4 className=" font-semibold">
-                  {experience.company} - {experience.jobTitle}
+                  {experience.employer} - {experience.jobTitle}
                 </h4>
                 <p className="">
-                  {experience.location} | {experience.startDate} -{' '}
-                  {experience.endDate}
+                  {experience.city} , {experience.country} |{' '}
+                  {experience.startDate} -{experience.endDate}
                 </p>
-                <ul className=" list-disc list-inside">
-                  <div dangerouslySetInnerHTML={{ __html: 'html' }} />
+                {/* <ul className=" list-disc list-inside"> */}
+                {/* <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      experience.responsibilities &&
+                      experience.responsibilities,
+                  }}
+                ></div> */}
+                {/* </ul> */}
+                {experience.responsibilities && (
+                  <DeltaView delta={experience.responsibilities} />
+                )}
 
-                  {
-                    experience.responsibilities && experience.responsibilities
-                    //   experience.responsibilities.map((responsibility, idx) => (
-                    //     <li key={idx}>{responsibility}</li>
-                    //   ))}
-                  }
-                </ul>
+                {/* <ReactQuill value={experience.responsibilities} readOnly /> */}
               </div>
             ))}
             <hr className="md:my-1" />

@@ -14,11 +14,16 @@ export const ExperienceDetailSection = () => {
   const quillRef = useRef(null);
 
   const handleSubmit = (values) => {
-    alert('llll');
+    alert('experience detail submitted');
     // Handle form submission and access form values
-    console.log(values.experienceDetails);
-    console.log(SET_EXPERIENCE_DETAILS);
-    dispatch(SET_EXPERIENCE_DETAILS(values.experienceDetails));
+    // const delta = quillRef.current.getContents();
+    const delta = JSON.stringify(
+      quillRef.current.unprivilegedEditor.getContents()
+    );
+    // const html = quillRef.current.editor.clipboard.convert(delta);
+
+    console.log('responisiblity', delta);
+    dispatch(SET_EXPERIENCE_DETAILS(delta));
     navigate('/CV-Details/1/Experience-Review');
   };
 
