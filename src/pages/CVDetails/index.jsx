@@ -1,16 +1,16 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { CVTemplate } from './CVTemplate';
+import React, { useState, useRef } from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import { CVTemplate } from "./CVTemplate";
 
 export const CVDetails = () => {
-  const [firstname, setFirstname] = useState('Natnael');
-  const [lastname, setLastname] = useState('Tilahun');
-  const [position, setPosition] = useState('Software Engineer');
-  const [city, setCity] = useState('Addis Abeba');
-  const [country, setCountry] = useState('Ethiopia');
-  const [postcode, setPostcode] = useState('0000');
-  const [phone, setPhone] = useState('0933654654');
-  const [email, setEmail] = useState('natnaeltilahun97@gmail.com');
+  const [firstname, setFirstname] = useState("Natnael");
+  const [lastname, setLastname] = useState("Tilahun");
+  const [position, setPosition] = useState("Software Engineer");
+  const [city, setCity] = useState("Addis Abeba");
+  const [country, setCountry] = useState("Ethiopia");
+  const [postcode, setPostcode] = useState("0000");
+  const [phone, setPhone] = useState("0933654654");
+  const [email, setEmail] = useState("natnaeltilahun97@gmail.com");
 
   const firstnameRef = useRef();
   const lastnameRef = useRef();
@@ -24,12 +24,12 @@ export const CVDetails = () => {
   return (
     <div className="flex flex-col md:flex-row py-5 px-5 md:px-0 lg:px-10 w-full justify-center gap-5 md:gap-2 lg:gap-0">
       <div className="basis-full  md:basis-[50%] shadow-lg">
-        <ol className="flex h-auto flex-wrap gap-y-4 mb-7 xl:h-12 items-center w-full p-2 md:p-2 md:py-4 space-x-1 md:space-x-2 text-xxs font-medium text-center text-gray-500 bg-white  border-gray-200 rounded-lg shadow-sm dark:text-gray-400 md:text-xs lg:text-base dark:bg-gray-800 dark:border-gray-700 lg:p-4 lg:space-x-4">
+        <ol className="flex h-auto flex-wrap gap-y-4 mb-7 xl:h-auto items-center w-full p-2 md:p-2 md:py-4 space-x-1 md:space-x-2 text-xxs font-medium text-center text-gray-500 bg-white  border-gray-200 rounded-lg shadow-sm dark:text-gray-400 md:text-xs lg:text-base dark:bg-gray-800 dark:border-gray-700 lg:p-4 lg:space-x-4">
           <NavLink
             to="/CV-Details/:id"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >
@@ -60,7 +60,7 @@ export const CVDetails = () => {
             to="Education-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >
@@ -91,7 +91,7 @@ export const CVDetails = () => {
             to="Experience-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >
@@ -122,7 +122,7 @@ export const CVDetails = () => {
             to="Skills-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >
@@ -153,7 +153,7 @@ export const CVDetails = () => {
             to="Summary-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >
@@ -184,7 +184,7 @@ export const CVDetails = () => {
             to="Additional-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? '#1e40af' : '',
+                color: isActive ? "#1e40af" : "",
               };
             }}
           >

@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
 const actionTypes = (() => {
-  const SET_PERSONAL_PROJECTS = 'personalProjectsInfo/SET_PERSONAL_PROJECTS';
-  const CLEAR_CV_DATA = 'personalProjectsInfo/CLEAR_CV_DATA';
+  const SET_PERSONAL_PROJECTS = "personalProjectsInfo/SET_PERSONAL_PROJECTS";
+  const CLEAR_CV_DATA = "personalProjectsInfo/CLEAR_CV_DATA";
   return {
     SET_PERSONAL_PROJECTS,
     CLEAR_CV_DATA,
@@ -12,7 +12,7 @@ const actionTypes = (() => {
 })();
 
 const personalProjectsInfoSlice = createSlice({
-  name: 'personalProjectsInfo',
+  name: "personalProjectsInfo",
   initialState,
   reducers: {
     [actionTypes.SET_PERSONAL_PROJECTS](state, action) {

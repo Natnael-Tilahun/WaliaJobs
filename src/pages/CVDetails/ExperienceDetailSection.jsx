@@ -1,30 +1,45 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { experienceDetailValidationSchema } from '../../validations/experienceDetailSchema';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch } from 'react-redux';
-import { SET_EXPERIENCE_DETAILS } from '../../redux/experienceInfoSlice';
+import React, { useState, useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Formik, Form, ErrorMessage } from "formik";
+import { experienceDetailValidationSchema } from "../../validations/experienceDetailSchema";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_EXPERIENCE_DETAILS } from "../../redux/experienceInfoSlice";
+import DOMPurify from "dompurify";
 
 export const ExperienceDetailSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const quillRef = useRef(null);
 
+  // const handleHtml = (html) => dispatch(SET_EXPERIENCE_DETAILS(html))
+
+  const handleQuillBlur = (formik) => {
+    // Trigger blur manually
+    formik.setFieldTouched("experienceDetails");
+  };
+
   const handleSubmit = (values) => {
-    alert('experience detail submitted');
+    alert("experience detail submitted");
+    console.log(
+      "DETAILS HTML",
+      DOMPurify.sanitize(values.experienceDetails, {
+        ALLOWED_TAGS: ["ol", "ul", "li", "strong"],
+        ADD_TAGS: ["ol", "ul"],
+        ADD_ATTR: ["ol", "class", "list-decimal"],
+        ADD_ATTR: ["ul", "class", "list-disc"],
+      })
+    );
     // Handle form submission and access form values
     // const delta = quillRef.current.getContents();
-    const delta = JSON.stringify(
-      quillRef.current.unprivilegedEditor.getContents()
-    );
+    // const delta = quillRef.current.unprivilegedEditor.getContents()
     // const html = quillRef.current.editor.clipboard.convert(delta);
 
-    console.log('responisiblity', delta);
-    dispatch(SET_EXPERIENCE_DETAILS(delta));
-    navigate('/CV-Details/1/Experience-Review');
+    // console.log('responisiblity', delta);
+    dispatch(SET_EXPERIENCE_DETAILS(values.experienceDetails));
+    navigate("/CV-Details/1/Experience-Review");
   };
 
   const handleBack = () => navigate(-1);
@@ -41,7 +56,7 @@ export const ExperienceDetailSection = () => {
       </div>
       <Formik
         initialValues={{
-          experienceDetails: '',
+          experienceDetails: "",
         }}
         validationSchema={experienceDetailValidationSchema}
         onSubmit={handleSubmit}
@@ -52,10 +67,13 @@ export const ExperienceDetailSection = () => {
               <ReactQuill
                 ref={quillRef}
                 value={formik.values.experienceDetails}
-                onChange={(value) =>
-                  formik.setFieldValue('experienceDetails', value)
+                onChange={
+                  (value) => formik.setFieldValue("experienceDetails", value)
+                  // handleHtml(value)
                 }
-                onBlur={formik.handleBlur}
+                onBlur={(event) => {
+                  handleQuillBlur(formik);
+                }}
                 className="lg:h-full h-1/2 focus:border-thm_root1_color focus:outline-none"
               />
             </div>

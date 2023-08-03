@@ -50,7 +50,7 @@ export const BuildCvSection = () => {
       <h1 className="font-bold text-3xl">Build your cv</h1>
       {/* <div className="flex gap-10 flex-wrap py-16 justify-center lg:justify-between"> */}
       <Slider {...settings} className="py-16 w-full">
-        <NavLink to="//CV-Details/1">
+        <NavLink to="/CV-Details/1">
           <CvTemplate img="/cvTemplate1.png" className="xl:px-20 px-5" />
         </NavLink>
         <NavLink to="/CV-Details/2">

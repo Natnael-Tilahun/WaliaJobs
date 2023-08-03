@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
   const navigate = useNavigate();
-  const [selectedDepartment, setSelectedDepartment] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [selectedExperience, setSelectedExperience] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedExperience, setSelectedExperience] = useState("");
 
   console.log(
-    'selectedSkills',
+    "selectedSkills",
     selectedDepartment,
-    'experence',
+    "experence",
     selectedExperience,
-    'selectedLocation',
+    "selectedLocation",
     selectedLocation
   );
 
@@ -20,23 +20,23 @@ function Hero() {
     // console.log(departmentFilter);
     const encodedDepartmentFilter = selectedDepartment
       ? encodeURIComponent(selectedDepartment)
-      : '';
+      : "";
     const encodedLocationFilter = selectedLocation
       ? encodeURIComponent(selectedLocation)
-      : '';
+      : "";
     const encodedExperienceFilter = selectedExperience
       ? encodeURIComponent(selectedExperience)
-      : '';
+      : "";
 
     navigate({
-      pathname: '/jobs',
+      pathname: "/jobs",
       search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
     });
   };
   return (
     <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
       <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold py-8  tracking-wider">
-        We hunt{' '}
+        We hunt{" "}
         <span className=" text-[#f8451d] text-3xl md:text-5xl">jobs</span> like
         the wild Walia
       </h1>
@@ -58,7 +58,7 @@ function Hero() {
             value={selectedDepartment}
             onChange={(e) => setSelectedDepartment(e.target.value)}
             placeholder="Select Experience"
-            className="border-r-4 border-l-0  h-full w-full bg-white md:rounded-none rounded-l-full py-2  border-0 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-2 lg:mr-0 focus:outline-none text-gray-600 "
+            className="border-r-4 border-l-0  h-full w-full bg-white md:rounded-none rounded-l-full py-2  border-0 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-2 lg:mr-7 focus:outline-none text-gray-600 "
           >
             <option
               className="text-slate-300"
@@ -66,7 +66,7 @@ function Hero() {
               defaultValue="select department"
               disabled
             >
-              Select Department{' '}
+              Select Department{" "}
             </option>
             <option value="Banking and Insurance">Banking and Insurance</option>
             <option value="Sales and Markating">Sales and Markating</option>
@@ -98,7 +98,7 @@ function Hero() {
             defaultValue="select location"
             disabled
           >
-            Select Location{' '}
+            Select Location{" "}
           </option>
           <option value="addis abeba">Addis Abeba</option>
           <option value="hawassa">Hawassa</option>
@@ -124,7 +124,7 @@ function Hero() {
             defaultValue="select experience"
             disabled
           >
-            Select Experience{' '}
+            Select Experience{" "}
           </option>
           <option value="0">Fresher (Less than a year)</option>
           <option value="1">1 Year</option>

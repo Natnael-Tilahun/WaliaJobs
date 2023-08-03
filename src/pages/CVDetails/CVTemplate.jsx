@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactQuill from 'react-quill';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { DeltaView } from './DeltaView';
+import React from "react";
+import ReactQuill from "react-quill";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+// import { DeltaView } from './DeltaView';
+import DOMPurify from "dompurify";
 
 export const CVTemplate = () => {
   const personalInfoData = useSelector((state) => state.personalInfo);
@@ -19,68 +20,32 @@ export const CVTemplate = () => {
   const interestsInfoData = useSelector((state) => state.interestsInfo);
   const referencesInfoData = useSelector((state) => state.referencesInfo);
 
-  //   const data = {
-  //     personalInformation: {
-  //       firstname: 'Natnael',
-  //       lastname: 'Tilahun',
-  //       jobTitle: 'Software Engineer',
-  //     },
-  //     contactInformation: {
-  //       email: 'john.doe@example.com',
-  //       phone: '123-456-7890',
-  //       city: 'Addis Abeba',
-  //       country: 'Ethiopia',
-  //       postcode: '000',
-  //     },
-  //     profileSummary:
-  //       'Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.',
-  //     workExperience: [
-  //       {
-  //         company: 'ABC Company',
-  //         jobTitle: 'Software Engineer',
-  //         location: 'City, Country',
-  //         startDate: '2018',
-  //         endDate: 'Present',
-  //         responsibilities: [
-  //           'Developed and maintained web applications using React and Node.js.',
-  //           'Collaborated with cross-functional teams to deliver high-quality software solutions.',
-  //           'Implemented efficient algorithms to optimize application performance.',
-  //         ],
-  //       },
-  //       {
-  //         company: 'XYZ Corporation',
-  //         jobTitle: 'Frontend Developer',
-  //         location: 'City, Country',
-  //         startDate: '2016',
-  //         endDate: '2018',
-  //         responsibilities: [
-  //           'Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.',
-  //           'Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.',
-  //           'Performed code reviews and provided technical guidance to junior developers.',
-  //         ],
-  //       },
-  //     ],
-  //     education: {
-  //       degree: 'Bachelor of Science in Computer Science',
-  //       university: 'University of ABC',
-  //       location: 'City, Country',
-  //       graduationYear: '2016',
-  //     },
-  //     skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
-  //     awards: ['Best Employee of the Year', 'Outstanding Achievement Award'],
-  //     personalProjects: [
-  //       'Personal Blog - Built a blog website using React and Express.',
-  //       'Portfolio Website - Developed a portfolio website to showcase my projects.',
-  //     ],
-  //     languages: ['English', 'Spanish'],
-  //     interests: ['Reading', 'Traveling', 'Playing guitar'],
-  //     references: ['Available upon request'],
-  //   };
-  console.log('cv data', personalInfoData, experienceInfoData);
+  const styles = `
+  ol{
+    list-style-type: decimal !important;
+    padding-left: 15px;
+  }
 
-  //   experience.responsibilities.map((responsibility, idx) => (
-  //     <li key={idx}>{responsibility}</li>
-  //   ))}
+  ul {
+    list-style-type: disc !important;
+    padding-left: 25px;
+  }
+
+ol.list-decimal {
+  list-style-type: decimal !important;
+}
+
+ul.list-disc{
+  list-style-type: disc!important ;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+`;
+
+  console.log("cv data", personalInfoData, experienceInfoData);
 
   return (
     <div className="bg-gray-100 max:h-[800px]  dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
@@ -105,10 +70,10 @@ export const CVTemplate = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-0 h-screen">
+        <div className="flex gap-0 h-screen text-gray-700">
           <div className="bg-slate-300 h-full  basis-[25%] text-xxxs md:text-xxs p-2 md:p-3 flex flex-col gap-1 ">
             {/* contact info */}
-            <h1 className="font-medium md:text-xs py-1">Contact</h1>
+            <h1 className="font-semibold md:text-xs py-1">Contact</h1>
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +83,7 @@ export const CVTemplate = () => {
                 <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
               </svg>
               <p className="">
-                {contactInfoData.city}, {contactInfoData.country},{' '}
+                {contactInfoData.city}, {contactInfoData.country},{" "}
                 {contactInfoData.postcode}
               </p>
             </div>
@@ -145,7 +110,7 @@ export const CVTemplate = () => {
             <hr className="my-1" />
             {/* skills info */}
             <h3 className="md:text-xs font-semibold mt-1">Skills</h3>
-            <ul className="list-disc list-inside md:text-xxs">
+            <ul className="list-disc p-2 list-inside md:text-xxs">
               {skillsInfoData.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
@@ -157,7 +122,7 @@ export const CVTemplate = () => {
               className="font-black mt-auto basis-full md:basis-auto text-[#e96c51] self-center text-sm "
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
                 };
               }}
             >
@@ -173,29 +138,36 @@ export const CVTemplate = () => {
             <p className="md:text-xxs">{summaryInfoData}</p>
             <hr className="my-1" />
             {/* work experience section */}
-            <h3 className="md:text-xs text-xxs font-semibold mt-1">
+            <h3 className="md:text-xs text-xxs font-semibold my-2">
               Work Experience
             </h3>
             {experienceInfoData.map((experience, index) => (
-              <div key={index} className="md:my-2 my-1 md:text-xxs">
+              <div
+                key={index}
+                className="md:my-0 my-1 md:text-xxs list-decimal list-disc list-inside"
+              >
                 <h4 className=" font-semibold">
                   {experience.employer} - {experience.jobTitle}
                 </h4>
                 <p className="">
-                  {experience.city} , {experience.country} |{' '}
+                  {experience.city} , {experience.country} |{" "}
                   {experience.startDate} -{experience.endDate}
                 </p>
                 {/* <ul className=" list-disc list-inside"> */}
-                {/* <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      experience.responsibilities &&
-                      experience.responsibilities,
-                  }}
-                ></div> */}
+
                 {/* </ul> */}
+                <style>{styles}</style>
+
                 {experience.responsibilities && (
-                  <DeltaView delta={experience.responsibilities} />
+                  // <DeltaView delta={experience.responsibilities} />
+                  <div
+                    className={`list-decimal list-inside`}
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        experience.responsibilities &&
+                        DOMPurify.sanitize(experience.responsibilities),
+                    }}
+                  ></div>
                 )}
 
                 {/* <ReactQuill value={experience.responsibilities} readOnly /> */}
