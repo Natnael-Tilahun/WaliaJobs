@@ -1,28 +1,61 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { experienceValidationSchema } from '../../validations/experienceSchema';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch } from 'react-redux';
-import { SET_EXPERIENCE } from '../../redux/experienceInfoSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  SET_EXPERIENCE,
+  UPDATE_EXPERIENCE,
+} from '../../redux/experienceInfoSlice';
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id: experienceId } = useParams();
+  const experiences = useSelector((state) => state.experienceInfo);
+  let filterdExperience;
+  let initialValues = {
+    jobTitle: '',
+    employer: '',
+    city: '',
+    country: '',
+    startDate: '',
+    endDate: '',
+    isCurrentlyWorkingThere: false,
+  };
+  if (experienceId) {
+    filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
+    filterdExperience && (initialValues = filterdExperience);
+    console.log('experiences', filterdExperience, initialValues);
+  }
+  // useEffect(() => {
+  //   console.log(experienceId);
+
+  // }, []);
   const handleSubmit = (values, { resetForm }) => {
     if (values.isCurrentlyWorkingThere) {
       values.endDate = 'Present';
     }
-    console.log(values);
-    dispatch(SET_EXPERIENCE(values));
-    navigate('/CV-Details/1/Experience-Detail');
+    if (experienceId > 0) {
+      alert('no exp');
+      console.log('updated values', values);
+      dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
+      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+    } else {
+      const experienceId = experiences.length + 1;
+      values.id = experienceId;
+      console.log('values', values);
+      dispatch(SET_EXPERIENCE(values));
+      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+    }
   };
   const handleBack = () => navigate(-1);
 
   return (
     <div
       action=""
-      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
+      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
@@ -35,15 +68,7 @@ export const ExperienceSection = () => {
       </div>
 
       <Formik
-        initialValues={{
-          jobTitle: '',
-          employer: '',
-          city: '',
-          country: '',
-          startDate: '',
-          endDate: '',
-          isCurrentlyWorkingThere: false,
-        }}
+        initialValues={initialValues}
         validationSchema={experienceValidationSchema}
         onSubmit={handleSubmit}
       >
@@ -57,6 +82,7 @@ export const ExperienceSection = () => {
                 id="jobTitle"
                 placeholder="Developer"
                 className="p-2 border-2 rounded-md"
+                // defaultValue={filterdExperience?.jobTitle}
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}

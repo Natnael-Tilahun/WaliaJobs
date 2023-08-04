@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   const [collapseMenu, setCollapseMenu] = useState(false);
@@ -30,85 +30,77 @@ function Header() {
       </div>
 
       <div className="mr-auto hidden lg:flex gap-10 justify-between flex-1 items-center">
-        <ul className="flex gap-8 text-thm_secondary_color dark:text-thm_dark_secondary_color ">
-          <li>
-            <NavLink
-              to="/"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 `}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="jobs"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 }`}
-            >
-              Jobs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="company"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Companies
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/buildcv"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Build CV
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="contact"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="blogs"
-              style={({ isActive }) => {
-                return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
-                };
-              }}
-              className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Blogs
-            </NavLink>
-          </li>
+        <ul className="flex gap-8 text-thm_secondary_color list-none dark:text-thm_dark_secondary_color ">
+          <NavLink
+            to="/"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 `}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="jobs"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 }`}
+          >
+            Jobs
+          </NavLink>
+
+          <NavLink
+            to="company"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Companies
+          </NavLink>
+
+          <NavLink
+            to="/buildcv"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Build CV
+          </NavLink>
+
+          <NavLink
+            to="contact"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Contact
+          </NavLink>
+
+          <NavLink
+            to="blogs"
+            style={({ isActive }) => {
+              return {
+                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+              };
+            }}
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Blogs
+          </NavLink>
         </ul>
         <div className="flex gap-5">
           <NavLink
@@ -143,7 +135,7 @@ function Header() {
       </div>
       <div
         className={`mr-auto lg:hidden flex-col gap-0 bg-thm_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
-          collapseMenu ? "flex" : "hidden"
+          collapseMenu ? 'flex' : 'hidden'
         }`}
       >
         <div className="flex bg-thm_background dark:bg-thm_dark_background w-full shadow-md justify-between items-center py-4 px-7">
@@ -163,55 +155,53 @@ function Header() {
           </svg>
         </div>
 
-        <ul className="flex w-full flex-col gap-8 justify-center p-10 items-center font-medium text-gray-700 dark:text-thm_dark_primary_color ">
-          <li onClick={menuHandler}>
-            <NavLink
-              to="/"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li onClick={menuHandler}>
-            <NavLink
-              to="jobs"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Jobs
-            </NavLink>
-          </li>
-          <li onClick={menuHandler}>
-            <NavLink
-              to="company"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Companies
-            </NavLink>
-          </li>
-          <li onClick={menuHandler}>
-            <NavLink
-              to="/buildcv"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Build CV
-            </NavLink>
-          </li>
-          <li onClick={menuHandler}>
-            <NavLink
-              to="contact"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li onClick={menuHandler}>
-            <NavLink
-              to="blogs"
-              className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
-            >
-              Blog
-            </NavLink>
-          </li>
+        <ul className="flex w-full flex-col list-none gap-8 justify-center p-10 items-center font-medium text-gray-700 dark:text-thm_dark_primary_color ">
+          <NavLink
+            to="/"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="jobs"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Jobs
+          </NavLink>
+
+          <NavLink
+            to="company"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Companies
+          </NavLink>
+
+          <NavLink
+            to="/buildcv"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Build CV
+          </NavLink>
+
+          <NavLink
+            to="contact"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Contact
+          </NavLink>
+
+          <NavLink
+            to="blogs"
+            onClick={menuHandler}
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+          >
+            Blog
+          </NavLink>
         </ul>
         <div className="flex gap-5 justify-center">
           <NavLink

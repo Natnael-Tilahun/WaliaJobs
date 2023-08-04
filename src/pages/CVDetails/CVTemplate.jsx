@@ -1,16 +1,16 @@
-import React from "react";
-import ReactQuill from "react-quill";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import ReactQuill from 'react-quill';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 // import { DeltaView } from './DeltaView';
-import DOMPurify from "dompurify";
+import DOMPurify from 'dompurify';
 
 export const CVTemplate = () => {
   const personalInfoData = useSelector((state) => state.personalInfo);
   const contactInfoData = useSelector((state) => state.contactInfo);
-  const skillsInfoData = useSelector((state) => state.skillsInfo);
+  const skillsInfoData = useSelector((state) => state.skillsInfo.skills);
   const educationInfoData = useSelector((state) => state.educationInfo);
-  const summaryInfoData = useSelector((state) => state.summaryInfo);
+  const summaryInfoData = useSelector((state) => state.summaryInfo.summary);
   const experienceInfoData = useSelector((state) => state.experienceInfo);
   const achievementsInfoData = useSelector((state) => state.achievementsInfo);
   const personalProjectsInfoData = useSelector(
@@ -28,7 +28,7 @@ export const CVTemplate = () => {
 
   ul {
     list-style-type: disc !important;
-    padding-left: 25px;
+    padding-left: 30px;
   }
 
 ol.list-decimal {
@@ -45,7 +45,31 @@ ul.list-disc{
 
 `;
 
-  console.log("cv data", personalInfoData, experienceInfoData);
+  const skillsStyles = `
+      ol,ul{
+        list-style-type: decimal !important;
+        padding-left: 15px;
+      }
+
+      ul{
+        list-style-type: disc !important;
+        padding-left: 15px;
+      }
+
+      ol.list-decimal {
+        list-style-type: decimal !important;
+      }
+
+      ul.list-disc{
+        list-style-type: disc!important ;
+      }
+
+      .underline {
+        text-decoration: underline;
+      }
+      `;
+
+  console.log('cv data', personalInfoData, experienceInfoData);
 
   return (
     <div className="bg-gray-100 max:h-[800px]  dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
@@ -83,7 +107,7 @@ ul.list-disc{
                 <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
               </svg>
               <p className="">
-                {contactInfoData.city}, {contactInfoData.country},{" "}
+                {contactInfoData.city}, {contactInfoData.country},{' '}
                 {contactInfoData.postcode}
               </p>
             </div>
@@ -110,11 +134,21 @@ ul.list-disc{
             <hr className="my-1" />
             {/* skills info */}
             <h3 className="md:text-xs font-semibold mt-1">Skills</h3>
-            <ul className="list-disc p-2 list-inside md:text-xxs">
-              {skillsInfoData.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
+            {/* <ul className="list-disc p-2 list-inside md:text-xxs"> */}
+            <style>{skillsStyles}</style>
+
+            <div
+              className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+              style={{
+                listStyleType: 'disc',
+                paddingInline: '0px',
+                margin: '0px',
+              }}
+              dangerouslySetInnerHTML={{
+                __html: skillsInfoData && DOMPurify.sanitize(skillsInfoData),
+              }}
+            ></div>
+            {/* </ul> */}
             <hr className="my-1" />
 
             <NavLink
@@ -122,7 +156,7 @@ ul.list-disc{
               className="font-black mt-auto basis-full md:basis-auto text-[#e96c51] self-center text-sm "
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? "3px solid #fa6d4d" : "",
+                  borderBottom: isActive ? '3px solid #fa6d4d' : '',
                 };
               }}
             >
@@ -135,22 +169,27 @@ ul.list-disc{
             <h3 className="md:text-xs text-xxs font-semibold mt-0">
               Profile Summary
             </h3>
-            <p className="md:text-xxs">{summaryInfoData}</p>
+            <div
+              className="md:text-xxs list-decimal list-inside"
+              dangerouslySetInnerHTML={{
+                __html: summaryInfoData && DOMPurify.sanitize(summaryInfoData),
+              }}
+            ></div>
             <hr className="my-1" />
             {/* work experience section */}
-            <h3 className="md:text-xs text-xxs font-semibold my-2">
+            <h3 className="md:text-xs text-xxs font-semibold md:mt-2">
               Work Experience
             </h3>
             {experienceInfoData.map((experience, index) => (
               <div
                 key={index}
-                className="md:my-0 my-1 md:text-xxs list-decimal list-disc list-inside"
+                className="md:my-2 my-1  md:text-xxs list-disc list-inside"
               >
                 <h4 className=" font-semibold">
                   {experience.employer} - {experience.jobTitle}
                 </h4>
                 <p className="">
-                  {experience.city} , {experience.country} |{" "}
+                  {experience.city} , {experience.country} |{' '}
                   {experience.startDate} -{experience.endDate}
                 </p>
                 {/* <ul className=" list-disc list-inside"> */}
@@ -176,13 +215,22 @@ ul.list-disc{
             <hr className="md:my-1" />
             {/* education section */}
             <h3 className="md:text-xs font-semibold mt-1">Education</h3>
-            <p className="md:text-xxs">- {educationInfoData.qualification}</p>
-            <p className="md:text-xxs">
-              - {educationInfoData.institution}, {educationInfoData.location}
-            </p>
-            <p className="md:text-xxs">
-              - Graduation Year: {educationInfoData.graduationYear}
-            </p>
+            {educationInfoData.qualification != '' && (
+              <p className="md:text-xxs">- {educationInfoData.qualification}</p>
+            )}
+
+            {educationInfoData.institution != '' && (
+              <p className="md:text-xxs">
+                - {educationInfoData.institution}, {educationInfoData.location}
+              </p>
+            )}
+
+            {educationInfoData.graduationYear != '' && (
+              <p className="md:text-xxs">
+                - Graduation Year: {educationInfoData.graduationYear}
+              </p>
+            )}
+
             <hr className="md:my-1" />
             {/* awards and achieements */}
             <h3 className="md:text-xs font-semibold mt-1">

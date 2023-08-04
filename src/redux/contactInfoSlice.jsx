@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  city: 'Addis Abeba',
-  country: 'Ethiopia',
-  postCode: '0000',
-  phone: '0933654654',
-  email: 'natnaeltilahun97@gmail.com',
+  city: '',
+  country: '',
+  postCode: '',
+  phone: '',
+  email: '',
 };
 
 const actionTypes = (() => {

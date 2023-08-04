@@ -1,67 +1,67 @@
-import React, { useState, useRef, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useState, useRef, useCallback } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export const AddAdditionalSection = () => {
   const data = {
-    name: "John Doe",
-    jobTitle: "Software Engineer",
+    name: 'John Doe',
+    jobTitle: 'Software Engineer',
     contactInformation: {
-      email: "john.doe@example.com",
-      phone: "123-456-7890",
-      address: "123 Main Street, City, Country",
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+      address: '123 Main Street, City, Country',
     },
     profileSummary:
-      "Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.",
+      'Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.',
     workExperience: [
       {
-        company: "ABC Company",
-        jobTitle: "Software Engineer",
-        location: "City, Country",
-        startDate: "2018",
-        endDate: "Present",
+        company: 'ABC Company',
+        jobTitle: 'Software Engineer',
+        location: 'City, Country',
+        startDate: '2018',
+        endDate: 'Present',
         responsibilities: [
-          "Developed and maintained web applications using React and Node.js.",
-          "Collaborated with cross-functional teams to deliver high-quality software solutions.",
-          "Implemented efficient algorithms to optimize application performance.",
+          'Developed and maintained web applications using React and Node.js.',
+          'Collaborated with cross-functional teams to deliver high-quality software solutions.',
+          'Implemented efficient algorithms to optimize application performance.',
         ],
       },
       {
-        company: "XYZ Corporation",
-        jobTitle: "Frontend Developer",
-        location: "City, Country",
-        startDate: "2016",
-        endDate: "2018",
+        company: 'XYZ Corporation',
+        jobTitle: 'Frontend Developer',
+        location: 'City, Country',
+        startDate: '2016',
+        endDate: '2018',
         responsibilities: [
-          "Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.",
-          "Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.",
-          "Performed code reviews and provided technical guidance to junior developers.",
+          'Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.',
+          'Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.',
+          'Performed code reviews and provided technical guidance to junior developers.',
         ],
       },
     ],
     education: {
-      degree: "Bachelor of Science in Computer Science",
-      university: "University of ABC",
-      location: "City, Country",
-      graduationYear: "2016",
+      degree: 'Bachelor of Science in Computer Science',
+      university: 'University of ABC',
+      location: 'City, Country',
+      graduationYear: '2016',
     },
-    skills: ["JavaScript", "React", "Node.js", "HTML", "CSS"],
-    awards: ["Best Employee of the Year", "Outstanding Achievement Award"],
+    skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
+    awards: ['Best Employee of the Year', 'Outstanding Achievement Award'],
     personalProjects: [
-      "Personal Blog - Built a blog website using React and Express.",
-      "Portfolio Website - Developed a portfolio website to showcase my projects.",
+      'Personal Blog - Built a blog website using React and Express.',
+      'Portfolio Website - Developed a portfolio website to showcase my projects.',
     ],
-    languages: ["English", "Spanish"],
-    interests: ["Reading", "Traveling", "Playing guitar"],
-    references: ["Available upon request"],
+    languages: ['English', 'Spanish'],
+    interests: ['Reading', 'Traveling', 'Playing guitar'],
+    references: ['Available upon request'],
   };
-  const [jobTitle, setJobTitle] = useState("Developer");
+  const [jobTitle, setJobTitle] = useState('Developer');
   const [employer, setEmployer] = useState("Dagi's Spa");
-  const [city, setCity] = useState("Addis Abeba");
-  const [country, setCountry] = useState("Ethiopia");
-  const [startDate, setStartDate] = useState("01/02/2021");
-  const [endDate, setEndDate] = useState("10/07/2023");
+  const [city, setCity] = useState('Addis Abeba');
+  const [country, setCountry] = useState('Ethiopia');
+  const [startDate, setStartDate] = useState('01/02/2021');
+  const [endDate, setEndDate] = useState('10/07/2023');
   const [isCurrentlyWorkingThere, setIsCurrentlyWorkingThere] = useState(false);
 
   const jobTitleRef = useRef();
@@ -71,7 +71,7 @@ export const AddAdditionalSection = () => {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const isCurrentlyWorkingThereRef = useRef();
-  const [editorValue, setEditorValue] = useState("");
+  const [editorValue, setEditorValue] = useState('');
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
@@ -80,7 +80,7 @@ export const AddAdditionalSection = () => {
   return (
     <form
       action=""
-      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
+      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">

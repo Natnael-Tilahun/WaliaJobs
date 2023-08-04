@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState =
-  'Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.';
-
+const initialState = {
+  summary: '',
+};
 const actionTypes = (() => {
-  const SET_SUMMARY = 'summaryInfo/SET_SUMMARY';
-  const CLEAR_CV_DATA = 'summaryInfo/CLEAR_CV_DATA';
+  const SET_SUMMARY = 'SET_SUMMARY';
+  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
     SET_SUMMARY,
     CLEAR_CV_DATA,

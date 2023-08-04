@@ -1,97 +1,34 @@
-import React, { useState, useRef, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useDispatch, useSelector } from "react-redux";
-import { DELETE_EXPERIENCE } from "../../redux/experienceInfoSlice";
+import React, { useState, useRef, useCallback } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { DELETE_EXPERIENCE } from '../../redux/experienceInfoSlice';
 
 export const ExperienceReviewSection = () => {
-  alert("expernces");
+  alert('expernces');
   const experiences = useSelector((state) => state.experienceInfo);
   const dispatch = useDispatch();
-  // console.log("experinceds", experiences);
-  const data = {
-    name: "John Doe",
-    jobTitle: "Software Engineer",
-    contactInformation: {
-      email: "john.doe@example.com",
-      phone: "123-456-7890",
-      address: "123 Main Street, City, Country",
-    },
-    profileSummary:
-      "Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.",
-    workExperience: [
-      {
-        company: "ABC Company",
-        jobTitle: "Software Engineer",
-        location: "City, Country",
-        startDate: "2018",
-        endDate: "Present",
-        responsibilities: [
-          "Developed and maintained web applications using React and Node.js.",
-          "Collaborated with cross-functional teams to deliver high-quality software solutions.",
-          "Implemented efficient algorithms to optimize application performance.",
-        ],
-      },
-      {
-        company: "XYZ Corporation",
-        jobTitle: "Frontend Developer",
-        location: "City, Country",
-        startDate: "2016",
-        endDate: "2018",
-        responsibilities: [
-          "Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.",
-          "Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.",
-          "Performed code reviews and provided technical guidance to junior developers.",
-        ],
-      },
-    ],
-    education: {
-      degree: "Bachelor of Science in Computer Science",
-      university: "University of ABC",
-      location: "City, Country",
-      graduationYear: "2016",
-    },
-    skills: ["JavaScript", "React", "Node.js", "HTML", "CSS"],
-    awards: ["Best Employee of the Year", "Outstanding Achievement Award"],
-    personalProjects: [
-      "Personal Blog - Built a blog website using React and Express.",
-      "Portfolio Website - Developed a portfolio website to showcase my projects.",
-    ],
-    languages: ["English", "Spanish"],
-    interests: ["Reading", "Traveling", "Playing guitar"],
-    references: ["Available upon request"],
-  };
-  const [jobTitle, setJobTitle] = useState("Developer");
-  const [employer, setEmployer] = useState("Dagi's Spa");
-  const [city, setCity] = useState("Addis Abeba");
-  const [country, setCountry] = useState("Ethiopia");
-  const [startDate, setStartDate] = useState("01/02/2021");
-  const [endDate, setEndDate] = useState("10/07/2023");
-  const [isCurrentlyWorkingThere, setIsCurrentlyWorkingThere] = useState(false);
+  const navigate = useNavigate();
 
-  const jobTitleRef = useRef();
-  const employerRef = useRef();
-  const cityRef = useRef();
-  const countryRef = useRef();
-  const startDateRef = useRef();
-  const endDateRef = useRef();
-  const isCurrentlyWorkingThereRef = useRef();
-  const [editorValue, setEditorValue] = useState("");
+  console.log('experinceds', experiences);
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
   };
 
   const handleDeleteExperience = (id) => {
-    alert(id);
     dispatch(DELETE_EXPERIENCE(id));
+  };
+  const handleUpdateExperience = (id) => {
+    alert(id);
+    navigate(`/CV-Details/1/Experience-Section/${id}`);
   };
 
   return (
     <form
       action=""
-      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
+      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
@@ -107,7 +44,7 @@ export const ExperienceReviewSection = () => {
                 index
               ) => (
                 <div
-                  className="flex justify-between border-2 rounded-md  lg:py-5 p-3 lg:px-10 items-center"
+                  className="flex justify-between border-2 rounded-md  lg:py-5 p-3 lg:px-7 items-center"
                   key={id}
                 >
                   <div className="flex gap-3 lg:gap-10 ">
@@ -128,14 +65,15 @@ export const ExperienceReviewSection = () => {
                   <div className="flex gap-5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="lg:w-9 w-6 fill-orange-400"
+                      className="lg:w-8 w-6 fill-orange-400"
                       viewBox="0 0 24 24"
+                      onClick={() => handleUpdateExperience(id)}
                     >
                       <path d="M12.8995 6.85431L17.1421 11.0969L7.24264 20.9964H3V16.7538L12.8995 6.85431ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"></path>
                     </svg>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="lg:w-9 w-6 fill-red-600"
+                      className="lg:w-7 w-6 fill-red-600"
                       viewBox="0 0 24 24"
                       onClick={() => handleDeleteExperience(id)}
                     >
@@ -147,7 +85,7 @@ export const ExperienceReviewSection = () => {
             )}
 
           <NavLink
-            to="/CV-Details/1/Experience-Section"
+            to="/CV-Details/1/Experience-Section/0"
             className="flex gap-2 justify-end items-center px-3"
           >
             <svg

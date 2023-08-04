@@ -7,6 +7,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
+import DOMPurify from 'dompurify';
 
 export const SummarySection = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const SummarySection = () => {
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
     console.log(values.summaryDetails);
-    dispatch(SET_SUMMARY(values.summaryDetails));
+    dispatch(SET_SUMMARY(DOMPurify.sanitize(values.summaryDetails)));
     navigate('/CV-Details/1/Additional-Section');
   };
 
@@ -26,7 +27,7 @@ export const SummarySection = () => {
   return (
     <div
       action=""
-      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
+      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">

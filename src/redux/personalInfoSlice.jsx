@@ -7,9 +7,9 @@ const SET_SKILLS_INFO = 'skillsInfo/SET_SKILLS_INFO';
 const SET_SUMMARY_INFO = 'summaryInfo/SET_SUMMARY_INFO';
 
 const initialState = {
-  firstName: 'Natnael',
-  lastName: 'Tilahun',
-  position: 'Software Engineer',
+  firstName: '',
+  lastName: '',
+  position: '',
 };
 // const initialState = {
 //   data: {

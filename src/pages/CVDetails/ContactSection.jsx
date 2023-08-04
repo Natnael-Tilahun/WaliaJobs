@@ -44,7 +44,7 @@ export const ContactSection = () => {
     navigate(-1);
   };
   return (
-    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5">
+    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 md:px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
           Let's start with your header

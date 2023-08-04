@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  qualification: 'Bachelor of Science in Computer Science',
-  institution: 'University of ABC',
-  location: 'City, Country',
-  graduationYear: '2016',
-  fieldOfStudy: 'Computer Science',
+  qualification: '',
+  institution: '',
+  location: '',
+  graduationYear: '',
+  fieldOfStudy: '',
 };
 // const initialState = {
 //   data: {

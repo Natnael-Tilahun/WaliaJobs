@@ -1,20 +1,30 @@
-import React, { useState, useRef, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { skillsValidationSchema } from "../../validations/skillsSchema";
-import { Formik, Form, ErrorMessage } from "formik";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import React, { useState, useRef, useCallback } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { skillsValidationSchema } from '../../validations/skillsSchema';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import DOMPurify from 'dompurify';
+import { useDispatch } from 'react-redux';
+import { SET_SKILLS } from '../../redux/skillsInfoSlice';
 
 export const SkillSection = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const quillRef = useRef(null);
+
+  const handleQuillBlur = (formik) => {
+    // Trigger blur manually
+    formik.setFieldTouched('skillDetails');
+  };
 
   const handleSubmit = (values) => {
     // Handle form submission and access form values
     console.log(values.skillDetails);
-    navigate("/CV-Details/1/Summary-Section");
+    dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
+    navigate('/CV-Details/1/Summary-Section');
   };
 
   const handleBack = navigate(-1);
@@ -22,19 +32,19 @@ export const SkillSection = () => {
   return (
     <div
       action=""
-      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5"
+      className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Add your skills{" "}
+          Add your skills{' '}
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
-          Now, let's showcase your best skills for the job.{" "}
+          Now, let's showcase your best skills for the job.{' '}
         </p>
       </div>
       <Formik
         initialValues={{
-          skillDetails: "",
+          skillDetails: '',
         }}
         validationSchema={skillsValidationSchema}
         onSubmit={handleSubmit}
@@ -46,9 +56,9 @@ export const SkillSection = () => {
                 ref={quillRef}
                 value={formik.values.skillDetails}
                 onChange={(value) =>
-                  formik.setFieldValue("skillDetails", value)
+                  formik.setFieldValue('skillDetails', value)
                 }
-                onBlur={formik.handleBlur}
+                onBlur={() => handleQuillBlur(formik)}
                 className="lg:h-full h-1/2"
               />
             </div>

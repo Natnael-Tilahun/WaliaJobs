@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { CVTemplate } from "./CVTemplate";
+import React, { useState, useRef } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { CVTemplate } from './CVTemplate';
 
 export const CVDetails = () => {
-  const [firstname, setFirstname] = useState("Natnael");
-  const [lastname, setLastname] = useState("Tilahun");
-  const [position, setPosition] = useState("Software Engineer");
-  const [city, setCity] = useState("Addis Abeba");
-  const [country, setCountry] = useState("Ethiopia");
-  const [postcode, setPostcode] = useState("0000");
-  const [phone, setPhone] = useState("0933654654");
-  const [email, setEmail] = useState("natnaeltilahun97@gmail.com");
+  const [firstname, setFirstname] = useState('Natnael');
+  const [lastname, setLastname] = useState('Tilahun');
+  const [position, setPosition] = useState('Software Engineer');
+  const [city, setCity] = useState('Addis Abeba');
+  const [country, setCountry] = useState('Ethiopia');
+  const [postcode, setPostcode] = useState('0000');
+  const [phone, setPhone] = useState('0933654654');
+  const [email, setEmail] = useState('natnaeltilahun97@gmail.com');
 
   const firstnameRef = useRef();
   const lastnameRef = useRef();
@@ -29,7 +29,7 @@ export const CVDetails = () => {
             to="/CV-Details/:id"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -60,7 +60,7 @@ export const CVDetails = () => {
             to="Education-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -88,10 +88,10 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Experience-Section"
+            to="Experience-Section/0"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -122,7 +122,7 @@ export const CVDetails = () => {
             to="Skills-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -153,7 +153,7 @@ export const CVDetails = () => {
             to="Summary-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >
@@ -184,7 +184,7 @@ export const CVDetails = () => {
             to="Additional-Section"
             style={({ isActive }) => {
               return {
-                color: isActive ? "#1e40af" : "",
+                color: isActive ? '#1e40af' : '',
               };
             }}
           >

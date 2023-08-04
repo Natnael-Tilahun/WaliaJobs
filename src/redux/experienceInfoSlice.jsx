@@ -22,21 +22,36 @@ const experienceInfoSlice = createSlice({
   reducers: {
     [actionTypes.SET_EXPERIENCE](state, action) {
       alert(state.length);
-      state.push({ ...action.payload, id: state.length });
+      // state.push({ ...action.payload, id: state.length });
+      state.push(action.payload);
     },
+
     [actionTypes.SET_EXPERIENCE_DETAILS](state, action) {
+      console.log('acitons', action.payload);
       const latestExperience = state[state.length - 1];
-      console.log('state', latestExperience);
-      if (latestExperience) {
-        latestExperience.responsibilities = action.payload;
-      }
+      alert(state.length);
+      const { id, values } = action.payload;
+      // console.log('state', latestExperience);
+      // if (state.length == 0) {
+      //   latestExperience.responsibilities = values;
+      // } else {
+      alert('updaitng');
+      const index = state.findIndex((exp) => exp.id == id);
+      state[index].responsibilities = values;
+      // }
     },
     [actionTypes.UPDATE_EXPERIENCE](state, action) {
-      const { index, workExp } = action.payload;
-      state[index] = workExp;
+      const { id, values } = action.payload;
+      const index = state.findIndex((exp) => exp.id == id);
+      console.log('update id', id, 'update exp', values, 'index', index);
+      state[index] = values;
+      console.log('updatedd expp', state);
+      return state;
     },
     [actionTypes.DELETE_EXPERIENCE](state, action) {
-      return state.filter((_, i) => i !== action.payload); // payload is index
+      alert(action.payload);
+      const index = state.findIndex((exp) => exp.id === action.payload);
+      return state.filter((_, i) => i !== index); // payload is index
     },
     [actionTypes.CLEAR_CV_DATA](state) {
       return { ...initialState };

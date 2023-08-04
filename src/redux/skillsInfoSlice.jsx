@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = ['html', 'css', 'javascript'];
+const initialState = {
+  skills: '',
+};
 
 const actionTypes = (() => {
-  const SET_SKILLS = 'skillsInfo/SET_SKILLS';
-  const CLEAR_CV_DATA = 'personalInfo/CLEAR_CV_DATA';
+  const SET_SKILLS = 'SET_SKILLS';
+  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
     SET_SKILLS,
     CLEAR_CV_DATA,
@@ -15,6 +17,7 @@ const skillsInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_SKILLS](state, action) {
+      alert('skill submit');
       state.skills = action.payload;
     },
     [actionTypes.CLEAR_CV_DATA](state) {

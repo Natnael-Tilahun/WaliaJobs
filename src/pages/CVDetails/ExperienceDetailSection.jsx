@@ -1,35 +1,51 @@
-import React, { useState, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { Formik, Form, ErrorMessage } from "formik";
-import { experienceDetailValidationSchema } from "../../validations/experienceDetailSchema";
-import { ErrorMessageComponent } from "../../components/ErrorMessage";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_EXPERIENCE_DETAILS } from "../../redux/experienceInfoSlice";
-import DOMPurify from "dompurify";
+import React, { useState, useRef } from 'react';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { experienceDetailValidationSchema } from '../../validations/experienceDetailSchema';
+import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_EXPERIENCE_DETAILS } from '../../redux/experienceInfoSlice';
+import DOMPurify from 'dompurify';
 
 export const ExperienceDetailSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const quillRef = useRef(null);
+  const { id: experienceId } = useParams();
+  let filterdExperience;
+
+  console.log('params', experienceId);
+  let initialValues = {
+    experienceDetails: '',
+  };
+
+  const experiences = useSelector((state) => state.experienceInfo);
+  console.log('experiences', experiences);
+
+  if (experienceId) {
+    filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
+    filterdExperience && (initialValues = filterdExperience);
+    console.log('experiences', filterdExperience, initialValues);
+  }
 
   // const handleHtml = (html) => dispatch(SET_EXPERIENCE_DETAILS(html))
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
-    formik.setFieldTouched("experienceDetails");
+    formik.setFieldTouched('experienceDetails');
   };
 
   const handleSubmit = (values) => {
-    alert("experience detail submitted");
+    alert('experience detail submitted');
     console.log(
-      "DETAILS HTML",
+      'DETAILS HTML',
       DOMPurify.sanitize(values.experienceDetails, {
-        ALLOWED_TAGS: ["ol", "ul", "li", "strong"],
-        ADD_TAGS: ["ol", "ul"],
-        ADD_ATTR: ["ol", "class", "list-decimal"],
-        ADD_ATTR: ["ul", "class", "list-disc"],
+        ALLOWED_TAGS: ['ol', 'ul', 'li', 'strong'],
+        ADD_TAGS: ['ol', 'ul'],
+        ADD_ATTR: ['ol', 'class', 'list-decimal'],
+        ADD_ATTR: ['ul', 'class', 'list-disc'],
       })
     );
     // Handle form submission and access form values
@@ -38,14 +54,27 @@ export const ExperienceDetailSection = () => {
     // const html = quillRef.current.editor.clipboard.convert(delta);
 
     // console.log('responisiblity', delta);
-    dispatch(SET_EXPERIENCE_DETAILS(values.experienceDetails));
-    navigate("/CV-Details/1/Experience-Review");
+
+    // if (experienceId > 0) {
+    //   alert('no exp');
+    //   console.log('updated values', values);
+    //   dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
+    //   navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+    // } else {
+    dispatch(
+      SET_EXPERIENCE_DETAILS({
+        values: values.experienceDetails,
+        id: experienceId,
+      })
+    );
+    // }
+    navigate('/CV-Details/1/Experience-Review');
   };
 
   const handleBack = () => navigate(-1);
 
   return (
-    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5">
+    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
           Tell us what you did as a Full-Stack Developer
@@ -55,9 +84,7 @@ export const ExperienceDetailSection = () => {
         </p>
       </div>
       <Formik
-        initialValues={{
-          experienceDetails: "",
-        }}
+        initialValues={initialValues}
         validationSchema={experienceDetailValidationSchema}
         onSubmit={handleSubmit}
       >
@@ -68,7 +95,7 @@ export const ExperienceDetailSection = () => {
                 ref={quillRef}
                 value={formik.values.experienceDetails}
                 onChange={
-                  (value) => formik.setFieldValue("experienceDetails", value)
+                  (value) => formik.setFieldValue('experienceDetails', value)
                   // handleHtml(value)
                 }
                 onBlur={(event) => {

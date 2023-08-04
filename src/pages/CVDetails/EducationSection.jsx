@@ -17,6 +17,7 @@ export const EducationSection = () => {
   const navigate = useNavigate();
   const { qualification, institution, fieldOfStudy, location, graduationYear } =
     useSelector((state) => state.educationInfo);
+
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     dispatch(SET_QUALIFICATION(values.qualification));
@@ -24,11 +25,12 @@ export const EducationSection = () => {
     dispatch(SET_INSTITUTION(values.institution));
     dispatch(SET_LOCATION(values.location));
     dispatch(SET_GRADUATION_YEAR(values.graduationYear));
-    navigate('/CV-Details/1/Experience-Section');
+    navigate('/CV-Details/1/Experience-Section/0');
   };
+
   const handleBack = () => navigate(-1);
   return (
-    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 md:px-5 lg:p-5">
+    <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
           Add your education
