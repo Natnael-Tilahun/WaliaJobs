@@ -74,7 +74,9 @@ const actionTypes = (() => {
   const SET_FIRST_NAME = 'SET_FIRST_NAME';
   const SET_LAST_NAME = 'SET_LAST_NAME';
   const SET_POSITION = 'SET_POSITION';
+  const SET_PROFILE = 'SET_PROFILE';
   const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+
   return {
     SET_FIRST_NAME,
     SET_LAST_NAME,
@@ -88,6 +90,10 @@ const personalInfoSlice = createSlice({
   reducers: {
     [actionTypes.SET_FIRST_NAME](state, action) {
       alert('Set personal Info');
+      state.firstName = action.payload;
+    },
+    [actionTypes.SET_PROFILE](state, action) {
+      alert('Set profile');
       state.firstName = action.payload;
     },
     [actionTypes.SET_LAST_NAME](state, action) {
