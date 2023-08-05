@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = ['html', 'css', 'javascript'];
+const initialState = [
+  {
+    fullName: 'Natnael Tilahun',
+    jobTitle: 'Software Engineer',
+    companyName: 'Commercial Bank of Ethiopia',
+    email: 'natnaeltilahun97@gmail.com',
+    phone: '0933654654',
+  },
+];
 
 const actionTypes = (() => {
   const SET_REFERENCES = 'referencesInfo/SET_REFERENCES';

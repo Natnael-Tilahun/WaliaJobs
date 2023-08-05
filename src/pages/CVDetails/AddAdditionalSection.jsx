@@ -97,7 +97,16 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="language"
             />
-            <label htmlFor="language">Language</label>
+            <label htmlFor="language">Languages</label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="references"
+              className="w-4"
+              name="references"
+            />
+            <label htmlFor="language">References</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
