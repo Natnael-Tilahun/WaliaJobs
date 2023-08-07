@@ -150,7 +150,7 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Summary-Section"
+            to="Certification-Section"
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -160,6 +160,68 @@ export const CVDetails = () => {
             <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 5
+              </span>
+              Certifications
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Language-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? '#1e40af' : '',
+              };
+            }}
+          >
+            <li className="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                6
+              </span>
+              Language
+              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Summary-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? '#1e40af' : '',
+              };
+            }}
+          >
+            <li className="flex items-center">
+              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                7
               </span>
               Summary
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
@@ -190,7 +252,7 @@ export const CVDetails = () => {
           >
             <li className="flex items-center">
               <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
-                6
+                8
               </span>
               Review
             </li>

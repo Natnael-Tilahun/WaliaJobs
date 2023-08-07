@@ -9,10 +9,11 @@ import summaryInfoSlice from './summaryInfoSlice';
 import experienceInfoSlice from './experienceInfoSlice';
 import achievementsInfoSlice from './achievementsInfoSlice';
 import personalProjectsInfoSlice from './personalProjectsInfoSlice';
-import languagesInfoSlice from './languagesInfoSlice';
 import interestsInfoSlice from './interestsInfoSlice';
 import referencesInfoSlice from './referencesInfoSlice';
 import profileImgSlice from './profileImgSlice';
+import certificationInfoSlice from './certificationInfoSlice';
+import languageInfoSlice from './languageInfoSlice';
 
 export default configureStore({
   reducer: {
@@ -22,11 +23,12 @@ export default configureStore({
     contactInfo: contactInfoSlice,
     skillsInfo: skillsInfoSlice,
     educationInfo: educationInfoSlice,
+    certificationInfo: certificationInfoSlice,
     summaryInfo: summaryInfoSlice,
     experienceInfo: experienceInfoSlice,
     achievementsInfo: achievementsInfoSlice,
     personalProjectsInfo: personalProjectsInfoSlice,
-    languagesInfo: languagesInfoSlice,
+    languageInfo: languageInfoSlice,
     interestsInfo: interestsInfoSlice,
     referencesInfo: referencesInfoSlice,
     profileImg: profileImgSlice,

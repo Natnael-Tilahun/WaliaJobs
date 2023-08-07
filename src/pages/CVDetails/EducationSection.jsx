@@ -111,7 +111,9 @@ export const EducationSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="graduationYear">Year of Graduation</label>
+              <label htmlFor="graduationYear">
+                Year of Graduation / expected graduation date
+              </label>
               <Field
                 type="date"
                 name="graduationYear"

@@ -93,11 +93,20 @@ export const AddAdditionalSection = () => {
           <div className="flex gap-8  text-lg">
             <input
               type="checkbox"
+              id="certifications"
+              className="w-4"
+              name="certifications"
+            />
+            <label htmlFor="certifications">Certifications (Recommended)</label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
               id="language"
               className="w-4"
               name="language"
             />
-            <label htmlFor="language">Languages</label>
+            <label htmlFor="language">Languages (Recommended)</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -106,16 +115,7 @@ export const AddAdditionalSection = () => {
               className="w-4"
               name="references"
             />
-            <label htmlFor="language">References</label>
-          </div>
-          <div className="flex gap-8  text-lg">
-            <input
-              type="checkbox"
-              id="certifications"
-              className="w-4"
-              name="certifications"
-            />
-            <label htmlFor="certifications">Certifications</label>
+            <label htmlFor="language">References (Recommended)</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -125,6 +125,24 @@ export const AddAdditionalSection = () => {
               name="accomplishments"
             />
             <label htmlFor="accomplishments">Accomplishments</label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="personalProjects"
+              className="w-4"
+              name="personalProjects"
+            />
+            <label htmlFor="personalProjects">Personal Projects</label>
+          </div>
+          <div className="flex gap-8  text-lg">
+            <input
+              type="checkbox"
+              id="interesetAndHobbies"
+              className="w-4"
+              name="interesetAndHobbies"
+            />
+            <label htmlFor="interesetAndHobbies">Interest and hobbies</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input

@@ -11,13 +11,14 @@ export const CVTemplate = () => {
   const contactInfoData = useSelector((state) => state.contactInfo);
   const skillsInfoData = useSelector((state) => state.skillsInfo.skills);
   const educationInfoData = useSelector((state) => state.educationInfo);
+  const certificationInfoData = useSelector((state) => state.certificationInfo);
   const summaryInfoData = useSelector((state) => state.summaryInfo.summary);
   const experienceInfoData = useSelector((state) => state.experienceInfo);
   const achievementsInfoData = useSelector((state) => state.achievementsInfo);
   const personalProjectsInfoData = useSelector(
     (state) => state.personalProjectsInfo
   );
-  const languagesInfoData = useSelector((state) => state.languagesInfo);
+  const languagesInfoData = useSelector((state) => state.languageInfo);
   const interestsInfoData = useSelector((state) => state.interestsInfo);
   const referencesInfoData = useSelector((state) => state.referencesInfo);
   console.log('references', referencesInfoData);
@@ -106,11 +107,26 @@ ul.list-disc{
                 className="absolute z-30 w-full h-full bg-contain  top-[25%]  opacity-0 cursor-pointer"
                 onChange={onImageSelect}
               />
-              <img
+              {/* <img
                 src="/camera.png"
-                className="absolute z-10 w-1/2 h-1/2 bg-center top-[25%] left-[25%] opacity-50"
+                className="absolute z-10 w-1/2 h-1/2 bg-center top-[25%] left-[25%] opacity-70"
                 alt=""
-              />
+              /> */}
+              {/* <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-8 h-8 fill-gray-800 absolute z-20 top-[25%] left-[25%] opacity-100"
+              >
+                <path d="M21 15.2426V21.0082C21 21.556 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5511 3 20.9925V9H9C9.55228 9 10 8.55228 10 8V2H20.0017C20.5531 2 21 2.45531 21 2.9918V6.75736L12.0012 15.7562L11.995 19.995L16.2414 20.0012L21 15.2426ZM21.7782 8.80761L23.1924 10.2218L15.4142 18L13.9979 17.9979L14 16.5858L21.7782 8.80761ZM3 7L8 2.00318V7H3Z"></path>
+              </svg> */}
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-8 h-8 fill-thm_root2_color absolute -z-10 hover:z-20 top-[25%] left-[25%] opacity-100"
+              >
+                <path d="M9.24264 18.9964H21V20.9964H3V16.7538L12.8995 6.85431L17.1421 11.0969L9.24264 18.9964ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"></path>
+              </svg>
             </div>
             <div className="ml-4">
               <h1 className="md:text-xl font-bold text-white">
@@ -125,7 +141,7 @@ ul.list-disc{
         <div className="flex gap-0 h-screen text-gray-700">
           <div className="bg-slate-300 h-full  basis-[25%] text-xxxs md:text-xxs p-2 md:p-3 flex flex-col gap-1 ">
             {/* contact info */}
-            <h1 className="font-semibold md:text-xs py-1">Contact</h1>
+            <h1 className="font-semibold uppercase md:text-xs py-1">Contact</h1>
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +177,7 @@ ul.list-disc{
             </div>
             <hr className="my-1" />
             {/* skills info */}
-            <h3 className="md:text-xs font-semibold mt-1">Skills</h3>
+            <h3 className="md:text-xs uppercase font-semibold mt-1">Skills</h3>
             {/* <ul className="list-disc p-2 list-inside md:text-xxs"> */}
             <style>{skillsStyles}</style>
 
@@ -177,6 +193,22 @@ ul.list-disc{
               }}
             ></div>
             {/* </ul> */}
+            <hr className="my-1" />
+            {/* languages info */}
+            <h3 className="md:text-xs uppercase font-semibold mt-1">
+              Languages
+            </h3>
+            {languagesInfoData.length > 0 && (
+              <ul className="list-disc pl-1 md:text-xxs list-inside">
+                {languagesInfoData.map(
+                  ({ languageName, proficiencyLevel }, index) => (
+                    <li key={index}>
+                      {languageName} - {proficiencyLevel}
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
             <hr className="my-1" />
 
             <NavLink
@@ -194,7 +226,7 @@ ul.list-disc{
 
           <div className="md:p-3 text-xxxs md:text-xxs p-2 basis-[75%]">
             {/* summary section */}
-            <h3 className="md:text-xs text-xxs font-semibold mt-0">
+            <h3 className="md:text-xs uppercase text-xxs font-semibold mt-0">
               Profile Summary
             </h3>
             <div
@@ -205,7 +237,7 @@ ul.list-disc{
             ></div>
             <hr className="my-1" />
             {/* work experience section */}
-            <h3 className="md:text-xs text-xxs font-semibold md:mt-2">
+            <h3 className="md:text-xs uppercase text-xxs font-semibold md:mt-2">
               Work Experience
             </h3>
             <div className="min:h-8">
@@ -214,10 +246,10 @@ ul.list-disc{
                   key={index}
                   className="md:my-2 my-1  md:text-xxs list-disc list-inside"
                 >
-                  <h4 className=" font-semibold">
-                    {experience.employer} - {experience.jobTitle}
+                  <h4 className="text-xs font-semibold">
+                    - {experience.employer} - {experience.jobTitle}
                   </h4>
-                  <p className="">
+                  <p className="pl-2">
                     {experience.city} , {experience.country} |{' '}
                     {experience.startDate} -{experience.endDate}
                   </p>
@@ -229,7 +261,7 @@ ul.list-disc{
                   {experience.responsibilities && (
                     // <DeltaView delta={experience.responsibilities} />
                     <div
-                      className={`list-decimal list-inside`}
+                      className={`list-decimal pl-2 list-inside`}
                       dangerouslySetInnerHTML={{
                         __html:
                           experience.responsibilities &&
@@ -245,30 +277,64 @@ ul.list-disc{
 
             <hr className="md:my-1" />
             {/* education section */}
-            <h3 className="md:text-xs font-semibold mt-1">Education</h3>
+            <h3 className="md:text-xs uppercase font-semibold mt-1">
+              Education
+            </h3>
             <div className="min:h-8">
               {educationInfoData.qualification != '' && (
-                <p className="md:text-xxs">
+                <p className="md:text-xs font-medium">
                   - {educationInfoData.qualification}
                 </p>
               )}
 
               {educationInfoData.institution != '' && (
-                <p className="md:text-xxs">
-                  - {educationInfoData.institution},{' '}
-                  {educationInfoData.location}
+                <p className="md:text-xxs pl-2">
+                  {educationInfoData.institution}, {educationInfoData.location}
                 </p>
               )}
 
               {educationInfoData.graduationYear != '' && (
-                <p className="md:text-xxs">
-                  - Graduation Year: {educationInfoData.graduationYear}
+                <p className="md:text-xxs pl-2">
+                  Graduation Year: {educationInfoData.graduationYear}
                 </p>
               )}
             </div>
             <hr className="md:my-1" />
+            {/* certification section */}
+            <h3 className="md:text-xs font-semibold mt-1 uppercase">
+              Certifications
+            </h3>
+            <div className="my-1 flex flex-col gap-1">
+              <div className="">
+                {certificationInfoData.certificationName != '' && (
+                  <p className="md:text-xs text-thm_primary_color font-medium">
+                    - {certificationInfoData.certificationName}
+                  </p>
+                )}
+                {certificationInfoData.certificateIssuedBy != '' && (
+                  <p className="md:text-xxs pl-2">
+                    {certificationInfoData.certificateIssuedBy},{' '}
+                    {certificationInfoData.certificateIssuedDate}
+                  </p>
+                )}
+              </div>
+              <div className="">
+                {certificationInfoData.certificationName != '' && (
+                  <p className="md:text-xs text-thm_primary_color font-medium">
+                    - {certificationInfoData.certificationName}
+                  </p>
+                )}
+                {certificationInfoData.certificateIssuedBy != '' && (
+                  <p className="md:text-xxs pl-2">
+                    {certificationInfoData.certificateIssuedBy},{' '}
+                    {certificationInfoData.certificateIssuedDate}
+                  </p>
+                )}
+              </div>
+            </div>
+            <hr className="md:my-1" />
             {/* awards and achieements */}
-            <h3 className="md:text-xs font-semibold mt-1">
+            <h3 className="md:text-xs uppercase font-semibold mt-1">
               Awards and Achievements
             </h3>
             <ul className="list-disc md:text-xxs list-inside">
@@ -277,21 +343,19 @@ ul.list-disc{
               ))}
             </ul>
             <hr className="md:my-1" />
-            <h3 className="md:text-xs font-semibold mt-1">Personal Projects</h3>
+            {/* Personal Projects */}
+            <h3 className="md:text-xs uppercase font-semibold mt-1">
+              Personal Projects
+            </h3>
             <ul className="list-disc md:text-xxs list-inside">
               {personalProjectsInfoData.map((project, index) => (
                 <li key={index}>{project}</li>
               ))}
             </ul>
             <hr className="md:my-1" />
-            <h3 className="md:text-xs font-semibold mt-1">Languages</h3>
-            <ul className="list-disc md:text-xxs list-inside">
-              {languagesInfoData.map((language, index) => (
-                <li key={index}>{language}</li>
-              ))}
-            </ul>
-            <hr className="md:my-1" />
-            <h3 className="md:text-xs font-semibold mt-1">Interests</h3>
+            <h3 className="md:text-xs uppercase font-semibold mt-1">
+              Interests
+            </h3>
             <ul className="list-disc md:text-xxs list-inside">
               {interestsInfoData.map((interest, index) => (
                 <li key={index}>{interest}</li>
@@ -300,19 +364,21 @@ ul.list-disc{
             <hr className="md:my-1" />
             {referencesInfoData.length > 0 && (
               <div>
-                <h3 className="md:text-xs font-semibold mt-1">References</h3>
-                {referencesInfoData.map((ref) => (
-                  <div className="my-1">
-                    <h1 className="MD:text-xxs text-xs font-medium">
-                      {ref.fullName}
+                <h3 className="md:text-xs uppercase font-semibold mt-1">
+                  References
+                </h3>
+                {referencesInfoData.map((ref, index) => (
+                  <div className="my-1" key={index}>
+                    <h1 className="MD:text-xxs text-xs text-thm_primary_color font-medium">
+                      - {ref.fullName}
                     </h1>
-                    <p className="MD:text-xxs">
+                    <p className="MD:text-xxs pl-2">
                       {ref.jobTitle}, {ref.companyName}
                     </p>
-                    <p className="MD:text-xxs">
+                    <p className="MD:text-xxs pl-2">
                       <span className="font-medium">Email:</span> {ref.email}
                     </p>
-                    <p className="MD:text-xxs">
+                    <p className="MD:text-xxs pl-2">
                       <span className="font-medium">phone: </span>
                       {ref.phone}
                     </p>

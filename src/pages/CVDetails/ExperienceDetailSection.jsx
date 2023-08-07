@@ -38,7 +38,7 @@ export const ExperienceDetailSection = () => {
   };
 
   const handleSubmit = (values) => {
-    alert('experience detail submitted');
+    // alert('experience detail submitted');
     console.log(
       'DETAILS HTML',
       DOMPurify.sanitize(values.experienceDetails, {

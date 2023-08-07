@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DELETE_EXPERIENCE } from '../../redux/experienceInfoSlice';
 
 export const ExperienceReviewSection = () => {
-  alert('expernces');
   const experiences = useSelector((state) => state.experienceInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ export const ExperienceReviewSection = () => {
     dispatch(DELETE_EXPERIENCE(id));
   };
   const handleUpdateExperience = (id) => {
-    alert(id);
     navigate(`/CV-Details/1/Experience-Section/${id}`);
   };
 

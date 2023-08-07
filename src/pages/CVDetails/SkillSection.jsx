@@ -24,7 +24,7 @@ export const SkillSection = () => {
     // Handle form submission and access form values
     console.log(values.skillDetails);
     dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
-    navigate('/CV-Details/1/Summary-Section');
+    navigate('/CV-Details/1/Certification-Section');
   };
 
   const handleBack = navigate(-1);

@@ -37,6 +37,8 @@ import { Benefits } from './pages/CompanyDetails/Benefits';
 import { WriteReview } from './pages/WriteReview';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { CertificationSection } from './pages/CVDetails/CertificationSection';
+import { LanguageSection } from './pages/CVDetails/LanguageSection';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -84,8 +86,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 element={<ExperienceReviewSection />}
               />
               <Route path="Education-Section" element={<EducationSection />} />
+              <Route
+                path="Certification-Section"
+                element={<CertificationSection />}
+              />
               <Route path="Skills-Section" element={<SkillSection />} />
               <Route path="Summary-Section" element={<SummarySection />} />
+              <Route path="Language-Section" element={<LanguageSection />} />
               <Route
                 path="Additional-Section"
                 element={<AddAdditionalSection />}
