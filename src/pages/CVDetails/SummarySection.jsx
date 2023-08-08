@@ -8,6 +8,8 @@ import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import { useDispatch } from 'react-redux';
 import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
 import DOMPurify from 'dompurify';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const SummarySection = () => {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ export const SummarySection = () => {
     // Handle form submission and access form values
     console.log(values.summaryDetails);
     dispatch(SET_SUMMARY(DOMPurify.sanitize(values.summaryDetails)));
+    dispatch(SET_COMPLETED(FormSections.SUMMARY));
     navigate('/CV-Details/1/Additional-Section');
   };
 

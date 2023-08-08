@@ -14,13 +14,17 @@ export const CVTemplate = () => {
   const certificationInfoData = useSelector((state) => state.certificationInfo);
   const summaryInfoData = useSelector((state) => state.summaryInfo.summary);
   const experienceInfoData = useSelector((state) => state.experienceInfo);
-  const achievementsInfoData = useSelector((state) => state.achievementsInfo);
+  const achievementsInfoData = useSelector(
+    (state) => state.achievementsInfo.achievements
+  );
   const personalProjectsInfoData = useSelector(
     (state) => state.personalProjectsInfo
   );
   const languagesInfoData = useSelector((state) => state.languageInfo);
-  const interestsInfoData = useSelector((state) => state.interestsInfo);
-  const referencesInfoData = useSelector((state) => state.referencesInfo);
+  const interestsInfoData = useSelector(
+    (state) => state.interestsInfo.interests
+  );
+  const referencesInfoData = useSelector((state) => state.referenceInfo);
   console.log('references', referencesInfoData);
   const { profileImg } = useSelector((state) => state.profileImg);
   const dispatch = useDispatch();
@@ -194,17 +198,18 @@ ul.list-disc{
             ></div>
             {/* </ul> */}
             <hr className="my-1" />
+
             {/* languages info */}
             <h3 className="md:text-xs uppercase font-semibold mt-1">
               Languages
             </h3>
             {languagesInfoData.length > 0 && (
-              <ul className="list-disc pl-1 md:text-xxs list-inside">
+              <ul className=" p-0 md:text-xxs ">
                 {languagesInfoData.map(
                   ({ languageName, proficiencyLevel }, index) => (
-                    <li key={index}>
-                      {languageName} - {proficiencyLevel}
-                    </li>
+                    <p key={index}>
+                      - {languageName} - {proficiencyLevel}
+                    </p>
                   )
                 )}
               </ul>
@@ -280,68 +285,64 @@ ul.list-disc{
             <h3 className="md:text-xs uppercase font-semibold mt-1">
               Education
             </h3>
-            <div className="min:h-8">
-              {educationInfoData.qualification != '' && (
-                <p className="md:text-xs font-medium">
-                  - {educationInfoData.qualification}
-                </p>
-              )}
+            {educationInfoData.map((edu) => (
+              <div className="min:h-8" key={edu.id}>
+                <p className="md:text-xs font-medium">- {edu.qualification}</p>
 
-              {educationInfoData.institution != '' && (
-                <p className="md:text-xxs pl-2">
-                  {educationInfoData.institution}, {educationInfoData.location}
-                </p>
-              )}
+                {edu.institution != '' && (
+                  <p className="md:text-xxs pl-2">
+                    {edu.institution}, {edu.location}
+                  </p>
+                )}
 
-              {educationInfoData.graduationYear != '' && (
-                <p className="md:text-xxs pl-2">
-                  Graduation Year: {educationInfoData.graduationYear}
-                </p>
-              )}
-            </div>
+                {edu.graduationYear != '' && (
+                  <p className="md:text-xxs pl-2">
+                    Graduation Year: {edu.graduationYear}
+                  </p>
+                )}
+              </div>
+            ))}
+
             <hr className="md:my-1" />
             {/* certification section */}
             <h3 className="md:text-xs font-semibold mt-1 uppercase">
               Certifications
             </h3>
             <div className="my-1 flex flex-col gap-1">
-              <div className="">
-                {certificationInfoData.certificationName != '' && (
-                  <p className="md:text-xs text-thm_primary_color font-medium">
-                    - {certificationInfoData.certificationName}
-                  </p>
-                )}
-                {certificationInfoData.certificateIssuedBy != '' && (
-                  <p className="md:text-xxs pl-2">
-                    {certificationInfoData.certificateIssuedBy},{' '}
-                    {certificationInfoData.certificateIssuedDate}
-                  </p>
-                )}
-              </div>
-              <div className="">
-                {certificationInfoData.certificationName != '' && (
-                  <p className="md:text-xs text-thm_primary_color font-medium">
-                    - {certificationInfoData.certificationName}
-                  </p>
-                )}
-                {certificationInfoData.certificateIssuedBy != '' && (
-                  <p className="md:text-xxs pl-2">
-                    {certificationInfoData.certificateIssuedBy},{' '}
-                    {certificationInfoData.certificateIssuedDate}
-                  </p>
-                )}
-              </div>
+              {certificationInfoData.map((cert) => (
+                <div className="" key={cert.id}>
+                  {cert.certificationName != '' && (
+                    <p className="md:text-xs text-thm_primary_color font-medium">
+                      - {cert.certificationName}
+                    </p>
+                  )}
+                  {cert.certificateIssuedBy != '' && (
+                    <p className="md:text-xxs pl-2">
+                      {cert.certificateIssuedBy}, {cert.certificateIssuedDate}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
             <hr className="md:my-1" />
             {/* awards and achieements */}
             <h3 className="md:text-xs uppercase font-semibold mt-1">
               Awards and Achievements
             </h3>
-            <ul className="list-disc md:text-xxs list-inside">
-              {achievementsInfoData.map((award, index) => (
-                <li key={index}>{award}</li>
-              ))}
-            </ul>
+            <style>{skillsStyles}</style>
+            <div
+              className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+              style={{
+                listStyleType: 'disc',
+                paddingInline: '0px',
+                margin: '0px',
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  achievementsInfoData &&
+                  DOMPurify.sanitize(achievementsInfoData),
+              }}
+            ></div>
             <hr className="md:my-1" />
             {/* Personal Projects */}
             <h3 className="md:text-xs uppercase font-semibold mt-1">
@@ -356,11 +357,19 @@ ul.list-disc{
             <h3 className="md:text-xs uppercase font-semibold mt-1">
               Interests
             </h3>
-            <ul className="list-disc md:text-xxs list-inside">
-              {interestsInfoData.map((interest, index) => (
-                <li key={index}>{interest}</li>
-              ))}
-            </ul>
+            <style>{skillsStyles}</style>
+            <div
+              className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+              style={{
+                listStyleType: 'disc',
+                paddingInline: '0px',
+                margin: '0px',
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  interestsInfoData && DOMPurify.sanitize(interestsInfoData),
+              }}
+            ></div>
             <hr className="md:my-1" />
             {referencesInfoData.length > 0 && (
               <div>

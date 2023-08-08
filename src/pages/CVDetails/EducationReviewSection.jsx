@@ -1,33 +1,28 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_EXPERIENCE } from '../../redux/experienceInfoSlice';
+import { DELETE_EDUCATION } from '../../redux/educationInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
 
-export const ExperienceReviewSection = () => {
-  const experiences = useSelector((state) => state.experienceInfo);
+export const EducationReviewSection = () => {
+  const educations = useSelector((state) => state.educationInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log('experinceds', experiences);
+  console.log('educations', educations);
 
-  const handleEditorChange = (value) => {
-    setEditorValue(value);
+  const handleDeleteEducation = (id) => {
+    dispatch(DELETE_EDUCATION(id));
   };
-
-  const handleDeleteExperience = (id) => {
-    dispatch(DELETE_EXPERIENCE(id));
-  };
-  const handleUpdateExperience = (id) => {
-    navigate(`/CV-Details/1/Experience-Section/${id}`);
+  const handleUpdateEducation = (id) => {
+    navigate(`/CV-Details/1/Education-Section/${id}`);
   };
 
   const handleContinue = () => {
-    dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-    navigate('/CV-Details/1/Skills-Section');
+    dispatch(SET_COMPLETED(FormSections.EDUCATION));
+    navigate('/CV-Details/1/Experience-Section/0');
   };
 
   return (
@@ -37,15 +32,22 @@ export const ExperienceReviewSection = () => {
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Review your experience
+          Review your educations
         </h1>
       </div>
       <div className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
         <div className=" w-full h-auto flex flex-col gap-2 lg:gap-5">
-          {experiences &&
-            experiences.map(
+          {educations &&
+            educations.map(
               (
-                { employer, jobTitle, city, country, startDate, endDate, id },
+                {
+                  qualification,
+                  fieldOfStudy,
+                  institution,
+                  location,
+                  graduationYear,
+                  id,
+                },
                 index
               ) => (
                 <div
@@ -55,15 +57,12 @@ export const ExperienceReviewSection = () => {
                   <div className="flex gap-3 lg:gap-10 ">
                     <p className="font-medium md:text-xl">{index + 1}</p>
                     <div className="flex flex-col gap-1">
-                      <h1 className=" font-semibold">{employer}</h1>
-                      <p className="lg:text-lg">{jobTitle}</p>
-                      <div className="flex text-xs gap-2 lg:gap-5 text-thm_secondary_color">
-                        <p>
-                          {city}, {country}
-                        </p>
-                        <p>
-                          <span>{startDate}</span> - <span>{endDate}</span>
-                        </p>
+                      <h1 className=" font-semibold">{qualification}</h1>
+                      <p className="lg:text-lg">
+                        {institution}, {fieldOfStudy}
+                      </p>
+                      <div className="flex text-xs gap-2 lg:gap-3 text-thm_secondary_color">
+                        <p>{location}</p> |<p>{graduationYear}</p>
                       </div>
                     </div>
                   </div>
@@ -72,7 +71,7 @@ export const ExperienceReviewSection = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       className="lg:w-8 w-6 fill-orange-400"
                       viewBox="0 0 24 24"
-                      onClick={() => handleUpdateExperience(id)}
+                      onClick={() => handleUpdateEducation(id)}
                     >
                       <path d="M12.8995 6.85431L17.1421 11.0969L7.24264 20.9964H3V16.7538L12.8995 6.85431ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"></path>
                     </svg>
@@ -80,7 +79,7 @@ export const ExperienceReviewSection = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       className="lg:w-7 w-6 fill-red-600"
                       viewBox="0 0 24 24"
-                      onClick={() => handleDeleteExperience(id)}
+                      onClick={() => handleDeleteEducation(id)}
                     >
                       <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
                     </svg>
@@ -90,7 +89,7 @@ export const ExperienceReviewSection = () => {
             )}
 
           <NavLink
-            to="/CV-Details/1/Experience-Section/0"
+            to="/CV-Details/1/Education-Section/0"
             className="flex gap-2 justify-end items-center px-3"
           >
             <svg
@@ -101,7 +100,7 @@ export const ExperienceReviewSection = () => {
               <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11H7V13H11V17H13V13H17V11H13V7H11V11Z"></path>
             </svg>
             <p className="font-semibold text-sm md:text-base text-thm_root1_color uppercase">
-              Add More Experience
+              Add More Educations
             </p>
           </NavLink>
         </div>
@@ -117,11 +116,6 @@ export const ExperienceReviewSection = () => {
         >
           Continue
         </button>
-        {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-        {/* <FormattedTextDisplay value={quillValue} /> */}
       </div>
     </form>
   );

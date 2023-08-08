@@ -1,23 +1,43 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { languageValidationSchema } from '../../validations/languageSchema';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_LANGUAGE } from '../../redux/languageInfoSlice';
+import { SET_LANGUAGE, UPDATE_LANGUAGE } from '../../redux/languageInfoSlice';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 
 export const LanguageSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleBack = () => navigate(-1);
+  const { id: languageId } = useParams();
   const languages = useSelector((state) => state.languageInfo);
+  let filteredLanguage;
+
+  let initialValues = {
+    languageName: '',
+    proficiencyLevel: '',
+  };
+
+  if (languageId) {
+    filteredLanguage = languages.filter((lang) => lang.id == languageId)[0];
+    filteredLanguage && (initialValues = filteredLanguage);
+    console.log('languages', filteredLanguage, initialValues);
+  }
 
   const handleSubmit = (values, { resetForm }) => {
-    const languageId = languages.length + 1;
-    values.id = languageId;
-    console.log('languages values', values);
-    dispatch(SET_LANGUAGE(values));
-    navigate('/CV-Details/1/Summary-Section');
+    if (languageId > 0) {
+      alert('no lang');
+      console.log('updated values', values);
+      dispatch(UPDATE_LANGUAGE({ values: values, id: languageId }));
+      navigate(`/CV-Details/1/Languages-Review`);
+    } else {
+      const languageId = languages.length + 1;
+      values.id = languageId;
+      console.log('languages values', values);
+      dispatch(SET_LANGUAGE(values));
+      navigate('/CV-Details/1/Languages-Review');
+    }
   };
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
@@ -31,10 +51,7 @@ export const LanguageSection = () => {
       </div>
 
       <Formik
-        initialValues={{
-          languageName: '',
-          proficiencyLevel: '',
-        }}
+        initialValues={initialValues}
         validateOn
         validationSchema={languageValidationSchema}
         onSubmit={handleSubmit}

@@ -38,7 +38,7 @@ export const ExperienceSection = () => {
       values.endDate = 'Present';
     }
     if (experienceId > 0) {
-      // alert('no exp');
+      alert('no exp');
       console.log('updated values', values);
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
       navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);

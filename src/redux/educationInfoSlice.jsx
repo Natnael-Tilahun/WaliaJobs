@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  qualification: '',
-  institution: '',
-  location: '',
-  graduationYear: '',
-  fieldOfStudy: '',
-};
+const initialState = [];
 // const initialState = {
 //   data: {
 //     personalInformation: {
@@ -67,18 +61,14 @@ const initialState = {
 //   }, // TODO define type of CV object here or use interface?
 // };
 const actionTypes = (() => {
-  const SET_QUALIFICATION = 'SET_QUALIFICATION';
-  const SET_INSTITUTION = 'SET_INSTITUTION';
-  const SET_LOCATION = 'SET_LOCATION';
-  const SET_GRADUATION_YEAR = 'SET_GRADUATION_YEAR';
-  const SET_FIELD_OF_STUDY = 'SET_FIELD_OF_STUDY';
+  const SET_EDUCATION = 'SET_EDUCATION';
+  const UPDATE_EDUCATION = 'UPDATE_EDUCATION';
+  const DELETE_EDUCATION = 'DELETE_EDUCATION';
   const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
-    SET_QUALIFICATION,
-    SET_INSTITUTION,
-    SET_LOCATION,
-    SET_GRADUATION_YEAR,
-    SET_FIELD_OF_STUDY,
+    SET_EDUCATION,
+    UPDATE_EDUCATION,
+    DELETE_EDUCATION,
     CLEAR_CV_DATA,
   };
 })();
@@ -86,21 +76,20 @@ const educationInfoSlice = createSlice({
   name: 'educationInfo',
   initialState,
   reducers: {
-    [actionTypes.SET_QUALIFICATION](state, action) {
+    [actionTypes.SET_EDUCATION](state, action) {
       alert('set education info');
-      state.qualification = action.payload;
+      state.push(action.payload);
     },
-    [actionTypes.SET_INSTITUTION](state, action) {
-      state.institution = action.payload;
+    [actionTypes.UPDATE_EDUCATION](state, action) {
+      const { id, values } = action.payload;
+      const index = state.findIndex((edu) => edu.id == id);
+      state[index] = values;
+      return state;
     },
-    [actionTypes.SET_LOCATION](state, action) {
-      state.location = action.payload;
-    },
-    [actionTypes.SET_GRADUATION_YEAR](state, action) {
-      state.graduationYear = action.payload;
-    },
-    [actionTypes.SET_FIELD_OF_STUDY](state, action) {
-      state.fieldOfStudy = action.payload;
+    [actionTypes.DELETE_EDUCATION](state, action) {
+      // alert(action.payload);
+      const index = state.findIndex((exp) => exp.id === action.payload);
+      return state.filter((_, i) => i !== index); // payload is index
     },
     [actionTypes.CLEAR_CV_DATA](state) {
       return { ...initialState };
@@ -109,11 +98,9 @@ const educationInfoSlice = createSlice({
 });
 
 export const {
-  SET_QUALIFICATION,
-  SET_INSTITUTION,
-  SET_LOCATION,
-  SET_GRADUATION_YEAR,
-  SET_FIELD_OF_STUDY,
+  SET_EDUCATION,
+  UPDATE_EDUCATION,
+  DELETE_EDUCATION,
   CLEAR_CV_DATA,
 } = educationInfoSlice.actions;
 export default educationInfoSlice.reducer;

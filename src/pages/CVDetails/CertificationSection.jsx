@@ -1,27 +1,49 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { certificationValidationSchema } from '../../validations/certificationSchema';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  SET_CERTIFICATION_NAME,
-  SET_CERTIFICATE_ISSUED_BY,
-  SET_CERTIFICATE_ISSUED_DATE,
+  SET_CERTIFICATION,
+  UPDATE_CERTIFICATE,
 } from '../../redux/certificationInfoSlice';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 
 export const CertificationSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id: certificateId } = useParams();
   const handleBack = () => navigate(-1);
-  const { certificationName, certificateIssuedBy, certificateIssuedDate } =
-    useSelector((state) => state.certificationInfo);
+  const certificates = useSelector((state) => state.certificationInfo);
+  let filteredCertificate;
+
+  let initialValues = {
+    certificationName: '',
+    certificateIssuedBy: '',
+    certificateIssuedDate: '',
+  };
+
+  if (certificateId) {
+    filteredCertificate = certificates.filter(
+      (cert) => cert.id == certificateId
+    )[0];
+    filteredCertificate && (initialValues = filteredCertificate);
+    console.log('certifications', filteredCertificate, initialValues);
+  }
+
   const handleSubmit = (values, { resetForm }) => {
-    console.log('certifications values', values);
-    dispatch(SET_CERTIFICATION_NAME(values.certificationName));
-    dispatch(SET_CERTIFICATE_ISSUED_BY(values.certificateIssuedBy));
-    dispatch(SET_CERTIFICATE_ISSUED_DATE(values.certificateIssuedDate));
-    navigate('/CV-Details/1/Language-Section');
+    if (certificateId > 0) {
+      alert('no cert');
+      console.log('updated values', values);
+      dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
+      navigate(`/CV-Details/1/Certifications-Review`);
+    } else {
+      const certificateId = certificates.length + 1;
+      values.id = certificateId;
+      console.log('values', values);
+      dispatch(SET_CERTIFICATION(values));
+      navigate('/CV-Details/1/Certifications-Review');
+    }
   };
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
@@ -35,11 +57,7 @@ export const CertificationSection = () => {
       </div>
 
       <Formik
-        initialValues={{
-          certificationName: certificationName,
-          certificateIssuedBy: certificateIssuedBy,
-          certificateIssuedDate: certificateIssuedDate,
-        }}
+        initialValues={initialValues}
         validateOn
         validationSchema={certificationValidationSchema}
         onSubmit={handleSubmit}

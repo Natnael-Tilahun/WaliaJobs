@@ -1,141 +1,139 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { educationValidationSchema } from '../../validations/educationSchema';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { referenceValidationSchema } from '../../validations/referenceSchema';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import {
-  SET_EDUCATION,
-  UPDATE_EDUCATION,
-} from '../../redux/educationInfoSlice';
-import { useDispatch, useSelector } from 'react-redux';
+  SET_REFERENECES,
+  UPDATE_REFERENECE,
+} from '../../redux/referenceInfoSlice';
 
-export const EducationSection = () => {
-  const dispatch = useDispatch();
+export const ReferenceSection = () => {
   const navigate = useNavigate();
-  const { id: educaitonId } = useParams();
-  let filterdEducation;
-  const educations = useSelector((state) => state.educationInfo);
+  const dispatch = useDispatch();
+  const handleBack = () => navigate(-1);
+  const { id: referenceId } = useParams();
+  const references = useSelector((state) => state.referenceInfo);
+  let filteredReference;
   let initialValues = {
-    qualification: '',
-    fieldOfStudy: '',
-    institution: '',
-    location: '',
-    graduationYear: '',
+    fullName: '',
+    jobTitle: '',
+    companyName: '',
+    email: '',
+    phone: '',
   };
 
-  if (educaitonId) {
-    filterdEducation = educations.filter((edu) => edu.id == educaitonId)[0];
-    filterdEducation && (initialValues = filterdEducation);
-    console.log('educationss', filterdEducation, initialValues);
+  if (referenceId) {
+    filteredReference = references.filter((ref) => ref.id == referenceId)[0];
+    filteredReference && (initialValues = filteredReference);
+    console.log('references', filteredReference, initialValues);
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    if (educaitonId > 0) {
-      alert('no edu');
+    if (referenceId > 0) {
+      alert('no lang');
       console.log('updated values', values);
-      dispatch(UPDATE_EDUCATION({ values: values, id: educaitonId }));
-      navigate(`/CV-Details/1/Education-Review`);
+      dispatch(UPDATE_REFERENECE({ values: values, id: referenceId }));
+      navigate(`/CV-Details/1/References-Review`);
     } else {
-      const educationId = educations.length + 1;
-      values.id = educationId;
-      console.log('values', values);
-      dispatch(SET_EDUCATION(values));
-      navigate('/CV-Details/1/Education-Review');
+      const referenceId = references.length + 1;
+      values.id = referenceId;
+      console.log('references values', values);
+      dispatch(SET_REFERENECES(values));
+      navigate('/CV-Details/1/References-Review');
     }
   };
-
-  const handleBack = () => navigate(-1);
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Add your education
+          Add your references
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
-          List all qualifications or degrees you’ve earned or in progress
+          List all references you’ve
         </p>
       </div>
 
       <Formik
         initialValues={initialValues}
         validateOn
-        validationSchema={educationValidationSchema}
+        validationSchema={referenceValidationSchema}
         onSubmit={handleSubmit}
       >
         {(values) => (
           <Form className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
             <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
-              <label htmlFor="institution">Institution</label>
+              <label htmlFor="fullName">Full Name</label>
               <Field
                 type="text"
-                name="institution"
-                id="institution"
-                placeholder="Addis Abeba University"
+                name="fullName"
+                id="fullName"
+                placeholder="Natnael Tilahun"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="institution"
+                name="fullName"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="location">City - State</label>
+              <label htmlFor="jobTitle">Job Title</label>
               <Field
                 type="text"
-                name="location"
-                id="location"
-                placeholder="Addis Abeba"
+                name="jobTitle"
+                id="jobTitle"
+                placeholder="Software Engineer"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="location"
+                name="jobTitle"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="qualification">Qualification</label>
+              <label htmlFor="companyName">Company Name</label>
               <Field
                 type="text"
-                name="qualification"
-                id="qualification"
-                placeholder="Bachelor's Degree"
+                name="companyName"
+                id="companyName"
+                placeholder="Commercial bank of Ethiopia"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="qualification"
+                name="companyName"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="fieldOfStudy">Field Of Study</label>
+              <label htmlFor="email">Email</label>
               <Field
-                type="text"
-                name="fieldOfStudy"
-                id="fieldOfStudy"
-                placeholder="Management"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="natnaeltilahun97@gmail.com"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="fieldOfStudy"
+                name="email"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="graduationYear">
-                Year of Graduation / expected graduation date
-              </label>
+              <label htmlFor="phone">Phone</label>
               <Field
-                type="date"
-                name="graduationYear"
-                id="graduationYear"
-                placeholder="10/10/2020"
+                type="phone"
+                name="phone"
+                id="phone"
+                placeholder="0933654654"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="graduationYear"
+                name="phone"
               />
             </div>
+
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2"></div>
             <button
               onClick={handleBack}

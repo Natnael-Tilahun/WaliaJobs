@@ -1,26 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { CVTemplate } from './CVTemplate';
+import { useSelector } from 'react-redux';
+import { FormSections } from '../../utils/FormSections';
 
 export const CVDetails = () => {
-  const [firstname, setFirstname] = useState('Natnael');
-  const [lastname, setLastname] = useState('Tilahun');
-  const [position, setPosition] = useState('Software Engineer');
-  const [city, setCity] = useState('Addis Abeba');
-  const [country, setCountry] = useState('Ethiopia');
-  const [postcode, setPostcode] = useState('0000');
-  const [phone, setPhone] = useState('0933654654');
-  const [email, setEmail] = useState('natnaeltilahun97@gmail.com');
-
-  const firstnameRef = useRef();
-  const lastnameRef = useRef();
-  const positionRef = useRef();
-  const cityRef = useRef();
-  const countryRef = useRef();
-  const postcodeRef = useRef();
-  const phoneRef = useRef();
-  const emailRef = useRef();
-
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+  console.log('cvCompletionInfo', cvCompletionInfo);
   return (
     <div className="flex flex-col md:flex-row py-5 px-5 md:px-0 lg:px-10 w-full justify-center gap-5 md:gap-2 lg:gap-0">
       <div className="basis-full  md:basis-[50%] shadow-lg">
@@ -34,10 +20,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center ">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 1
-              </span>
-              Heading
+              </span> */}
+              {cvCompletionInfo[FormSections.HEADING] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.HEADING}
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
@@ -57,7 +60,7 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Education-Section"
+            to="Education-Section/0"
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -65,10 +68,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 2
-              </span>
-              Education
+              </span> */}
+              {cvCompletionInfo[FormSections.EDUCATION] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.EDUCATION}
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
@@ -96,10 +116,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 3
-              </span>
-              Experience
+              </span> */}
+              {cvCompletionInfo[FormSections.EXPERIENCE] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.EXPERIENCE}
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
@@ -127,10 +164,28 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 4
-              </span>
-              Skills
+              </span> */}
+              {cvCompletionInfo[FormSections.SKILLS] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+
+              {FormSections.SKILLS}
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
@@ -150,7 +205,7 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Certification-Section"
+            to="Certification-Section/0"
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -158,10 +213,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 5
-              </span>
-              Certifications
+              </span> */}
+              {cvCompletionInfo[FormSections.CERTIFICATIONS] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.CERTIFICATIONS}
               {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
               <svg
                 aria-hidden="true"
@@ -181,7 +253,7 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Language-Section"
+            to="Language-Section/0"
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -189,11 +261,170 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 6
-              </span>
-              Language
-              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              </span> */}
+              {cvCompletionInfo[FormSections.LANGUAGES] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.LANGUAGES}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="References-Section/0"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? '#1e40af' : '',
+              };
+            }}
+          >
+            <li className="flex items-center">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                6
+              </span> */}
+              {cvCompletionInfo[FormSections.REFERENCES] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+
+              {FormSections.REFERENCES}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Achievements-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? '#1e40af' : '',
+              };
+            }}
+          >
+            <li className="flex items-center">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                7
+              </span> */}
+              {cvCompletionInfo[FormSections.ACHIEVEMENTS] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+
+              {FormSections.ACHIEVEMENTS}
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                ></path>
+              </svg>
+            </li>
+          </NavLink>
+          <NavLink
+            to="Interests-Section"
+            style={({ isActive }) => {
+              return {
+                color: isActive ? '#1e40af' : '',
+              };
+            }}
+          >
+            <li className="flex items-center">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+                7
+              </span> */}
+              {cvCompletionInfo[FormSections.INTERESTS] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.INTERESTS}
               <svg
                 aria-hidden="true"
                 className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
@@ -220,11 +451,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 7
-              </span>
-              Summary
-              {/* <span className="hidden sm:inline-flex sm:ml-2">Info</span> */}
+              </span> */}
+              {cvCompletionInfo[FormSections.SUMMARY] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.SUMMARY}
               <svg
                 aria-hidden="true"
                 className="w-4 h-4 ml-1 md:ml-2 lg:ml-4"
@@ -251,10 +498,27 @@ export const CVDetails = () => {
             }}
           >
             <li className="flex items-center">
-              <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
+              {/* <span className="flex items-center justify-center w-4 h-4 lg:w-5 lg:h-5 lg:mr-2 mr-1 md:text-xs lg:text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                 8
-              </span>
-              Review
+              </span> */}
+              {cvCompletionInfo[FormSections.FINALIZE] ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 fill-thm_root1_color lg:mr-1 mr-1 opacity-60 "
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+              )}
+              {FormSections.FINALIZE}
             </li>
           </NavLink>
         </ol>

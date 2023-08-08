@@ -39,6 +39,13 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { CertificationSection } from './pages/CVDetails/CertificationSection';
 import { LanguageSection } from './pages/CVDetails/LanguageSection';
+import { ReferenceSection } from './pages/CVDetails/ReferenceSection';
+import { AchievementsSection } from './pages/CVDetails/AchievementsSection';
+import { InterestsSection } from './pages/CVDetails/InterestsSection';
+import { EducationReviewSection } from './pages/CVDetails/EducationReviewSection';
+import { CertificationsReviewSection } from './pages/CVDetails/CertificationsReviewSection';
+import { LanguagesReviewSection } from './pages/CVDetails/LanguagesReviewSection';
+import { ReferencesReviewSection } from './pages/CVDetails/ReferencesReviewSection';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -85,14 +92,45 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 path="Experience-Review"
                 element={<ExperienceReviewSection />}
               />
-              <Route path="Education-Section" element={<EducationSection />} />
               <Route
-                path="Certification-Section"
+                path="Education-Section/:id"
+                element={<EducationSection />}
+              />
+              <Route
+                path="Education-Review"
+                element={<EducationReviewSection />}
+              />
+              <Route
+                path="Certification-Section/:id"
                 element={<CertificationSection />}
               />
+              <Route
+                path="Certifications-Review"
+                element={<CertificationsReviewSection />}
+              />
               <Route path="Skills-Section" element={<SkillSection />} />
+              <Route
+                path="References-Section/:id"
+                element={<ReferenceSection />}
+              />
+              <Route
+                path="References-Review"
+                element={<ReferencesReviewSection />}
+              />
+              <Route
+                path="Achievements-Section"
+                element={<AchievementsSection />}
+              />
+              <Route path="Interests-Section" element={<InterestsSection />} />
               <Route path="Summary-Section" element={<SummarySection />} />
-              <Route path="Language-Section" element={<LanguageSection />} />
+              <Route
+                path="Language-Section/:id"
+                element={<LanguageSection />}
+              />
+              <Route
+                path="Languages-Review"
+                element={<LanguagesReviewSection />}
+              />
               <Route
                 path="Additional-Section"
                 element={<AddAdditionalSection />}

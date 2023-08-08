@@ -17,6 +17,8 @@ import {
   SET_EMAIL,
   SET_COUNTRY,
 } from '../../redux/contactInfoSlice';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const ContactSection = () => {
   const dispatch = useDispatch();
@@ -38,7 +40,8 @@ export const ContactSection = () => {
     dispatch(SET_PHONE(values.phone));
     dispatch(SET_POSTCODE(values.postCode));
     dispatch(SET_EMAIL(values.email));
-    navigate('/CV-Details/1/Education-Section');
+    dispatch(SET_COMPLETED(FormSections.HEADING));
+    navigate('/CV-Details/1/Education-Section/0');
   };
   const handleBack = () => {
     navigate(-1);

@@ -1,20 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  certificationName: '',
-  certificateIssuedBy: '',
-  certificateIssuedDate: '',
-};
+const initialState = [];
 
 const actionTypes = (() => {
-  const SET_CERTIFICATION_NAME = 'SET_CERTIFICATION_NAME';
-  const SET_CERTIFICATE_ISSUED_BY = 'SET_CERTIFICATE_ISSUED_BY';
-  const SET_CERTIFICATE_ISSUED_DATE = 'SET_CERTIFICATE_ISSUED_DATE';
+  const SET_CERTIFICATION = 'SET_CERTIFICATION';
+  const UPDATE_CERTIFICATE = 'UPDATE_CERTIFICATE';
+  const DELETE_CERTIFICATE = 'DELETE_CERTIFICATE';
   const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
-    SET_CERTIFICATION_NAME,
-    SET_CERTIFICATE_ISSUED_BY,
-    SET_CERTIFICATE_ISSUED_DATE,
+    SET_CERTIFICATION,
+    UPDATE_CERTIFICATE,
+    DELETE_CERTIFICATE,
     CLEAR_CV_DATA,
   };
 })();
@@ -22,15 +18,21 @@ const certificationInfoSlice = createSlice({
   name: 'certificationInfo',
   initialState,
   reducers: {
-    [actionTypes.SET_CERTIFICATION_NAME](state, action) {
+    [actionTypes.SET_CERTIFICATION](state, action) {
       alert('Certification info submitted');
-      state.certificationName = action.payload;
+      state.push(action.payload);
     },
-    [actionTypes.SET_CERTIFICATE_ISSUED_BY](state, action) {
-      state.certificateIssuedBy = action.payload;
+    [actionTypes.UPDATE_CERTIFICATE](state, action) {
+      const { id, values } = action.payload;
+      const index = state.findIndex((cert) => cert.id == id);
+      state[index] = values;
+      console.log('updatedd cert', state);
+      return state;
     },
-    [actionTypes.SET_CERTIFICATE_ISSUED_DATE](state, action) {
-      state.certificateIssuedDate = action.payload;
+    [actionTypes.DELETE_CERTIFICATE](state, action) {
+      // alert(action.payload);
+      const index = state.findIndex((cert) => cert.id === action.payload);
+      return state.filter((_, i) => i !== index); // payload is index
     },
     [actionTypes.CLEAR_CV_DATA](state) {
       return { ...initialState };
@@ -39,9 +41,9 @@ const certificationInfoSlice = createSlice({
 });
 
 export const {
-  SET_CERTIFICATION_NAME,
-  SET_CERTIFICATE_ISSUED_BY,
-  SET_CERTIFICATE_ISSUED_DATE,
+  SET_CERTIFICATION,
+  UPDATE_CERTIFICATE,
+  DELETE_CERTIFICATE,
   CLEAR_CV_DATA,
 } = certificationInfoSlice.actions;
 export default certificationInfoSlice.reducer;

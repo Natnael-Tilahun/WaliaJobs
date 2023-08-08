@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = {
+  interests: '',
+};
 
 const actionTypes = (() => {
-  const SET_INTERESTS = 'interestsInfo/SET_INTERESTS';
-  const CLEAR_CV_DATA = 'interestsInfo/CLEAR_CV_DATA';
+  const SET_INTERESTS = 'SET_INTERESTS';
+  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
     SET_INTERESTS,
     CLEAR_CV_DATA,

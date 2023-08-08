@@ -1,17 +1,17 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { skillsValidationSchema } from '../../validations/skillsSchema';
+import { interestsValidationSchema } from '../../validations/interestsSchema';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import DOMPurify from 'dompurify';
 import { useDispatch } from 'react-redux';
-import { SET_SKILLS } from '../../redux/skillsInfoSlice';
+import { SET_INTERESTS } from '../../redux/interestsInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
 
-export const SkillSection = () => {
+export const InterestsSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,15 +19,15 @@ export const SkillSection = () => {
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
-    formik.setFieldTouched('skillDetails');
+    formik.setFieldTouched('interestsDetails');
   };
 
   const handleSubmit = (values) => {
     // Handle form submission and access form values
-    console.log(values.skillDetails);
-    dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
-    dispatch(SET_COMPLETED(FormSections.SKILLS));
-    navigate('/CV-Details/1/Certification-Section/0');
+    console.log(values.interestsDetails);
+    dispatch(SET_INTERESTS(DOMPurify.sanitize(values.interestsDetails)));
+    dispatch(SET_COMPLETED(FormSections.INTERESTS));
+    navigate('/CV-Details/1/Summary-Section');
   };
 
   const handleBack = navigate(-1);
@@ -39,17 +39,17 @@ export const SkillSection = () => {
     >
       <div className="text-center flex flex-col gap-3">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
-          Add your skills{' '}
+          Add your Interests and Hobbies
         </h1>
         <p className="text-sm md:text-base text-thm_secondary_color">
-          Now, let's showcase your best skills for the job.{' '}
+          Now, let's showcase your interests and hobbies
         </p>
       </div>
       <Formik
         initialValues={{
-          skillDetails: '',
+          interestsDetails: '',
         }}
-        validationSchema={skillsValidationSchema}
+        validationSchema={interestsValidationSchema}
         onSubmit={handleSubmit}
       >
         {(formik) => (
@@ -57,9 +57,9 @@ export const SkillSection = () => {
             <div className=" w-full  h-40 mb-3">
               <ReactQuill
                 ref={quillRef}
-                value={formik.values.skillDetails}
+                value={formik.values.interestsDetails}
                 onChange={(value) =>
-                  formik.setFieldValue('skillDetails', value)
+                  formik.setFieldValue('interestsDetails', value)
                 }
                 onBlur={() => handleQuillBlur(formik)}
                 className="lg:h-full h-1/2"
@@ -67,7 +67,7 @@ export const SkillSection = () => {
             </div>
             <ErrorMessage
               render={(msg) => <ErrorMessageComponent msg={msg} />}
-              name="skillDetails"
+              name="interestsDetails"
             />
             <button
               onClick={handleBack}
@@ -81,11 +81,6 @@ export const SkillSection = () => {
             >
               Continue
             </button>
-            {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-            {/* <FormattedTextDisplay value={quillValue} /> */}
           </Form>
         )}
       </Formik>
