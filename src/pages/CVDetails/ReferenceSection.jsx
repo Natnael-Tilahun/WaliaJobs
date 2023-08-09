@@ -8,6 +8,8 @@ import {
   SET_REFERENECES,
   UPDATE_REFERENECE,
 } from '../../redux/referenceInfoSlice';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const ReferenceSection = () => {
   const navigate = useNavigate();
@@ -35,12 +37,14 @@ export const ReferenceSection = () => {
       alert('no lang');
       console.log('updated values', values);
       dispatch(UPDATE_REFERENECE({ values: values, id: referenceId }));
+      dispatch(SET_COMPLETED(FormSections.REFERENCES));
       navigate(`/CV-Details/1/References-Review`);
     } else {
       const referenceId = references.length + 1;
       values.id = referenceId;
       console.log('references values', values);
       dispatch(SET_REFERENECES(values));
+      dispatch(SET_COMPLETED(FormSections.REFERENCES));
       navigate('/CV-Details/1/References-Review');
     }
   };

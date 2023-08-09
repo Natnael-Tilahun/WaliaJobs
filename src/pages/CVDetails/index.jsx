@@ -60,7 +60,11 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Education-Section/0"
+            to={`${
+              cvCompletionInfo[FormSections.EDUCATION]
+                ? 'Education-Review'
+                : 'Education-Section/0'
+            }`}
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -108,7 +112,11 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Experience-Section/0"
+            to={`${
+              cvCompletionInfo[FormSections.EXPERIENCE]
+                ? 'Experience-Review'
+                : 'Experience-Section/0'
+            }`}
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -205,7 +213,11 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Certification-Section/0"
+            to={`${
+              cvCompletionInfo[FormSections.CERTIFICATIONS]
+                ? 'Certifications-Review'
+                : 'Certification-Section/0'
+            }`}
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -253,7 +265,11 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="Language-Section/0"
+            to={`${
+              cvCompletionInfo[FormSections.LANGUAGES]
+                ? 'Languages-Review'
+                : 'Language-Section/0'
+            }`}
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',
@@ -300,7 +316,11 @@ export const CVDetails = () => {
             </li>
           </NavLink>
           <NavLink
-            to="References-Section/0"
+            to={`${
+              cvCompletionInfo[FormSections.REFERENCES]
+                ? 'References-Review'
+                : 'References-Section/0'
+            }`}
             style={({ isActive }) => {
               return {
                 color: isActive ? '#1e40af' : '',

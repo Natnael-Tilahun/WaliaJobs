@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import { summaryValidationSchema } from '../../validations/summarySchema';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
 import DOMPurify from 'dompurify';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
@@ -14,8 +14,16 @@ import { FormSections } from '../../utils/FormSections';
 export const SummarySection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const quillRef = useRef(null);
+  const { summary } = useSelector((state) => state.summaryInfo);
+
+  let initialValues = {
+    summaryDetails: '',
+  };
+
+  if (summary) {
+    initialValues.summaryDetails = summary;
+  }
 
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
@@ -42,9 +50,7 @@ export const SummarySection = () => {
       </div>
 
       <Formik
-        initialValues={{
-          summaryDetails: '',
-        }}
+        initialValues={initialValues}
         validationSchema={summaryValidationSchema}
         onSubmit={handleSubmit}
       >

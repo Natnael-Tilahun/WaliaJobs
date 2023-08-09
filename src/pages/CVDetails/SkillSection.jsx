@@ -6,7 +6,7 @@ import { skillsValidationSchema } from '../../validations/skillsSchema';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import DOMPurify from 'dompurify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_SKILLS } from '../../redux/skillsInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
@@ -14,7 +14,18 @@ import { FormSections } from '../../utils/FormSections';
 export const SkillSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isCertificationSectionCompleted = useSelector(
+    (state) => state.cvCompletionInfo[FormSections.CERTIFICATIONS]
+  );
+  const { skills } = useSelector((state) => state.skillsInfo);
 
+  let initialValues = {
+    skillDetails: '',
+  };
+
+  if (skills) {
+    initialValues.skillDetails = skills;
+  }
   const quillRef = useRef(null);
 
   const handleQuillBlur = (formik) => {
@@ -27,7 +38,9 @@ export const SkillSection = () => {
     console.log(values.skillDetails);
     dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
     dispatch(SET_COMPLETED(FormSections.SKILLS));
-    navigate('/CV-Details/1/Certification-Section/0');
+    isCertificationSectionCompleted
+      ? navigate('/CV-Details/1/Certification-Review')
+      : navigate('/CV-Details/1/Certification-Section/0');
   };
 
   const handleBack = navigate(-1);
@@ -46,9 +59,7 @@ export const SkillSection = () => {
         </p>
       </div>
       <Formik
-        initialValues={{
-          skillDetails: '',
-        }}
+        initialValues={initialValues}
         validationSchema={skillsValidationSchema}
         onSubmit={handleSubmit}
       >

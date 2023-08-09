@@ -8,6 +8,8 @@ import {
   SET_EXPERIENCE,
   UPDATE_EXPERIENCE,
 } from '../../redux/experienceInfoSlice';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
@@ -41,12 +43,14 @@ export const ExperienceSection = () => {
       alert('no exp');
       console.log('updated values', values);
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
+      dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
       navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
     } else {
       const experienceId = experiences.length + 1;
       values.id = experienceId;
       console.log('values', values);
       dispatch(SET_EXPERIENCE(values));
+      dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
       navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
     }
   };

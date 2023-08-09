@@ -8,6 +8,8 @@ import {
   UPDATE_CERTIFICATE,
 } from '../../redux/certificationInfoSlice';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const CertificationSection = () => {
   const navigate = useNavigate();
@@ -36,12 +38,14 @@ export const CertificationSection = () => {
       alert('no cert');
       console.log('updated values', values);
       dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
+      dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
       navigate(`/CV-Details/1/Certifications-Review`);
     } else {
-      const certificateId = certificates.length + 1;
+      let certificateId = certificates.length + 1;
       values.id = certificateId;
       console.log('values', values);
       dispatch(SET_CERTIFICATION(values));
+      dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
       navigate('/CV-Details/1/Certifications-Review');
     }
   };

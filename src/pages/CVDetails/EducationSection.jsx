@@ -8,6 +8,8 @@ import {
   UPDATE_EDUCATION,
 } from '../../redux/educationInfoSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
 
 export const EducationSection = () => {
   const dispatch = useDispatch();
@@ -34,12 +36,14 @@ export const EducationSection = () => {
       alert('no edu');
       console.log('updated values', values);
       dispatch(UPDATE_EDUCATION({ values: values, id: educaitonId }));
+      dispatch(SET_COMPLETED(FormSections.EDUCATION));
       navigate(`/CV-Details/1/Education-Review`);
     } else {
       const educationId = educations.length + 1;
       values.id = educationId;
       console.log('values', values);
       dispatch(SET_EDUCATION(values));
+      dispatch(SET_COMPLETED(FormSections.EDUCATION));
       navigate('/CV-Details/1/Education-Review');
     }
   };

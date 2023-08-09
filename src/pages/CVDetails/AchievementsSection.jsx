@@ -6,7 +6,7 @@ import { achievementsValidationSchema } from '../../validations/achievementsSche
 import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import DOMPurify from 'dompurify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_ACHIEVEMENTS } from '../../redux/achievementsInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
@@ -14,8 +14,16 @@ import { FormSections } from '../../utils/FormSections';
 export const AchievementsSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const quillRef = useRef(null);
+  const { achievements } = useSelector((state) => state.achievementsInfo);
+
+  let initialValues = {
+    achievementDetails: '',
+  };
+
+  if (achievements) {
+    initialValues.achievementDetails = achievements;
+  }
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
@@ -46,9 +54,7 @@ export const AchievementsSection = () => {
         </p>
       </div>
       <Formik
-        initialValues={{
-          achievementDetails: '',
-        }}
+        initialValues={initialValues}
         validationSchema={achievementsValidationSchema}
         onSubmit={handleSubmit}
       >

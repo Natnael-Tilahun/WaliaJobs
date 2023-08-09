@@ -10,6 +10,9 @@ export const EducationReviewSection = () => {
   const educations = useSelector((state) => state.educationInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isExperienceSectionCompleted = useSelector(
+    (state) => state.cvCompletionInfo[FormSections.EXPERIENCE]
+  );
 
   console.log('educations', educations);
 
@@ -22,7 +25,11 @@ export const EducationReviewSection = () => {
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.EDUCATION));
-    navigate('/CV-Details/1/Experience-Section/0');
+    navigate(
+      isExperienceSectionCompleted
+        ? '/CV-Details/1/Experience-Review'
+        : '/CV-Details/1/Experience-Section/0'
+    );
   };
 
   return (

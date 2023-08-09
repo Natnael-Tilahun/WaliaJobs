@@ -10,6 +10,9 @@ export const CertificationsReviewSection = () => {
   const certifications = useSelector((state) => state.certificationInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLanguageSectionCompleted = useSelector(
+    (state) => state.cvCompletionInfo[FormSections.LANGUAGES]
+  );
 
   console.log('educations', certifications);
 
@@ -22,7 +25,9 @@ export const CertificationsReviewSection = () => {
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-    navigate('/CV-Details/1/Language-Section/0');
+    isLanguageSectionCompleted
+      ? navigate('/CV-Details/1/Languages-Review')
+      : navigate('/CV-Details/1/Language-Section/0');
   };
 
   return (

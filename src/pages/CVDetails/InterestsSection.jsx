@@ -6,7 +6,7 @@ import { interestsValidationSchema } from '../../validations/interestsSchema';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import DOMPurify from 'dompurify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_INTERESTS } from '../../redux/interestsInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
@@ -14,8 +14,16 @@ import { FormSections } from '../../utils/FormSections';
 export const InterestsSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const quillRef = useRef(null);
+  const { interests } = useSelector((state) => state.interestsInfo);
+
+  let initialValues = {
+    interestsDetails: '',
+  };
+
+  if (interests) {
+    initialValues.interestsDetails = interests;
+  }
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
@@ -46,9 +54,7 @@ export const InterestsSection = () => {
         </p>
       </div>
       <Formik
-        initialValues={{
-          interestsDetails: '',
-        }}
+        initialValues={initialValues}
         validationSchema={interestsValidationSchema}
         onSubmit={handleSubmit}
       >
