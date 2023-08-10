@@ -1,61 +1,17 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
+import { FormSections } from '../../utils/FormSections';
+import { useDispatch } from 'react-redux';
 
 export const AddAdditionalSection = () => {
-  const data = {
-    name: 'John Doe',
-    jobTitle: 'Software Engineer',
-    contactInformation: {
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      address: '123 Main Street, City, Country',
-    },
-    profileSummary:
-      'Experienced software engineer with a focus on web development and a passion for creating scalable and efficient applications.',
-    workExperience: [
-      {
-        company: 'ABC Company',
-        jobTitle: 'Software Engineer',
-        location: 'City, Country',
-        startDate: '2018',
-        endDate: 'Present',
-        responsibilities: [
-          'Developed and maintained web applications using React and Node.js.',
-          'Collaborated with cross-functional teams to deliver high-quality software solutions.',
-          'Implemented efficient algorithms to optimize application performance.',
-        ],
-      },
-      {
-        company: 'XYZ Corporation',
-        jobTitle: 'Frontend Developer',
-        location: 'City, Country',
-        startDate: '2016',
-        endDate: '2018',
-        responsibilities: [
-          'Designed and implemented responsive user interfaces using HTML, CSS, and JavaScript.',
-          'Worked closely with UI/UX designers to create visually appealing and user-friendly web applications.',
-          'Performed code reviews and provided technical guidance to junior developers.',
-        ],
-      },
-    ],
-    education: {
-      degree: 'Bachelor of Science in Computer Science',
-      university: 'University of ABC',
-      location: 'City, Country',
-      graduationYear: '2016',
-    },
-    skills: ['JavaScript', 'React', 'Node.js', 'HTML', 'CSS'],
-    awards: ['Best Employee of the Year', 'Outstanding Achievement Award'],
-    personalProjects: [
-      'Personal Blog - Built a blog website using React and Express.',
-      'Portfolio Website - Developed a portfolio website to showcase my projects.',
-    ],
-    languages: ['English', 'Spanish'],
-    interests: ['Reading', 'Traveling', 'Playing guitar'],
-    references: ['Available upon request'],
-  };
+  const { id: CV_id } = useParams();
+  // alert(CV_id);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [jobTitle, setJobTitle] = useState('Developer');
   const [employer, setEmployer] = useState("Dagi's Spa");
   const [city, setCity] = useState('Addis Abeba');
@@ -75,6 +31,11 @@ export const AddAdditionalSection = () => {
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
+  };
+
+  const handleSubmit = () => {
+    dispatch(SET_COMPLETED(FormSections.ADDADDITIONALSECTION));
+    navigate(`/Review-cv/${CV_id}`);
   };
 
   return (
@@ -163,12 +124,13 @@ export const AddAdditionalSection = () => {
         >
           Back
         </NavLink>
-        <NavLink
-          to="/CV-Details/1/Education-Section"
+        <button
+          type="button"
+          onClick={handleSubmit}
           className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[40%] xl:basis-[25%]"
         >
           Continue
-        </NavLink>
+        </button>
         {/* <div
           className="w-full prose"
           dangerouslySetInnerHTML={{ __html: editorValue }}

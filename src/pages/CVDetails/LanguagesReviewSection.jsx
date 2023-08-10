@@ -11,7 +11,7 @@ export const LanguagesReviewSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isReferenceSectionCompleted = useSelector(
-    (state) => state.cvCompletionInfo[FormSections.REFERENCES]
+    (state) => state.cvCompletionInfo[FormSections.REFERENCES].completed
   );
 
   console.log('languages', languages);
@@ -26,8 +26,8 @@ export const LanguagesReviewSection = () => {
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.LANGUAGES));
     isReferenceSectionCompleted
-      ? navigate('/CV-Details/1/References-Review')
-      : navigate('/CV-Details/1/References-Section/0');
+      ? navigate('/CV-Details/1/Reference-Review')
+      : navigate('/CV-Details/1/Reference-Section/0');
   };
 
   return (

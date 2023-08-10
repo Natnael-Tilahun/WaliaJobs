@@ -39,14 +39,14 @@ export const CertificationSection = () => {
       console.log('updated values', values);
       dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate(`/CV-Details/1/Certifications-Review`);
+      navigate(`/CV-Details/1/Certification-Review`);
     } else {
       let certificateId = certificates.length + 1;
       values.id = certificateId;
       console.log('values', values);
       dispatch(SET_CERTIFICATION(values));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate('/CV-Details/1/Certifications-Review');
+      navigate('/CV-Details/1/Certification-Review');
     }
   };
   return (

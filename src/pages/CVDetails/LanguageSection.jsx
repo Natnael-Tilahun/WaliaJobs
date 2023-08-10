@@ -33,14 +33,14 @@ export const LanguageSection = () => {
       console.log('updated values', values);
       dispatch(UPDATE_LANGUAGE({ values: values, id: languageId }));
       dispatch(SET_COMPLETED(FormSections.LANGUAGES));
-      navigate(`/CV-Details/1/Languages-Review`);
+      navigate(`/CV-Details/1/Language-Review`);
     } else {
       const languageId = languages.length + 1;
       values.id = languageId;
       console.log('languages values', values);
       dispatch(SET_LANGUAGE(values));
       dispatch(SET_COMPLETED(FormSections.LANGUAGES));
-      navigate('/CV-Details/1/Languages-Review');
+      navigate('/CV-Details/1/Language-Review');
     }
   };
   return (

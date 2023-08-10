@@ -46,6 +46,7 @@ import { EducationReviewSection } from './pages/CVDetails/EducationReviewSection
 import { CertificationsReviewSection } from './pages/CVDetails/CertificationsReviewSection';
 import { LanguagesReviewSection } from './pages/CVDetails/LanguagesReviewSection';
 import { ReferencesReviewSection } from './pages/CVDetails/ReferencesReviewSection';
+import { ReviewCV } from './pages/ReviewCV';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -105,16 +106,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 element={<CertificationSection />}
               />
               <Route
-                path="Certifications-Review"
+                path="Certification-Review"
                 element={<CertificationsReviewSection />}
               />
               <Route path="Skills-Section" element={<SkillSection />} />
               <Route
-                path="References-Section/:id"
+                path="Reference-Section/:id"
                 element={<ReferenceSection />}
               />
               <Route
-                path="References-Review"
+                path="Reference-Review"
                 element={<ReferencesReviewSection />}
               />
               <Route
@@ -128,7 +129,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 element={<LanguageSection />}
               />
               <Route
-                path="Languages-Review"
+                path="Language-Review"
                 element={<LanguagesReviewSection />}
               />
               <Route
@@ -136,6 +137,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 element={<AddAdditionalSection />}
               />
             </Route>
+            <Route path="/review-cv/:id" element={<ReviewCV />} />
             <Route path="/savedJobs" element={<SavedJobs />} />
             <Route path="*" element={<ErrorPage />} />;
           </Route>

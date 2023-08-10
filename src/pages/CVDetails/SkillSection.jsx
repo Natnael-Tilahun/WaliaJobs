@@ -15,7 +15,7 @@ export const SkillSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCertificationSectionCompleted = useSelector(
-    (state) => state.cvCompletionInfo[FormSections.CERTIFICATIONS]
+    (state) => state.cvCompletionInfo[FormSections.CERTIFICATIONS].completed
   );
   const { skills } = useSelector((state) => state.skillsInfo);
 

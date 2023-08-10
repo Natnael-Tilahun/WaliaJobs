@@ -11,7 +11,7 @@ export const EducationReviewSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isExperienceSectionCompleted = useSelector(
-    (state) => state.cvCompletionInfo[FormSections.EXPERIENCE]
+    (state) => state.cvCompletionInfo[FormSections.EXPERIENCE].completed
   );
 
   console.log('educations', educations);

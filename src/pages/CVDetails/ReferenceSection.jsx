@@ -38,14 +38,14 @@ export const ReferenceSection = () => {
       console.log('updated values', values);
       dispatch(UPDATE_REFERENECE({ values: values, id: referenceId }));
       dispatch(SET_COMPLETED(FormSections.REFERENCES));
-      navigate(`/CV-Details/1/References-Review`);
+      navigate(`/CV-Details/1/Reference-Review`);
     } else {
       const referenceId = references.length + 1;
       values.id = referenceId;
       console.log('references values', values);
       dispatch(SET_REFERENECES(values));
       dispatch(SET_COMPLETED(FormSections.REFERENCES));
-      navigate('/CV-Details/1/References-Review');
+      navigate('/CV-Details/1/Reference-Review');
     }
   };
   return (

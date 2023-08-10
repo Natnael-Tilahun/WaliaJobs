@@ -30,15 +30,12 @@ export const ExperienceDetailSection = () => {
     console.log('experiences', filterdExperience, initialValues);
   }
 
-  // const handleHtml = (html) => dispatch(SET_EXPERIENCE_DETAILS(html))
-
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
     formik.setFieldTouched('experienceDetails');
   };
 
   const handleSubmit = (values) => {
-    // alert('experience detail submitted');
     console.log(
       'DETAILS HTML',
       DOMPurify.sanitize(values.experienceDetails, {
@@ -48,19 +45,7 @@ export const ExperienceDetailSection = () => {
         ADD_ATTR: ['ul', 'class', 'list-disc'],
       })
     );
-    // Handle form submission and access form values
-    // const delta = quillRef.current.getContents();
-    // const delta = quillRef.current.unprivilegedEditor.getContents()
-    // const html = quillRef.current.editor.clipboard.convert(delta);
 
-    // console.log('responisiblity', delta);
-
-    // if (experienceId > 0) {
-    //   alert('no exp');
-    //   console.log('updated values', values);
-    //   dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
-    //   navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
-    // } else {
     dispatch(
       SET_EXPERIENCE_DETAILS({
         values: values.experienceDetails,

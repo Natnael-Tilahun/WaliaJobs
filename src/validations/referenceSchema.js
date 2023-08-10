@@ -8,7 +8,7 @@ export const referenceValidationSchema = Yup.object().shape({
     .required('Reference full name is Requred!'),
   jobTitle: Yup.string()
     .min(3, 'Too Short!')
-    .max(30, 'Too Long!')
+    .max(90, 'Too Long!')
     .required('Job title is Requred!'),
   companyName: Yup.string()
     .min(3, 'Too Short!')

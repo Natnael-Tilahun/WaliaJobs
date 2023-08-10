@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import { SET_PROFILE } from '../../redux/profileImgSlice';
 
-export const CVTemplate = () => {
+export const CVTemplate = ({ className }) => {
   const personalInfoData = useSelector((state) => state.personalInfo);
   const contactInfoData = useSelector((state) => state.contactInfo);
   const skillsInfoData = useSelector((state) => state.skillsInfo.skills);
@@ -93,7 +93,10 @@ ul.list-disc{
   };
 
   return (
-    <div className="bg-gray-100 max:h-[800px]  dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 basis-full md:basis-[60%] lg:basis-1/2">
+    <div
+      id="cv-template"
+      className={`${className} bg-gray-100 max:h-[800px]  dark:text-gray-400  dark:bg-gray-800 dark:border-gray-700 p-0 md:pr-5 lg:p-8 `}
+    >
       <div className="max-w-xl  mx-auto h-full bg-white shadow-lg rounded-lg overflow-hidden">
         {/* personal info  */}
         <div className="bg-blue-500 py-2 px-6">
@@ -251,7 +254,7 @@ ul.list-disc{
                   key={index}
                   className="md:my-2 my-1  md:text-xxs list-disc list-inside"
                 >
-                  <h4 className="text-xs font-semibold">
+                  <h4 className="text-xxs font-semibold">
                     - {experience.employer} - {experience.jobTitle}
                   </h4>
                   <p className="pl-2">

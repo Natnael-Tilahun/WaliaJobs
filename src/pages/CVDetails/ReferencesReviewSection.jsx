@@ -17,7 +17,7 @@ export const ReferencesReviewSection = () => {
     dispatch(DELETE_REFERENECE(id));
   };
   const handleUpdateReference = (id) => {
-    navigate(`/CV-Details/1/References-Section/${id}`);
+    navigate(`/CV-Details/1/Reference-Section/${id}`);
   };
 
   const handleContinue = () => {
@@ -81,7 +81,7 @@ export const ReferencesReviewSection = () => {
             )}
 
           <NavLink
-            to="/CV-Details/1/References-Section/0"
+            to="/CV-Details/1/Reference-Section/0"
             className="flex gap-2 justify-end items-center px-3"
           >
             <svg

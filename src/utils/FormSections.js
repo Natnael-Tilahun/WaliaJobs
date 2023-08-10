@@ -10,4 +10,5 @@ export const FormSections = {
   INTERESTS: 'Interests',
   SUMMARY: 'Summary',
   FINALIZE: 'Finalize',
+  ADDADDITIONALSECTION: 'Add additional section',
 };

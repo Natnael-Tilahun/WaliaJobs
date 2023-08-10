@@ -29,6 +29,10 @@ export const ContactSection = () => {
     (state) => state.contactInfo
   );
 
+  const isEducationSectionCompleted = useSelector(
+    (state) => state.cvCompletionInfo[FormSections.EDUCATION].completed
+  );
+
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     console.log('values', values);
@@ -41,7 +45,9 @@ export const ContactSection = () => {
     dispatch(SET_POSTCODE(values.postCode));
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_COMPLETED(FormSections.HEADING));
-    navigate('/CV-Details/1/Education-Section/0');
+    isEducationSectionCompleted
+      ? navigate('/CV-Details/1/Education-Review')
+      : navigate('/CV-Details/1/Education-Section/0');
   };
   const handleBack = () => {
     navigate(-1);
