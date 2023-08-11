@@ -1,49 +1,43 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CVTemplate } from './CVDetails/CVTemplate';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { FormSections } from '../utils/FormSections';
 import { useDispatch } from 'react-redux';
 import { SET_COMPLETED } from '../redux/cvCompletionInfoSlice';
-import ReactDOMServer from 'react-dom/server';
+import ReactToPrint, { useReactToPrint } from 'react-to-print';
 
 export const ReviewCV = () => {
   const navigate = useNavigate();
   const { id: CV_ID } = useParams();
   const dispatch = useDispatch();
+  const componentRef = useRef();
 
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.FINALIZE));
     navigate(`/CV-Details/${CV_ID}`);
   };
 
-  const printCV = () => {
-    const printWindow = window.open('', 'Print-Window');
+  // const printCV = () => {
+  //   const printableContent = document.getElementById('cv-template');
+  //   const printWindow = window.open('', '', 'height=1000,width=1000');
+  //   printWindow.document.write(printableContent.innerHTML);
+  //   printWindow.print();
+  // };
 
-    const cvTemplateHTML = ReactDOMServer.renderToString(
-      <CVTemplate className="order-2 md:py-10 py-2 md:order-1  basis-[100%]" />
-    );
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
-    printWindow.document.write(`
-      <html>
-        <body>
-          <div id="cv-template">
-            ${cvTemplateHTML} 
-          </div>
-        </body>
-      </html>
-    `);
-
-    printWindow.print();
-    printWindow.close();
-  };
   return (
-    <form
-      action=""
-      className="basis-full  flex flex-col md:flex-row gap-8 px-3 md:px-5 lg:p-5"
-    >
-      <CVTemplate className="order-2 md:py-10 py-2 md:order-1  basis-[100%]" />
-      <div className="md:basis-1/3 md:order-2 pt-5 self-center md:self-start md:py-10  lg:p-16 md:text-xl font-bold flex flex-col gap-2 md:gap-3 ">
-        <h1 className="flex gap-3 md:gap-5 hover:text-thm_root1_color">
+    <div className=" h-[1450px] py-4  lg:p-[40px] w-full  flex flex-col lg:flex-row lg:justify-evenly gap-0 lg:gap-10 px-3 md:px-5 ">
+      <CVTemplate
+        reff={componentRef}
+        id="cv-template"
+        className="order-2 md:order-1 lg:w-[900px] h-[1164px]"
+      />
+
+      <div className=" lg:order-2 py-5  self-center lg:self-start md:px-10  lg:px-5 md:text-xl font-bold flex flex-col gap-2 md:gap-3 ">
+        <button className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
           <span>
             <svg
               className="w-6"
@@ -54,10 +48,10 @@ export const ReviewCV = () => {
             </svg>
           </span>
           Download
-        </h1>
-        <h1
-          onClick={printCV}
-          className="flex gap-3 md:gap-5 hover:text-thm_root1_color"
+        </button>
+        <button
+          onClick={handlePrint}
+          className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer"
         >
           <span>
             <svg
@@ -69,8 +63,8 @@ export const ReviewCV = () => {
             </svg>
           </span>
           Print
-        </h1>
-        <h1 className="flex gap-3 md:gap-5 hover:text-thm_root1_color">
+        </button>
+        <button className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
           <span>
             <svg
               className="w-6"
@@ -81,7 +75,7 @@ export const ReviewCV = () => {
             </svg>
           </span>
           Email
-        </h1>
+        </button>
         <button
           type="button"
           onClick={handleSubmit}
@@ -97,6 +91,6 @@ export const ReviewCV = () => {
           Edit Again
         </button>
       </div>
-    </form>
+    </div>
   );
 };

@@ -26,7 +26,7 @@ const referenceInfoSlice = createSlice({
       const { id, values } = action.payload;
       const index = state.findIndex((ref) => ref.id == id);
       state[index] = values;
-      console.log('updatedd ref', state);
+      // console.log('updatedd ref', state);
       return state;
     },
     [actionTypes.DELETE_REFERENECE](state, action) {

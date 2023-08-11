@@ -17,7 +17,7 @@ const skillsInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_SKILLS](state, action) {
-      alert('skill submit');
+      // alert('skill submit');
       state.skills = action.payload;
     },
     [actionTypes.CLEAR_CV_DATA](state) {

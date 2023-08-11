@@ -19,14 +19,14 @@ const languageInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_LANGUAGE](state, action) {
-      alert('Language info submitted');
+      // alert('Language info submitted');
       state.push(action.payload);
     },
     [actionTypes.UPDATE_LANGUAGE](state, action) {
       const { id, values } = action.payload;
       const index = state.findIndex((lang) => lang.id == id);
       state[index] = values;
-      console.log('updatedd lang', state);
+      // console.log('updatedd lang', state);
       return state;
     },
     [actionTypes.DELETE_LANGUAGE](state, action) {

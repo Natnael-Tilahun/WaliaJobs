@@ -89,11 +89,11 @@ const personalInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_FIRST_NAME](state, action) {
-      alert('Set personal Info');
+      // alert('Set personal Info');
       state.firstName = action.payload;
     },
     [actionTypes.SET_PROFILE](state, action) {
-      alert('Set profile');
+      // alert('Set profile');
       state.firstName = action.payload;
     },
     [actionTypes.SET_LAST_NAME](state, action) {

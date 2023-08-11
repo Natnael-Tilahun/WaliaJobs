@@ -17,7 +17,7 @@ const achievementsInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_ACHIEVEMENTS](state, action) {
-      alert('Achievements submitted');
+      // alert('Achievements submitted');
       state.achievements = action.payload;
     },
     [actionTypes.CLEAR_CV_DATA](state) {

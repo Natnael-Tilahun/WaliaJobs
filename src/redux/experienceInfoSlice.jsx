@@ -27,7 +27,7 @@ const experienceInfoSlice = createSlice({
     },
 
     [actionTypes.SET_EXPERIENCE_DETAILS](state, action) {
-      console.log('acitons', action.payload);
+      // console.log('acitons', action.payload);
       const latestExperience = state[state.length - 1];
       // alert(state.length);
       const { id, values } = action.payload;
@@ -35,7 +35,7 @@ const experienceInfoSlice = createSlice({
       // if (state.length == 0) {
       //   latestExperience.responsibilities = values;
       // } else {
-      alert('Experience detail submitted.');
+      // alert('Experience detail submitted.');
       const index = state.findIndex((exp) => exp.id == id);
       state[index].responsibilities = values;
       // }
@@ -43,9 +43,9 @@ const experienceInfoSlice = createSlice({
     [actionTypes.UPDATE_EXPERIENCE](state, action) {
       const { id, values } = action.payload;
       const index = state.findIndex((exp) => exp.id == id);
-      console.log('update id', id, 'update exp', values, 'index', index);
+      // console.log('update id', id, 'update exp', values, 'index', index);
       state[index] = values;
-      console.log('updatedd expp', state);
+      // console.log('updatedd expp', state);
       return state;
     },
     [actionTypes.DELETE_EXPERIENCE](state, action) {

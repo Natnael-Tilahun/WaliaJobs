@@ -59,7 +59,7 @@ export const CVDetails = () => {
 
   console.log('cvCompletionInfo', cvCompletionInfo['Heading']);
   return (
-    <div className="flex flex-col md:flex-row py-5 px-5 md:px-0 lg:px-10 w-full justify-center gap-5 md:gap-2 lg:gap-0">
+    <div className="flex flex-col md:flex-row py-5 px-5 md:px-0 lg:px-10 w-full justify-center gap-5 md:gap-2 lg:gap-10">
       <div className="basis-full  md:basis-[50%] shadow-lg">
         <ol className="flex h-auto flex-wrap gap-y-4 mb-7 xl:h-auto items-center w-full p-2 md:p-2 md:py-4 space-x-1 md:space-x-2 text-xxs font-medium text-center text-gray-500 bg-white  border-gray-200 rounded-lg shadow-sm dark:text-gray-400 md:text-xs lg:text-base dark:bg-gray-800 dark:border-gray-700 lg:p-4 lg:space-x-4">
           {selectIncludedSections.map((section, index) => (
@@ -132,7 +132,10 @@ export const CVDetails = () => {
         <Outlet />
       </div>
 
-      <CVTemplate className=" basis-full md:basis-[60%] lg:basis-1/2" />
+      <CVTemplate
+        // templateSize="w-full h-full"
+        className=" basis-full md:basis-[60%] lg:basis-1/2  min:h-[842px] w-full"
+      />
     </div>
   );
 };

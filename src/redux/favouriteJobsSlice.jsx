@@ -13,12 +13,12 @@ const favouriteJobsSlice = createSlice({
   reducers: {
     addFavouriteJob(state, action) {
       const job = action.payload;
-      console.log(action);
+      // console.log(action);
       const jobAlreadyFavourite = state.favouriteJobs.some(
         (item) => item.id === job.id
       );
       if (!jobAlreadyFavourite) {
-        alert(job.id);
+        // alert(job.id);
         toogleFavorite(job.id);
         state.favouriteJobs.push(job);
       }

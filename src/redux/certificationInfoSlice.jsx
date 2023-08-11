@@ -19,7 +19,7 @@ const certificationInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_CERTIFICATION](state, action) {
-      alert('Certification info submitted');
+      // alert('Certification info submitted');
       state.push(action.payload);
     },
     [actionTypes.UPDATE_CERTIFICATE](state, action) {

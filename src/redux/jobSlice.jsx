@@ -10,7 +10,7 @@ const jobSlice = createSlice({
   initialState,
   reducers: {
     toogleFavorite(state, action) {
-      alert('toggle');
+      // alert('toggle');
       const jobId = action.payload;
       state.jobs = state.jobsList.map((job) => {
         if (job.id === jobId) {
@@ -22,7 +22,7 @@ const jobSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getJobsData.fulfilled, (state, action) => {
-      console.log('action.payload');
+      // console.log('action.payload');
       state.jobsList = action.payload;
     });
   },

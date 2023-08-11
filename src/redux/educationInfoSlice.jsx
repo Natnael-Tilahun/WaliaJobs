@@ -77,7 +77,7 @@ const educationInfoSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_EDUCATION](state, action) {
-      alert('set education info');
+      // alert('set education info');
       state.push(action.payload);
     },
     [actionTypes.UPDATE_EDUCATION](state, action) {
