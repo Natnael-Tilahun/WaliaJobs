@@ -17,13 +17,6 @@ export const ReviewCV = () => {
     navigate(`/CV-Details/${CV_ID}`);
   };
 
-  // const printCV = () => {
-  //   const printableContent = document.getElementById('cv-template');
-  //   const printWindow = window.open('', '', 'height=1000,width=1000');
-  //   printWindow.document.write(printableContent.innerHTML);
-  //   printWindow.print();
-  // };
-
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
