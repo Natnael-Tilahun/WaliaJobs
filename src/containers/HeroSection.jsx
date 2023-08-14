@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Hero() {
   const navigate = useNavigate();
-  const [selectedDepartment, setSelectedDepartment] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedExperience, setSelectedExperience] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedExperience, setSelectedExperience] = useState('');
 
   console.log(
-    "selectedSkills",
+    'selectedSkills',
     selectedDepartment,
-    "experence",
+    'experence',
     selectedExperience,
-    "selectedLocation",
+    'selectedLocation',
     selectedLocation
   );
 
@@ -20,26 +20,31 @@ function Hero() {
     // console.log(departmentFilter);
     const encodedDepartmentFilter = selectedDepartment
       ? encodeURIComponent(selectedDepartment)
-      : "";
+      : '';
     const encodedLocationFilter = selectedLocation
       ? encodeURIComponent(selectedLocation)
-      : "";
+      : '';
     const encodedExperienceFilter = selectedExperience
       ? encodeURIComponent(selectedExperience)
-      : "";
+      : '';
 
     navigate({
-      pathname: "/jobs",
+      pathname: '/jobs',
       search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
     });
   };
   return (
     <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
-      <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold py-8  tracking-wider">
-        We hunt{" "}
-        <span className=" text-[#f8451d] text-3xl md:text-5xl">jobs</span> like
-        the wild Walia
-      </h1>
+      <div className="py-8 flex flex-col gap-3 items-center">
+        <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold   tracking-widest">
+          Find your dream
+          <span className=" text-[#f8451d] "> job</span>
+        </h1>
+        <p className="text-lg tracking-wider text-thm_secondary_color">
+          Connect with different companies
+        </p>
+      </div>
+
       <form className="border-l-2 border-2 text-base bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
         <div className=" flex items-center pl-2 border-2 md:border-none gap-2 w-full md:w-[45%] h-full lg:pl-5 rounded-l-full bg-white">
           <span>
@@ -66,7 +71,7 @@ function Hero() {
               defaultValue="select department"
               disabled
             >
-              Select Department{" "}
+              Select Department{' '}
             </option>
             <option value="Banking and Insurance">Banking and Insurance</option>
             <option value="Sales and Markating">Sales and Markating</option>
@@ -98,7 +103,7 @@ function Hero() {
             defaultValue="select location"
             disabled
           >
-            Select Location{" "}
+            Select Location{' '}
           </option>
           <option value="addis abeba">Addis Abeba</option>
           <option value="hawassa">Hawassa</option>
@@ -124,7 +129,7 @@ function Hero() {
             defaultValue="select experience"
             disabled
           >
-            Select Experience{" "}
+            Select Experience{' '}
           </option>
           <option value="0">Fresher (Less than a year)</option>
           <option value="1">1 Year</option>
