@@ -3,6 +3,13 @@ import { JobsData } from '../../data/jobs';
 
 const initialState = {
   jobsList: JobsData,
+  filters: {
+    location: '',
+    experience: '',
+    workMode: '',
+    department: '',
+    companyType: '',
+  },
 };
 
 const jobSlice = createSlice({
@@ -19,6 +26,9 @@ const jobSlice = createSlice({
         return job;
       });
     },
+    setFilters(state, action) {
+      state.filters = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getJobsData.fulfilled, (state, action) => {
@@ -29,7 +39,7 @@ const jobSlice = createSlice({
 });
 
 export default jobSlice.reducer;
-export const { toogleFavorite } = jobSlice.actions;
+export const { toogleFavorite, setFilters } = jobSlice.actions;
 
 export const getJobsData = createAsyncThunk('jobs/get', async () => {
   return JobsData;

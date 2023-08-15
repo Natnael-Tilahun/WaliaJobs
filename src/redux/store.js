@@ -15,6 +15,9 @@ import certificationInfoSlice from './certificationInfoSlice';
 import languageInfoSlice from './languageInfoSlice';
 import referenceInfoSlice from './referenceInfoSlice';
 import cvCompletionInfoSlice from './cvCompletionInfoSlice';
+import contactFormSlice from './contactFormSlice';
+import signupFormSlice from './signupFormSlice';
+import loginFormSlice from './loginFormSlice';
 
 export default configureStore({
   reducer: {
@@ -34,5 +37,8 @@ export default configureStore({
     referenceInfo: referenceInfoSlice,
     profileImg: profileImgSlice,
     cvCompletionInfo: cvCompletionInfoSlice,
+    contactForm: contactFormSlice,
+    signupForm: signupFormSlice,
+    loginForm: loginFormSlice,
   },
 });
