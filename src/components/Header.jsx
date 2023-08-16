@@ -8,9 +8,13 @@ function Header() {
   };
 
   return (
-    <div className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 lg:py-5 shadow-md relative bg-thm_background dark:bg-thm_dark_background dark:text-thm_dark_primary_color text-thm_primary_color">
+    <div
+      data-testid="header"
+      className="w-full h-16 lg:flex items-center gap-20 px-5 lg:px-10 xl:px-20 py-5 lg:py-5 shadow-md relative bg-thm_background dark:bg-thm_dark_background dark:text-thm_dark_primary_color text-thm_primary_color"
+    >
       <div className="flex justify-between w-full lg:w-auto items-center md:pr-5 ">
         <NavLink
+          data-testid="logos"
           to="/"
           className="font-bold lg:text-2xl text-thm_primary_color dark:text-thm_dark_primary_color first-letter:text-2xl lg:first-letter:text-4xl"
         >
@@ -133,13 +137,19 @@ function Header() {
           </NavLink>
         </div>
       </div>
+
       <div
-        className={`mr-auto lg:hidden flex-col gap-0 bg-thm_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
+        data-testid="menu"
+        className={`mr-auto lg:hidden bg-slate-600 flex-col gap-0 bg-thm_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
           collapseMenu ? 'flex' : 'hidden'
         }`}
       >
         <div className="flex bg-thm_background dark:bg-thm_dark_background w-full shadow-md justify-between items-center py-4 px-7">
-          <NavLink to="/" className="font-bold lg:text-2xl  ">
+          <NavLink
+            to="/"
+            data-testid="logo"
+            className="font-bold lg:text-2xl  "
+          >
             Walia Jobs
           </NavLink>
           <svg
