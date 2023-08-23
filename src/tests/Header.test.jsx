@@ -33,6 +33,8 @@ describe('Header', () => {
       <MemoryRouter>
         <Header />
       </MemoryRouter>
+
+      // TODO:  add more tests here
     );
     const menu = screen.getByTestId('menu');
 

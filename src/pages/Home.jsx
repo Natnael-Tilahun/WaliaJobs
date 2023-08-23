@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Hero from "../containers/HeroSection";
-import { JobCatagories } from "../containers/JobCatagoriesSection";
-import { Companies } from "../containers/CompaniesSection";
-import { JobsList } from "../containers/JobsListSection";
-import { BuildCvSection } from "../containers/BuildCvSection";
-import { SubscribeSection } from "../containers/SubscribeSection";
+import Hero from '../containers/HeroSection';
+import { JobCatagories } from '../containers/JobCatagoriesSection';
+import { Companies } from '../containers/CompaniesSection';
+import { JobsList } from '../containers/JobsListSection';
+import { BuildCvSection } from '../containers/BuildCvSection';
+import { SubscribeSection } from '../containers/SubscribeSection';
 
 export const Home = () => {
   return (
@@ -16,6 +16,7 @@ export const Home = () => {
       <JobsList />
       <BuildCvSection />
       <SubscribeSection />
+      <div className="h-40 w-full bg-thm_secondary_background"></div>
     </div>
   );
 };

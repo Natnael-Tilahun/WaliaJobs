@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class",
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -19,18 +19,18 @@ module.exports = {
         thm_dark_root2_color: `var(--thm-dark-root2-color)`, // define the secondary color used in your website's design. This color can be used for backgrounds, borders, and other elements that need to be less prominent.
       },
       fontFamily: {
-        sans: [`var(--thm-font)`, "Inter", "Poppins", "sans-serif"],
+        sans: [`var(--thm-font)`, 'Inter', 'Poppins', 'sans-serif'],
       },
       fontSize: {
-        xxxxxxs: "0.25rem", // Sextuple extra small
-        xxxxxs: "0.3125rem", // Quintuple extra small
-        xxxxs: "0.375rem", // Quadruple extra small
-        xxxs: "0.5rem", // Triple extra small
-        xxs: "0.625rem", // Extra extra small
-        "3xl": "1.875rem", // Triple extra small
-        "4xl": "2.25rem", // Quadruple extra small
-        "5xl": "3rem", // Quintuple extra small
-        "6xl": "4rem", // Sextuple extra large
+        xxxxxxs: '0.25rem', // Sextuple extra small
+        xxxxxs: '0.3125rem', // Quintuple extra small
+        xxxxs: '0.375rem', // Quadruple extra small
+        xxxs: '0.5rem', // Triple extra small
+        xxs: '0.625rem', // Extra extra small
+        '3xl': '1.875rem', // Triple extra small
+        '4xl': '2.25rem', // Quadruple extra small
+        '5xl': '3rem', // Quintuple extra small
+        '6xl': '4rem', // Sextuple extra large
         // Add more custom font sizes here
       },
       typography: (theme) => ({
@@ -41,24 +41,25 @@ module.exports = {
             //   marginRight: theme("spacing.2"),
             //   color: theme("colors.gray.700"),
             // },
-            "ol > li::before": {
-              marginRight: theme("spacing.2"),
-              color: theme("colors.gray.900"),
+            'ol > li::before': {
+              marginRight: theme('spacing.2'),
+              color: theme('colors.gray.900'),
             },
           },
         },
       }),
     },
     screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1025px",
-      xl: "1400px",
-      "2xl": "1650px", // Custom screen size,
+      xs: '450px',
+      sm: '640px',
+      md: '768px',
+      lg: '1025px',
+      xl: '1400px',
+      '2xl': '1650px', // Custom screen size,
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require('@tailwindcss/typography')],
   variants: {
-    colorScheme: ["light"],
+    colorScheme: ['light'],
   },
 };

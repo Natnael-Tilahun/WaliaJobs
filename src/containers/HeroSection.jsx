@@ -41,7 +41,7 @@ function Hero() {
           <span className=" text-[#f8451d] "> job</span>
         </h1>
         <p className="text-lg tracking-wider text-thm_secondary_color">
-          Connect with different companies
+          Connect with top companies and discover exciting career opportunities.{' '}
         </p>
       </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const SubscribeSection = () => {
   return (
-    <div className="w-full text-center md:py-20 py-16 px-10 lg:justify-evenly md:items-center md:px-10 bg-thm_secondary_background items-center md:justify-between lg:px-20 flex flex-col lg:flex-row gap-5 md:gap-8">
+    <div className="w-ful text-center md:py-20 py-16 px-10 lg:justify-evenly md:items-center md:px-10 bg-thm_secondary_background items-center md:justify-between lg:px-20 flex flex-col lg:flex-row gap-5 md:gap-8">
       <div className="flex  flex-col text-left gap-1 ">
         <h1 className="text-xl md:text-3xl font-semibold tracking-wider">
           Get New Job Notificatons
