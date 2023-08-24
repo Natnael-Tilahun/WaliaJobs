@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { FormSections } from '../utils/FormSections';
+import { createSlice } from "@reduxjs/toolkit";
+import { FormSections } from "../utils/FormSections";
 
 const initialState = {
   [FormSections.HEADING]: {
@@ -8,7 +8,7 @@ const initialState = {
   },
   [FormSections.EDUCATION]: {
     completed: false,
-    included: false,
+    included: true,
   },
   [FormSections.EXPERIENCE]: {
     completed: false,
@@ -53,8 +53,8 @@ const initialState = {
 };
 
 const actionTypes = (() => {
-  const SET_COMPLETED = 'SET_COMPLETED';
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const SET_COMPLETED = "SET_COMPLETED";
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_COMPLETED,
     CLEAR_CV_DATA,
@@ -62,7 +62,7 @@ const actionTypes = (() => {
 })();
 
 const cvCompletionInfoSlice = createSlice({
-  name: 'cvCompletionInfo',
+  name: "cvCompletionInfo",
   initialState,
   reducers: {
     [actionTypes.SET_COMPLETED](state, action) {
