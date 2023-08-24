@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <div className="w-full  relative bg-thm_secondary_background   text-center lg:pt-10 xl:pt-28 py-2 my-0 md:my-0 flex  justify-end items-end  flex-col px-5 md:px-10 lg:px-10">
+    <div className="w-full  relative bg-thm_secondary_background pt-0 md:pt-10  text-center lg:pt-16 xl:pt-28 py-2 my-0 md:my-0 flex  justify-end items-end  flex-col px-5 md:px-10 lg:px-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="  absolute inset-0 w-full scale-y-[7] md:scale-y-[2] lg:scale-y-150 xl:scale-y-125"
+        className="absolute inset-0 w-full scale-y-[7] xs:scale-y-[5] md:scale-y-[2] lg:scale-y-[2] xl:scale-y-125"
         viewBox="0 0 1440 320"
       >
         <path

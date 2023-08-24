@@ -26,7 +26,7 @@ export const JobCard = ({
   const dispatch = useDispatch();
   return (
     <div
-      className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_background dark:bg-thm_dark_background md:w-[46%] border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
+      className={`lg:w-[47%] xl:w-[30%] w-[95%] dark:text-thm_dark_primary_color dark:border-none bg-thm_card text-thm_card_foreground dark:bg-thm_dark_background md:w-[46%] shadow-lg border-2 py-3 px-5 md:px-5 lg:p-5 flex flex-col gap-3 rounded-2xl ${className}`}
     >
       <NavLink
         to={`/job_details/${id}`}

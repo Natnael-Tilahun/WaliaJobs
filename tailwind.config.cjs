@@ -17,6 +17,12 @@ module.exports = {
         thm_dark_secondary_background: `var(--thm-dark-secondary-background)`, // define the background color of secondary elements such as panels, cards, and containers.
         thm_dark_root1_color: `var(--thm-dark-root1-color)`, // define the primary color used in your website's design. This color can be used for headings, buttons, and other elements that need to stand out.
         thm_dark_root2_color: `var(--thm-dark-root2-color)`, // define the secondary color used in your website's design. This color can be used for backgrounds, borders, and other elements that need to be less prominent.
+        thm_border: `var(--thm-border)`,
+        thm_radius: `var(--thm-radius)`,
+        thm_input: `var(--thm-input)`,
+        thm_ring: `var(--thm-ring)`,
+        thm_card: `var(--thm-card)`,
+        thm_card_foreground: `var(--thm-card-foreground)`,
       },
       fontFamily: {
         sans: [`var(--thm-font)`, 'Inter', 'Poppins', 'sans-serif'],
