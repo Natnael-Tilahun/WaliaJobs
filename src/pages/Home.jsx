@@ -16,7 +16,6 @@ export const Home = () => {
       <JobsList />
       <BuildCvSection />
       <SubscribeSection />
-      <div className="h-40 md:hidden w-full bg-thm_secondary_background"></div>
     </div>
   );
 };

@@ -142,7 +142,7 @@ function Hero() {
         </select>
         <button
           onClick={goToPosts}
-          className="bg-blue-800  text-white py-2 px-10 rounded-3xl"
+          className="bg-thm_root1_color text-white py-2 px-10 rounded-3xl"
         >
           Search
         </button>

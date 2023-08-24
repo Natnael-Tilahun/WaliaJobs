@@ -7,7 +7,7 @@ export const SubscribeSection = () => {
         <h1 className="text-lg md:text-3xl font-semibold tracking-wider">
           Get New Job Notificatons
         </h1>
-        <p className=" md:text-3xl tracking-wider font-light">
+        <p className=" md:text-3xl tracking-wider text-center font-light">
           Free Subscribe Our Newsletter Now!
         </p>
       </div>

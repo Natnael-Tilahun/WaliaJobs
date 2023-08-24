@@ -23,6 +23,10 @@ module.exports = {
         thm_ring: `var(--thm-ring)`,
         thm_card: `var(--thm-card)`,
         thm_card_foreground: `var(--thm-card-foreground)`,
+        thm_accent: `var(--thm-accent)`,
+        thm_accent_foreground: `var(--thm-accent-foreground)`,
+        thm_primary_foreground: `var(--thm-primary-foreground)`,
+        thm_primary: `var(--thm-primary)`,
       },
       fontFamily: {
         sans: [`var(--thm-font)`, 'Inter', 'Poppins', 'sans-serif'],
