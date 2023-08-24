@@ -38,14 +38,14 @@ function Hero() {
       <div className="py-8 flex flex-col gap-3 items-center">
         <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold   tracking-widest">
           Find your dream
-          <span className=" text-[#f8451d] "> job</span>
+          <span className=" text-[#1e40af] "> job</span>
         </h1>
         <p className="text-lg tracking-wider text-thm_secondary_color">
           Connect with top companies and discover exciting career opportunities.{' '}
         </p>
       </div>
 
-      <form className="border-l-2 border-2 text-base bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
+      <form className="border-l-2 border-2 text-base pb-3 bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
         <div className=" flex items-center pl-2 border-2 md:border-none gap-2 w-full md:w-[45%] h-full lg:pl-5 rounded-l-full bg-white">
           <span>
             <svg

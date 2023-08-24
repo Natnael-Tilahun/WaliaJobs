@@ -72,7 +72,7 @@ export const JobCard = ({
         </button>
         {showShareAndSaveBtn && (
           <div className="flex gap-10 text-[#18A0FB] font-medium cursor-pointer">
-            <div className="flex gap-1">
+            <div className="flex gap-1 ">
               <svg
                 className="w-7"
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@ export const JobCard = ({
             <div>
               {isFavorite ? (
                 <svg
-                  className="w-7 cursor-pointer"
+                  className="w-7 cursor-pointer "
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   onClick={() => dispatch(removeFavouriteJobs(id))}

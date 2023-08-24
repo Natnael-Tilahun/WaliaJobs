@@ -8,7 +8,7 @@ const initialState = {
   },
   [FormSections.EDUCATION]: {
     completed: false,
-    included: true,
+    included: false,
   },
   [FormSections.EXPERIENCE]: {
     completed: false,

@@ -39,10 +39,10 @@ function Header() {
             to="/"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 `}
+            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800 `}
           >
             Home
           </NavLink>
@@ -50,10 +50,10 @@ function Header() {
             to="jobs"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800 }`}
+            className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800 }`}
           >
             Jobs
           </NavLink>
@@ -62,10 +62,10 @@ function Header() {
             to="company"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Companies
           </NavLink>
@@ -74,10 +74,10 @@ function Header() {
             to="/buildcv"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Build CV
           </NavLink>
@@ -86,10 +86,10 @@ function Header() {
             to="contact"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Contact
           </NavLink>
@@ -98,10 +98,10 @@ function Header() {
             to="blogs"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                borderBottom: isActive ? '3px solid #1e40af' : '',
               };
             }}
-            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Blogs
           </NavLink>
@@ -115,7 +115,7 @@ function Header() {
           </NavLink>
           <NavLink
             to="signup"
-            className="py-1 px-8 bg-thm_root2_color text-white rounded-md"
+            className="py-1 px-8 bg-thm_root1_color text-white rounded-md"
           >
             Register
           </NavLink>
@@ -140,7 +140,7 @@ function Header() {
 
       <div
         data-testid="menu"
-        className={`mr-auto lg:hidden bg-slate-600 flex-col gap-0 bg-thm_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
+        className={`mr-auto lg:hidden bg-slate-600 flex-col gap-0 bg-thm_secondary_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
           collapseMenu ? 'flex' : 'hidden'
         }`}
       >
@@ -169,14 +169,14 @@ function Header() {
           <NavLink
             to="/"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Home
           </NavLink>
           <NavLink
             to="jobs"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Jobs
           </NavLink>
@@ -184,7 +184,7 @@ function Header() {
           <NavLink
             to="company"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Companies
           </NavLink>
@@ -192,7 +192,7 @@ function Header() {
           <NavLink
             to="/buildcv"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Build CV
           </NavLink>
@@ -200,7 +200,7 @@ function Header() {
           <NavLink
             to="contact"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Contact
           </NavLink>
@@ -208,7 +208,7 @@ function Header() {
           <NavLink
             to="blogs"
             onClick={menuHandler}
-            className="hover:border-b-4 rounded-sm pb-1 border-thm_root2_color hover:text-gray-800"
+            className="hover:border-b-4 rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
           >
             Blog
           </NavLink>

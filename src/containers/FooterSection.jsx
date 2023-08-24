@@ -33,7 +33,7 @@ export const Footer = () => {
               className="font-black  basis-full md:basis-auto text-[#e96c51] self-center text-xl md:text-3xl -order-1 md:-order-none"
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                  borderBottom: isActive ? '3px solid #1e40af' : '',
                 };
               }}
             >
@@ -47,7 +47,7 @@ export const Footer = () => {
                 to="/jobs"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -58,7 +58,7 @@ export const Footer = () => {
                 to="/buildcv"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -69,7 +69,7 @@ export const Footer = () => {
                 to="/company"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -80,7 +80,7 @@ export const Footer = () => {
                 to="/about"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -91,7 +91,7 @@ export const Footer = () => {
                 to="/contact"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -107,7 +107,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -119,7 +119,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -131,7 +131,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -143,7 +143,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #fa6d4d' : '',
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >

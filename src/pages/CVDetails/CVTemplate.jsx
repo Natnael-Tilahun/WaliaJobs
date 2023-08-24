@@ -237,12 +237,7 @@ ul.list-disc{
 
           <NavLink
             to="/"
-            className="font-black py-2   text-[#e96c51] self-center text-sm "
-            style={({ isActive }) => {
-              return {
-                borderBottom: isActive ? '3px solid #fa6d4d' : '',
-              };
-            }}
+            className="font-black py-2 cursor-pointer   text-[#1e40af] self-center text-sm "
           >
             Walia Jobs
           </NavLink>
