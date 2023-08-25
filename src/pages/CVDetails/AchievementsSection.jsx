@@ -35,6 +35,7 @@ export const AchievementsSection = () => {
     console.log(values.achievementDetails);
     dispatch(SET_ACHIEVEMENTS(DOMPurify.sanitize(values.achievementDetails)));
     dispatch(SET_COMPLETED(FormSections.ACHIEVEMENTS));
+    console.log('rouer', cvBuildRouterHandler(FormSections.ACHIEVEMENTS));
     navigate('/CV-Details/1/Interests-Section');
   };
 

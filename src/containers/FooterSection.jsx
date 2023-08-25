@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -21,8 +21,8 @@ export const Footer = () => {
 
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="5%" stop-color="#1e40af" />
-              <stop offset="95%" stop-color="#fa6d4d" />
+              <stop offset="5%" stopColor="#1e40af" />
+              <stop offset="95%" stopColor="#fa6d4d" />
             </linearGradient>
           </defs>
         </svg>
@@ -42,7 +42,7 @@ export const Footer = () => {
                 to="/jobs"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -53,7 +53,7 @@ export const Footer = () => {
                 to="/buildcv"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -64,7 +64,7 @@ export const Footer = () => {
                 to="/company"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -75,7 +75,7 @@ export const Footer = () => {
                 to="/about"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -86,7 +86,7 @@ export const Footer = () => {
                 to="/contact"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -102,7 +102,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -114,7 +114,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -126,7 +126,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >
@@ -138,7 +138,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? "3px solid #1e40af" : "",
+                    borderBottom: isActive ? '3px solid #1e40af' : '',
                   };
                 }}
               >

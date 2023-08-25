@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
 import { DELETE_CERTIFICATE } from '../../redux/certificationInfoSlice';
+import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const CertificationsReviewSection = () => {
   const certifications = useSelector((state) => state.certificationInfo);
@@ -20,14 +21,18 @@ export const CertificationsReviewSection = () => {
     dispatch(DELETE_CERTIFICATE(id));
   };
   const handleUpdateCertificate = (id) => {
-    navigate(`/CV-Details/1/Certification-Section/${id}`);
+    // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
+    // navigate(`/CV-Details/1/Certification-Section/${id}`);
+    navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
   };
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-    isLanguageSectionCompleted
-      ? navigate('/CV-Details/1/Language-Review')
-      : navigate('/CV-Details/1/Language-Section/0');
+    navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
+    // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
+    // isLanguageSectionCompleted
+    //   ? navigate('/CV-Details/1/Language-Review')
+    //   : navigate('/CV-Details/1/Language-Section/0');
   };
 
   return (

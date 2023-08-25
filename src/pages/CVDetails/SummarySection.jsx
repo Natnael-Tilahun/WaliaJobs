@@ -10,6 +10,7 @@ import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
 import DOMPurify from 'dompurify';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
+import cvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const SummarySection = () => {
   const navigate = useNavigate();
@@ -25,11 +26,22 @@ export const SummarySection = () => {
     initialValues.summaryDetails = summary;
   }
 
+  // const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+  // const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
+  //   return cvCompletionInfo[key].included;
+  // });
+  // const currentStep = selectIncludedSections.indexOf(FormSections.SUMMARY);
+  // alert(selectIncludedSections[currentStep + 1]);
+  console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
+  // TODO: create a new helper or custom hook to handle a next navigation or routing
+  // create a funtion that accept the current step and navigate to the next step
+
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
     console.log(values.summaryDetails);
     dispatch(SET_SUMMARY(DOMPurify.sanitize(values.summaryDetails)));
     dispatch(SET_COMPLETED(FormSections.SUMMARY));
+    console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
     navigate('/CV-Details/1/Additional-Section');
   };
 

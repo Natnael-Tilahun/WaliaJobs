@@ -10,6 +10,7 @@ import {
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
+import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const CertificationSection = () => {
   const navigate = useNavigate();
@@ -33,20 +34,29 @@ export const CertificationSection = () => {
     console.log('certifications', filteredCertificate, initialValues);
   }
 
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+
   const handleSubmit = (values, { resetForm }) => {
     if (certificateId > 0) {
       alert('no cert');
       console.log('updated values', values);
       dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate(`/CV-Details/1/Certification-Review`);
+      navigate(
+        CvBuildRouterHandler(FormSections.CERTIFICATIONS, cvCompletionInfo)
+      );
+      // navigate(`/CV-Details/1/Certification-Review`);
     } else {
       let certificateId = certificates.length + 1;
       values.id = certificateId;
       console.log('values', values);
       dispatch(SET_CERTIFICATION(values));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate('/CV-Details/1/Certification-Review');
+      navigate(
+        CvBuildRouterHandler(FormSections.CERTIFICATIONS, cvCompletionInfo)
+      );
+      // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
+      // navigate('/CV-Details/1/Certification-Review');
     }
   };
   return (

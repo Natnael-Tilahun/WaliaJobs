@@ -4,7 +4,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import cvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const AddAdditionalSection = () => {
   const { id: CV_id } = useParams();
@@ -33,8 +34,24 @@ export const AddAdditionalSection = () => {
     setEditorValue(value);
   };
 
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+  const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
+    return cvCompletionInfo[key].included;
+  });
+  const currentStep = selectIncludedSections.indexOf(
+    FormSections.ADDADDITIONALSECTION
+  );
+  // alert(selectIncludedSections[currentStep + 1]);
+  // nextRouterHandler(currentStep);
+  // TODO: create a new helper or custom hook to handle a next navigation or routing
+  // create a funtion that accept the current step and navigate to the next step
+
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.ADDADDITIONALSECTION));
+    console.log(
+      'rouer',
+      cvBuildRouterHandler(FormSections.ADDADDITIONALSECTION)
+    );
     navigate(`/Review-cv/${CV_id}`);
   };
 
