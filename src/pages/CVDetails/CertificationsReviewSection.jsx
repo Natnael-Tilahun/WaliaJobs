@@ -22,17 +22,17 @@ export const CertificationsReviewSection = () => {
   };
   const handleUpdateCertificate = (id) => {
     // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
-    // navigate(`/CV-Details/1/Certification-Section/${id}`);
-    navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
+    navigate(`/CV-Details/1/Certification-Section/${id}`);
+    // navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
   };
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-    navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
+    // navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
     // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
-    // isLanguageSectionCompleted
-    //   ? navigate('/CV-Details/1/Language-Review')
-    //   : navigate('/CV-Details/1/Language-Section/0');
+    isLanguageSectionCompleted
+      ? navigate('/CV-Details/1/Language-Review')
+      : navigate('/CV-Details/1/Language-Section/0');
   };
 
   return (

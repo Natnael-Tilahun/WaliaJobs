@@ -43,17 +43,31 @@ export const CertificationSection = () => {
       dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
       navigate(
-        CvBuildRouterHandler(FormSections.CERTIFICATIONS, cvCompletionInfo)
+        CvBuildRouterHandler(
+          FormSections.CERTIFICATIONS,
+          cvCompletionInfo,
+          '',
+          certificateId,
+          ''
+        )
       );
       // navigate(`/CV-Details/1/Certification-Review`);
     } else {
       let certificateId = certificates.length + 1;
       values.id = certificateId;
+      alert('certid', certificateId);
+      alert(certificateId);
       console.log('values', values);
       dispatch(SET_CERTIFICATION(values));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
       navigate(
-        CvBuildRouterHandler(FormSections.CERTIFICATIONS, cvCompletionInfo)
+        CvBuildRouterHandler(
+          FormSections.CERTIFICATIONS,
+          cvCompletionInfo,
+          '',
+          certificateId,
+          ''
+        )
       );
       // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
       // navigate('/CV-Details/1/Certification-Review');

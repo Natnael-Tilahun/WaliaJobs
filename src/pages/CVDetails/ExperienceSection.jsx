@@ -10,12 +10,15 @@ import {
 } from '../../redux/experienceInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
+import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id: experienceId } = useParams();
   const experiences = useSelector((state) => state.experienceInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+
   let filterdExperience;
   let initialValues = {
     jobTitle: '',
@@ -44,14 +47,32 @@ export const ExperienceSection = () => {
       console.log('updated values', values);
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
       dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+      // navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+      navigate(
+        CvBuildRouterHandler(
+          FormSections.EXPERIENCE,
+          cvCompletionInfo,
+          '',
+          '',
+          experienceId
+        )
+      );
     } else {
-      const experienceId = experiences.length + 1;
+      let experienceId = experiences.length + 1;
       values.id = experienceId;
       console.log('values', values);
       dispatch(SET_EXPERIENCE(values));
       dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+      // navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
+      navigate(
+        CvBuildRouterHandler(
+          FormSections.EXPERIENCE,
+          cvCompletionInfo,
+          '',
+          '',
+          experienceId
+        )
+      );
     }
   };
   const handleBack = () => navigate(-1);

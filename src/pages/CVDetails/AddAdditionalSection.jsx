@@ -48,10 +48,10 @@ export const AddAdditionalSection = () => {
 
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.ADDADDITIONALSECTION));
-    console.log(
-      'rouer',
-      cvBuildRouterHandler(FormSections.ADDADDITIONALSECTION)
-    );
+    // console.log(
+    //   'rouer',
+    //   cvBuildRouterHandler(FormSections.ADDADDITIONALSECTION)
+    // );
     navigate(`/Review-cv/${CV_id}`);
   };
 

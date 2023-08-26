@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_SKILLS } from '../../redux/skillsInfoSlice';
 import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
 import { FormSections } from '../../utils/FormSections';
+import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
 
 export const SkillSection = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export const SkillSection = () => {
     (state) => state.cvCompletionInfo[FormSections.CERTIFICATIONS].completed
   );
   const { skills } = useSelector((state) => state.skillsInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   let initialValues = {
     skillDetails: '',
@@ -38,9 +40,12 @@ export const SkillSection = () => {
     console.log(values.skillDetails);
     dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
     dispatch(SET_COMPLETED(FormSections.SKILLS));
-    isCertificationSectionCompleted
-      ? navigate('/CV-Details/1/Certification-Review')
-      : navigate('/CV-Details/1/Certification-Section/0');
+    // isCertificationSectionCompleted
+    //   ? navigate('/CV-Details/1/Certification-Review')
+    //   : navigate('/CV-Details/1/Certification-Section/0');
+    navigate(
+      CvBuildRouterHandler(FormSections.SKILLS, cvCompletionInfo, '', 0, '')
+    );
   };
 
   const handleBack = navigate(-1);

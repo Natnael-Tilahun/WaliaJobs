@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { ErrorMessageComponent } from '../../components/ErrorMessage';
 import { personalInfoValidationSchema } from '../../validations/personalInfoSchema';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +23,8 @@ import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandl
 
 export const ContactSection = () => {
   const dispatch = useDispatch();
+  const { id: CVId } = useParams();
+
   const { firstName, lastName, position } = useSelector(
     (state) => state.personalInfo
   );
@@ -42,7 +44,7 @@ export const ContactSection = () => {
   // const currentStep = selectIncludedSections.indexOf(FormSections.HEADING);
   // TODO: create a new helper or custom hook to handle a next navigation or routing
   // create a funtion that accept the current step and navigate to the next step
-
+  //TODO: Edit the cv roueter helper function and make it to route to the next included section
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     console.log('values', values);
@@ -55,7 +57,9 @@ export const ContactSection = () => {
     dispatch(SET_POSTCODE(values.postCode));
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_COMPLETED(FormSections.HEADING));
-    navigate(CvBuildRouterHandler(FormSections.HEADING, cvCompletionInfo));
+    navigate(
+      CvBuildRouterHandler(FormSections.HEADING, cvCompletionInfo, CVId)
+    );
     // isEducationSectionCompleted
     //   ? navigate('/CV-Details/1/Education-Review')
     //   : navigate('/CV-Details/1/Education-Section/0');

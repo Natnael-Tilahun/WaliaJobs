@@ -26,13 +26,13 @@ export const SummarySection = () => {
     initialValues.summaryDetails = summary;
   }
 
-  // const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
   // const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
   //   return cvCompletionInfo[key].included;
   // });
   // const currentStep = selectIncludedSections.indexOf(FormSections.SUMMARY);
   // alert(selectIncludedSections[currentStep + 1]);
-  console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
+  // console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
   // TODO: create a new helper or custom hook to handle a next navigation or routing
   // create a funtion that accept the current step and navigate to the next step
 
@@ -41,7 +41,7 @@ export const SummarySection = () => {
     console.log(values.summaryDetails);
     dispatch(SET_SUMMARY(DOMPurify.sanitize(values.summaryDetails)));
     dispatch(SET_COMPLETED(FormSections.SUMMARY));
-    console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
+    // console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
     navigate('/CV-Details/1/Additional-Section');
   };
 
