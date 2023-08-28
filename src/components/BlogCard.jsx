@@ -5,7 +5,7 @@ export const BlogCard = ({ blogId, img, title, date, description }) => {
   return (
     <NavLink
       to={`/blog-details/${blogId}`}
-      className="border-2 w-full flex flex-col rounded-3xl shadow-md bg-thm_background dark:bg-thm_dark_background"
+      className="border-2 w-full flex flex-col rounded-3xl shadow-md bg-thm_card dark:bg-thm_dark_background"
     >
       <img
         src={img}

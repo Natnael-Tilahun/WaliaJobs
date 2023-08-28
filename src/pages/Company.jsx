@@ -11,14 +11,17 @@ import {
   isEmpty,
 } from "../utils/helperFunctions";
 import { useDispatch, useSelector } from "react-redux";
-import { CLEAR_COMPANY_FILTERS, SET_JOB_FILTERS_BY_COMPANYTYPE } from "../redux/jobFilterSlice";
+import {
+  CLEAR_COMPANY_FILTERS,
+  SET_JOB_FILTERS_BY_COMPANYTYPE,
+} from "../redux/jobFilterSlice";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);
   const companyAccordionToggleExpanded = () =>
     setCompanyExpanded((current) => !current);
-    const dispatch = useDispatch()
-    const companyFilters = useSelector(state => state.jobFilter)
+  const dispatch = useDispatch();
+  const companyFilters = useSelector((state) => state.jobFilter);
 
   const [selectedFilters, setSelectedFilters] = useState({
     companyType: [],
@@ -54,7 +57,7 @@ export const Company = () => {
   }, []);
 
   function handleFilterChange(key, value, checked) {
-    dispatch(SET_JOB_FILTERS_BY_COMPANYTYPE(value))
+    dispatch(SET_JOB_FILTERS_BY_COMPANYTYPE(value));
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
 
@@ -146,7 +149,7 @@ export const Company = () => {
   }
 
   function removeFilterHandler() {
-    dispatch(CLEAR_COMPANY_FILTERS())
+    dispatch(CLEAR_COMPANY_FILTERS());
     setSearchParams("");
     clearFilterFromStorage();
     setSelectedFilters({
@@ -173,7 +176,7 @@ export const Company = () => {
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
-      <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
+      <div className="flex basis-full md:basis-[40%] xl:basis-1/5 bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-10 ">
         {/* <h1 className="border-b-2 font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
         </h1> */}
@@ -351,7 +354,7 @@ export const Company = () => {
                 name={name}
                 rate={rate}
                 reviews={reviews}
-                className="lg:w-full w-2/3 mx-auto bg-thm_background transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
+                className="lg:w-full w-2/3 mx-auto bg-thm_card transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
               />
             )
           )

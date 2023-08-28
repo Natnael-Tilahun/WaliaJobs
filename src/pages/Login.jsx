@@ -1,10 +1,10 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { loginFormValidationSchema } from '../validations/loginFormSchema';
-import { ErrorMessageComponent } from '../components/ErrorMessage';
-import { useDispatch } from 'react-redux';
-import { SET_EMAIL, SET_PASSWORD } from '../redux/loginFormSlice';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { loginFormValidationSchema } from "../validations/loginFormSchema";
+import { ErrorMessageComponent } from "../components/ErrorMessage";
+import { useDispatch } from "react-redux";
+import { SET_EMAIL, SET_PASSWORD } from "../redux/loginFormSlice";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export const Login = () => {
   const handleSubmit = (values, { resetForm }) => {
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_PASSWORD(values.password));
-    console.log('Your are logged in.', values);
-    navigate('/');
+    console.log("Your are logged in.", values);
+    navigate("/");
     resetForm();
   };
 
@@ -24,13 +24,13 @@ export const Login = () => {
         className="font-black  basis-full md:basis-auto text-[#f8451d] self-center text-xl md:text-3xl -order-1 md:-order-none"
         style={({ isActive }) => {
           return {
-            borderBottom: isActive ? '3px solid #fa6d4d' : '',
+            borderBottom: isActive ? "3px solid #fa6d4d" : "",
           };
         }}
       >
         Walia Jobs
       </NavLink>
-      <div className="w-full md:w-2/3 lg:w-1/2 xl:w-[30%] shadow-md gap-1 bg-thm_background flex flex-col justify-center py-10 px-10 rounded-md">
+      <div className="w-full md:w-2/3 lg:w-1/2 xl:w-[30%] shadow-md gap-1 bg-thm_card flex flex-col justify-center py-10 px-10 rounded-md">
         <h1 className="text-xl pb-2 font-medium text-thm_primary_color">
           Sign in to your account.
         </h1>
@@ -58,13 +58,13 @@ export const Login = () => {
 
         <Formik
           onSubmit={handleSubmit}
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: "", password: "" }}
           validationSchema={loginFormValidationSchema}
         >
           {(form) => (
             <Form className="flex flex-col w-full gap-3">
               <label htmlFor="email">
-                Email Address{' '}
+                Email Address{" "}
                 <span className="text-red-500 font-medium text-lg"> *</span>
               </label>
               <Field
@@ -100,7 +100,7 @@ export const Login = () => {
                 Login with email
               </button>
               <p className="text-sm md:text-base text-thm_secondary_color">
-                Don't have an account yet?{' '}
+                Don't have an account yet?{" "}
                 <NavLink
                   to="/signup"
                   className="text-thm_root1_color text-base md:text-lg font-semibold"

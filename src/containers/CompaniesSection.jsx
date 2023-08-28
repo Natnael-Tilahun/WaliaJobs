@@ -57,7 +57,7 @@ export const Companies = () => {
   };
 
   return (
-    <div className="w-full text-center bg-thm_background md:py-0 py-5 px-5 md:px-10 lg:px-20">
+    <div className="w-full text-center bg-thm_background md:py-10 py-5 px-5 md:px-10 lg:px-20">
       <h1 className="font-bold text-3xl">Featured companies actively hiring</h1>
       <Slider {...settings} className="py-10 mb-10 w-full ">
         {/* <div className=""> */}
@@ -70,7 +70,7 @@ export const Companies = () => {
             name={name}
             rate={rate}
             reviews={reviews}
-            className="xl:w-[65%] lg:w-[80%] self-center w-[75%] shadow-sm hover:scale-105 hover:shadow-lg transition ease-in-out delay-150"
+            className="xl:w-[65%] lg:w-[80%] self-center w-[75%] shadow-sm hover:scale-105 hover:shadow-lg transition ease-in-out delay-150 bg-thm_card"
           />
         ))}
         {/* </div> */}

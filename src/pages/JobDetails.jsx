@@ -3,13 +3,14 @@ import { ShareLinks } from "../components/ShareLinks.jsx";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 // import { JobsData } from "../../data/jobs";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavouriteJob, removeFavouriteJobs } from "../redux/favouriteJobsSlice.jsx";
-
+import {
+  addFavouriteJob,
+  removeFavouriteJobs,
+} from "../redux/favouriteJobsSlice.jsx";
 
 function JobDetail(props) {
-
   return (
-    <div className="flex flex-col text-thm_secondary_color items-start w-full border-b-2 py-2">
+    <div className="flex flex-col text-thm_secondary_color bg-thm_card items-start w-full border-b-2 py-2">
       <div className="flex justify-between w-full">
         <div className="text-left">
           <h1 className="font-medium text-black">{props.job.title}</h1>
@@ -44,10 +45,10 @@ function JobDetail(props) {
 export const JobDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { id } = useParams();
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // console.log("searchParams", id);
-  const { jobsList:JobsData } = useSelector((state) => state.jobs);
+  const { jobsList: JobsData } = useSelector((state) => state.jobs);
   const jobDetail = JobsData.filter((job) => job.id == id);
   const [isFavorite, setIsFavorite] = useState(jobDetail[0].isFavorite);
 
@@ -210,14 +211,16 @@ const dispatch = useDispatch()
                 </svg>
                 {/* <p>Share</p> */}
               </div>
-              <div >
+              <div>
                 {isFavorite ? (
                   <svg
                     className="w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     // onClick={handleSaveJob}
-                    onClick={() => dispatch(removeFavouriteJobs(jobDetail[0].id))}
+                    onClick={() =>
+                      dispatch(removeFavouriteJobs(jobDetail[0].id))
+                    }
                   >
                     <path
                       className="fill-thm_root2_color"
@@ -449,7 +452,7 @@ const dispatch = useDispatch()
       </div>
 
       {/* Side bar */}
-      <div className="flex basis-full md:basis-[40%] xl:basis-[30%]   bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-5 md:p-5 lg:p-10 ">
+      <div className="flex basis-full md:basis-[40%] xl:basis-[30%]   bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-5 md:p-5 lg:p-10 ">
         <h1 className="font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-0 w-full text-left">
           Jobs you might be interested in
         </h1>

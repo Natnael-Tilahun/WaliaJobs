@@ -1,29 +1,29 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { ErrorMessageComponent } from '../components/ErrorMessage';
-import { signupFormValidationSchema } from '../validations/singupFormSchema';
-import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { ErrorMessageComponent } from "../components/ErrorMessage";
+import { signupFormValidationSchema } from "../validations/singupFormSchema";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import {
   SET_CONFIRM_PASSWORD,
   SET_EMAIL,
   SET_FULLNAME,
   SET_PASSWORD,
   SET_PHONE,
-} from '../redux/signupFormSlice';
+} from "../redux/signupFormSlice";
 
-const customId = 'custom-id-yes';
+const customId = "custom-id-yes";
 
 export const Signup = () => {
   const dispatch = useDispatch();
 
   const initialValues = {
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
   };
 
   const handleSubmit = (values, { resetForm }) => {
@@ -37,7 +37,7 @@ export const Signup = () => {
       toastId: customId,
     });
     resetForm();
-    console.log('Thank you for signed up', values);
+    console.log("Thank you for signed up", values);
   };
 
   return (
@@ -48,22 +48,22 @@ export const Signup = () => {
         className="font-black  basis-full md:basis-auto text-[#f8451d] self-center text-xl md:text-3xl -order-1 md:-order-none"
         style={({ isActive }) => {
           return {
-            borderBottom: isActive ? '3px solid #fa6d4d' : '',
+            borderBottom: isActive ? "3px solid #fa6d4d" : "",
           };
         }}
       >
         Walia Jobs
       </NavLink>
 
-      <div className="w-full md:w-[90%] lg:w-[80%] xl:w-[60%] shadow-md gap-1 bg-thm_background flex flex-col justify-center py-10 px-10 rounded-md">
+      <div className="w-full md:w-[90%] lg:w-[80%] xl:w-[60%] shadow-md gap-1 bg-thm_card flex flex-col justify-center py-10 px-10 rounded-md">
         <h1 className="text-xl pb-2 font-medium text-thm_primary_color">
           Ready to take the next step?
         </h1>
         <p className="text-lg text-thm_secondary_color">Create an account.</p>
         <p className="text-thm_secondary_color text-sm">
-          By continuing, you agree to our{' '}
-          <span className="text-thm_root1_color underline">Terms of Use</span>{' '}
-          and{' '}
+          By continuing, you agree to our{" "}
+          <span className="text-thm_root1_color underline">Terms of Use</span>{" "}
+          and{" "}
           <span className="text-thm_root1_color underline">Privacy Policy</span>
           .
         </p>
@@ -157,7 +157,7 @@ export const Signup = () => {
                   Register with email
                 </button>
                 <p className="text-sm md:text-base text-thm_secondary_color">
-                  Already have an account?{' '}
+                  Already have an account?{" "}
                   <NavLink
                     to="/login"
                     className="text-thm_root1_color text-base md:text-lg font-semibold"

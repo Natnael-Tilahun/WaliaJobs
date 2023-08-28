@@ -41,8 +41,7 @@ export const Sidebar = () => {
     departmentFilter: queryParams.getAll("department"),
     companyTypeFilter: queryParams.getAll("companyType"),
   };
-  const filters = useSelector(state => state.jobFilter)
-
+  const filters = useSelector((state) => state.jobFilter);
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -399,7 +398,7 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
+    <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
       <div className="flex justify-between w-full items-center">
         <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
           All Filters
@@ -477,8 +476,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Remote"
                 checked={
-                  filters.workMode.length &&
-                  filters.workMode.includes("Remote")
+                  filters.workMode.length && filters.workMode.includes("Remote")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -500,8 +498,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Hybrid"
                 checked={
-                  filters.workMode.length &&
-                  filters.workMode.includes("Hybrid")
+                  filters.workMode.length && filters.workMode.includes("Hybrid")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -523,8 +520,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 value="TWFH"
                 checked={
-                  filters.workMode.length &&
-                  filters.workMode.includes("TWFH")
+                  filters.workMode.length && filters.workMode.includes("TWFH")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -679,8 +675,7 @@ export const Sidebar = () => {
                 id="adama"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Adama")
+                  filters.location.length && filters.location.includes("Adama")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -748,8 +743,7 @@ export const Sidebar = () => {
                 id="mekele"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Mekele")
+                  filters.location.length && filters.location.includes("Mekele")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -771,8 +765,7 @@ export const Sidebar = () => {
                 id="jimma"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Jimma")
+                  filters.location.length && filters.location.includes("Jimma")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -794,8 +787,7 @@ export const Sidebar = () => {
                 id="gondar"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Gondar")
+                  filters.location.length && filters.location.includes("Gondar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -817,8 +809,7 @@ export const Sidebar = () => {
                 id="harar"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Harar")
+                  filters.location.length && filters.location.includes("Harar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -840,8 +831,7 @@ export const Sidebar = () => {
                 id="jijiga"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Jijiga")
+                  filters.location.length && filters.location.includes("Jijiga")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -863,8 +853,7 @@ export const Sidebar = () => {
                 id="dessie"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Dessie")
+                  filters.location.length && filters.location.includes("Dessie")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -909,8 +898,7 @@ export const Sidebar = () => {
                 id="aksum"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length &&
-                  filters.location.includes("Aksum")
+                  filters.location.length && filters.location.includes("Aksum")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1127,8 +1115,7 @@ export const Sidebar = () => {
                 id="it"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.department.length &&
-                  filters.department.includes("IT")
+                  filters.department.length && filters.department.includes("IT")
                 }
                 onChange={(e) =>
                   handleFilterChange(

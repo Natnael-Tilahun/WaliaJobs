@@ -1,14 +1,14 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { contactFormValidationSchema } from '../validations/contactFormSchema';
-import { ErrorMessageComponent } from '../components/ErrorMessage';
-import { useDispatch } from 'react-redux';
-import { SET_EMAIL, SET_MESSAGE, SET_NAME } from '../redux/contactFormSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { contactFormValidationSchema } from "../validations/contactFormSchema";
+import { ErrorMessageComponent } from "../components/ErrorMessage";
+import { useDispatch } from "react-redux";
+import { SET_EMAIL, SET_MESSAGE, SET_NAME } from "../redux/contactFormSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const customId = 'custom-id-yes';
+const customId = "custom-id-yes";
 
 export const Contact = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const Contact = () => {
     dispatch(SET_MESSAGE(values.message));
     // toast('Thank you for reaching out to us. We will get back to you soon.');
     toast.success(
-      'Thank you for reaching out to us. We will get back to you very soon.',
+      "Thank you for reaching out to us. We will get back to you very soon.",
       {
         position: toast.POSITION.TOP_CENTER,
         toastId: customId,
@@ -29,9 +29,9 @@ export const Contact = () => {
     resetForm();
   };
   const initialValues = {
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   };
   return (
     <div className="w-full h-full text-left md:py-10 bg-thm_secondary_background py-5 flex-col  justify-center items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-5">
@@ -41,13 +41,13 @@ export const Contact = () => {
         className="font-black  basis-full md:basis-auto text-[#f8451d] self-center text-xl md:text-3xl -order-1 md:-order-none"
         style={({ isActive }) => {
           return {
-            borderBottom: isActive ? '3px solid #fa6d4d' : '',
+            borderBottom: isActive ? "3px solid #fa6d4d" : "",
           };
         }}
       >
         Walia Jobs
       </NavLink>
-      <div className="w-full md:w-2/3 lg:w-1/2 xl:w-[30%] shadow-md gap-1 bg-thm_background flex flex-col justify-center py-10 px-7 md:px-10 rounded-md">
+      <div className="w-full md:w-2/3 lg:w-1/2 xl:w-[30%] shadow-md gap-1 bg-thm_card flex flex-col justify-center py-10 px-7 md:px-10 rounded-md">
         <h1 className="text-xl pb-2 font-medium text-thm_primary_color">
           Send us a message
         </h1>
@@ -78,7 +78,7 @@ export const Contact = () => {
                 name="name"
               />
               <label htmlFor="email">
-                Email Address{' '}
+                Email Address{" "}
                 <span className="text-red-500 font-medium text-lg"> *</span>
               </label>
               <Field
