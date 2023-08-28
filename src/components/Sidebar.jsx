@@ -6,7 +6,7 @@ import {
   clearFilterFromStorage,
   isEmpty,
 } from "../utils/helperFunctions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SET_JOB_FILTERS_BY_WORKMODE,
   SET_JOB_FILTERS_BY_COMPANYTYPE,
@@ -41,6 +41,8 @@ export const Sidebar = () => {
     departmentFilter: queryParams.getAll("department"),
     companyTypeFilter: queryParams.getAll("companyType"),
   };
+  const filters = useSelector(state => state.jobFilter)
+
 
   const workModeAccordionToggleExpanded = () =>
     setWorkModeExpanded((current) => !current);
@@ -395,6 +397,7 @@ export const Sidebar = () => {
     });
     setYearsOfExperience("any");
   }
+
   return (
     <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
       <div className="flex justify-between w-full items-center">
@@ -451,8 +454,8 @@ export const Sidebar = () => {
                 id="office"
                 className="md:w-4 mr-2"
                 checked={
-                  workModeCheckboxState.length &&
-                  workModeCheckboxState.includes("In Office")
+                  filters.workMode.length &&
+                  filters.workMode.includes("In Office")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -474,8 +477,8 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Remote"
                 checked={
-                  workModeCheckboxState.length &&
-                  workModeCheckboxState.includes("Remote")
+                  filters.workMode.length &&
+                  filters.workMode.includes("Remote")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -497,8 +500,8 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Hybrid"
                 checked={
-                  workModeCheckboxState.length &&
-                  workModeCheckboxState.includes("Hybrid")
+                  filters.workMode.length &&
+                  filters.workMode.includes("Hybrid")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -520,8 +523,8 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 value="TWFH"
                 checked={
-                  workModeCheckboxState.length &&
-                  workModeCheckboxState.includes("TWFH")
+                  filters.workMode.length &&
+                  filters.workMode.includes("TWFH")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -576,11 +579,11 @@ export const Sidebar = () => {
             className="range w-full h-2 bg-gray-700 accent-gray-800 rounded-full outline-none"
             min="0"
             max="30"
-            value={experienceCheckboxState}
+            value={filters.experience}
             onChange={handleYearsOfExperienceChange}
           />
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 dark:bg-thm_secondary_color text-white text-xs md:text-sm rounded">
-            <span className="font-bold">{experienceCheckboxState}</span>
+            <span className="font-bold">{filters.experience}</span>
           </div>
           <div className="flex justify-between text-thm_secondary_color dark:text-thm_dark_secondary_color tracking-wide text-sm md:text-base lg:text-base font-medium">
             <p>O Yr</p>
@@ -630,8 +633,8 @@ export const Sidebar = () => {
                 id="addis abeba"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Addis Abeba")
+                  filters.location.length &&
+                  filters.location.includes("Addis Abeba")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -653,8 +656,8 @@ export const Sidebar = () => {
                 id="hawassa"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Hawassa")
+                  filters.location.length &&
+                  filters.location.includes("Hawassa")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -676,8 +679,8 @@ export const Sidebar = () => {
                 id="adama"
                 className=" md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Adama")
+                  filters.location.length &&
+                  filters.location.includes("Adama")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -699,8 +702,8 @@ export const Sidebar = () => {
                 id="dire dawa"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Dire Dawa")
+                  filters.location.length &&
+                  filters.location.includes("Dire Dawa")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -722,8 +725,8 @@ export const Sidebar = () => {
                 id="bahir dar"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Bahir Dar")
+                  filters.location.length &&
+                  filters.location.includes("Bahir Dar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -745,8 +748,8 @@ export const Sidebar = () => {
                 id="mekele"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Mekele")
+                  filters.location.length &&
+                  filters.location.includes("Mekele")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -768,8 +771,8 @@ export const Sidebar = () => {
                 id="jimma"
                 className=" md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Jimma")
+                  filters.location.length &&
+                  filters.location.includes("Jimma")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -791,8 +794,8 @@ export const Sidebar = () => {
                 id="gondar"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Gondar")
+                  filters.location.length &&
+                  filters.location.includes("Gondar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -814,8 +817,8 @@ export const Sidebar = () => {
                 id="harar"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Harar")
+                  filters.location.length &&
+                  filters.location.includes("Harar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -837,8 +840,8 @@ export const Sidebar = () => {
                 id="jijiga"
                 className=" md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Jijiga")
+                  filters.location.length &&
+                  filters.location.includes("Jijiga")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -860,8 +863,8 @@ export const Sidebar = () => {
                 id="dessie"
                 className=" md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Dessie")
+                  filters.location.length &&
+                  filters.location.includes("Dessie")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -883,8 +886,8 @@ export const Sidebar = () => {
                 id="debre birhan"
                 className=" md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Debre Birhan")
+                  filters.location.length &&
+                  filters.location.includes("Debre Birhan")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -906,8 +909,8 @@ export const Sidebar = () => {
                 id="aksum"
                 className="md:w-4 mr-2"
                 checked={
-                  locationCheckboxState.length &&
-                  locationCheckboxState.includes("Aksum")
+                  filters.location.length &&
+                  filters.location.includes("Aksum")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -963,8 +966,8 @@ export const Sidebar = () => {
                 id="bankingandinsurance"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Banking and Insurance")
+                  filters.department.length &&
+                  filters.department.includes("Banking and Insurance")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -986,8 +989,8 @@ export const Sidebar = () => {
                 id="salesandmarketing"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Sales and Markating")
+                  filters.department.length &&
+                  filters.department.includes("Sales and Markating")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1009,8 +1012,8 @@ export const Sidebar = () => {
                 id="management"
                 className=" md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Management")
+                  filters.department.length &&
+                  filters.department.includes("Management")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1032,8 +1035,8 @@ export const Sidebar = () => {
                 id="softwareEng"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Software Engineering")
+                  filters.department.length &&
+                  filters.department.includes("Software Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1055,8 +1058,8 @@ export const Sidebar = () => {
                 id="financeandaccounting"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Finance and Accounting")
+                  filters.department.length &&
+                  filters.department.includes("Finance and Accounting")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1078,8 +1081,8 @@ export const Sidebar = () => {
                 id="engineering"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Engineering")
+                  filters.department.length &&
+                  filters.department.includes("Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1101,8 +1104,8 @@ export const Sidebar = () => {
                 id="human resource"
                 className=" md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Human Resource")
+                  filters.department.length &&
+                  filters.department.includes("Human Resource")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1124,8 +1127,8 @@ export const Sidebar = () => {
                 id="it"
                 className=" md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("IT")
+                  filters.department.length &&
+                  filters.department.includes("IT")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1147,8 +1150,8 @@ export const Sidebar = () => {
                 id="health"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Health")
+                  filters.department.length &&
+                  filters.department.includes("Health")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1170,8 +1173,8 @@ export const Sidebar = () => {
                 id="legal"
                 className="md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Legal")
+                  filters.department.length &&
+                  filters.department.includes("Legal")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1193,8 +1196,8 @@ export const Sidebar = () => {
                 id="analytics"
                 className=" md:w-4 mr-2"
                 checked={
-                  departmentCheckboxState.length &&
-                  departmentCheckboxState.includes("Analytics")
+                  filters.department.length &&
+                  filters.department.includes("Analytics")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1250,8 +1253,8 @@ export const Sidebar = () => {
                 id="private"
                 className="md:w-4 mr-2 "
                 checked={
-                  companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes("Private")
+                  filters.companyType.length &&
+                  filters.companyType.includes("Private")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1273,8 +1276,8 @@ export const Sidebar = () => {
                 id="governmental"
                 className="md:w-4 mr-2"
                 checked={
-                  companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes("Governmental")
+                  filters.companyType.length &&
+                  filters.companyType.includes("Governmental")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1296,8 +1299,8 @@ export const Sidebar = () => {
                 id="corporate"
                 className=" md:w-4 mr-2"
                 checked={
-                  companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes("Corporate")
+                  filters.companyType.length &&
+                  filters.companyType.includes("Corporate")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1319,8 +1322,8 @@ export const Sidebar = () => {
                 id="ngo"
                 className="md:w-4 mr-2 "
                 checked={
-                  companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes("NGO")
+                  filters.companyType.length &&
+                  filters.companyType.includes("NGO")
                 }
                 onChange={(e) =>
                   handleFilterChange(
@@ -1342,8 +1345,8 @@ export const Sidebar = () => {
                 id="startup"
                 className="md:w-4 mr-2 "
                 checked={
-                  companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes("Startup")
+                  filters.companyType.length &&
+                  filters.companyType.includes("Startup")
                 }
                 onChange={(e) =>
                   handleFilterChange(
