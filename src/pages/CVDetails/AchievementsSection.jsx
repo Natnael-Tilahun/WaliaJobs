@@ -1,24 +1,27 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { achievementsValidationSchema } from '../../validations/achievementsSchema';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import DOMPurify from 'dompurify';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_ACHIEVEMENTS } from '../../redux/achievementsInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { achievementsValidationSchema } from "../../validations/achievementsSchema";
+import { Formik, Form, ErrorMessage } from "formik";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import DOMPurify from "dompurify";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_ACHIEVEMENTS } from "../../redux/achievementsInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const AchievementsSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id: CVId } = useParams();
   const quillRef = useRef(null);
   const { achievements } = useSelector((state) => state.achievementsInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   let initialValues = {
-    achievementDetails: '',
+    achievementDetails: "",
   };
 
   if (achievements) {
@@ -27,7 +30,7 @@ export const AchievementsSection = () => {
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
-    formik.setFieldTouched('achievementDetails');
+    formik.setFieldTouched("achievementDetails");
   };
 
   const handleSubmit = (values) => {
@@ -35,8 +38,9 @@ export const AchievementsSection = () => {
     console.log(values.achievementDetails);
     dispatch(SET_ACHIEVEMENTS(DOMPurify.sanitize(values.achievementDetails)));
     dispatch(SET_COMPLETED(FormSections.ACHIEVEMENTS));
-    console.log('rouer', cvBuildRouterHandler(FormSections.ACHIEVEMENTS));
-    navigate('/CV-Details/1/Interests-Section');
+    navigate(
+      CvBuildRouterHandler(FormSections.ACHIEVEMENTS, cvCompletionInfo, CVId)
+    );
   };
 
   const handleBack = navigate(-1);
@@ -66,7 +70,7 @@ export const AchievementsSection = () => {
                 ref={quillRef}
                 value={formik.values.achievementDetails}
                 onChange={(value) =>
-                  formik.setFieldValue('achievementDetails', value)
+                  formik.setFieldValue("achievementDetails", value)
                 }
                 onBlur={() => handleQuillBlur(formik)}
                 className="lg:h-full h-1/2"

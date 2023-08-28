@@ -1,15 +1,15 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { referenceValidationSchema } from '../../validations/referenceSchema';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import React from "react";
+import { useNavigate, useParams } from "react-router";
+import { referenceValidationSchema } from "../../validations/referenceSchema";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import {
   SET_REFERENECES,
   UPDATE_REFERENECE,
-} from '../../redux/referenceInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
+} from "../../redux/referenceInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
 
 export const ReferenceSection = () => {
   const navigate = useNavigate();
@@ -19,33 +19,30 @@ export const ReferenceSection = () => {
   const references = useSelector((state) => state.referenceInfo);
   let filteredReference;
   let initialValues = {
-    fullName: '',
-    jobTitle: '',
-    companyName: '',
-    email: '',
-    phone: '',
+    fullName: "",
+    jobTitle: "",
+    companyName: "",
+    email: "",
+    phone: "",
   };
 
   if (referenceId) {
     filteredReference = references.filter((ref) => ref.id == referenceId)[0];
     filteredReference && (initialValues = filteredReference);
-    console.log('references', filteredReference, initialValues);
+    console.log("references", filteredReference, initialValues);
   }
 
   const handleSubmit = (values, { resetForm }) => {
     if (referenceId > 0) {
-      alert('no lang');
-      console.log('updated values', values);
       dispatch(UPDATE_REFERENECE({ values: values, id: referenceId }));
       dispatch(SET_COMPLETED(FormSections.REFERENCES));
       navigate(`/CV-Details/1/Reference-Review`);
     } else {
       const referenceId = references.length + 1;
       values.id = referenceId;
-      console.log('references values', values);
       dispatch(SET_REFERENECES(values));
       dispatch(SET_COMPLETED(FormSections.REFERENCES));
-      navigate('/CV-Details/1/Reference-Review');
+      navigate("/CV-Details/1/Reference-Review");
     }
   };
   return (

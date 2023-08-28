@@ -1,57 +1,50 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { educationValidationSchema } from '../../validations/educationSchema';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
+import React, { useState, useRef, useEffect } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { educationValidationSchema } from "../../validations/educationSchema";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import {
   SET_EDUCATION,
   UPDATE_EDUCATION,
-} from '../../redux/educationInfoSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+} from "../../redux/educationInfoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const EducationSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id: educaitonId } = useParams();
-  const { id: CVId } = useParams();
 
   let filterdEducation;
   const educations = useSelector((state) => state.educationInfo);
   let initialValues = {
-    qualification: '',
-    fieldOfStudy: '',
-    institution: '',
-    location: '',
-    graduationYear: '',
+    qualification: "",
+    fieldOfStudy: "",
+    institution: "",
+    location: "",
+    graduationYear: "",
   };
 
   if (educaitonId) {
     filterdEducation = educations.filter((edu) => edu.id == educaitonId)[0];
     filterdEducation && (initialValues = filterdEducation);
-    console.log('educationss', filterdEducation, initialValues);
   }
 
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleSubmit = (values, { resetForm }) => {
     if (educaitonId > 0) {
-      alert('no edu');
-      console.log('updated values', values);
       dispatch(UPDATE_EDUCATION({ values: values, id: educaitonId }));
       dispatch(SET_COMPLETED(FormSections.EDUCATION));
-      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo,CVId,"",""));
-      // navigate(`/CV-Details/1/Education-Review`);
+      navigate("/CV-Details/1/Education-Review");
     } else {
       const educationId = educations.length + 1;
       values.id = educationId;
-      console.log('values', values);
       dispatch(SET_EDUCATION(values));
       dispatch(SET_COMPLETED(FormSections.EDUCATION));
-      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo,CVId,"",""));
-      // navigate('/CV-Details/1/Education-Review');
+      navigate("/CV-Details/1/Education-Review");
     }
   };
 

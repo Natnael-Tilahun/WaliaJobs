@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { experienceDetailValidationSchema } from '../../validations/experienceDetailSchema';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_EXPERIENCE_DETAILS } from '../../redux/experienceInfoSlice';
-import DOMPurify from 'dompurify';
+import React, { useState, useRef } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Formik, Form, ErrorMessage } from "formik";
+import { experienceDetailValidationSchema } from "../../validations/experienceDetailSchema";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_EXPERIENCE_DETAILS } from "../../redux/experienceInfoSlice";
+import DOMPurify from "dompurify";
 
 export const ExperienceDetailSection = () => {
   const navigate = useNavigate();
@@ -16,33 +16,31 @@ export const ExperienceDetailSection = () => {
   const { id: experienceId } = useParams();
   let filterdExperience;
 
-  console.log('params', experienceId);
   let initialValues = {
-    experienceDetails: '',
+    experienceDetails: "",
   };
 
   const experiences = useSelector((state) => state.experienceInfo);
-  console.log('experiences', experiences);
 
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
     filterdExperience && (initialValues = filterdExperience);
-    console.log('experiences', filterdExperience, initialValues);
+    console.log("experiences", filterdExperience, initialValues);
   }
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
-    formik.setFieldTouched('experienceDetails');
+    formik.setFieldTouched("experienceDetails");
   };
 
   const handleSubmit = (values) => {
     console.log(
-      'DETAILS HTML',
+      "DETAILS HTML",
       DOMPurify.sanitize(values.experienceDetails, {
-        ALLOWED_TAGS: ['ol', 'ul', 'li', 'strong'],
-        ADD_TAGS: ['ol', 'ul'],
-        ADD_ATTR: ['ol', 'class', 'list-decimal'],
-        ADD_ATTR: ['ul', 'class', 'list-disc'],
+        ALLOWED_TAGS: ["ol", "ul", "li", "strong"],
+        ADD_TAGS: ["ol", "ul"],
+        ADD_ATTR: ["ol", "class", "list-decimal"],
+        ADD_ATTR: ["ul", "class", "list-disc"],
       })
     );
 
@@ -53,7 +51,7 @@ export const ExperienceDetailSection = () => {
       })
     );
     // }
-    navigate('/CV-Details/1/Experience-Review');
+    navigate("/CV-Details/1/Experience-Review");
   };
 
   const handleBack = () => navigate(-1);
@@ -80,7 +78,7 @@ export const ExperienceDetailSection = () => {
                 ref={quillRef}
                 value={formik.values.experienceDetails}
                 onChange={
-                  (value) => formik.setFieldValue('experienceDetails', value)
+                  (value) => formik.setFieldValue("experienceDetails", value)
                   // handleHtml(value)
                 }
                 onBlur={(event) => {

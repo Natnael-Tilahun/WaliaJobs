@@ -1,12 +1,12 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { languageValidationSchema } from '../../validations/languageSchema';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_LANGUAGE, UPDATE_LANGUAGE } from '../../redux/languageInfoSlice';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
+import React from "react";
+import { useNavigate, useParams } from "react-router";
+import { languageValidationSchema } from "../../validations/languageSchema";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_LANGUAGE, UPDATE_LANGUAGE } from "../../redux/languageInfoSlice";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
 
 export const LanguageSection = () => {
   const navigate = useNavigate();
@@ -17,30 +17,26 @@ export const LanguageSection = () => {
   let filteredLanguage;
 
   let initialValues = {
-    languageName: '',
-    proficiencyLevel: '',
+    languageName: "",
+    proficiencyLevel: "",
   };
 
   if (languageId) {
     filteredLanguage = languages.filter((lang) => lang.id == languageId)[0];
     filteredLanguage && (initialValues = filteredLanguage);
-    console.log('languages', filteredLanguage, initialValues);
   }
 
   const handleSubmit = (values, { resetForm }) => {
     if (languageId > 0) {
-      alert('no lang');
-      console.log('updated values', values);
       dispatch(UPDATE_LANGUAGE({ values: values, id: languageId }));
       dispatch(SET_COMPLETED(FormSections.LANGUAGES));
       navigate(`/CV-Details/1/Language-Review`);
     } else {
       const languageId = languages.length + 1;
       values.id = languageId;
-      console.log('languages values', values);
       dispatch(SET_LANGUAGE(values));
       dispatch(SET_COMPLETED(FormSections.LANGUAGES));
-      navigate('/CV-Details/1/Language-Review');
+      navigate("/CV-Details/1/Language-Review");
     }
   };
   return (

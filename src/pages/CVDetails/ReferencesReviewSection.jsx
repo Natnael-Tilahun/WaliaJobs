@@ -1,17 +1,19 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import { DELETE_REFERENECE } from '../../redux/referenceInfoSlice';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import { DELETE_REFERENECE } from "../../redux/referenceInfoSlice";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const ReferencesReviewSection = () => {
   const references = useSelector((state) => state.referenceInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id: CVId } = useParams();
 
-  console.log('references', references);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleDeleteReference = (id) => {
     dispatch(DELETE_REFERENECE(id));
@@ -22,7 +24,9 @@ export const ReferencesReviewSection = () => {
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.REFERENCES));
-    navigate('/CV-Details/1/Achievements-Section');
+    navigate(
+      CvBuildRouterHandler(FormSections.REFERENCES, cvCompletionInfo, CVId)
+    );
   };
 
   return (

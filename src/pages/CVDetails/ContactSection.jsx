@@ -1,25 +1,24 @@
-import React, { useState, useRef } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { personalInfoValidationSchema } from '../../validations/personalInfoSchema';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useRef } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { personalInfoValidationSchema } from "../../validations/personalInfoSchema";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SET_FIRST_NAME,
   SET_LAST_NAME,
   SET_POSITION,
-  CLEAR_CV_DATA,
-} from '../../redux/personalInfoSlice';
+} from "../../redux/personalInfoSlice";
 import {
   SET_CITY,
   SET_POSTCODE,
   SET_PHONE,
   SET_EMAIL,
   SET_COUNTRY,
-} from '../../redux/contactInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+} from "../../redux/contactInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const ContactSection = () => {
   const dispatch = useDispatch();
@@ -32,22 +31,12 @@ export const ContactSection = () => {
     (state) => state.contactInfo
   );
 
-  // const isEducationSectionCompleted = useSelector(
-  //   (state) => state.cvCompletionInfo[FormSections.EDUCATION].completed
-  // );
-
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-  // const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
-  //   return cvCompletionInfo[key].included;
-  // });
-
-  // const currentStep = selectIncludedSections.indexOf(FormSections.HEADING);
   // TODO: create a new helper or custom hook to handle a next navigation or routing
   // create a funtion that accept the current step and navigate to the next step
   //TODO: Edit the cv roueter helper function and make it to route to the next included section
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
-    console.log('values', values);
     dispatch(SET_FIRST_NAME(values.firstName));
     dispatch(SET_LAST_NAME(values.lastName));
     dispatch(SET_POSITION(values.position));
@@ -60,10 +49,8 @@ export const ContactSection = () => {
     navigate(
       CvBuildRouterHandler(FormSections.HEADING, cvCompletionInfo, CVId)
     );
-    // isEducationSectionCompleted
-    //   ? navigate('/CV-Details/1/Education-Review')
-    //   : navigate('/CV-Details/1/Education-Section/0');
   };
+
   const handleBack = () => {
     navigate(-1);
   };

@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { certificationValidationSchema } from '../../validations/certificationSchema';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useNavigate, useParams } from "react-router";
+import { certificationValidationSchema } from "../../validations/certificationSchema";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SET_CERTIFICATION,
   UPDATE_CERTIFICATE,
-} from '../../redux/certificationInfoSlice';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+} from "../../redux/certificationInfoSlice";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const CertificationSection = () => {
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ export const CertificationSection = () => {
   let filteredCertificate;
 
   let initialValues = {
-    certificationName: '',
-    certificateIssuedBy: '',
-    certificateIssuedDate: '',
+    certificationName: "",
+    certificateIssuedBy: "",
+    certificateIssuedDate: "",
   };
 
   if (certificateId) {
@@ -31,46 +31,22 @@ export const CertificationSection = () => {
       (cert) => cert.id == certificateId
     )[0];
     filteredCertificate && (initialValues = filteredCertificate);
-    console.log('certifications', filteredCertificate, initialValues);
+    console.log("certifications", filteredCertificate, initialValues);
   }
 
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleSubmit = (values, { resetForm }) => {
     if (certificateId > 0) {
-      alert('no cert');
-      console.log('updated values', values);
       dispatch(UPDATE_CERTIFICATE({ values: values, id: certificateId }));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate(
-        CvBuildRouterHandler(
-          FormSections.CERTIFICATIONS,
-          cvCompletionInfo,
-          '',
-          certificateId,
-          ''
-        )
-      );
-      // navigate(`/CV-Details/1/Certification-Review`);
+      navigate(`/CV-Details/1/Certification-Review`);
     } else {
       let certificateId = certificates.length + 1;
       values.id = certificateId;
-      alert('certid', certificateId);
-      alert(certificateId);
-      console.log('values', values);
       dispatch(SET_CERTIFICATION(values));
       dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-      navigate(
-        CvBuildRouterHandler(
-          FormSections.CERTIFICATIONS,
-          cvCompletionInfo,
-          '',
-          certificateId,
-          ''
-        )
-      );
-      // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
-      // navigate('/CV-Details/1/Certification-Review');
+      navigate("/CV-Details/1/Certification-Review");
     }
   };
   return (

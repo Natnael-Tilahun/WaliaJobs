@@ -1,48 +1,44 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { summaryValidationSchema } from '../../validations/summarySchema';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_SUMMARY } from '../../redux/summaryInfoSlice';
-import DOMPurify from 'dompurify';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import cvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+import React, { useState, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { summaryValidationSchema } from "../../validations/summarySchema";
+import { Formik, Form, ErrorMessage } from "formik";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_SUMMARY } from "../../redux/summaryInfoSlice";
+import DOMPurify from "dompurify";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import cvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const SummarySection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id: CVId } = useParams();
   const quillRef = useRef(null);
   const { summary } = useSelector((state) => state.summaryInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   let initialValues = {
-    summaryDetails: '',
+    summaryDetails: "",
   };
 
   if (summary) {
     initialValues.summaryDetails = summary;
   }
 
-  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-  // const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
-  //   return cvCompletionInfo[key].included;
-  // });
-  // const currentStep = selectIncludedSections.indexOf(FormSections.SUMMARY);
-  // alert(selectIncludedSections[currentStep + 1]);
-  // console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
   // TODO: create a new helper or custom hook to handle a next navigation or routing
   // create a funtion that accept the current step and navigate to the next step
 
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
-    console.log(values.summaryDetails);
     dispatch(SET_SUMMARY(DOMPurify.sanitize(values.summaryDetails)));
     dispatch(SET_COMPLETED(FormSections.SUMMARY));
-    // console.log('rouer', cvBuildRouterHandler(FormSections.SUMMARY));
-    navigate('/CV-Details/1/Additional-Section');
+    navigate(
+      CvBuildRouterHandler(FormSections.SUMMARY, cvCompletionInfo, CVId)
+    );
   };
 
   const handleBack = navigate(-1);
@@ -74,7 +70,7 @@ export const SummarySection = () => {
                 value={formik.values.summaryDetails}
                 name="summaryDetails"
                 onChange={(value) =>
-                  formik.setFieldValue('summaryDetails', value)
+                  formik.setFieldValue("summaryDetails", value)
                 }
                 className="lg:h-full h-1/2"
               />

@@ -1,38 +1,34 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import { DELETE_CERTIFICATE } from '../../redux/certificationInfoSlice';
-import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import { DELETE_CERTIFICATE } from "../../redux/certificationInfoSlice";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const CertificationsReviewSection = () => {
   const certifications = useSelector((state) => state.certificationInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLanguageSectionCompleted = useSelector(
-    (state) => state.cvCompletionInfo[FormSections.LANGUAGES].completed
-  );
+  const { id: CVId } = useParams();
 
-  console.log('educations', certifications);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+
+  console.log("educations", certifications);
 
   const handleDeleteCertificate = (id) => {
     dispatch(DELETE_CERTIFICATE(id));
   };
   const handleUpdateCertificate = (id) => {
-    // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
     navigate(`/CV-Details/1/Certification-Section/${id}`);
-    // navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
   };
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.CERTIFICATIONS));
-    // navigate(CvBuildRouterHandler(FormSections.CERTIFICATIONS));
-    // console.log('rouer', cvBuildRouterHandler(FormSections.CERTIFICATIONS));
-    isLanguageSectionCompleted
-      ? navigate('/CV-Details/1/Language-Review')
-      : navigate('/CV-Details/1/Language-Section/0');
+    navigate(
+      CvBuildRouterHandler(FormSections.CERTIFICATIONS, cvCompletionInfo, CVId)
+    );
   };
 
   return (

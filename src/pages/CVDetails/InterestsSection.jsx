@@ -1,24 +1,28 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { interestsValidationSchema } from '../../validations/interestsSchema';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import DOMPurify from 'dompurify';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_INTERESTS } from '../../redux/interestsInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
+import React, { useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { interestsValidationSchema } from "../../validations/interestsSchema";
+import { Formik, Form, ErrorMessage } from "formik";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import DOMPurify from "dompurify";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_INTERESTS } from "../../redux/interestsInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const InterestsSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id: CVId } = useParams();
+
   const quillRef = useRef(null);
   const { interests } = useSelector((state) => state.interestsInfo);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   let initialValues = {
-    interestsDetails: '',
+    interestsDetails: "",
   };
 
   if (interests) {
@@ -27,15 +31,16 @@ export const InterestsSection = () => {
 
   const handleQuillBlur = (formik) => {
     // Trigger blur manually
-    formik.setFieldTouched('interestsDetails');
+    formik.setFieldTouched("interestsDetails");
   };
 
   const handleSubmit = (values) => {
     // Handle form submission and access form values
-    console.log(values.interestsDetails);
     dispatch(SET_INTERESTS(DOMPurify.sanitize(values.interestsDetails)));
     dispatch(SET_COMPLETED(FormSections.INTERESTS));
-    navigate('/CV-Details/1/Summary-Section');
+    navigate(
+      CvBuildRouterHandler(FormSections.INTERESTS, cvCompletionInfo, CVId)
+    );
   };
 
   const handleBack = navigate(-1);
@@ -65,7 +70,7 @@ export const InterestsSection = () => {
                 ref={quillRef}
                 value={formik.values.interestsDetails}
                 onChange={(value) =>
-                  formik.setFieldValue('interestsDetails', value)
+                  formik.setFieldValue("interestsDetails", value)
                 }
                 onBlur={() => handleQuillBlur(formik)}
                 className="lg:h-full h-1/2"

@@ -1,18 +1,19 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_EXPERIENCE } from '../../redux/experienceInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_EXPERIENCE } from "../../redux/experienceInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const ExperienceReviewSection = () => {
   const experiences = useSelector((state) => state.experienceInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log('experinceds', experiences);
+  const { id: CVId } = useParams();
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
@@ -27,7 +28,9 @@ export const ExperienceReviewSection = () => {
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-    navigate('/CV-Details/1/Skills-Section');
+    navigate(
+      CvBuildRouterHandler(FormSections.EXPERIENCE, cvCompletionInfo, CVId)
+    );
   };
 
   return (

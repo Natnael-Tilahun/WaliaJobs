@@ -1,58 +1,38 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import { useDispatch, useSelector } from 'react-redux';
-import cvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import {
+  SET_ADDITIONAL_SECTION,
+  SET_COMPLETED,
+} from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import { useDispatch, useSelector } from "react-redux";
+import cvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const AddAdditionalSection = () => {
-  const { id: CV_id } = useParams();
-  // alert(CV_id);
+  const { id: CVId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [jobTitle, setJobTitle] = useState('Developer');
-  const [employer, setEmployer] = useState("Dagi's Spa");
-  const [city, setCity] = useState('Addis Abeba');
-  const [country, setCountry] = useState('Ethiopia');
-  const [startDate, setStartDate] = useState('01/02/2021');
-  const [endDate, setEndDate] = useState('10/07/2023');
-  const [isCurrentlyWorkingThere, setIsCurrentlyWorkingThere] = useState(false);
-
-  const jobTitleRef = useRef();
-  const employerRef = useRef();
-  const cityRef = useRef();
-  const countryRef = useRef();
-  const startDateRef = useRef();
-  const endDateRef = useRef();
-  const isCurrentlyWorkingThereRef = useRef();
-  const [editorValue, setEditorValue] = useState('');
-
-  const handleEditorChange = (value) => {
-    setEditorValue(value);
-  };
-
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-  const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
-    return cvCompletionInfo[key].included;
-  });
-  const currentStep = selectIncludedSections.indexOf(
-    FormSections.ADDADDITIONALSECTION
-  );
-  // alert(selectIncludedSections[currentStep + 1]);
-  // nextRouterHandler(currentStep);
+  const additionalSections = cvCompletionInfo;
   // TODO: create a new helper or custom hook to handle a next navigation or routing
   // create a funtion that accept the current step and navigate to the next step
 
+  const addAdditionalSectionHandler = (value) => {
+    dispatch(SET_ADDITIONAL_SECTION(value));
+  };
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.ADDADDITIONALSECTION));
-    // console.log(
-    //   'rouer',
-    //   cvBuildRouterHandler(FormSections.ADDADDITIONALSECTION)
-    // );
-    navigate(`/Review-cv/${CV_id}`);
+    navigate(
+      CvBuildRouterHandler(
+        FormSections.ADDADDITIONALSECTION,
+        cvCompletionInfo,
+        CVId
+      )
+    );
   };
 
   return (
@@ -74,6 +54,9 @@ export const AddAdditionalSection = () => {
               id="certifications"
               className="w-4"
               name="certifications"
+              checked={cvCompletionInfo[FormSections.CERTIFICATIONS].included}
+              value={FormSections.CERTIFICATIONS}
+              onChange={(e) => addAdditionalSectionHandler(e.target.value)}
             />
             <label htmlFor="certifications">Certifications (Recommended)</label>
           </div>
@@ -83,6 +66,9 @@ export const AddAdditionalSection = () => {
               id="language"
               className="w-4"
               name="language"
+              checked={cvCompletionInfo[FormSections.LANGUAGES].included}
+              value={FormSections.LANGUAGES}
+              onChange={(e) => addAdditionalSectionHandler(e.target.value)}
             />
             <label htmlFor="language">Languages (Recommended)</label>
           </div>
@@ -92,8 +78,11 @@ export const AddAdditionalSection = () => {
               id="references"
               className="w-4"
               name="references"
+              checked={cvCompletionInfo[FormSections.REFERENCES].included}
+              value={FormSections.REFERENCES}
+              onChange={(e) => addAdditionalSectionHandler(e.target.value)}
             />
-            <label htmlFor="language">References (Recommended)</label>
+            <label htmlFor="references">References (Recommended)</label>
           </div>
           <div className="flex gap-8  text-lg">
             <input
@@ -101,10 +90,13 @@ export const AddAdditionalSection = () => {
               id="accomplishments"
               className="w-4"
               name="accomplishments"
+              checked={cvCompletionInfo[FormSections.ACHIEVEMENTS].included}
+              value={FormSections.ACHIEVEMENTS}
+              onChange={(e) => addAdditionalSectionHandler(e.target.value)}
             />
             <label htmlFor="accomplishments">Accomplishments</label>
           </div>
-          <div className="flex gap-8  text-lg">
+          {/* <div className="flex gap-8  text-lg">
             <input
               type="checkbox"
               id="personalProjects"
@@ -112,26 +104,18 @@ export const AddAdditionalSection = () => {
               name="personalProjects"
             />
             <label htmlFor="personalProjects">Personal Projects</label>
-          </div>
+          </div> */}
           <div className="flex gap-8  text-lg">
             <input
               type="checkbox"
               id="interesetAndHobbies"
               className="w-4"
               name="interesetAndHobbies"
+              checked={cvCompletionInfo[FormSections.INTERESTS].included}
+              value={FormSections.INTERESTS}
+              onChange={(e) => addAdditionalSectionHandler(e.target.value)}
             />
             <label htmlFor="interesetAndHobbies">Interest and hobbies</label>
-          </div>
-          <div className="flex gap-8  text-lg">
-            <input
-              type="checkbox"
-              id="additionalInformation"
-              className="w-4"
-              name="additionalInformation"
-            />
-            <label htmlFor="additionalInformation">
-              Additional Information
-            </label>
           </div>
           {/* </div> */}
         </div>

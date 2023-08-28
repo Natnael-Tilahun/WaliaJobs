@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { experienceValidationSchema } from '../../validations/experienceSchema';
-import { ErrorMessageComponent } from '../../components/ErrorMessage';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { experienceValidationSchema } from "../../validations/experienceSchema";
+import { ErrorMessageComponent } from "../../components/ErrorMessage";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SET_EXPERIENCE,
   UPDATE_EXPERIENCE,
-} from '../../redux/experienceInfoSlice';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import CvBuildRouterHandler from '../../utils/helperFunctions/CvBuildRouterHandler';
+} from "../../redux/experienceInfoSlice";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
@@ -21,58 +21,34 @@ export const ExperienceSection = () => {
 
   let filterdExperience;
   let initialValues = {
-    jobTitle: '',
-    employer: '',
-    city: '',
-    country: '',
-    startDate: '',
-    endDate: '',
+    jobTitle: "",
+    employer: "",
+    city: "",
+    country: "",
+    startDate: "",
+    endDate: "",
     isCurrentlyWorkingThere: false,
   };
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
     filterdExperience && (initialValues = filterdExperience);
-    console.log('experiences', filterdExperience, initialValues);
+    console.log("experiences", filterdExperience, initialValues);
   }
-  // useEffect(() => {
-  //   console.log(experienceId);
 
-  // }, []);
   const handleSubmit = (values, { resetForm }) => {
     if (values.isCurrentlyWorkingThere) {
-      values.endDate = 'Present';
+      values.endDate = "Present";
     }
     if (experienceId > 0) {
-      alert('no exp');
-      console.log('updated values', values);
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
       dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-      // navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
-      navigate(
-        CvBuildRouterHandler(
-          FormSections.EXPERIENCE,
-          cvCompletionInfo,
-          '',
-          '',
-          experienceId
-        )
-      );
+      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
     } else {
       let experienceId = experiences.length + 1;
       values.id = experienceId;
-      console.log('values', values);
       dispatch(SET_EXPERIENCE(values));
       dispatch(SET_COMPLETED(FormSections.EXPERIENCE));
-      // navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
-      navigate(
-        CvBuildRouterHandler(
-          FormSections.EXPERIENCE,
-          cvCompletionInfo,
-          '',
-          '',
-          experienceId
-        )
-      );
+      navigate(`/CV-Details/1/Experience-Detail/${experienceId}`);
     }
   };
   const handleBack = () => navigate(-1);

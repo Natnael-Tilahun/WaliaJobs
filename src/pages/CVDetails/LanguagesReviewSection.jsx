@@ -1,20 +1,19 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../../redux/cvCompletionInfoSlice';
-import { FormSections } from '../../utils/FormSections';
-import { DELETE_LANGUAGE } from '../../redux/languageInfoSlice';
+import React, { useState, useRef, useCallback } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { FormSections } from "../../utils/FormSections";
+import { DELETE_LANGUAGE } from "../../redux/languageInfoSlice";
+import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const LanguagesReviewSection = () => {
   const languages = useSelector((state) => state.languageInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isReferenceSectionCompleted = useSelector(
-    (state) => state.cvCompletionInfo[FormSections.REFERENCES].completed
-  );
+  const { id: CVId } = useParams();
 
-  console.log('languages', languages);
+  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleDeleteLanguage = (id) => {
     dispatch(DELETE_LANGUAGE(id));
@@ -25,9 +24,9 @@ export const LanguagesReviewSection = () => {
 
   const handleContinue = () => {
     dispatch(SET_COMPLETED(FormSections.LANGUAGES));
-    isReferenceSectionCompleted
-      ? navigate('/CV-Details/1/Reference-Review')
-      : navigate('/CV-Details/1/Reference-Section/0');
+    navigate(
+      CvBuildRouterHandler(FormSections.LANGUAGES, cvCompletionInfo, CVId)
+    );
   };
 
   return (
@@ -52,7 +51,7 @@ export const LanguagesReviewSection = () => {
                   <p className="font-medium md:text-xl">{index + 1}</p>
                   <div className="flex flex-col gap-1">
                     <h1 className=" font-semibold">
-                      {languageName} -{' '}
+                      {languageName} -{" "}
                       <span className="text-thm_secondary_color">
                         {proficiencyLevel}
                       </span>

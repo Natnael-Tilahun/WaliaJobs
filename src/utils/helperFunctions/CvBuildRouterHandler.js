@@ -1,16 +1,12 @@
-import React from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { FormSections } from '../FormSections';
+import React from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { FormSections } from "../FormSections";
 
 export default function CvBuildRouterHandler(
   formSection,
   cvCompletionInfo,
-  CVId,
-  certificateId,
-  experienceId
+  CVId
 ) {
-  // const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-
   const isEducationSectionCompleted =
     cvCompletionInfo[FormSections.EDUCATION].completed;
   const isExperienceSectionCompleted =
@@ -26,24 +22,19 @@ export default function CvBuildRouterHandler(
     return cvCompletionInfo[key].included;
   });
   const currentStep = selectIncludedSections.indexOf(formSection);
-  const nextRoute = selectIncludedSections[currentStep + 1]
-  // alert(currentStep);
-  alert(currentStep);
-  alert(nextRoute);
+  const nextRoute = selectIncludedSections[currentStep + 1];
 
   if (nextRoute == FormSections.EDUCATION) {
-    alert(isEducationSectionCompleted)
     if (isEducationSectionCompleted) {
-      return '/CV-Details/1/Education-Review';
+      return "/CV-Details/1/Education-Review";
     } else {
-      return '/CV-Details/1/Education-Section/0';
+      return "/CV-Details/1/Education-Section/0";
     }
   } else if (nextRoute == FormSections.EXPERIENCE) {
     if (isExperienceSectionCompleted) {
       return `/CV-Details/1/Experience-Review`;
-    }
-    else {
-      return `/CV-Details/1/Experience-Section/0`
+    } else {
+      return `/CV-Details/1/Experience-Section/0`;
     }
   } else if (nextRoute == FormSections.SKILLS) {
     return `/CV-Details/1/Skills-Section`;
@@ -53,18 +44,16 @@ export default function CvBuildRouterHandler(
     } else {
       return `/CV-Details/1/Certification-Section/0`;
     }
-  } else if (formSection == FormSections.LANGUAGES) {
+  } else if (nextRoute == FormSections.LANGUAGES) {
     if (isLanguageSectionCompleted) {
       return `/CV-Details/1/Language-Review`;
-    }
-    else {
+    } else {
       return `/CV-Details/1/Language-Section/0`;
     }
   } else if (nextRoute == FormSections.REFERENCES) {
     if (isReferenceSectionCompleted) {
       return `/CV-Details/1/Reference-Review`;
-    }
-    else {
+    } else {
       return `/CV-Details/1/Reference-Section/0`;
     }
   } else if (nextRoute == FormSections.ACHIEVEMENTS) {
@@ -76,14 +65,6 @@ export default function CvBuildRouterHandler(
   } else if (nextRoute == FormSections.ADDADDITIONALSECTION) {
     return `/CV-Details/1/Additional-Section`;
   } else if (nextRoute == FormSections.FINALIZE) {
-    return `/CV-Details/1/Review-cv/${CVId}`;
+    return `/review-cv/${CVId}`;
   }
-
-  // TODO: Add other route logics and routes
-  // alert(currentStep + 1);
-  console.log(
-    'route',
-    `/CV-Details/1/${selectIncludedSections[currentStep + 1]}-Review`
-  );
-  // return `/CV-Details/1/${selectIncludedSections[currentStep + 1]}-Review`;
 }
