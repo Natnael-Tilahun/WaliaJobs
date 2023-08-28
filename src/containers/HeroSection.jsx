@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   SET_JOB_FILTERS_BY_DEPARTMENT,
@@ -10,6 +10,7 @@ import {
 function Hero() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const filters = useSelector(state => state.jobFilter)
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedExperience, setSelectedExperience] = useState("");
@@ -47,10 +48,14 @@ function Hero() {
       ? encodeURIComponent(selectedExperience)
       : "";
 
-    navigate({
-      pathname: "/jobs",
-      search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
-    });
+      if(filters.department.length || filters.location.length || filters.experience){
+        navigate({
+          pathname: "/jobs",
+          search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
+        });
+      }
+
+  
   };
   return (
     <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
@@ -124,14 +129,21 @@ function Hero() {
           >
             Select Location{" "}
           </option>
-          <option value="addis abeba">Addis Abeba</option>
-          <option value="hawassa">Hawassa</option>
-          <option value="adama">Adama</option>
-          <option value="dire dawa">Dire Dawa</option>
-          <option value="jigiga">Jigiga</option>
-          <option value="harar">Harar</option>
-          <option value="bahirdar">Bahirdar</option>
-          <option value="mekelle">Mekelle</option>
+          <option value="Addis Abeba">Addis Abeba</option>
+          <option value="Hawassa">Hawassa</option>
+          <option value="Adama">Adama</option>
+          <option value="Dire Dawa">Dire Dawa</option>
+          <option value="Jijiga">Jijiga</option>
+          <option value="Harar">Harar</option>
+          <option value="Bahir Dar">Bahir Dar</option>
+          <option value="Mekelle">Mekelle</option>
+          <option value="Jimma">Jimma</option>
+          <option value="Gondar">Gondar</option>
+          <option value="Dessie">Dessie</option>
+          <option value="Debre Birhan">Debre Birhan</option>
+          <option value="Aksum">Aksum</option>
+          <option value="Dessie">Dessie</option>
+
         </select>
         <select
           name=""

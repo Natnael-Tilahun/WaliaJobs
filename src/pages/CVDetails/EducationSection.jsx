@@ -16,6 +16,8 @@ export const EducationSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id: educaitonId } = useParams();
+  const { id: CVId } = useParams();
+
   let filterdEducation;
   const educations = useSelector((state) => state.educationInfo);
   let initialValues = {
@@ -40,7 +42,7 @@ export const EducationSection = () => {
       console.log('updated values', values);
       dispatch(UPDATE_EDUCATION({ values: values, id: educaitonId }));
       dispatch(SET_COMPLETED(FormSections.EDUCATION));
-      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo));
+      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo,CVId,"",""));
       // navigate(`/CV-Details/1/Education-Review`);
     } else {
       const educationId = educations.length + 1;
@@ -48,7 +50,7 @@ export const EducationSection = () => {
       console.log('values', values);
       dispatch(SET_EDUCATION(values));
       dispatch(SET_COMPLETED(FormSections.EDUCATION));
-      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo));
+      navigate(CvBuildRouterHandler(FormSections.EDUCATION, cvCompletionInfo,CVId,"",""));
       // navigate('/CV-Details/1/Education-Review');
     }
   };

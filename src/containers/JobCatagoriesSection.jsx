@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { SET_JOB_FILTERS_BY_DEPARTMENT } from "../redux/jobFilterSlice";
 
 export const JobCatagories = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const goToPosts = (e) => {
     const departmentFilter = e.currentTarget.querySelector("h1").textContent;
+    dispatch(SET_JOB_FILTERS_BY_DEPARTMENT(departmentFilter))
     console.log(departmentFilter);
     const encodedDepartmentFilter = encodeURIComponent(departmentFilter);
     navigate({

@@ -3,13 +3,6 @@ import { JobsData } from "../../data/jobs";
 
 const initialState = {
   jobsList: JobsData,
-  // filters: {
-  //   location: '',
-  //   experience: '',
-  //   workMode: '',
-  //   department: '',
-  //   companyType: '',
-  // },
 };
 
 const jobSlice = createSlice({

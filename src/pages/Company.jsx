@@ -10,11 +10,15 @@ import {
   clearFilterFromStorage,
   isEmpty,
 } from "../utils/helperFunctions";
+import { useDispatch, useSelector } from "react-redux";
+import { CLEAR_COMPANY_FILTERS, SET_JOB_FILTERS_BY_COMPANYTYPE } from "../redux/jobFilterSlice";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);
   const companyAccordionToggleExpanded = () =>
     setCompanyExpanded((current) => !current);
+    const dispatch = useDispatch()
+    const companyFilters = useSelector(state => state.jobFilter)
 
   const [selectedFilters, setSelectedFilters] = useState({
     companyType: [],
@@ -50,6 +54,7 @@ export const Company = () => {
   }, []);
 
   function handleFilterChange(key, value, checked) {
+    dispatch(SET_JOB_FILTERS_BY_COMPANYTYPE(value))
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
 
@@ -141,6 +146,7 @@ export const Company = () => {
   }
 
   function removeFilterHandler() {
+    dispatch(CLEAR_COMPANY_FILTERS())
     setSearchParams("");
     clearFilterFromStorage();
     setSelectedFilters({
@@ -152,18 +158,18 @@ export const Company = () => {
     // Assuming the job data is available in an array called 'jobs'
     //   // 1. Initialize an empty array to store the filtered jobs
     let filteredCompanies = [];
-    if (CompaniesData != undefined && !selectedFilters.companyType.length) {
+    if (CompaniesData != undefined && !companyFilters.companyType.length) {
       // No filters selected, return all jobs
       filteredCompanies = CompaniesData;
     } else {
       filteredCompanies =
         CompaniesData &&
         CompaniesData.filter((company) =>
-          selectedFilters.companyType.includes(company.companyType)
+          companyFilters.companyType.includes(company.companyType)
         );
     }
     return filteredCompanies;
-  }, [CompaniesData, selectedFilters]);
+  }, [CompaniesData, companyFilters.companyType]);
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-2 lg:gap-10">
@@ -225,8 +231,8 @@ export const Company = () => {
                   id="private"
                   className="md:w-4 mr-2"
                   checked={
-                    companyTypeCheckboxState.length &&
-                    companyTypeCheckboxState.includes("Private")
+                    companyFilters.companyType.length &&
+                    companyFilters.companyType.includes("Private")
                   }
                   onChange={(e) =>
                     handleFilterChange(
@@ -248,8 +254,8 @@ export const Company = () => {
                   id="governmental"
                   className="md:w-4 mr-2"
                   checked={
-                    companyTypeCheckboxState.length &&
-                    companyTypeCheckboxState.includes("Governmental")
+                    companyFilters.companyType.length &&
+                    companyFilters.companyType.includes("Governmental")
                   }
                   onChange={(e) =>
                     handleFilterChange(
@@ -271,8 +277,8 @@ export const Company = () => {
                   id="corporate"
                   className=" md:w-4 mr-2"
                   checked={
-                    companyTypeCheckboxState.length &&
-                    companyTypeCheckboxState.includes("Corporate")
+                    companyFilters.companyType.length &&
+                    companyFilters.companyType.includes("Corporate")
                   }
                   onChange={(e) =>
                     handleFilterChange(
@@ -294,8 +300,8 @@ export const Company = () => {
                   id="startup"
                   className="md:w-4 mr-2"
                   checked={
-                    companyTypeCheckboxState.length &&
-                    companyTypeCheckboxState.includes("Startup")
+                    companyFilters.companyType.length &&
+                    companyFilters.companyType.includes("Startup")
                   }
                   onChange={(e) =>
                     handleFilterChange(
@@ -306,6 +312,29 @@ export const Company = () => {
                   }
                 />
                 Startup
+              </label>
+            </li>
+            <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
+              <label htmlFor="ngo" className="font-medium">
+                <input
+                  type="checkbox"
+                  name="ngo"
+                  value="NGO"
+                  id="ngo"
+                  className="md:w-4 mr-2"
+                  checked={
+                    companyFilters.companyType.length &&
+                    companyFilters.companyType.includes("NGO")
+                  }
+                  onChange={(e) =>
+                    handleFilterChange(
+                      e.target.name,
+                      e.target.value,
+                      e.target.checked ? "CT_ON" : "CT_OFF"
+                    )
+                  }
+                />
+                NGO
               </label>
             </li>
           </div>

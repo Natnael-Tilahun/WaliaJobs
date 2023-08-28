@@ -15,6 +15,8 @@ const actionTypes = (() => {
   const SET_JOB_FILTERS_BY_COMPANYTYPE = "SET_JOB_FILTERS_BY_COMPANYTYPE";
   const JOB_FILTERS_BY_DEPARTMENT = "JOB_FILTERS_BY_DEPARTMENT";
   const CLEAR_JOB_FILTERS = "CLEAR_JOB_FILTERS";
+  const CLEAR_COMPANY_FILTERS = "CLEAR_COMPANY_FILTERS";
+
 
   return {
     SET_JOB_FILTERS_BY_WORKMODE,
@@ -23,6 +25,7 @@ const actionTypes = (() => {
     SET_JOB_FILTERS_BY_COMPANYTYPE,
     JOB_FILTERS_BY_DEPARTMENT,
     CLEAR_JOB_FILTERS,
+    CLEAR_COMPANY_FILTERS
   };
 })();
 
@@ -81,6 +84,12 @@ const jobFilterSlice = createSlice({
     CLEAR_JOB_FILTERS(state, action) {
       return { ...initialState };
     },
+    CLEAR_COMPANY_FILTERS(state,action){
+      return{
+        ...state,
+        companyType: []
+      }
+    }
   },
 });
 
@@ -91,5 +100,6 @@ export const {
   SET_JOB_FILTERS_BY_EXPERIENCE,
   SET_JOB_FILTERS_BY_LOCATION,
   CLEAR_JOB_FILTERS,
+  CLEAR_COMPANY_FILTERS
 } = jobFilterSlice.actions;
 export default jobFilterSlice.reducer;
