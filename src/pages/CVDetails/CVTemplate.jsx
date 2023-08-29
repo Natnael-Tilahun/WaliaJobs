@@ -61,13 +61,11 @@ ul.list-disc{
       ol,ul{
         list-style-type: decimal !important;
         padding-left: 5px;
-        color: white;
       }
 
       ul{
         list-style-type: disc !important;
         padding-left: 10px;
-        color: white;
       }
 
       ol.list-decimal {
@@ -76,7 +74,6 @@ ul.list-disc{
 
       ul.list-disc{
         list-style-type: disc!important ;
-        color: white;
       }
 
       .underline {
