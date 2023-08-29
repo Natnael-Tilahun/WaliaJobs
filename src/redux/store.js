@@ -19,6 +19,7 @@ import contactFormSlice from "./contactFormSlice";
 import signupFormSlice from "./signupFormSlice";
 import loginFormSlice from "./loginFormSlice";
 import jobFilterSlice from "./jobFilterSlice";
+import cvThemeSlice from "./cvThemeSlice";
 
 export default configureStore({
   reducer: {
@@ -42,5 +43,6 @@ export default configureStore({
     contactForm: contactFormSlice,
     signupForm: signupFormSlice,
     loginForm: loginFormSlice,
+    cvTheme: cvThemeSlice
   },
 });

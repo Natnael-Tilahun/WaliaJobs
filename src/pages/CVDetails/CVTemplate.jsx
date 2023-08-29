@@ -30,6 +30,7 @@ export const CVTemplate = ({ className, id, reff, templateSize, CVColor }) => {
   const { profileImg } = useSelector((state) => state.profileImg);
   const dispatch = useDispatch();
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
+  const { cvHeaderSectionBackgroundColor, cvLeftSectionBackgroundColor, cvRightSectionBackgroundColor, cvHeaderSectionTextColor, cvLeftSectionTextColor, cvRightSectionTextColor } = useSelector(state => state.cvTheme)
 
   const styles = `
   ol{
@@ -60,11 +61,13 @@ ul.list-disc{
       ol,ul{
         list-style-type: decimal !important;
         padding-left: 5px;
+        color: white;
       }
 
       ul{
         list-style-type: disc !important;
         padding-left: 10px;
+        color: white;
       }
 
       ol.list-decimal {
@@ -73,6 +76,7 @@ ul.list-disc{
 
       ul.list-disc{
         list-style-type: disc!important ;
+        color: white;
       }
 
       .underline {
@@ -101,10 +105,10 @@ ul.list-disc{
     // >
     <div
       ref={reff}
-      className={twMerge(`bg-white shadow-lg overflow-hidden md:leading-5`, className)}
+      className={twMerge(`shadow-lg overflow-hidden md:leading-5 bg-thm_secondary_background min-h-[700px]`, className)}
     >
       {/* personal info  */}
-      <div className="bg-gray-600 py-2 px-6">
+      <div className={twMerge(" py-2 px-6 ", cvHeaderSectionBackgroundColor, cvHeaderSectionTextColor)}>
         <div className="flex items-center">
           <div className="relative">
             <img
@@ -144,21 +148,21 @@ ul.list-disc{
               <path d="M9.24264 18.9964H21V20.9964H3V16.7538L12.8995 6.85431L17.1421 11.0969L9.24264 18.9964ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"></path>
             </svg>
           </div>
-          <div className="ml-4">
-            <h1 className="md:text-xl font-bold text-white">
+          <div className="ml-4 text-inherit">
+            <h1 className="md:text-xl font-bold ">
               {personalInfoData.firstName} {personalInfoData.lastName}
             </h1>
-            <h2 className="md:text-sm text-xs font-medium text-white">
+            <h2 className="md:text-sm text-xs font-medium ">
               {personalInfoData.position}
             </h2>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-0 h-[100%] text-gray-700">
+      <div className="flex gap-0 w-full  h-[100%]">
         {/* Left Section */}
-        <div className={twMerge(" h-[96%] md:h-[94%] lg:h-[94%] basis-[30%] text-xxxs md:text-xxs p-2 md:py-8 md:px-6 flex flex-col justify-between  text-slate-200",CVColor)}>
-          <div className=" flex flex-col gap-1">
+        <div className={twMerge("h-[96%]  min-h-[700px] md:h-[94%] lg:h-[94%] basis-[30%] p-2 md:py-8 md:px-6 flex flex-col justify-between  text-slate-200 bg-blue-600", cvLeftSectionBackgroundColor, cvLeftSectionTextColor)}>
+          <div className=" flex flex-col gap-1 md:text-xxs  text-xxxxs">
             {/* contact info */}
             <>
               <h1 className="font-semibold uppercase md:text-xs py-1">
@@ -170,7 +174,7 @@ ul.list-disc{
                   viewBox="0 0 24 24"
                   width="12px"
                   height="12px"
-                  className="w-3 h-3 fill-slate-200"
+                  className={twMerge("w-3 h-3 fill-slate-200", cvLeftSectionTextColor)}
                 >
                   <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
                 </svg>
@@ -183,7 +187,7 @@ ul.list-disc{
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  className="w-3 h-3 fill-slate-200"
+                  className={twMerge("w-3 h-3 fill-slate-200", cvLeftSectionTextColor)}
                   height="12px"
                   width="12px"
                 >
@@ -195,7 +199,7 @@ ul.list-disc{
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  className="w-3 h-3 fill-slate-200"
+                  className={twMerge("w-3 h-3 fill-slate-200", cvLeftSectionTextColor)}
                   height="12px"
                   width="12px"
                 >
@@ -208,14 +212,14 @@ ul.list-disc{
             {/* skills info */}
             {cvCompletionInfo[FormSections.SKILLS].included && (
               <>
-              <hr className="my-1" />
+                <hr className="my-1" />
                 <h3 className="md:text-xs uppercase font-semibold mt-1">
                   Skills
                 </h3>
                 {/* <ul className="list-disc p-2 list-inside md:text-xxs"> */}
                 <style>{skillsStyles}</style>
                 <div
-                  className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+                  className={twMerge(`list-decimal list-inside list-disc p-0 md:text-xxs text-slate-200`)}
                   style={{
                     listStyleType: "disc",
                     paddingInline: "0px",
@@ -252,24 +256,23 @@ ul.list-disc{
               </>
             )}
           </div>
-
           <NavLink
             to="/"
-            className="font-black py-2 cursor-pointer   text-slate-200 self-center text-sm "
+            className="font-black py-2 cursor-pointer text-xxxs md:text-xs  text-slate-200 self-center "
           >
             Walia Jobs
           </NavLink>
         </div>
 
         {/* Right Section */}
-        <div className="md:py-8 md:px-6  text-xxxs md:text-xxs p-2 basis-[70%]">
+        <div className={twMerge("md:py-8 md:px-6 border-4 text-xxxs md:text-xxs p-2 basis-[70%]", cvRightSectionBackgroundColor, cvRightSectionTextColor)}>
           {/* summary section */}
           <>
             <h3 className="md:text-xs uppercase text-xxs font-semibold mt-0">
               Profile Summary
             </h3>
             <div
-              className="md:text-xxs list-decimal list-inside min:h-8 "
+              className="list-decimal list-inside min:h-8 text-xxxs md:text-xxs"
               dangerouslySetInnerHTML={{
                 __html: summaryInfoData && DOMPurify.sanitize(summaryInfoData),
               }}
@@ -278,7 +281,7 @@ ul.list-disc{
 
           {/* work experience section */}
           <>
-          <hr className="my-3" />
+            <hr className="my-2 md:my-3" />
             <h3 className="md:text-xs uppercase text-xxs font-semibold md:mt-2">
               Work Experience
             </h3>
@@ -288,10 +291,10 @@ ul.list-disc{
                   key={index}
                   className="md:my-2 my-1  md:text-xxs list-disc list-inside"
                 >
-                  <h4 className="text-xxs font-semibold">
+                  <h4 className="text-xxxs md:text-xs font-semibold">
                     - {experience.employer} - {experience.jobTitle}
                   </h4>
-                  <p className="pl-2">
+                  <p className="pl-2 text-xxxs md:text-xs">
                     {experience.city} , {experience.country} |{" "}
                     {experience.startDate} -{experience.endDate}
                   </p>
@@ -302,7 +305,7 @@ ul.list-disc{
                   {experience.responsibilities && (
                     // <DeltaView delta={experience.responsibilities} />
                     <div
-                      className={`list-decimal pl-2 list-inside`}
+                      className={`list-decimal pl-2 list-inside text-xxxs md:text-xxs`}
                       dangerouslySetInnerHTML={{
                         __html:
                           experience.responsibilities &&
@@ -319,22 +322,22 @@ ul.list-disc{
 
           {/* education section */}
           <>
-          <hr className="md:my-3" />
-            <h3 className="md:text-xs uppercase font-semibold mt-1">
+            <hr className="my-2 md:my-3" />
+            <h3 className="md:text-xs text-xxs uppercase font-semibold mt-1">
               Education
             </h3>
             {educationInfoData.map((edu) => (
-              <div className="min:h-8" key={edu.id}>
-                <p className="md:text-xs font-medium">- {edu.qualification}</p>
+              <div className="min:h-8 my-1" key={edu.id}>
+                <p className="md:text-xs text-xxxs font-semibold">- {edu.qualification}</p>
 
                 {edu.institution != "" && (
-                  <p className="md:text-xxs pl-2">
+                  <p className="md:text-xs text-xxxs pl-2">
                     {edu.institution}, {edu.location}
                   </p>
                 )}
 
                 {edu.graduationYear != "" && (
-                  <p className="md:text-xxs pl-2">
+                  <p className="md:text-xxs text-xxxs pl-2">
                     Graduation Year: {edu.graduationYear}
                   </p>
                 )}
@@ -345,11 +348,11 @@ ul.list-disc{
           {/* certification section */}
           {cvCompletionInfo[FormSections.CERTIFICATIONS].included && (
             <>
-            <hr className="md:my-3" />
-              <h3 className="md:text-xs font-semibold mt-1 uppercase">
+              <hr className="my-2 md:my-3" />
+              <h3 className="md:text-xs text-xxs font-semibold mt-1 uppercase">
                 Certifications
               </h3>
-              <div className="my-1 flex flex-col gap-1">
+              <div className="my-1 flex text-xxxs md:text-xs flex-col gap-1">
                 {certificationInfoData.map((cert) => (
                   <div className="" key={cert.id}>
                     {cert.certificationName != "" && (
@@ -371,13 +374,13 @@ ul.list-disc{
           {/* awards and achieements */}
           {cvCompletionInfo[FormSections.ACHIEVEMENTS].included && (
             <>
-              <hr className="md:my-3" />
-              <h3 className="md:text-xs uppercase font-semibold mt-1">
+              <hr className="my-2 md:my-3" />
+              <h3 className="md:text-xs text-xxs uppercase font-semibold mt-1">
                 Awards and Achievements
               </h3>
               <style>{skillsStyles}</style>
               <div
-                className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+                className={`list-decimal list-inside list-disc p-0 md:text-xxs text-xxxs`}
                 style={{
                   listStyleType: "disc",
                   paddingInline: "0px",
@@ -395,11 +398,11 @@ ul.list-disc{
           {/* Personal Projects */}
           {cvCompletionInfo[FormSections.PERSONALPROJECTS].included && (
             <>
-              <hr className="md:my-3" />
-              <h3 className="md:text-xs uppercase font-semibold mt-1">
+              <hr className="my-2 md:my-3" />
+              <h3 className="md:text-xs uppercase font-semibold text-xxs mt-1">
                 Personal Projects
               </h3>
-              <ul className="list-disc md:text-xxs list-inside">
+              <ul className="list-disc md:text-xxs list-inside text-xxxs">
                 {personalProjectsInfoData.map((project, index) => (
                   <li key={index}>{project}</li>
                 ))}
@@ -410,13 +413,13 @@ ul.list-disc{
           {/* Interests */}
           {cvCompletionInfo[FormSections.INTERESTS].included && (
             <>
-              <hr className="md:my-3" />
-              <h3 className="md:text-xs uppercase font-semibold mt-1">
+              <hr className="my-2 md:my-3" />
+              <h3 className="md:text-xs text-xxs uppercase font-semibold mt-1">
                 Interests
               </h3>
               <style>{skillsStyles}</style>
               <div
-                className={`list-decimal list-inside list-disc p-0 md:text-xxs`}
+                className={`list-decimal list-inside list-disc p-0 md:text-xxs text-xxxs`}
                 style={{
                   listStyleType: "disc",
                   paddingInline: "0px",
@@ -433,24 +436,24 @@ ul.list-disc{
           {/* References */}
           {cvCompletionInfo[FormSections.REFERENCES].included && (
             <>
-              <hr className="md:my-3" />
+              <hr className="my-2 md:my-3" />
               {referencesInfoData.length > 0 && (
                 <div>
-                  <h3 className="md:text-xs uppercase font-semibold mt-1">
+                  <h3 className="md:text-xs uppercase font-semibold mt-1 text-xxs">
                     References
                   </h3>
                   {referencesInfoData.map((ref, index) => (
-                    <div className="my-1" key={index}>
-                      <h4 className="MD:text-xxs text-xs text-thm_primary_color font-medium">
+                    <div className="my-1 text-xxxs" key={index}>
+                      <h4 className="md:text-xxs text-xxxs text-thm_primary_color font-semibold">
                         - {ref.fullName}
                       </h4>
-                      <p className="MD:text-xxs pl-2">
+                      <p className="md:text-xxs font-medium pl-2">
                         {ref.jobTitle}, {ref.companyName}
                       </p>
-                      <p className="MD:text-xxs pl-2">
+                      <p className="md:text-xxs pl-2">
                         <span className="font-medium">Email:</span> {ref.email}
                       </p>
-                      <p className="MD:text-xxs pl-2">
+                      <p className="md:text-xxs pl-2">
                         <span className="font-medium">phone: </span>
                         {ref.phone}
                       </p>

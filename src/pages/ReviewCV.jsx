@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { SET_COMPLETED } from '../redux/cvCompletionInfoSlice';
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
 import { useState } from 'react';
+import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from '../redux/cvThemeSlice';
 
 export const ReviewCV = () => {
   const navigate = useNavigate();
@@ -23,6 +24,10 @@ export const ReviewCV = () => {
     content: () => componentRef.current,
   });
 
+  const cvThemeColorChangeHandler = (color) => {
+    dispatch(SET_CV_LEFT_SECTION_BACKGROUND_COLOR(color))
+  }
+
   return (
     <div className=" h-[1450px] py-4  lg:p-[40px] w-full  flex flex-col lg:flex-row lg:justify-evenly gap-0 lg:gap-10 px-3 md:px-5 ">
       <CVTemplate
@@ -34,26 +39,26 @@ export const ReviewCV = () => {
 
       <div className=" lg:order-2 py-5 basis-1/4  self-center lg:self-start md:px-10  lg:px-5 md:text-xl font-bold flex flex-col gap-2 md:gap-3 ">
         <div className=' w-full'>
-          <h1 className='text-lg'>Choose a color</h1>
+          <h1 className='text-lg'>Choose A color</h1>
           <div className='flex flex-wrap gap-3 py-3'>
-            <p className='w-6 h-6 rounded-full bg-slate-800' onClick={() => setCVColor("bg-slate-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-blue-800' onClick={() => setCVColor("bg-blue-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-orange-800' onClick={() => setCVColor("bg-orange-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-red-800' onClick={() => setCVColor("bg-red-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-green-800' onClick={() => setCVColor("bg-green-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-lime-800' onClick={() => setCVColor("bg-lime-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-teal-800' onClick={() => setCVColor("bg-teal-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-cyan-800' onClick={() => setCVColor("bg-cyan-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-sky-800' onClick={() => setCVColor("bg-sky-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-indigo-800' onClick={() => setCVColor("bg-indigo-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-violet-800 ' onClick={() => setCVColor("bg-violet-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-purple-800' onClick={() => setCVColor("bg-purple-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-fuchsia-800' onClick={() => setCVColor("bg-fuchsia-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-pink-800' onClick={() => setCVColor("bg-pink-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-rose-800' onClick={() => setCVColor("bg-rose-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-yellow-800' onClick={() => setCVColor("bg-yellow-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-zinc-800' onClick={() => setCVColor("bg-zinc-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-neutral-800' onClick={() => setCVColor("bg-neutral-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-slate-800' onClick={() => cvThemeColorChangeHandler("bg-slate-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-blue-800' onClick={() => cvThemeColorChangeHandler("bg-blue-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-orange-800' onClick={() => cvThemeColorChangeHandler("bg-orange-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-red-800' onClick={() => cvThemeColorChangeHandler("bg-red-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-green-800' onClick={() => cvThemeColorChangeHandler("bg-green-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-lime-800' onClick={() => cvThemeColorChangeHandler("bg-lime-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-teal-800' onClick={() => cvThemeColorChangeHandler("bg-teal-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-cyan-800' onClick={() => cvThemeColorChangeHandler("bg-cyan-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-sky-800' onClick={() => cvThemeColorChangeHandler("bg-sky-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-indigo-800' onClick={() => cvThemeColorChangeHandler("bg-indigo-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-violet-800 ' onClick={() => cvThemeColorChangeHandler("bg-violet-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-purple-800' onClick={() => cvThemeColorChangeHandler("bg-purple-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-fuchsia-800' onClick={() => cvThemeColorChangeHandler("bg-fuchsia-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-pink-800' onClick={() => cvThemeColorChangeHandler("bg-pink-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-rose-800' onClick={() => cvThemeColorChangeHandler("bg-rose-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-yellow-800' onClick={() => cvThemeColorChangeHandler("bg-yellow-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-zinc-800' onClick={() => cvThemeColorChangeHandler("bg-zinc-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-neutral-800' onClick={() => cvThemeColorChangeHandler("bg-neutral-800")}></p>
           </div>
         </div>
         <button
