@@ -5,12 +5,14 @@ import { FormSections } from '../utils/FormSections';
 import { useDispatch } from 'react-redux';
 import { SET_COMPLETED } from '../redux/cvCompletionInfoSlice';
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
+import { useState } from 'react';
 
 export const ReviewCV = () => {
   const navigate = useNavigate();
   const { id: CV_ID } = useParams();
   const dispatch = useDispatch();
   const componentRef = useRef();
+  const [CVColor, setCVColor] = useState("bg-blue-500")
 
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.FINALIZE));
@@ -25,23 +27,35 @@ export const ReviewCV = () => {
     <div className=" h-[1450px] py-4  lg:p-[40px] w-full  flex flex-col lg:flex-row lg:justify-evenly gap-0 lg:gap-10 px-3 md:px-5 ">
       <CVTemplate
         reff={componentRef}
+        CVColor={CVColor}
         id="cv-template"
-        className="order-2 md:order-1 lg:w-[900px] h-[1164px]"
+        className="order-2 md:order-1 lg:w-[900px] h-[1270px] basis-auto"
       />
 
-      <div className=" lg:order-2 py-5  self-center lg:self-start md:px-10  lg:px-5 md:text-xl font-bold flex flex-col gap-2 md:gap-3 ">
-        <button className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
-          <span>
-            <svg
-              className="w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path>
-            </svg>
-          </span>
-          Download
-        </button>
+      <div className=" lg:order-2 py-5 basis-1/4  self-center lg:self-start md:px-10  lg:px-5 md:text-xl font-bold flex flex-col gap-2 md:gap-3 ">
+        <div className=' w-full'>
+          <h1 className='text-lg'>Choose a color</h1>
+          <div className='flex flex-wrap gap-3 py-3'>
+            <p className='w-6 h-6 rounded-full bg-slate-800' onClick={() => setCVColor("bg-slate-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-blue-800' onClick={() => setCVColor("bg-blue-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-orange-800' onClick={() => setCVColor("bg-orange-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-red-800' onClick={() => setCVColor("bg-red-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-green-800' onClick={() => setCVColor("bg-green-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-lime-800' onClick={() => setCVColor("bg-lime-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-teal-800' onClick={() => setCVColor("bg-teal-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-cyan-800' onClick={() => setCVColor("bg-cyan-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-sky-800' onClick={() => setCVColor("bg-sky-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-indigo-800' onClick={() => setCVColor("bg-indigo-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-violet-800 ' onClick={() => setCVColor("bg-violet-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-purple-800' onClick={() => setCVColor("bg-purple-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-fuchsia-800' onClick={() => setCVColor("bg-fuchsia-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-pink-800' onClick={() => setCVColor("bg-pink-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-rose-800' onClick={() => setCVColor("bg-rose-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-yellow-800' onClick={() => setCVColor("bg-yellow-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-zinc-800' onClick={() => setCVColor("bg-zinc-800")}></p>
+            <p className='w-6 h-6 rounded-full bg-neutral-800' onClick={() => setCVColor("bg-neutral-800")}></p>
+          </div>
+        </div>
         <button
           onClick={handlePrint}
           className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer"
@@ -56,6 +70,18 @@ export const ReviewCV = () => {
             </svg>
           </span>
           Print
+        </button>
+        <button className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
+          <span>
+            <svg
+              className="w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path>
+            </svg>
+          </span>
+          Download
         </button>
         <button className="flex gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
           <span>

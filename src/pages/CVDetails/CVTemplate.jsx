@@ -6,8 +6,9 @@ import { NavLink } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { SET_PROFILE } from "../../redux/profileImgSlice";
 import { FormSections } from "../../utils/FormSections";
+import { twMerge } from "tailwind-merge";
 
-export const CVTemplate = ({ className, id, reff, templateSize }) => {
+export const CVTemplate = ({ className, id, reff, templateSize, CVColor }) => {
   const personalInfoData = useSelector((state) => state.personalInfo);
   const contactInfoData = useSelector((state) => state.contactInfo);
   const skillsInfoData = useSelector((state) => state.skillsInfo.skills);
@@ -33,12 +34,12 @@ export const CVTemplate = ({ className, id, reff, templateSize }) => {
   const styles = `
   ol{
     list-style-type: decimal !important;
-    padding-left: 15px;
+    padding-left: 5px;
   }
 
   ul {
     list-style-type: disc !important;
-    padding-left: 30px;
+    padding-left: 10px;
   }
 
 ol.list-decimal {
@@ -58,12 +59,12 @@ ul.list-disc{
   const skillsStyles = `
       ol,ul{
         list-style-type: decimal !important;
-        padding-left: 15px;
+        padding-left: 5px;
       }
 
       ul{
         list-style-type: disc !important;
-        padding-left: 15px;
+        padding-left: 10px;
       }
 
       ol.list-decimal {
@@ -78,8 +79,6 @@ ul.list-disc{
         text-decoration: underline;
       }
       `;
-
-  console.log("cv data", personalInfoData, experienceInfoData);
 
   const onImageSelect = (e) => {
     const file = e.target.files[0];
@@ -102,10 +101,10 @@ ul.list-disc{
     // >
     <div
       ref={reff}
-      className={`${className} bg-white shadow-lg overflow-hidden md:leading-5`}
+      className={twMerge(`bg-white shadow-lg overflow-hidden md:leading-5`, className)}
     >
       {/* personal info  */}
-      <div className="bg-blue-500 py-2 px-6">
+      <div className="bg-gray-600 py-2 px-6">
         <div className="flex items-center">
           <div className="relative">
             <img
@@ -157,7 +156,8 @@ ul.list-disc{
       </div>
 
       <div className="flex gap-0 h-[100%] text-gray-700">
-        <div className="bg-slate-300 h-[96%] md:h-[94%] lg:h-[94%] basis-[30%] text-xxxs md:text-xxs p-2 md:py-4 md:px-6 flex flex-col justify-between">
+        {/* Left Section */}
+        <div className={twMerge(" h-[96%] md:h-[94%] lg:h-[94%] basis-[30%] text-xxxs md:text-xxs p-2 md:py-8 md:px-6 flex flex-col justify-between  text-slate-200",CVColor)}>
           <div className=" flex flex-col gap-1">
             {/* contact info */}
             <>
@@ -170,7 +170,7 @@ ul.list-disc{
                   viewBox="0 0 24 24"
                   width="12px"
                   height="12px"
-                  className="w-3 h-3"
+                  className="w-3 h-3 fill-slate-200"
                 >
                   <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
                 </svg>
@@ -183,7 +183,7 @@ ul.list-disc{
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  className="w-3 h-3"
+                  className="w-3 h-3 fill-slate-200"
                   height="12px"
                   width="12px"
                 >
@@ -195,7 +195,7 @@ ul.list-disc{
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  className="w-3 h-3"
+                  className="w-3 h-3 fill-slate-200"
                   height="12px"
                   width="12px"
                 >
@@ -203,12 +203,12 @@ ul.list-disc{
                 </svg>
                 <p className="">{contactInfoData.email}</p>
               </div>
-              <hr className="my-1" />
             </>
 
             {/* skills info */}
             {cvCompletionInfo[FormSections.SKILLS].included && (
               <>
+              <hr className="my-1" />
                 <h3 className="md:text-xs uppercase font-semibold mt-1">
                   Skills
                 </h3>
@@ -227,13 +227,13 @@ ul.list-disc{
                   }}
                 ></div>
                 {/* </ul> */}
-                <hr className="my-1" />
               </>
             )}
 
             {/* languages info */}
             {cvCompletionInfo[FormSections.LANGUAGES].included && (
               <>
+                <hr className="my-1" />
                 <h3 className="md:text-xs uppercase font-semibold mt-1">
                   Languages
                 </h3>
@@ -255,13 +255,14 @@ ul.list-disc{
 
           <NavLink
             to="/"
-            className="font-black py-2 cursor-pointer   text-[#1e40af] self-center text-sm "
+            className="font-black py-2 cursor-pointer   text-slate-200 self-center text-sm "
           >
             Walia Jobs
           </NavLink>
         </div>
 
-        <div className="md:py-3 md:px-6  text-xxxs md:text-xxs p-2 basis-[70%]">
+        {/* Right Section */}
+        <div className="md:py-8 md:px-6  text-xxxs md:text-xxs p-2 basis-[70%]">
           {/* summary section */}
           <>
             <h3 className="md:text-xs uppercase text-xxs font-semibold mt-0">
@@ -273,11 +274,11 @@ ul.list-disc{
                 __html: summaryInfoData && DOMPurify.sanitize(summaryInfoData),
               }}
             ></div>
-            <hr className="my-1" />
           </>
 
           {/* work experience section */}
           <>
+          <hr className="my-3" />
             <h3 className="md:text-xs uppercase text-xxs font-semibold md:mt-2">
               Work Experience
             </h3>
@@ -314,11 +315,11 @@ ul.list-disc{
                 </div>
               ))}
             </div>
-            <hr className="md:my-1" />
           </>
 
           {/* education section */}
           <>
+          <hr className="md:my-3" />
             <h3 className="md:text-xs uppercase font-semibold mt-1">
               Education
             </h3>
@@ -339,12 +340,12 @@ ul.list-disc{
                 )}
               </div>
             ))}
-            <hr className="md:my-1" />
           </>
 
           {/* certification section */}
           {cvCompletionInfo[FormSections.CERTIFICATIONS].included && (
             <>
+            <hr className="md:my-3" />
               <h3 className="md:text-xs font-semibold mt-1 uppercase">
                 Certifications
               </h3>
@@ -364,13 +365,13 @@ ul.list-disc{
                   </div>
                 ))}
               </div>
-              <hr className="md:my-1" />
             </>
           )}
 
           {/* awards and achieements */}
           {cvCompletionInfo[FormSections.ACHIEVEMENTS].included && (
             <>
+              <hr className="md:my-3" />
               <h3 className="md:text-xs uppercase font-semibold mt-1">
                 Awards and Achievements
               </h3>
@@ -388,13 +389,13 @@ ul.list-disc{
                     DOMPurify.sanitize(achievementsInfoData),
                 }}
               ></div>
-              <hr className="md:my-1" />
             </>
           )}
 
           {/* Personal Projects */}
           {cvCompletionInfo[FormSections.PERSONALPROJECTS].included && (
             <>
+              <hr className="md:my-3" />
               <h3 className="md:text-xs uppercase font-semibold mt-1">
                 Personal Projects
               </h3>
@@ -403,13 +404,13 @@ ul.list-disc{
                   <li key={index}>{project}</li>
                 ))}
               </ul>
-              <hr className="md:my-1" />
             </>
           )}
 
           {/* Interests */}
           {cvCompletionInfo[FormSections.INTERESTS].included && (
             <>
+              <hr className="md:my-3" />
               <h3 className="md:text-xs uppercase font-semibold mt-1">
                 Interests
               </h3>
@@ -426,13 +427,13 @@ ul.list-disc{
                     interestsInfoData && DOMPurify.sanitize(interestsInfoData),
                 }}
               ></div>
-              <hr className="md:my-1" />
             </>
           )}
 
           {/* References */}
           {cvCompletionInfo[FormSections.REFERENCES].included && (
             <>
+              <hr className="md:my-3" />
               {referencesInfoData.length > 0 && (
                 <div>
                   <h3 className="md:text-xs uppercase font-semibold mt-1">
