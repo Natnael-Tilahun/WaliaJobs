@@ -8,10 +8,10 @@ import {
   SET_FIRST_NAME,
   SET_LAST_NAME,
   SET_POSITION,
+  SET_PROFILE_PIC,
 } from "../../redux/personalInfoSlice";
 import {
   SET_CITY,
-  SET_POSTCODE,
   SET_PHONE,
   SET_EMAIL,
   SET_COUNTRY,
@@ -19,15 +19,16 @@ import {
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
+import FileUpload from "../../components/FileUpload";
 
 export const ContactSection = () => {
   const dispatch = useDispatch();
   const { id: CVId } = useParams();
 
-  const { firstName, lastName, position } = useSelector(
+  const { firstName, lastName, position,profilePic } = useSelector(
     (state) => state.personalInfo
   );
-  const { city, phone, postCode, email, country } = useSelector(
+  const { city, phone, email, country } = useSelector(
     (state) => state.contactInfo
   );
 
@@ -37,15 +38,26 @@ export const ContactSection = () => {
   //TODO: Edit the cv roueter helper function and make it to route to the next included section
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
+    console.log("fomr valuses",values)
     dispatch(SET_FIRST_NAME(values.firstName));
     dispatch(SET_LAST_NAME(values.lastName));
     dispatch(SET_POSITION(values.position));
     dispatch(SET_CITY(values.city));
     dispatch(SET_COUNTRY(values.country));
     dispatch(SET_PHONE(values.phone));
-    dispatch(SET_POSTCODE(values.postCode));
+    dispatch(SET_PROFILE_PIC(values.profilePic));
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_COMPLETED(FormSections.HEADING));
+    // const file = values.profilePic;
+
+    // const reader = new FileReader();
+
+    // reader.onload = () => {
+    //   // Image loaded, set form value 
+    //   dispatch(SET_PROFILE_PIC(reader.result))
+    //   // form.setFieldValue('profilePic', reader.result);
+    // }
+    // reader.readAsDataURL(file);
     navigate(
       CvBuildRouterHandler(FormSections.HEADING, cvCompletionInfo, CVId)
     );
@@ -54,6 +66,9 @@ export const ContactSection = () => {
   const handleBack = () => {
     navigate(-1);
   };
+
+  const fileRef = useRef(null);
+
 
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 md:px-5 lg:p-5">
@@ -73,7 +88,7 @@ export const ContactSection = () => {
           position: position,
           city: city,
           country: country,
-          postCode: postCode,
+          // profilePic: profilePic,
           phone: phone,
           email: email,
         }}
@@ -81,7 +96,7 @@ export const ContactSection = () => {
         onSubmit={handleSubmit}
         className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full"
       >
-        {(values) => (
+        {(form) => (
           <Form className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
             <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
               <label htmlFor="firstName">FirstName</label>
@@ -144,18 +159,6 @@ export const ContactSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="postCode">PostCode</label>
-              <Field
-                type="text"
-                name="postCode"
-                className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
-              />
-              <ErrorMessage
-                render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="postCode"
-              />
-            </div>
-            <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
               <label htmlFor="phone">Phone</label>
               <Field
                 type="phone"
@@ -179,6 +182,35 @@ export const ContactSection = () => {
                 name="email"
               />
             </div>
+            {/* <div className="flex flex-col basis-[100%] lg:basis-[45%]  gap-1 md:gap-2">
+              <label htmlFor="profilePic">Profile Pic</label>
+              <Field
+                type="file"
+                name="profilePic"
+                onChange={(e) => {
+                  // alert("lll")
+                  const file = e.target.files[0];
+
+                  const reader = new FileReader();
+
+                  reader.onload = () => {
+                    // Image loaded, set form value 
+                    dispatch(SET_PROFILE_PIC(reader.result))
+                    // form.setFieldValue('profilePic', reader.result);
+                  }
+
+                  reader.readAsDataURL(file);
+                  // form.setFieldValue('profilePic', e.target.files[0]) 
+
+                }} className="p-2 w-full border-2 rounded-md bg-white focus:border-thm_root1_color focus:outline-none"
+              />
+              <ErrorMessage
+                render={(msg) => <ErrorMessageComponent msg={msg} />}
+                name="profilePic"
+              />
+            </div> */}
+            <FileUpload name="profilePic" fileRef={fileRef} />
+
             <button
               onClick={handleBack}
               className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-1  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"

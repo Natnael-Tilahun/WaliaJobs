@@ -19,7 +19,7 @@ const profileImgSlice = createSlice({
   initialState,
   reducers: {
     [actionTypes.SET_PROFILE](state, action) {
-      // alert('Profile pic Submitted');
+      alert('Profile pic Submitted');
       state.profileImg = action.payload;
     },
     [actionTypes.CLEAR_CV_DATA](state) {

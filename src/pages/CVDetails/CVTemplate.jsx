@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -27,7 +27,8 @@ export const CVTemplate = ({ className, id, reff, templateSize, CVColor }) => {
     (state) => state.interestsInfo.interests
   );
   const referencesInfoData = useSelector((state) => state.referenceInfo);
-  const { profileImg } = useSelector((state) => state.profileImg);
+  const  profileImg  = personalInfoData.profilePic;
+  console.log("profileImg:", profileImg)
   const dispatch = useDispatch();
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
   const { cvHeaderSectionBackgroundColor, cvLeftSectionBackgroundColor, cvRightSectionBackgroundColor, cvHeaderSectionTextColor, cvLeftSectionTextColor, cvRightSectionTextColor } = useSelector(state => state.cvTheme)
@@ -80,20 +81,27 @@ ul.list-disc{
         text-decoration: underline;
       }
       `;
-
+      const inputRef = useRef(null);
   const onImageSelect = (e) => {
-    const file = e.target.files[0];
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      dispatch(SET_PROFILE(reader.result));
-      // setImageSrc(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+   // Get files from ref
+   const files = inputRef.current.files;
+  
+   if(files && files.length > 0) {
+   
+     const reader = new FileReader();
+ 
+     reader.onload = () => {
+ 
+       // Use setTimeout to avoid input update issue
+       setTimeout(() => {
+         dispatch(SET_PROFILE(reader.result))  
+       });
+ 
+     };
+     console.log("img", files[0])
+     reader.readAsDataURL(files[0]);
   };
-
+  }
   return (
     // <div
     //   id="cv-template"
@@ -116,12 +124,13 @@ ul.list-disc{
               alt="Profile"
             />
 
-            <input
+            {/* <input
               type="file"
               placeholder=""
+              ref={inputRef}
               className="absolute z-30 w-full h-full bg-contain  top-[25%]  opacity-0 cursor-pointer"
-              onChange={onImageSelect}
-            />
+              onChange={ onImageSelect}
+            /> */}
             {/* <img
                 src="/camera.png"
                 className="absolute z-10 w-1/2 h-1/2 bg-center top-[25%] left-[25%] opacity-70"

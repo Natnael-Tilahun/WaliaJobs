@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   city: '',
   country: '',
-  postCode: '',
   phone: '',
   email: '',
 };
@@ -11,14 +10,12 @@ const initialState = {
 const actionTypes = (() => {
   const SET_CITY = 'SET_CITY';
   const SET_COUNTRY = 'SET_COUNTRY';
-  const SET_POSTCODE = 'SET_POSTCODE';
   const SET_PHONE = 'SET_PHONE';
   const SET_EMAIL = 'SET_EMAIL';
   const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
   return {
     SET_CITY,
     SET_COUNTRY,
-    SET_POSTCODE,
     SET_PHONE,
     SET_EMAIL,
     CLEAR_CV_DATA,
@@ -33,9 +30,6 @@ const contactInfoSlice = createSlice({
     },
     [actionTypes.SET_COUNTRY](state, action) {
       state.country = action.payload;
-    },
-    [actionTypes.SET_POSTCODE](state, action) {
-      state.postCode = action.payload;
     },
     [actionTypes.SET_PHONE](state, action) {
       state.phone = action.payload;
@@ -52,7 +46,6 @@ const contactInfoSlice = createSlice({
 export const {
   SET_CITY,
   SET_COUNTRY,
-  SET_POSTCODE,
   SET_PHONE,
   SET_EMAIL,
   CLEAR_CV_DATA,

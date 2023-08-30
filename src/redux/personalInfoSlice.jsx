@@ -10,6 +10,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   position: '',
+  profilePic: '',
 };
 // const initialState = {
 //   data: {
@@ -74,13 +75,14 @@ const actionTypes = (() => {
   const SET_FIRST_NAME = 'SET_FIRST_NAME';
   const SET_LAST_NAME = 'SET_LAST_NAME';
   const SET_POSITION = 'SET_POSITION';
-  const SET_PROFILE = 'SET_PROFILE';
+  const SET_PROFILE_PIC = 'SET_PROFILE_PIC';
   const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
 
   return {
     SET_FIRST_NAME,
     SET_LAST_NAME,
     SET_POSITION,
+    SET_PROFILE_PIC,
     CLEAR_CV_DATA,
   };
 })();
@@ -92,9 +94,8 @@ const personalInfoSlice = createSlice({
       // alert('Set personal Info');
       state.firstName = action.payload;
     },
-    [actionTypes.SET_PROFILE](state, action) {
-      // alert('Set profile');
-      state.firstName = action.payload;
+    [actionTypes.SET_PROFILE_PIC](state, action) {
+      state.profilePic = action.payload;
     },
     [actionTypes.SET_LAST_NAME](state, action) {
       state.lastName = action.payload;
@@ -108,6 +109,6 @@ const personalInfoSlice = createSlice({
   },
 });
 
-export const { SET_FIRST_NAME, SET_LAST_NAME, SET_POSITION, CLEAR_CV_DATA } =
+export const { SET_FIRST_NAME, SET_LAST_NAME, SET_POSITION,  SET_PROFILE_PIC, CLEAR_CV_DATA } =
   personalInfoSlice.actions;
 export default personalInfoSlice.reducer;
