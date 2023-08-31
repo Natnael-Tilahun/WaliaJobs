@@ -19,13 +19,13 @@ import {
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
-import FileUpload from "../../components/FileUpload";
+import CVProfileUpload from "../../components/CVProfileUpload";
 
 export const ContactSection = () => {
   const dispatch = useDispatch();
   const { id: CVId } = useParams();
 
-  const { firstName, lastName, position,profilePic } = useSelector(
+  const { firstName, lastName, position, profilePic } = useSelector(
     (state) => state.personalInfo
   );
   const { city, phone, email, country } = useSelector(
@@ -33,12 +33,9 @@ export const ContactSection = () => {
   );
 
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-  // TODO: create a new helper or custom hook to handle a next navigation or routing
-  // create a funtion that accept the current step and navigate to the next step
-  //TODO: Edit the cv roueter helper function and make it to route to the next included section
+
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
-    console.log("fomr valuses",values)
     dispatch(SET_FIRST_NAME(values.firstName));
     dispatch(SET_LAST_NAME(values.lastName));
     dispatch(SET_POSITION(values.position));
@@ -48,16 +45,6 @@ export const ContactSection = () => {
     dispatch(SET_PROFILE_PIC(values.profilePic));
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_COMPLETED(FormSections.HEADING));
-    // const file = values.profilePic;
-
-    // const reader = new FileReader();
-
-    // reader.onload = () => {
-    //   // Image loaded, set form value 
-    //   dispatch(SET_PROFILE_PIC(reader.result))
-    //   // form.setFieldValue('profilePic', reader.result);
-    // }
-    // reader.readAsDataURL(file);
     navigate(
       CvBuildRouterHandler(FormSections.HEADING, cvCompletionInfo, CVId)
     );
@@ -66,9 +53,6 @@ export const ContactSection = () => {
   const handleBack = () => {
     navigate(-1);
   };
-
-  const fileRef = useRef(null);
-
 
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 md:px-5 lg:p-5">
@@ -88,7 +72,7 @@ export const ContactSection = () => {
           position: position,
           city: city,
           country: country,
-          // profilePic: profilePic,
+          profilePic: profilePic,
           phone: phone,
           email: email,
         }}
@@ -182,35 +166,10 @@ export const ContactSection = () => {
                 name="email"
               />
             </div>
-            {/* <div className="flex flex-col basis-[100%] lg:basis-[45%]  gap-1 md:gap-2">
-              <label htmlFor="profilePic">Profile Pic</label>
-              <Field
-                type="file"
-                name="profilePic"
-                onChange={(e) => {
-                  // alert("lll")
-                  const file = e.target.files[0];
-
-                  const reader = new FileReader();
-
-                  reader.onload = () => {
-                    // Image loaded, set form value 
-                    dispatch(SET_PROFILE_PIC(reader.result))
-                    // form.setFieldValue('profilePic', reader.result);
-                  }
-
-                  reader.readAsDataURL(file);
-                  // form.setFieldValue('profilePic', e.target.files[0]) 
-
-                }} className="p-2 w-full border-2 rounded-md bg-white focus:border-thm_root1_color focus:outline-none"
-              />
-              <ErrorMessage
-                render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="profilePic"
-              />
-            </div> */}
-            <FileUpload name="profilePic" fileRef={fileRef} />
-
+            <CVProfileUpload name="profilePic" onChange={
+              preview => {
+                form.setFieldValue('profilePic', preview)
+              }} />
             <button
               onClick={handleBack}
               className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-1  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
@@ -218,7 +177,6 @@ export const ContactSection = () => {
               Back
             </button>
             <button
-              // to="/CV-Details/1/Experience-Section"
               type="submit"
               className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >

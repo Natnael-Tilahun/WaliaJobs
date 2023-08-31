@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Hero from '../containers/HeroSection';
 import { JobCatagories } from '../containers/JobCatagoriesSection';
 import { Companies } from '../containers/CompaniesSection';

@@ -1,25 +1,18 @@
 import React, { useState, useRef, useCallback } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import {
   SET_ADDITIONAL_SECTION,
   SET_COMPLETED,
 } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import { useDispatch, useSelector } from "react-redux";
-import cvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const AddAdditionalSection = () => {
   const { id: CVId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
-  const additionalSections = cvCompletionInfo;
-  // TODO: create a new helper or custom hook to handle a next navigation or routing
-  // create a funtion that accept the current step and navigate to the next step
 
   const addAdditionalSectionHandler = (value) => {
     dispatch(SET_ADDITIONAL_SECTION(value));
@@ -132,11 +125,6 @@ export const AddAdditionalSection = () => {
         >
           Continue
         </button>
-        {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-        {/* <FormattedTextDisplay value={quillValue} /> */}
       </div>
     </form>
   );

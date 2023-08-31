@@ -37,7 +37,6 @@ export const Signup = () => {
       toastId: customId,
     });
     resetForm();
-    console.log("Thank you for signed up", values);
   };
 
   return (

@@ -8,8 +8,8 @@ export const personalInfoValidationSchema = Yup.object().shape({
   position: Yup.string().required('Position Required'),
   city: Yup.string().required('City Required'),
   country: Yup.string().required('Country Required'),
-  profilePic: Yup.mixed().required()
-  .test("is-file-too-big", "File exceeds 10MB", () => {
+  profilePic: Yup.mixed()
+  .test("is-file-too-big", "File exceeds 1MB", () => {
     let valid = true;
     const files = fileRef?.current?.files;
     if (files) {
@@ -33,22 +33,15 @@ export const personalInfoValidationSchema = Yup.object().shape({
         const fileArr = Array.from(files);
         fileArr.forEach((file) => {
           const type = file.type.split("/")[1];
+          alert(type)
           const validTypes = [
             "zip",
-            "xml",
-            "xhtml+xml",
-            "plain",
-            "svg+xml",
             "rtf",
-            "pdf",
             "jpeg",
             "png",
             "jpg",
-            "ogg",
-            "json",
             "html",
             "gif",
-            "csv"
           ];
           if (!validTypes.includes(type)) {
             valid = false;
@@ -57,7 +50,7 @@ export const personalInfoValidationSchema = Yup.object().shape({
       }
       return valid;
     }
-  ),
+  ).required(),
   profilePic: Yup.string().required('Profile Pic Required!'),
   phone: Yup.string()
     .min(9, 'Too Short!')

@@ -35,7 +35,6 @@ export const SkillSection = () => {
 
   const handleSubmit = (values) => {
     // Handle form submission and access form values
-    console.log("skills",DOMPurify.sanitize(values.skillDetails), values.skillDetails )
     dispatch(SET_SKILLS(DOMPurify.sanitize(values.skillDetails)));
     dispatch(SET_COMPLETED(FormSections.SKILLS));
     navigate(CvBuildRouterHandler(FormSections.SKILLS, cvCompletionInfo, CVId));
@@ -90,11 +89,6 @@ export const SkillSection = () => {
             >
               Continue
             </button>
-            {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-            {/* <FormattedTextDisplay value={quillValue} /> */}
           </Form>
         )}
       </Formik>

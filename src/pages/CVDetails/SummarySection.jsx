@@ -10,7 +10,6 @@ import { SET_SUMMARY } from "../../redux/summaryInfoSlice";
 import DOMPurify from "dompurify";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
-import cvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const SummarySection = () => {
@@ -28,9 +27,6 @@ export const SummarySection = () => {
   if (summary) {
     initialValues.summaryDetails = summary;
   }
-
-  // TODO: create a new helper or custom hook to handle a next navigation or routing
-  // create a funtion that accept the current step and navigate to the next step
 
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission and access form values
@@ -91,11 +87,6 @@ export const SummarySection = () => {
             >
               Continue
             </button>
-            {/* <div
-              className="w-full prose"
-              dangerouslySetInnerHTML={{ __html: editorValue }}
-            /> */}
-            {/* <FormattedTextDisplay value={quillValue} /> */}
           </Form>
         )}
       </Formik>

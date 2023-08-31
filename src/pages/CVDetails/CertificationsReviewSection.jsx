@@ -12,14 +12,13 @@ export const CertificationsReviewSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id: CVId } = useParams();
-
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
-  console.log("educations", certifications);
 
   const handleDeleteCertificate = (id) => {
     dispatch(DELETE_CERTIFICATE(id));
   };
+
   const handleUpdateCertificate = (id) => {
     navigate(`/CV-Details/1/Certification-Section/${id}`);
   };

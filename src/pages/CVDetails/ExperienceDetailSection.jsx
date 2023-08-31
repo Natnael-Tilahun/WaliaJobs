@@ -25,7 +25,6 @@ export const ExperienceDetailSection = () => {
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
     filterdExperience && (initialValues = filterdExperience);
-    console.log("experiences", filterdExperience, initialValues);
   }
 
   const handleQuillBlur = (formik) => {
@@ -103,11 +102,6 @@ export const ExperienceDetailSection = () => {
             >
               Continue
             </button>
-            {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-            {/* <FormattedTextDisplay value={quillValue} /> */}
           </Form>
         )}
       </Formik>

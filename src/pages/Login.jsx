@@ -12,7 +12,6 @@ export const Login = () => {
   const handleSubmit = (values, { resetForm }) => {
     dispatch(SET_EMAIL(values.email));
     dispatch(SET_PASSWORD(values.password));
-    console.log("Your are logged in.", values);
     navigate("/");
     resetForm();
   };

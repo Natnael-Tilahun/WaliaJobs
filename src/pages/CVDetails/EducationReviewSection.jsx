@@ -1,6 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_EDUCATION } from "../../redux/educationInfoSlice";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
@@ -12,12 +11,12 @@ export const EducationReviewSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id: CVId } = useParams();
-
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleDeleteEducation = (id) => {
     dispatch(DELETE_EDUCATION(id));
   };
+
   const handleUpdateEducation = (id) => {
     navigate(`/CV-Details/1/Education-Section/${id}`);
   };

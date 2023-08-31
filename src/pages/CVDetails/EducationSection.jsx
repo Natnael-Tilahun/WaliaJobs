@@ -10,7 +10,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
-import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const EducationSection = () => {
   const dispatch = useDispatch();

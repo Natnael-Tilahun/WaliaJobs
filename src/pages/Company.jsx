@@ -3,7 +3,6 @@ import { CompanyCard } from "../components/CompanyCard";
 import { CompaniesData } from "../../data/companies";
 import { useSearchParams } from "react-router-dom";
 import { NoResultFound } from "../components/NoResultFound";
-
 import {
   getFilterStateFromStorage,
   saveFilterStateToStorage,
@@ -22,11 +21,9 @@ export const Company = () => {
     setCompanyExpanded((current) => !current);
   const dispatch = useDispatch();
   const companyFilters = useSelector((state) => state.jobFilter);
-
   const [selectedFilters, setSelectedFilters] = useState({
     companyType: [],
   });
-
   const [searchParams, setSearchParams] = useSearchParams();
   let filterByCompanyCheckboxState = getFilterStateFromStorage(
     "filterByCompanyCheckboxState"
@@ -46,10 +43,8 @@ export const Company = () => {
       companyTypeCheckboxState.forEach((val) => {
         params.append("companyType", val); // Append each value to the 'workMode' parameter
       });
-
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
       const newUrl = window.location.pathname + "?" + searchString;
-
       window.history.replaceState(null, null, newUrl);
     } else {
       console.log("No data in the local storage");
@@ -221,9 +216,8 @@ export const Company = () => {
             )}
           </div>
           <div
-            className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-              companyExpanded ? "max-h-full" : "max-h-0 "
-            }`}
+            className={`overflow-hidden transition-[max-height] text-thm_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${companyExpanded ? "max-h-full" : "max-h-0 "
+              }`}
           >
             <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
               <label htmlFor="private" className="font-medium">

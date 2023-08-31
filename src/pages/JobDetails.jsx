@@ -46,22 +46,13 @@ export const JobDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
-
-  // console.log("searchParams", id);
   const { jobsList: JobsData } = useSelector((state) => state.jobs);
   const jobDetail = JobsData.filter((job) => job.id == id);
   const [isFavorite, setIsFavorite] = useState(jobDetail[0].isFavorite);
 
-  console.log("job detailss", jobDetail);
-
   const handleShareClick = () => {
     setShowPopup(!showPopup);
   };
-
-  // const handleSaveJob = () => {
-  //   setIsFavorite((prevState) => !prevState);
-  //   // jobDetail[0].isFavorite = isFavorite;
-  // };
 
   const job1 = {
     title: "IT Officer",

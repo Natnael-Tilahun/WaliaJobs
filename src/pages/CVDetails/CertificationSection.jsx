@@ -10,7 +10,6 @@ import {
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
-import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const CertificationSection = () => {
   const navigate = useNavigate();
@@ -31,10 +30,8 @@ export const CertificationSection = () => {
       (cert) => cert.id == certificateId
     )[0];
     filteredCertificate && (initialValues = filteredCertificate);
-    console.log("certifications", filteredCertificate, initialValues);
   }
 
-  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   const handleSubmit = (values, { resetForm }) => {
     if (certificateId > 0) {
@@ -49,6 +46,8 @@ export const CertificationSection = () => {
       navigate("/CV-Details/1/Certification-Review");
     }
   };
+
+  
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">

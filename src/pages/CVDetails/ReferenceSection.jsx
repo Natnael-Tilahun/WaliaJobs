@@ -29,7 +29,6 @@ export const ReferenceSection = () => {
   if (referenceId) {
     filteredReference = references.filter((ref) => ref.id == referenceId)[0];
     filteredReference && (initialValues = filteredReference);
-    console.log("references", filteredReference, initialValues);
   }
 
   const handleSubmit = (values, { resetForm }) => {

@@ -131,7 +131,6 @@ export const WriteReview = () => {
   }
 
   const handleSetState = (keys, value) => {
-    console.log(keys, value);
     setRateValue((prevState) => ({ ...prevState, [keys]: value }));
   };
 
@@ -191,18 +190,18 @@ export const WriteReview = () => {
                 </label>
                 {(isCurrentlyWorkingThereRadio == "Yes" ||
                   isCurrentlyWorkingThereRadio == "No") && (
-                  <label className=" flex flex-col gap-2 font-medium">
-                    <p>
-                      Started working on
-                      <span className=" text-red-500">*</span>
-                    </p>
-                    <input
-                      type="date"
-                      placeholder="Company Name"
-                      className="p-2 border-2 relative rounded-md ring-thm_root1_color"
-                    />
-                  </label>
-                )}
+                    <label className=" flex flex-col gap-2 font-medium">
+                      <p>
+                        Started working on
+                        <span className=" text-red-500">*</span>
+                      </p>
+                      <input
+                        type="date"
+                        placeholder="Company Name"
+                        className="p-2 border-2 relative rounded-md ring-thm_root1_color"
+                      />
+                    </label>
+                  )}
               </div>
               <div className="w-full flex flex-col gap-3 lg:gap-5">
                 <label

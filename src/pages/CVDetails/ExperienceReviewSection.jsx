@@ -1,7 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_EXPERIENCE } from "../../redux/experienceInfoSlice";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
@@ -120,11 +118,6 @@ export const ExperienceReviewSection = () => {
         >
           Continue
         </button>
-        {/* <div
-          className="w-full prose"
-          dangerouslySetInnerHTML={{ __html: editorValue }}
-        /> */}
-        {/* <FormattedTextDisplay value={quillValue} /> */}
       </div>
     </form>
   );

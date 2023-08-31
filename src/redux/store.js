@@ -10,7 +10,6 @@ import experienceInfoSlice from "./experienceInfoSlice";
 import achievementsInfoSlice from "./achievementsInfoSlice";
 import personalProjectsInfoSlice from "./personalProjectsInfoSlice";
 import interestsInfoSlice from "./interestsInfoSlice";
-import profileImgSlice from "./profileImgSlice";
 import certificationInfoSlice from "./certificationInfoSlice";
 import languageInfoSlice from "./languageInfoSlice";
 import referenceInfoSlice from "./referenceInfoSlice";
@@ -38,7 +37,6 @@ export default configureStore({
     languageInfo: languageInfoSlice,
     interestsInfo: interestsInfoSlice,
     referenceInfo: referenceInfoSlice,
-    profileImg: profileImgSlice,
     cvCompletionInfo: cvCompletionInfoSlice,
     contactForm: contactFormSlice,
     signupForm: signupFormSlice,

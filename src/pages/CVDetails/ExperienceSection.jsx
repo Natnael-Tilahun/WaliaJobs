@@ -10,14 +10,12 @@ import {
 } from "../../redux/experienceInfoSlice";
 import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
-import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const ExperienceSection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id: experienceId } = useParams();
   const experiences = useSelector((state) => state.experienceInfo);
-  const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
 
   let filterdExperience;
   let initialValues = {
@@ -32,7 +30,6 @@ export const ExperienceSection = () => {
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
     filterdExperience && (initialValues = filterdExperience);
-    console.log("experiences", filterdExperience, initialValues);
   }
 
   const handleSubmit = (values, { resetForm }) => {
@@ -83,7 +80,7 @@ export const ExperienceSection = () => {
                 id="jobTitle"
                 placeholder="Developer"
                 className="p-2 border-2 rounded-md"
-                // defaultValue={filterdExperience?.jobTitle}
+              // defaultValue={filterdExperience?.jobTitle}
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
