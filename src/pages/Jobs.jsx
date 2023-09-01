@@ -27,7 +27,6 @@ export const Jobs = () => {
 
 
   const displayedJobs = useMemo(() => {
-    console.log("jobs,", jobs, "filters", filters)
     return jobs.filter(job => {
       if (filters.workMode.length && !filters.workMode.includes(job.workMode)) {
         return false

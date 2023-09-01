@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   CLEAR_COMPANY_FILTERS,
   SET_JOB_FILTERS_BY_COMPANYTYPE,
-} from "../redux/jobFilterSlice";
+} from "../redux/jobs/jobFilterSlice";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);

@@ -17,6 +17,7 @@ export const ExperienceSection = () => {
   const { id: experienceId } = useParams();
   const experiences = useSelector((state) => state.experienceInfo);
 
+
   let filterdExperience;
   let initialValues = {
     jobTitle: "",
@@ -34,7 +35,7 @@ export const ExperienceSection = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     if (values.isCurrentlyWorkingThere) {
-      values.endDate = "Present";
+      values.endDate = "";
     }
     if (experienceId > 0) {
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));

@@ -14,7 +14,7 @@ import {
   SET_JOB_FILTERS_BY_LOCATION,
   SET_JOB_FILTERS_BY_EXPERIENCE,
   CLEAR_JOB_FILTERS,
-} from "../redux/jobFilterSlice";
+} from "../redux/jobs/jobFilterSlice";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -135,7 +135,6 @@ export const Sidebar = () => {
       }));
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
-      console.log("departmentCheckboxState", departmentCheckboxState);
       departmentCheckboxState.forEach((val) => {
         params.append("department", val); // Append each value to the 'workMode' parameter
       });
@@ -162,16 +161,6 @@ export const Sidebar = () => {
 
       const filterState = { ...selectedFilters };
       filterState.department = decodedDepartmentFilter;
-      // setSelectedFilters((prevState) => ({
-      //   filterState,
-      // }));
-      // handleFilterChange("department", decodedDepartmentFilter, "DEP_ON");
-      // setSelectedFilters((prevState) => ({
-      //   ...prevState,
-      //   department: selectedFiltersFromSearchParams.departmentFilter,
-      // }));
-      // const filterState = { ...selectedFilters };
-      // filterState.department = decodedDepartmentFilter;
       saveFilterStateToStorage("filterState", JSON.stringify(filterState));
     }
 
@@ -226,159 +215,6 @@ export const Sidebar = () => {
         departmentCheckboxState
       );
 
-      const handleFilter = (
-        filterType,
-        filterStateKey,
-        checkboxState,
-        filters
-      ) => {
-        const values = params.getAll(key);
-        const index = filters.indexOf(value);
-        console.log(
-          "filterType",
-          filterType,
-          "filterStateKey",
-          filterStateKey,
-          "checkboxState",
-          checkboxState,
-          "filters",
-          filters
-        );
-
-        if (index === -1) {
-          filters.push(value);
-        } else {
-          filters.splice(index, 1);
-        }
-
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          [filterStateKey]: filters,
-        }));
-
-        setSearchParams(filterType, filters);
-
-        if (values.length) {
-          !values.includes(value) && params.append(key, value);
-        } else if (checkboxState.length) {
-          !checkboxState.includes(value) && checkboxState.push(value);
-          checkboxState.forEach((val) => {
-            params.append(key, val);
-          });
-        } else {
-          params.append(key, value);
-        }
-
-        const filterState = { ...selectedFilters };
-        filterState[filterStateKey] = filters;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      };
-
-      const handleFilterRemoval = (
-        filterType,
-        filterStateKey,
-        checkboxState,
-        filters,
-        value
-      ) => {
-        const updatedValues = filters.filter((val) => val !== value);
-        params.delete(key);
-        updatedValues.forEach((val) => params.append(key, val));
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          [filterStateKey]: updatedValues,
-        }));
-        const filterState = { ...selectedFilters };
-        filterState[filterStateKey] = updatedValues;
-        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
-      };
-
-      switch (checked) {
-        case "WM_ON":
-          handleFilter(
-            "workMode",
-            "workMode",
-            workModeCheckboxState,
-            selectedFilters.workMode
-          );
-          break;
-        case "WM_OFF":
-          handleFilterRemoval(
-            "workMode",
-            "workMode",
-            workModeCheckboxState,
-            selectedFilters.workMode,
-            value
-          );
-          break;
-        case "EXP":
-          setSelectedFilters((prevState) => ({
-            ...prevState,
-            experience: value,
-          }));
-          const experienceFilters = {
-            ...selectedFilters,
-          };
-          experienceFilters.experience = value;
-          saveFilterStateToStorage(
-            "filterState",
-            JSON.stringify(experienceFilters)
-          );
-          params.set(key, value);
-          break;
-        case "LOC_ON":
-          handleFilter(
-            "location",
-            "location",
-            locationCheckboxState,
-            selectedFilters.location
-          );
-          break;
-        case "LOC_OFF":
-          handleFilterRemoval(
-            "location",
-            "location",
-            locationCheckboxState,
-            selectedFilters.location,
-            value
-          );
-          break;
-        case "DEP_ON":
-          handleFilter(
-            "department",
-            "department",
-            departmentCheckboxState,
-            selectedFilters.department
-          );
-          break;
-        case "DEP_OFF":
-          handleFilterRemoval(
-            "department",
-            "department",
-            departmentCheckboxState,
-            selectedFilters.department,
-            value
-          );
-          break;
-        case "CT_ON":
-          handleFilter(
-            "companyType",
-            "companyType",
-            companyTypeCheckboxState,
-            selectedFilters.companyType
-          );
-          break;
-        case "CT_OFF":
-          handleFilterRemoval(
-            "companyType",
-            "companyType",
-            companyTypeCheckboxState,
-            selectedFilters.companyType,
-            value
-          );
-          break;
-      }
-
       return params.toString();
     });
   }
@@ -387,14 +223,6 @@ export const Sidebar = () => {
     dispatch(CLEAR_JOB_FILTERS());
     setSearchParams("");
     clearFilterFromStorage();
-    setSelectedFilters({
-      workMode: [],
-      experience: "",
-      location: [],
-      department: [],
-      companyType: [],
-    });
-    setYearsOfExperience("any");
   }
 
   return (

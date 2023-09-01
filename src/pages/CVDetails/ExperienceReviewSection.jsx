@@ -37,7 +37,7 @@ export const ExperienceReviewSection = () => {
       className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-3 md:px-5 lg:p-5"
     >
       <div className="text-center flex flex-col gap-3">
-        <h1 className="text-xl md:text-2xl xl:text-3xl font-medium">
+        <h1 className="text-xl md:text-2xl xl:text-2xl font-medium">
           Review your experience
         </h1>
       </div>
@@ -54,8 +54,8 @@ export const ExperienceReviewSection = () => {
                   key={id}
                 >
                   <div className="flex gap-3 lg:gap-10 ">
-                    <p className="font-medium md:text-xl">{index + 1}</p>
-                    <div className="flex flex-col gap-1">
+                    <p className="font-medium text-sm md:text-lg">{index + 1}</p>
+                    <div className="flex text-sm md:text-base flex-col gap-1">
                       <h1 className=" font-semibold">{employer}</h1>
                       <p className="lg:text-lg">{jobTitle}</p>
                       <div className="flex text-xs gap-2 lg:gap-5 text-thm_secondary_color">
@@ -63,7 +63,7 @@ export const ExperienceReviewSection = () => {
                           {city}, {country}
                         </p>
                         <p>
-                          <span>{startDate}</span> - <span>{endDate}</span>
+                          <span>{startDate}</span> - <span>{endDate == "" ? "Present" : endDate }</span>
                         </p>
                       </div>
                     </div>

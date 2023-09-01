@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import jobSlice from "./jobSlice";
+import jobSlice from "./jobs/jobSlice";
 import favouriteJobsSlice from "./favouriteJobsSlice";
 import personalInfoSlice from "./personalInfoSlice";
 import contactInfoSlice from "./contactInfoSlice";
@@ -17,7 +17,7 @@ import cvCompletionInfoSlice from "./cvCompletionInfoSlice";
 import contactFormSlice from "./contactFormSlice";
 import signupFormSlice from "./signupFormSlice";
 import loginFormSlice from "./loginFormSlice";
-import jobFilterSlice from "./jobFilterSlice";
+import jobFilterSlice from "./jobs/jobFilterSlice";
 import cvThemeSlice from "./cvThemeSlice";
 
 export default configureStore({

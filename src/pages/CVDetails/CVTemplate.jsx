@@ -24,7 +24,7 @@ export const CVTemplate = ({ className, id, reff, templateSize, CVColor }) => {
     (state) => state.interestsInfo.interests
   );
   const referencesInfoData = useSelector((state) => state.referenceInfo);
-  const  profileImg  = personalInfoData.profilePic;
+  const profileImg = personalInfoData.profilePic;
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
   const { cvHeaderSectionBackgroundColor, cvLeftSectionBackgroundColor, cvRightSectionBackgroundColor, cvHeaderSectionTextColor, cvLeftSectionTextColor, cvRightSectionTextColor } = useSelector(state => state.cvTheme)
 

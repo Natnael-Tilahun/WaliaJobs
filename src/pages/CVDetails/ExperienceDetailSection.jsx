@@ -24,7 +24,7 @@ export const ExperienceDetailSection = () => {
 
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
-    filterdExperience && (initialValues = filterdExperience);
+    filterdExperience && (initialValues.experienceDetails = filterdExperience.responsibilities);
   }
 
   const handleQuillBlur = (formik) => {
@@ -33,15 +33,6 @@ export const ExperienceDetailSection = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(
-      "DETAILS HTML",
-      DOMPurify.sanitize(values.experienceDetails, {
-        ALLOWED_TAGS: ["ol", "ul", "li", "strong"],
-        ADD_TAGS: ["ol", "ul"],
-        ADD_ATTR: ["ol", "class", "list-decimal"],
-        ADD_ATTR: ["ul", "class", "list-disc"],
-      })
-    );
 
     dispatch(
       SET_EXPERIENCE_DETAILS({

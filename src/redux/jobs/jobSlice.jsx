@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { JobsData } from "../../data/jobs";
+import { JobsData } from "../../../data/jobs";
 
 const initialState = {
   jobsList: JobsData,
