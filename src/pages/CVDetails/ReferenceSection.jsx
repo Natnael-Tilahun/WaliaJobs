@@ -7,8 +7,8 @@ import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import {
   SET_REFERENECES,
   UPDATE_REFERENECE,
-} from "../../redux/referenceInfoSlice";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+} from "../../features/cv/referenceInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 
 export const ReferenceSection = () => {

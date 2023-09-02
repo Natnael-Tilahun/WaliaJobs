@@ -9,14 +9,14 @@ import {
   SET_LAST_NAME,
   SET_POSITION,
   SET_PROFILE_PIC,
-} from "../../redux/personalInfoSlice";
+} from "../../features/cv/personalInfoSlice";
 import {
   SET_CITY,
   SET_PHONE,
   SET_EMAIL,
   SET_COUNTRY,
-} from "../../redux/contactInfoSlice";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+} from "../../features/cv/contactInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 import CVProfileUpload from "../../components/CVProfileUpload";

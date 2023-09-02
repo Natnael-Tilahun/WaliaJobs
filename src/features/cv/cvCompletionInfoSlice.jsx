@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FormSections } from "../utils/FormSections";
+import { FormSections } from "../../utils/FormSections";
 
 const initialState = {
   [FormSections.HEADING]: {

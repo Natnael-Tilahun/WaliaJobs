@@ -36,7 +36,6 @@ import { Reviews } from './pages/CompanyDetails/Reviews';
 import { Benefits } from './pages/CompanyDetails/Benefits';
 import { WriteReview } from './pages/WriteReview';
 import { Provider } from 'react-redux';
-import store from './redux/store';
 import { CertificationSection } from './pages/CVDetails/CertificationSection';
 import { LanguageSection } from './pages/CVDetails/LanguageSection';
 import { ReferenceSection } from './pages/CVDetails/ReferenceSection';
@@ -47,6 +46,7 @@ import { CertificationsReviewSection } from './pages/CVDetails/CertificationsRev
 import { LanguagesReviewSection } from './pages/CVDetails/LanguagesReviewSection';
 import { ReferencesReviewSection } from './pages/CVDetails/ReferencesReviewSection';
 import { ReviewCV } from './pages/ReviewCV';
+import store from './app/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

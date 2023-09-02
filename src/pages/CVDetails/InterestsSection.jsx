@@ -7,8 +7,8 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import DOMPurify from "dompurify";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_INTERESTS } from "../../redux/interestsInfoSlice";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_INTERESTS } from "../../features/cv/interestsInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 

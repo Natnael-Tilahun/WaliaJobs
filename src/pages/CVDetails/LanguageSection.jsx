@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router";
 import { languageValidationSchema } from "../../validations/languageSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_LANGUAGE, UPDATE_LANGUAGE } from "../../redux/languageInfoSlice";
+import { SET_LANGUAGE, UPDATE_LANGUAGE } from "../../features/cv/languageInfoSlice";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 
 export const LanguageSection = () => {

@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   SET_EXPERIENCE,
   UPDATE_EXPERIENCE,
-} from "../../redux/experienceInfoSlice";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+} from "../../features/cv/experienceInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 
 export const ExperienceSection = () => {

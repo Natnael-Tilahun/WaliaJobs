@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from "../redux/favouriteJobsSlice.jsx";
+} from "../features/jobs/favouriteJobsSlice.jsx";
 
 function JobDetail(props) {
   return (

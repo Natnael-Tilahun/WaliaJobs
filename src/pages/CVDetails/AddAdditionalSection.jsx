@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
   SET_ADDITIONAL_SECTION,
   SET_COMPLETED,
-} from "../../redux/cvCompletionInfoSlice";
+} from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import { useDispatch, useSelector } from "react-redux";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";

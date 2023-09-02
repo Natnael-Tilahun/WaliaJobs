@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { contactFormValidationSchema } from "../validations/contactFormSchema";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { SET_EMAIL, SET_MESSAGE, SET_NAME } from "../redux/contactFormSlice";
+import { SET_EMAIL, SET_MESSAGE, SET_NAME } from "../features/contact/contactFormSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

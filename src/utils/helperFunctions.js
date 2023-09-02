@@ -4,10 +4,6 @@ const getFilterStateFromStorage = (key) => {
   return storedState ? JSON.parse(storedState) : {};
 };
 
-// Function to save checkbox state to storage
-const saveFilterStateToStorage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
-};
 
 // Function to clear local storage
 const clearFilterFromStorage = () => {
@@ -51,7 +47,6 @@ const handleFilter = (filterType, filterStateKey, checkboxState, filters) => {
 };
 
 export {
-  saveFilterStateToStorage,
   getFilterStateFromStorage,
   clearFilterFromStorage,
   isEmpty,

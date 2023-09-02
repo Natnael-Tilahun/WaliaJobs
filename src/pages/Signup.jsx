@@ -11,7 +11,7 @@ import {
   SET_FULLNAME,
   SET_PASSWORD,
   SET_PHONE,
-} from "../redux/signupFormSlice";
+} from "../features/users/signupFormSlice";
 
 const customId = "custom-id-yes";
 

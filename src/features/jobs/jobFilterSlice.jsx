@@ -1,12 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { json } from "react-router-dom";
+import saveStateToLocalStorage from "../../utils/helperFunctions/saveStateToLocalStorage";
 
-const initialState = {
-  workMode: [],
-  location: [],
-  experience: 0,
-  department: [],
-  companyType: [],
-};
+const savedFilterations = JSON.parse(localStorage.getItem('filteration'))
+let initialState
+
+if(savedFilterations == null){
+  initialState = {
+    workMode: [],
+    location: [],
+    experience: 0,
+    department: [],
+    companyType: [],
+  };
+}
+else{
+  initialState = {
+    workMode: savedFilterations.workMode,
+    location: savedFilterations.location,
+    experience: savedFilterations.experience,
+    department: savedFilterations.department,
+    companyType: savedFilterations.companyType,
+  };
+}
+
 
 const actionTypes = (() => {
   const SET_JOB_FILTERS_BY_WORKMODE = "SET_JOB_FILTERS_BY_WORKMODE";
@@ -36,59 +53,76 @@ const jobFilterSlice = createSlice({
     SET_JOB_FILTERS_BY_WORKMODE(state, action) {
       const workMode = action.payload;
       if (state.workMode.includes(workMode)) {
-        return {
-          ...state,
+        const currentState = {  ...state,
           workMode: state.workMode.filter((work) => work != workMode),
-        };
+        }
+        saveStateToLocalStorage('filteration', currentState)
+        return currentState
       } else {
         state.workMode.push(workMode);
+        saveStateToLocalStorage('filteration', state)
       }
+     
     },
     SET_JOB_FILTERS_BY_LOCATION(state, action) {
       const location = action.payload;
       if (state.location.includes(location)) {
-        return {
+        const currentState = {
           ...state,
           location: state.location.filter((loc) => loc != location),
-        };
+        }
+        saveStateToLocalStorage('filteration', currentState)
+        return currentState
       } else {
         state.location.push(location);
+        saveStateToLocalStorage('filteration', state)
       }
     },
     SET_JOB_FILTERS_BY_EXPERIENCE(state, action) {
       const experience = action.payload;
       state.experience = experience;
+      saveStateToLocalStorage('filteration', state)
     },
+
     SET_JOB_FILTERS_BY_DEPARTMENT(state, action) {
       const department = action.payload;
       if (state.department.includes(department)) {
-        return {
+        const currentState = {
           ...state,
           department: state.department.filter((dep) => dep != department),
         };
+        saveStateToLocalStorage('filteration', currentState)
+        return currentState
       } else {
         state.department.push(department);
+        saveStateToLocalStorage('filteration', state)
       }
     },
+
     SET_JOB_FILTERS_BY_COMPANYTYPE(state, action) {
       const companyType = action.payload;
       if (state.companyType.includes(companyType)) {
-        return {
+        const currentState = {
           ...state,
           companyType: state.companyType.filter((ct) => ct != companyType),
         };
+        saveStateToLocalStorage('filteration', currentState)
+        return currentState
       } else {
         state.companyType.push(companyType);
+        saveStateToLocalStorage('filteration', state)
       }
     },
     CLEAR_JOB_FILTERS(state, action) {
       return { ...initialState };
     },
     CLEAR_COMPANY_FILTERS(state,action){
-      return{
+      const currentState = {
         ...state,
         companyType: []
       }
+      localStorage.setItem("filteration", currentState )
+      return currentState
     }
   },
 });

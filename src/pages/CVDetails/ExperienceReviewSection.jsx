@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_EXPERIENCE } from "../../redux/experienceInfoSlice";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { DELETE_EXPERIENCE } from "../../features/cv/experienceInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 

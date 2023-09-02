@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { loginFormValidationSchema } from "../validations/loginFormSchema";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { SET_EMAIL, SET_PASSWORD } from "../redux/loginFormSlice";
+import { SET_EMAIL, SET_PASSWORD } from "../features/users/loginFormSlice";
 
 export const Login = () => {
   const navigate = useNavigate();

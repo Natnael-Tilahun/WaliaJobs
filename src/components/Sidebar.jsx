@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import {
   getFilterStateFromStorage,
-  saveFilterStateToStorage,
   clearFilterFromStorage,
   isEmpty,
 } from "../utils/helperFunctions";
@@ -14,7 +13,7 @@ import {
   SET_JOB_FILTERS_BY_LOCATION,
   SET_JOB_FILTERS_BY_EXPERIENCE,
   CLEAR_JOB_FILTERS,
-} from "../redux/jobs/jobFilterSlice";
+} from "../features/jobs/jobFilterSlice";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();

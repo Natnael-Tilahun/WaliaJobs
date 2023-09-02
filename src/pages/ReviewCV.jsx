@@ -3,10 +3,10 @@ import { CVTemplate } from './CVDetails/CVTemplate';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { FormSections } from '../utils/FormSections';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../redux/cvCompletionInfoSlice';
+import { SET_COMPLETED } from '../features/cv/cvCompletionInfoSlice';
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
 import { useState } from 'react';
-import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from '../redux/cvThemeSlice';
+import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from '../features/cv/cvThemeSlice';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 

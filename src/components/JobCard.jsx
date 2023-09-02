@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from '../redux/favouriteJobsSlice';
+} from '../features/jobs/favouriteJobsSlice';
 import { useDispatch } from 'react-redux';
 
 export const JobCard = ({

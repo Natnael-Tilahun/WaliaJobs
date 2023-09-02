@@ -6,7 +6,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { experienceDetailValidationSchema } from "../../validations/experienceDetailSchema";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_EXPERIENCE_DETAILS } from "../../redux/experienceInfoSlice";
+import { SET_EXPERIENCE_DETAILS } from "../../features/cv/experienceInfoSlice";
 import DOMPurify from "dompurify";
 
 export const ExperienceDetailSection = () => {

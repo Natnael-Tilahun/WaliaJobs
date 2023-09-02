@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   SET_CERTIFICATION,
   UPDATE_CERTIFICATE,
-} from "../../redux/certificationInfoSlice";
+} from "../../features/cv/certificationInfoSlice";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 
 export const CertificationSection = () => {

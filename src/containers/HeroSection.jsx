@@ -5,7 +5,7 @@ import {
   SET_JOB_FILTERS_BY_DEPARTMENT,
   SET_JOB_FILTERS_BY_EXPERIENCE,
   SET_JOB_FILTERS_BY_LOCATION,
-} from "../redux/jobs/jobFilterSlice";
+} from "../features/jobs/jobFilterSlice";
 
 function Hero() {
   const navigate = useNavigate();

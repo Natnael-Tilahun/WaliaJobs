@@ -6,9 +6,9 @@ import { summaryValidationSchema } from "../../validations/summarySchema";
 import { Formik, Form, ErrorMessage } from "formik";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_SUMMARY } from "../../redux/summaryInfoSlice";
+import { SET_SUMMARY } from "../../features/cv/summaryInfoSlice";
 import DOMPurify from "dompurify";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 

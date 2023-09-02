@@ -6,9 +6,9 @@ import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import {
   SET_EDUCATION,
   UPDATE_EDUCATION,
-} from "../../redux/educationInfoSlice";
+} from "../../features/cv/educationInfoSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
 
 export const EducationSection = () => {

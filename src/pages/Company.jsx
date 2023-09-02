@@ -5,7 +5,6 @@ import { useSearchParams } from "react-router-dom";
 import { NoResultFound } from "../components/NoResultFound";
 import {
   getFilterStateFromStorage,
-  saveFilterStateToStorage,
   clearFilterFromStorage,
   isEmpty,
 } from "../utils/helperFunctions";
@@ -13,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   CLEAR_COMPANY_FILTERS,
   SET_JOB_FILTERS_BY_COMPANYTYPE,
-} from "../redux/jobs/jobFilterSlice";
+} from "../features/jobs/jobFilterSlice";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);
@@ -146,7 +145,6 @@ export const Company = () => {
   function removeFilterHandler() {
     dispatch(CLEAR_COMPANY_FILTERS());
     setSearchParams("");
-    clearFilterFromStorage();
     setSelectedFilters({
       companyType: [],
     });

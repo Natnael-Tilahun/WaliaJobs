@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toogleFavorite } from './jobs/jobSlice';
+import { toogleFavorite } from './jobSlice';
 import { useDispatch } from 'react-redux';
 
 // const dispatch = useDispatch()

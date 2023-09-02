@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { SET_JOB_FILTERS_BY_DEPARTMENT } from "../redux/jobs/jobFilterSlice";
+import { SET_JOB_FILTERS_BY_DEPARTMENT } from "../features/jobs/jobFilterSlice";
 
 export const JobCatagories = () => {
   const navigate = useNavigate();

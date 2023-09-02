@@ -2,9 +2,9 @@ import React, { useState, useRef, useCallback } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_COMPLETED } from "../../redux/cvCompletionInfoSlice";
+import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
-import { DELETE_LANGUAGE } from "../../redux/languageInfoSlice";
+import { DELETE_LANGUAGE } from "../../features/cv/languageInfoSlice";
 import CvBuildRouterHandler from "../../utils/helperFunctions/CvBuildRouterHandler";
 
 export const LanguagesReviewSection = () => {

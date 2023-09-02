@@ -8,7 +8,7 @@ import { ReactReduxContext, useDispatch, useSelector } from 'react-redux';
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from '../redux/favouriteJobsSlice';
+} from '../features/jobs/favouriteJobsSlice';
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
