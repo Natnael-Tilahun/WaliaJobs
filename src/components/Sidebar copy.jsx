@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
 import {
   getFilterStateFromStorage,
   saveFilterStateToStorage,
   clearFilterFromStorage,
   isEmpty,
-} from '../utils/helperFunctions';
+} from "../utils/helperFunctions";
 
 export const Sidebar = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(30);
@@ -25,11 +25,11 @@ export const Sidebar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = new URLSearchParams(window.location.search);
   const selectedFiltersFromSearchParams = {
-    experienceFilter: queryParams.getAll('experience'),
-    workModeFilter: queryParams.getAll('workMode'),
-    locationFilter: queryParams.getAll('location'),
-    departmentFilter: queryParams.getAll('department'),
-    companyTypeFilter: queryParams.getAll('companyType'),
+    experienceFilter: queryParams.getAll("experience"),
+    workModeFilter: queryParams.getAll("workMode"),
+    locationFilter: queryParams.getAll("location"),
+    departmentFilter: queryParams.getAll("department"),
+    companyTypeFilter: queryParams.getAll("companyType"),
   };
 
   const workModeAccordionToggleExpanded = () =>
@@ -44,10 +44,10 @@ export const Sidebar = () => {
     setCompanyExpanded((current) => !current);
   const handleYearsOfExperienceChange = (e) => {
     setYearsOfExperience(e.target.value);
-    handleFilterChange(e.target.name, e.target.value, 'EXP');
+    handleFilterChange(e.target.name, e.target.value, "EXP");
   };
 
-  let filterCheckboxState = getFilterStateFromStorage('filterState');
+  let filterCheckboxState = getFilterStateFromStorage("filterState");
   let workModeCheckboxState = isEmpty(filterCheckboxState)
     ? []
     : JSON.parse(filterCheckboxState).workMode;
@@ -75,11 +75,11 @@ export const Sidebar = () => {
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
       workModeCheckboxState.forEach((val) => {
-        params.append('workMode', val); // Append each value to the 'workMode' parameter
+        params.append("workMode", val); // Append each value to the 'workMode' parameter
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      const newUrl = window.location.pathname + '?' + searchString;
+      const newUrl = window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     }
     if (experienceCheckboxState) {
@@ -90,13 +90,13 @@ export const Sidebar = () => {
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
       // workModeCheckboxState.forEach((val) => {
-      params.append('experience', experienceCheckboxState); // Append each value to the 'workMode' parameter
+      params.append("experience", experienceCheckboxState); // Append each value to the 'workMode' parameter
       // });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams objectc
       const newUrl = workModeCheckboxState.length
-        ? window.location.href + '&' + searchString
-        : window.location.pathname + '?' + searchString;
+        ? window.location.href + "&" + searchString
+        : window.location.pathname + "?" + searchString;
       window.history.replaceState(null, null, newUrl);
     }
     if (locationCheckboxState.length) {
@@ -107,13 +107,13 @@ export const Sidebar = () => {
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
       locationCheckboxState.forEach((val) => {
-        params.append('location', val); // Append each value to the 'workMode' parameter
+        params.append("location", val); // Append each value to the 'workMode' parameter
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
       const newUrl = workModeCheckboxState.length
-        ? window.location.href + '&' + searchString
-        : window.location.pathname + '?' + searchString;
+        ? window.location.href + "&" + searchString
+        : window.location.pathname + "?" + searchString;
 
       window.history.replaceState(null, null, newUrl);
     }
@@ -124,16 +124,16 @@ export const Sidebar = () => {
       }));
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
-      console.log('departmentCheckboxState', departmentCheckboxState);
+      console.log("departmentCheckboxState", departmentCheckboxState);
       departmentCheckboxState.forEach((val) => {
-        params.append('department', val); // Append each value to the 'workMode' parameter
+        params.append("department", val); // Append each value to the 'workMode' parameter
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
       const newUrl =
         workModeCheckboxState.length || locationCheckboxState.length
-          ? window.location.href + '&' + searchString
-          : window.location.pathname + '?' + searchString;
+          ? window.location.href + "&" + searchString
+          : window.location.pathname + "?" + searchString;
 
       window.history.replaceState(null, null, newUrl);
     }
@@ -143,7 +143,7 @@ export const Sidebar = () => {
         selectedFiltersFromSearchParams.departmentFilter.map((filter) =>
           decodeURIComponent(filter)
         );
-      console.log('Yes ther is searhc params====', decodedDepartmentFilter);
+      console.log("Yes ther is searhc params====", decodedDepartmentFilter);
       setSelectedFilters((prevState) => ({
         ...prevState,
         department: decodedDepartmentFilter,
@@ -161,7 +161,7 @@ export const Sidebar = () => {
       // }));
       // const filterState = { ...selectedFilters };
       // filterState.department = decodedDepartmentFilter;
-      saveFilterStateToStorage('filterState', JSON.stringify(filterState));
+      saveFilterStateToStorage("filterState", JSON.stringify(filterState));
     }
 
     if (companyTypeCheckboxState.length) {
@@ -172,7 +172,7 @@ export const Sidebar = () => {
 
       const params = new URLSearchParams(); // Create a new URLSearchParams object
       companyTypeCheckboxState.forEach((val) => {
-        params.append('companyType', val); // Append each value to the 'workMode' parameter
+        params.append("companyType", val); // Append each value to the 'workMode' parameter
       });
 
       const searchString = params.toString(); // Get the search string from the URLSearchParams object
@@ -180,12 +180,12 @@ export const Sidebar = () => {
         workModeCheckboxState.length ||
         locationCheckboxState.length ||
         departmentCheckboxState.length
-          ? window.location.href + '&' + searchString
-          : window.location.pathname + '?' + searchString;
+          ? window.location.href + "&" + searchString
+          : window.location.pathname + "?" + searchString;
 
       window.history.replaceState(null, null, newUrl);
     } else {
-      console.log('No data in the local storage');
+      console.log("No data in the local storage");
     }
   }, []);
 
@@ -193,9 +193,9 @@ export const Sidebar = () => {
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
       console.log(
-        'filtersfiltersfiltersfilters',
+        "filtersfiltersfiltersfilters",
         selectedFilters,
-        'departmentCheckboxState',
+        "departmentCheckboxState",
         departmentCheckboxState
       );
 
@@ -208,13 +208,13 @@ export const Sidebar = () => {
         const values = params.getAll(key);
         const index = filters.indexOf(value);
         console.log(
-          'filterType',
+          "filterType",
           filterType,
-          'filterStateKey',
+          "filterStateKey",
           filterStateKey,
-          'checkboxState',
+          "checkboxState",
           checkboxState,
-          'filters',
+          "filters",
           filters
         );
 
@@ -244,7 +244,7 @@ export const Sidebar = () => {
 
         const filterState = { ...selectedFilters };
         filterState[filterStateKey] = filters;
-        saveFilterStateToStorage('filterState', JSON.stringify(filterState));
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       };
 
       const handleFilterRemoval = (
@@ -263,28 +263,28 @@ export const Sidebar = () => {
         }));
         const filterState = { ...selectedFilters };
         filterState[filterStateKey] = updatedValues;
-        saveFilterStateToStorage('filterState', JSON.stringify(filterState));
+        saveFilterStateToStorage("filterState", JSON.stringify(filterState));
       };
 
       switch (checked) {
-        case 'WM_ON':
+        case "WM_ON":
           handleFilter(
-            'workMode',
-            'workMode',
+            "workMode",
+            "workMode",
             workModeCheckboxState,
             selectedFilters.workMode
           );
           break;
-        case 'WM_OFF':
+        case "WM_OFF":
           handleFilterRemoval(
-            'workMode',
-            'workMode',
+            "workMode",
+            "workMode",
             workModeCheckboxState,
             selectedFilters.workMode,
             value
           );
           break;
-        case 'EXP':
+        case "EXP":
           setSelectedFilters((prevState) => ({
             ...prevState,
             experience: value,
@@ -294,57 +294,57 @@ export const Sidebar = () => {
           };
           experienceFilters.experience = value;
           saveFilterStateToStorage(
-            'filterState',
+            "filterState",
             JSON.stringify(experienceFilters)
           );
           params.set(key, value);
           break;
-        case 'LOC_ON':
+        case "LOC_ON":
           handleFilter(
-            'location',
-            'location',
+            "location",
+            "location",
             locationCheckboxState,
             selectedFilters.location
           );
           break;
-        case 'LOC_OFF':
+        case "LOC_OFF":
           handleFilterRemoval(
-            'location',
-            'location',
+            "location",
+            "location",
             locationCheckboxState,
             selectedFilters.location,
             value
           );
           break;
-        case 'DEP_ON':
+        case "DEP_ON":
           handleFilter(
-            'department',
-            'department',
+            "department",
+            "department",
             departmentCheckboxState,
             selectedFilters.department
           );
           break;
-        case 'DEP_OFF':
+        case "DEP_OFF":
           handleFilterRemoval(
-            'department',
-            'department',
+            "department",
+            "department",
             departmentCheckboxState,
             selectedFilters.department,
             value
           );
           break;
-        case 'CT_ON':
+        case "CT_ON":
           handleFilter(
-            'companyType',
-            'companyType',
+            "companyType",
+            "companyType",
             companyTypeCheckboxState,
             selectedFilters.companyType
           );
           break;
-        case 'CT_OFF':
+        case "CT_OFF":
           handleFilterRemoval(
-            'companyType',
-            'companyType',
+            "companyType",
+            "companyType",
             companyTypeCheckboxState,
             selectedFilters.companyType,
             value
@@ -357,16 +357,16 @@ export const Sidebar = () => {
   }
 
   function removeFilterHandler() {
-    setSearchParams('');
+    setSearchParams("");
     clearFilterFromStorage();
     setSelectedFilters({
       workMode: [],
-      experience: '',
+      experience: "",
       location: [],
       department: [],
       companyType: [],
     });
-    setYearsOfExperience('any');
+    setYearsOfExperience("any");
   }
   return (
     <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_background items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-6 p-2 md:p-5 lg:p-8 ">
@@ -412,7 +412,7 @@ export const Sidebar = () => {
         </div>
         <ul
           className={`overflow-hidden transition-[max-height] text-left text-sm text-thm_secondary_color dark:text-thm_dark_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-4 gap-2 md:gap-3 lg:gap-5 ${
-            workModeExpanded ? 'max-h-fit' : 'max-h-0 '
+            workModeExpanded ? "max-h-fit" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
@@ -425,13 +425,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   workModeCheckboxState.length &&
-                  workModeCheckboxState.includes('In Office')
+                  workModeCheckboxState.includes("In Office")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'WM_ON' : 'WM_OFF'
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -448,13 +448,13 @@ export const Sidebar = () => {
                 value="Remote"
                 checked={
                   workModeCheckboxState.length &&
-                  workModeCheckboxState.includes('Remote')
+                  workModeCheckboxState.includes("Remote")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'WM_ON' : 'WM_OFF'
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -471,13 +471,13 @@ export const Sidebar = () => {
                 value="Hybrid"
                 checked={
                   workModeCheckboxState.length &&
-                  workModeCheckboxState.includes('Hybrid')
+                  workModeCheckboxState.includes("Hybrid")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'WM_ON' : 'WM_OFF'
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -494,13 +494,13 @@ export const Sidebar = () => {
                 value="TWFH"
                 checked={
                   workModeCheckboxState.length &&
-                  workModeCheckboxState.includes('TWFH')
+                  workModeCheckboxState.includes("TWFH")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'WM_ON' : 'WM_OFF'
+                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -540,7 +540,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`relative overflow-hidden transition-[max-height] duration-500 ease-in  ${
-            experienceExpanded ? 'max-h-fit' : 'max-h-0 '
+            experienceExpanded ? "max-h-fit" : "max-h-0 "
           } `}
         >
           <input
@@ -591,7 +591,7 @@ export const Sidebar = () => {
 
         <div
           className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            locationAccordionExpanded ? 'max-h-full' : 'max-h-0 '
+            locationAccordionExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
@@ -604,13 +604,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Addis Abeba')
+                  locationCheckboxState.includes("Addis Abeba")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -627,13 +627,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Hawassa')
+                  locationCheckboxState.includes("Hawassa")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -650,13 +650,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Adama')
+                  locationCheckboxState.includes("Adama")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -673,13 +673,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Dire Dawa')
+                  locationCheckboxState.includes("Dire Dawa")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -696,13 +696,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Bahir Dar')
+                  locationCheckboxState.includes("Bahir Dar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -719,13 +719,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Mekele')
+                  locationCheckboxState.includes("Mekele")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -742,13 +742,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Jimma')
+                  locationCheckboxState.includes("Jimma")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -765,13 +765,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Gondar')
+                  locationCheckboxState.includes("Gondar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -788,13 +788,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Harar')
+                  locationCheckboxState.includes("Harar")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -811,13 +811,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Jijiga')
+                  locationCheckboxState.includes("Jijiga")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -834,13 +834,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Dessie')
+                  locationCheckboxState.includes("Dessie")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -857,13 +857,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Debre Birhan')
+                  locationCheckboxState.includes("Debre Birhan")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -880,13 +880,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   locationCheckboxState.length &&
-                  locationCheckboxState.includes('Aksum')
+                  locationCheckboxState.includes("Aksum")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'LOC_ON' : 'LOC_OFF'
+                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -924,7 +924,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            departmentExpanded ? 'max-h-full' : 'max-h-0 '
+            departmentExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
@@ -937,13 +937,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Banking and Insurance')
+                  departmentCheckboxState.includes("Banking and Insurance")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -960,13 +960,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Sales and Markating')
+                  departmentCheckboxState.includes("Sales and Markating")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -983,13 +983,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Management')
+                  departmentCheckboxState.includes("Management")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1006,13 +1006,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Software Engineering')
+                  departmentCheckboxState.includes("Software Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1029,13 +1029,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Finance and Accounting')
+                  departmentCheckboxState.includes("Finance and Accounting")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1052,13 +1052,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Engineering')
+                  departmentCheckboxState.includes("Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1075,13 +1075,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Human Resource')
+                  departmentCheckboxState.includes("Human Resource")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1098,13 +1098,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('IT')
+                  departmentCheckboxState.includes("IT")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1121,13 +1121,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Health')
+                  departmentCheckboxState.includes("Health")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1144,13 +1144,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Legal')
+                  departmentCheckboxState.includes("Legal")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1167,13 +1167,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   departmentCheckboxState.length &&
-                  departmentCheckboxState.includes('Analytics')
+                  departmentCheckboxState.includes("Analytics")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'DEP_ON' : 'DEP_OFF'
+                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1211,7 +1211,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`overflow-hidden transition-[max-height] text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            companyExpanded ? 'max-h-full' : 'max-h-0 '
+            companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
@@ -1224,13 +1224,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes('Private')
+                  companyTypeCheckboxState.includes("Private")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'CT_ON' : 'CT_OFF'
+                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1247,13 +1247,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes('Governmental')
+                  companyTypeCheckboxState.includes("Governmental")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'CT_ON' : 'CT_OFF'
+                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1270,13 +1270,13 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes('Corporate')
+                  companyTypeCheckboxState.includes("Corporate")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'CT_ON' : 'CT_OFF'
+                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1293,13 +1293,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes('NGO')
+                  companyTypeCheckboxState.includes("NGO")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'CT_ON' : 'CT_OFF'
+                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1316,13 +1316,13 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   companyTypeCheckboxState.length &&
-                  companyTypeCheckboxState.includes('Startup')
+                  companyTypeCheckboxState.includes("Startup")
                 }
                 onChange={(e) =>
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? 'CT_ON' : 'CT_OFF'
+                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />

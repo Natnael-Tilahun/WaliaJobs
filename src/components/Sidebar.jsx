@@ -160,7 +160,6 @@ export const Sidebar = () => {
 
       const filterState = { ...selectedFilters };
       filterState.department = decodedDepartmentFilter;
-      saveFilterStateToStorage("filterState", JSON.stringify(filterState));
     }
 
     if (companyTypeCheckboxState.length) {
