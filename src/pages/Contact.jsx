@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { SET_EMAIL, SET_MESSAGE, SET_NAME } from "../features/contact/contactFormSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SkeletonLoader from "../components/SkeletonLoader";
 
 const customId = "custom-id-yes";
 

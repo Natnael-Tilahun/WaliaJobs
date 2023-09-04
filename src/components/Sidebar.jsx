@@ -17,29 +17,16 @@ import {
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
-  const [yearsOfExperience, setYearsOfExperience] = useState(30);
   const [workModeExpanded, setWorkModeExpanded] = useState(true);
   const [experienceExpanded, setExperienceExpanded] = useState(false);
   const [departmentExpanded, setDepartmentExpanded] = useState(false);
   const [companyExpanded, setCompanyExpanded] = useState(false);
   const [locationAccordionExpanded, setLocationAccordionExpanded] =
     useState(false);
-  const [selectedFilters, setSelectedFilters] = useState({
-    workMode: [],
-    experience: 0,
-    location: [],
-    department: [],
-    companyType: [],
-  });
+
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = new URLSearchParams(window.location.search);
-  const selectedFiltersFromSearchParams = {
-    experienceFilter: queryParams.getAll("experience"),
-    workModeFilter: queryParams.getAll("workMode"),
-    locationFilter: queryParams.getAll("location"),
-    departmentFilter: queryParams.getAll("department"),
-    companyTypeFilter: queryParams.getAll("companyType"),
-  };
+
   const filters = useSelector((state) => state.jobFilter);
 
   const workModeAccordionToggleExpanded = () =>
@@ -52,142 +39,120 @@ export const Sidebar = () => {
     setDepartmentExpanded((current) => !current);
   const companyAccordionToggleExpanded = () =>
     setCompanyExpanded((current) => !current);
-  const handleYearsOfExperienceChange = (e) => {
-    setYearsOfExperience(e.target.value);
-    handleFilterChange(e.target.name, e.target.value, "EXP");
-  };
 
-  let filterCheckboxState = getFilterStateFromStorage("filterState");
-  let workModeCheckboxState = isEmpty(filterCheckboxState)
-    ? []
-    : JSON.parse(filterCheckboxState).workMode;
-  let experienceCheckboxState = isEmpty(filterCheckboxState)
-    ? 0
-    : JSON.parse(filterCheckboxState).experience;
-  let locationCheckboxState = isEmpty(filterCheckboxState)
-    ? []
-    : JSON.parse(filterCheckboxState).location;
 
-  let departmentCheckboxState = isEmpty(filterCheckboxState)
-    ? []
-    : JSON.parse(filterCheckboxState).department;
+  // useEffect(() => {
+  //   if (workModeCheckboxState.length) {
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       workMode: workModeCheckboxState,
+  //     }));
 
-  let companyTypeCheckboxState = isEmpty(filterCheckboxState)
-    ? []
-    : JSON.parse(filterCheckboxState).companyType;
+  //     const params = new URLSearchParams(); // Create a new URLSearchParams object
+  //     workModeCheckboxState.forEach((val) => {
+  //       params.append("workMode", val); // Append each value to the 'workMode' parameter
+  //     });
 
-  useEffect(() => {
-    if (workModeCheckboxState.length) {
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        workMode: workModeCheckboxState,
-      }));
+  //     const searchString = params.toString(); // Get the search string from the URLSearchParams object
+  //     const newUrl = window.location.pathname + "?" + searchString;
+  //     window.history.replaceState(null, null, newUrl);
+  //   }
+  //   if (experienceCheckboxState) {
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       experience: experienceCheckboxState,
+  //     }));
 
-      const params = new URLSearchParams(); // Create a new URLSearchParams object
-      workModeCheckboxState.forEach((val) => {
-        params.append("workMode", val); // Append each value to the 'workMode' parameter
-      });
+  //     const params = new URLSearchParams(); // Create a new URLSearchParams object
+  //     // workModeCheckboxState.forEach((val) => {
+  //     params.append("experience", experienceCheckboxState); // Append each value to the 'workMode' parameter
+  //     // });
 
-      const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      const newUrl = window.location.pathname + "?" + searchString;
-      window.history.replaceState(null, null, newUrl);
-    }
-    if (experienceCheckboxState) {
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        experience: experienceCheckboxState,
-      }));
+  //     const searchString = params.toString(); // Get the search string from the URLSearchParams objectc
+  //     const newUrl = workModeCheckboxState.length
+  //       ? window.location.href + "&" + searchString
+  //       : window.location.pathname + "?" + searchString;
+  //     window.history.replaceState(null, null, newUrl);
+  //   }
+  //   if (locationCheckboxState.length) {
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       location: locationCheckboxState,
+  //     }));
 
-      const params = new URLSearchParams(); // Create a new URLSearchParams object
-      // workModeCheckboxState.forEach((val) => {
-      params.append("experience", experienceCheckboxState); // Append each value to the 'workMode' parameter
-      // });
+  //     const params = new URLSearchParams(); // Create a new URLSearchParams object
+  //     locationCheckboxState.forEach((val) => {
+  //       params.append("location", val); // Append each value to the 'workMode' parameter
+  //     });
 
-      const searchString = params.toString(); // Get the search string from the URLSearchParams objectc
-      const newUrl = workModeCheckboxState.length
-        ? window.location.href + "&" + searchString
-        : window.location.pathname + "?" + searchString;
-      window.history.replaceState(null, null, newUrl);
-    }
-    if (locationCheckboxState.length) {
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        location: locationCheckboxState,
-      }));
+  //     const searchString = params.toString(); // Get the search string from the URLSearchParams object
+  //     const newUrl = workModeCheckboxState.length
+  //       ? window.location.href + "&" + searchString
+  //       : window.location.pathname + "?" + searchString;
 
-      const params = new URLSearchParams(); // Create a new URLSearchParams object
-      locationCheckboxState.forEach((val) => {
-        params.append("location", val); // Append each value to the 'workMode' parameter
-      });
+  //     window.history.replaceState(null, null, newUrl);
+  //   }
+  //   if (departmentCheckboxState.length) {
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       department: departmentCheckboxState,
+  //     }));
 
-      const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      const newUrl = workModeCheckboxState.length
-        ? window.location.href + "&" + searchString
-        : window.location.pathname + "?" + searchString;
+  //     const params = new URLSearchParams(); // Create a new URLSearchParams object
+  //     departmentCheckboxState.forEach((val) => {
+  //       params.append("department", val); // Append each value to the 'workMode' parameter
+  //     });
 
-      window.history.replaceState(null, null, newUrl);
-    }
-    if (departmentCheckboxState.length) {
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        department: departmentCheckboxState,
-      }));
+  //     const searchString = params.toString(); // Get the search string from the URLSearchParams object
+  //     const newUrl =
+  //       workModeCheckboxState.length || locationCheckboxState.length
+  //         ? window.location.href + "&" + searchString
+  //         : window.location.pathname + "?" + searchString;
 
-      const params = new URLSearchParams(); // Create a new URLSearchParams object
-      departmentCheckboxState.forEach((val) => {
-        params.append("department", val); // Append each value to the 'workMode' parameter
-      });
+  //     window.history.replaceState(null, null, newUrl);
+  //   }
+  //   // Check if department filter is present in the search parameters
+  //   else if (selectedFiltersFromSearchParams.departmentFilter.length) {
+  //     const decodedDepartmentFilter =
+  //       selectedFiltersFromSearchParams.departmentFilter.map((filter) =>
+  //         decodeURIComponent(filter)
+  //       );
+  //     console.log("Yes ther is searhc params====", decodedDepartmentFilter);
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       department: decodedDepartmentFilter,
+  //     }));
 
-      const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      const newUrl =
-        workModeCheckboxState.length || locationCheckboxState.length
-          ? window.location.href + "&" + searchString
-          : window.location.pathname + "?" + searchString;
+  //     const filterState = { ...selectedFilters };
+  //     filterState.department = decodedDepartmentFilter;
+  //   }
 
-      window.history.replaceState(null, null, newUrl);
-    }
-    // Check if department filter is present in the search parameters
-    else if (selectedFiltersFromSearchParams.departmentFilter.length) {
-      const decodedDepartmentFilter =
-        selectedFiltersFromSearchParams.departmentFilter.map((filter) =>
-          decodeURIComponent(filter)
-        );
-      console.log("Yes ther is searhc params====", decodedDepartmentFilter);
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        department: decodedDepartmentFilter,
-      }));
+  //   if (companyTypeCheckboxState.length) {
+  //     setSelectedFilters((prevState) => ({
+  //       ...prevState,
+  //       companyType: companyTypeCheckboxState,
+  //     }));
 
-      const filterState = { ...selectedFilters };
-      filterState.department = decodedDepartmentFilter;
-    }
+  //     const params = new URLSearchParams(); // Create a new URLSearchParams object
+  //     companyTypeCheckboxState.forEach((val) => {
+  //       params.append("companyType", val); // Append each value to the 'workMode' parameter
+  //     });
 
-    if (companyTypeCheckboxState.length) {
-      setSelectedFilters((prevState) => ({
-        ...prevState,
-        companyType: companyTypeCheckboxState,
-      }));
+  //     const searchString = params.toString(); // Get the search string from the URLSearchParams object
+  //     const newUrl =
+  //       workModeCheckboxState.length ||
+  //       locationCheckboxState.length ||
+  //       departmentCheckboxState.length
+  //         ? window.location.href + "&" + searchString
+  //         : window.location.pathname + "?" + searchString;
 
-      const params = new URLSearchParams(); // Create a new URLSearchParams object
-      companyTypeCheckboxState.forEach((val) => {
-        params.append("companyType", val); // Append each value to the 'workMode' parameter
-      });
+  //     window.history.replaceState(null, null, newUrl);
+  //   } else {
+  //     console.log("No data in the local storage");
+  //   }
+  // }, []);
 
-      const searchString = params.toString(); // Get the search string from the URLSearchParams object
-      const newUrl =
-        workModeCheckboxState.length ||
-        locationCheckboxState.length ||
-        departmentCheckboxState.length
-          ? window.location.href + "&" + searchString
-          : window.location.pathname + "?" + searchString;
-
-      window.history.replaceState(null, null, newUrl);
-    } else {
-      console.log("No data in the local storage");
-    }
-  }, []);
-
-  function handleFilterChange(key, value, checked, filtersss) {
+  function handleFilterChange(key, value) {
     if (key == "workMode") {
       dispatch(SET_JOB_FILTERS_BY_WORKMODE(value));
     }
@@ -206,13 +171,6 @@ export const Sidebar = () => {
 
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams.toString());
-      console.log(
-        "filtersfiltersfiltersfilters",
-        selectedFilters,
-        "departmentCheckboxState",
-        departmentCheckboxState
-      );
-
       return params.toString();
     });
   }
@@ -220,7 +178,7 @@ export const Sidebar = () => {
   function removeFilterHandler() {
     dispatch(CLEAR_JOB_FILTERS());
     setSearchParams("");
-    clearFilterFromStorage();
+    // clearFilterFromStorage();
   }
 
   return (
@@ -286,7 +244,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -308,7 +265,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -330,7 +286,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -352,7 +307,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "WM_ON" : "WM_OFF"
                   )
                 }
               />
@@ -402,7 +356,11 @@ export const Sidebar = () => {
             min="0"
             max="30"
             value={filters.experience}
-            onChange={handleYearsOfExperienceChange}
+            onChange={(e) =>
+              handleFilterChange(
+                e.target.name,
+                e.target.value,
+              )}
           />
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:-mb-2 px-1 md:px-2 py-1  md:py-2 bg-gray-800 dark:bg-thm_secondary_color text-white text-xs md:text-sm rounded">
             <span className="font-bold">{filters.experience}</span>
@@ -462,7 +420,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -485,7 +442,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -507,7 +463,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -530,7 +485,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -553,7 +507,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -575,7 +528,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -597,7 +549,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -619,7 +570,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -641,7 +591,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -663,7 +612,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -685,7 +633,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -708,7 +655,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -730,7 +676,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "LOC_ON" : "LOC_OFF"
                   )
                 }
               />
@@ -787,7 +732,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -810,7 +754,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -833,7 +776,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -856,7 +798,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -879,7 +820,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -902,7 +842,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -925,7 +864,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -947,7 +885,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -970,7 +907,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -993,7 +929,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1016,7 +951,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "DEP_ON" : "DEP_OFF"
                   )
                 }
               />
@@ -1073,7 +1007,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1096,7 +1029,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1119,7 +1051,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1142,7 +1073,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />
@@ -1165,7 +1095,6 @@ export const Sidebar = () => {
                   handleFilterChange(
                     e.target.name,
                     e.target.value,
-                    e.target.checked ? "CT_ON" : "CT_OFF"
                   )
                 }
               />

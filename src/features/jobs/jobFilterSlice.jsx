@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { json } from "react-router-dom";
 import saveStateToLocalStorage from "../../utils/helperFunctions/saveStateToLocalStorage";
 
 const savedFilterations = JSON.parse(localStorage.getItem('filteration'))
 let initialState
+const params = new URLSearchParams()
+console.log("params", savedFilterations)
 
-if(savedFilterations == null){
+if (savedFilterations == null) {
   initialState = {
     workMode: [],
     location: [],
@@ -14,7 +15,7 @@ if(savedFilterations == null){
     companyType: [],
   };
 }
-else{
+else {
   initialState = {
     workMode: savedFilterations.workMode,
     location: savedFilterations.location,
@@ -53,16 +54,26 @@ const jobFilterSlice = createSlice({
     SET_JOB_FILTERS_BY_WORKMODE(state, action) {
       const workMode = action.payload;
       if (state.workMode.includes(workMode)) {
-        const currentState = {  ...state,
+        const currentState = {
+          ...state,
           workMode: state.workMode.filter((work) => work != workMode),
         }
         saveStateToLocalStorage('filteration', currentState)
         return currentState
       } else {
         state.workMode.push(workMode);
+        // state.workMode.forEach((val) => {
+        //   params.append("workMode", val); // Append each value to the 'workMode' parameter
+        // });
+        // const searchString = params.toString()
+        // const newUrl = state.workMode.length
+        //   ? window.location.href + "&" + searchString
+        //   : window.location.pathname + "?" + searchString;
+        // window.history.replaceState(null, null, newUrl);
+        // console.log("paramss", newUrl)
         saveStateToLocalStorage('filteration', state)
       }
-     
+
     },
     SET_JOB_FILTERS_BY_LOCATION(state, action) {
       const location = action.payload;
@@ -113,15 +124,20 @@ const jobFilterSlice = createSlice({
         saveStateToLocalStorage('filteration', state)
       }
     },
-    CLEAR_JOB_FILTERS(state, action) {
-      return { ...initialState };
+    CLEAR_JOB_FILTERS() {
+      localStorage.clear()
+      return {workMode: [],
+        location: [],
+        experience: 0,
+        department: [],
+        companyType: [],};
     },
-    CLEAR_COMPANY_FILTERS(state,action){
+    CLEAR_COMPANY_FILTERS(state, action) {
       const currentState = {
         ...state,
         companyType: []
       }
-      localStorage.setItem("filteration", currentState )
+      localStorage.setItem("filteration", currentState)
       return currentState
     }
   },
