@@ -1,58 +1,59 @@
-import React, { useState, useRef } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { CVTemplate } from "./CVTemplate";
-import { useSelector } from "react-redux";
-import { FormSections } from "../../utils/FormSections";
-import { CVSteperLink } from "../../components/CVSteperLink";
+import React, { useState, useRef } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { CVTemplate } from './CVTemplate';
+import { useSelector } from 'react-redux';
+import { FormSections } from '../../utils/FormSections';
+import { CVSteperLink } from '../../components/CVSteperLink';
 
 export const CVDetails = () => {
   const cvCompletionInfo = useSelector((state) => state.cvCompletionInfo);
   const selectIncludedSections = Object.keys(cvCompletionInfo).filter((key) => {
     return cvCompletionInfo[key].included;
   });
+
   function getSectionLink(section) {
     switch (section) {
       case FormSections.HEADING:
-        return "/CV-Details/:id";
+        return '/CV-Details/:id';
       case FormSections.EXPERIENCE:
         return cvCompletionInfo[FormSections.EXPERIENCE].completed
-          ? "Experience-Review"
-          : "Experience-Section/0";
+          ? 'Experience-Review'
+          : 'Experience-Section/0';
 
       case FormSections.CERTIFICATIONS:
         return cvCompletionInfo[FormSections.CERTIFICATIONS].completed
-          ? "Certification-Review"
-          : "Certification-Section/0";
+          ? 'Certification-Review'
+          : 'Certification-Section/0';
 
       case FormSections.LANGUAGES:
         return cvCompletionInfo[FormSections.LANGUAGES].completed
-          ? "Language-Review"
-          : "Language-Section/0";
+          ? 'Language-Review'
+          : 'Language-Section/0';
 
       case FormSections.EDUCATION:
         return cvCompletionInfo[FormSections.EDUCATION].completed
-          ? "Education-Review"
-          : "Education-Section/0";
+          ? 'Education-Review'
+          : 'Education-Section/0';
 
       case FormSections.REFERENCES:
         return cvCompletionInfo[FormSections.REFERENCES].completed
-          ? "Reference-Review"
-          : "Reference-Section/0";
+          ? 'Reference-Review'
+          : 'Reference-Section/0';
 
       case FormSections.SKILLS:
-        return "Skills-Section";
+        return 'Skills-Section';
       case FormSections.ACHIEVEMENTS:
-        return "Achievements-Section";
+        return 'Achievements-Section';
       case FormSections.INTERESTS:
-        return "Interests-Section";
+        return 'Interests-Section';
       case FormSections.SUMMARY:
-        return "Summary-Section";
+        return 'Summary-Section';
       case FormSections.ADDADDITIONALSECTION:
-        return "Additional-Section";
+        return 'Additional-Section';
       case FormSections.FINALIZE:
-        return "/review-cv/0";
+        return '/review-cv/0';
       default:
-        throw new Error("Invalid section");
+        throw new Error('Invalid section');
     }
   }
 

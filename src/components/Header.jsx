@@ -120,7 +120,7 @@ function Header() {
             Register
           </NavLink>
           <NavLink
-            to="/savedjobs"
+            to="savedjobs"
             className="text-black flex items-center justify-center rounded-md"
           >
             <svg
@@ -230,6 +230,7 @@ function Header() {
           </NavLink>
           <NavLink
             to="savedjobs"
+            onClick={menuHandler}
             className="text-black flex items-center justify-center rounded-md"
           >
             <svg
