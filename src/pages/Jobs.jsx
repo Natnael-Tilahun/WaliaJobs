@@ -15,7 +15,7 @@ export const Jobs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { jobsList: jobs } = useSelector((state) => state.jobs);
   const queryParams = new URLSearchParams(window.location.search);
-  const filters = useSelector(state => state.jobFilter)
+  const filters = useSelector((state) => state.jobFilter);
 
   // const selectedFilters = {
   //   experienceFilter: queryParams.getAll('experience'),
@@ -25,27 +25,32 @@ export const Jobs = () => {
   //   companyTypeFilter: queryParams.getAll('companyType'),
   // };
 
-
   const displayedJobs = useMemo(() => {
-    return jobs.filter(job => {
+    return jobs.filter((job) => {
       if (filters.workMode.length && !filters.workMode.includes(job.workMode)) {
-        return false
+        return false;
       }
       if (filters.experience > 0 && filters.experience != job.experience) {
-        return false
+        return false;
       }
       if (filters.location.length && !filters.location.includes(job.location)) {
-        return false
+        return false;
       }
-      if (filters.department.length && !filters.department.includes(job.department)) {
-        return false
+      if (
+        filters.department.length &&
+        !filters.department.includes(job.department)
+      ) {
+        return false;
       }
-      if (filters.companyType.length && !filters.companyType.includes(job.companyType)) {
-        return false
+      if (
+        filters.companyType.length &&
+        !filters.companyType.includes(job.companyType)
+      ) {
+        return false;
       }
-      return true
-    })
-  },[jobs, filters])
+      return true;
+    });
+  }, [jobs, filters]);
 
   // const displayedJobs = useMemo(() => {
   //   // Assuming the job data is available in an array called 'jobs'
@@ -90,6 +95,15 @@ export const Jobs = () => {
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">
       <Sidebar />
       <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
+        <div className="flex border-[1px] w-fit px-2 py-1 text-thm_secondary_color text-sm rounded-lg gap-3 self-end">
+          <label htmlFor="sort">Sort by:</label>
+          <select name="sort" id="sort" className="px-2 bg-transparent">
+            <option className="bg-white" value="date">
+              Date
+            </option>
+          </select>
+        </div>
+
         {displayedJobs && displayedJobs.length > 0 ? (
           displayedJobs.map((job, index) => (
             <JobCard
