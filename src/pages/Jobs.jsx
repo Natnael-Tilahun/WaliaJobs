@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { JobCard } from '../components/JobCard';
-import { Sidebar } from '../components/Sidebar';
-import { JobsData } from '../../data/jobs';
-import { useSearchParams } from 'react-router-dom';
-import { NoResultFound } from '../components/NoResultFound';
-import { ReactReduxContext, useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState, useMemo } from "react";
+import { JobCard } from "../components/JobCard";
+import { Sidebar } from "../components/Sidebar";
+import { JobsData } from "../../data/jobs";
+import { useSearchParams } from "react-router-dom";
+import { NoResultFound } from "../components/NoResultFound";
+import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from '../features/jobs/favouriteJobsSlice';
+} from "../features/jobs/favouriteJobsSlice";
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
@@ -94,10 +94,16 @@ export const Jobs = () => {
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">
       <Sidebar />
-      <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8">
-        <div className="flex border-[1px] w-fit px-2 py-1 text-thm_secondary_color text-sm rounded-lg gap-3 self-end">
-          <label htmlFor="sort">Sort by:</label>
-          <select name="sort" id="sort" className="px-2 bg-transparent">
+      <div className="h-full basis-full lg:basis-3/4 rounded-xl w-full flex flex-col md:px-2 lg:px-10 justify-center gap-5 lg:gap-8 py-5">
+        <div className="flex items-center w-60 px-2 py-1 text-thm_secondary_color text-sm rounded-lg  self-end">
+          <label htmlFor="sort" className="w-full">
+            Sort by:
+          </label>
+          <select
+            name="sort"
+            id="sort"
+            className="px-2 py-1 bg-transparent rounded-lg w-full border-2 focus:border-thm_root1_color focus:outline-none"
+          >
             <option className="bg-white" value="date">
               Date
             </option>
