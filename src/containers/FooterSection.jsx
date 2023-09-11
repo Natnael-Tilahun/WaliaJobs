@@ -1,10 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
     <>
-      <div className="h-40  w-full bg-thm_secondary_background"></div>
+      <div className="h-40  md:h-10  w-full bg-thm_secondary_background"></div>
 
       <div className="w-full  relative bg-thm_secondary_background pt-0 md:pt-10  text-center lg:pt-16 xl:pt-28 py-2 my-0 md:my-0 flex  justify-end items-end  flex-col px-5 md:px-10 lg:px-10">
         <svg
@@ -42,7 +42,7 @@ export const Footer = () => {
                 to="/jobs"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -53,7 +53,7 @@ export const Footer = () => {
                 to="/buildcv"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -64,7 +64,7 @@ export const Footer = () => {
                 to="/company"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -75,7 +75,7 @@ export const Footer = () => {
                 to="/about"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -86,7 +86,7 @@ export const Footer = () => {
                 to="/contact"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -102,7 +102,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -114,7 +114,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -126,7 +126,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
@@ -138,7 +138,7 @@ export const Footer = () => {
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
-                    borderBottom: isActive ? '3px solid #1e40af' : '',
+                    borderBottom: isActive ? "3px solid #1e40af" : "",
                   };
                 }}
               >
