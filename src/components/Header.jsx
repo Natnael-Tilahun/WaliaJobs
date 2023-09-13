@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [collapseMenu, setCollapseMenu] = useState(false);
@@ -21,6 +21,7 @@ function Header() {
           Walia Jobs
         </NavLink>
         <svg
+          data-testid="open_menu_humberger"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           className="lg:hidden w-6 "
@@ -39,7 +40,7 @@ function Header() {
             to="/"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800 `}
@@ -50,7 +51,7 @@ function Header() {
             to="jobs"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className={`hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800 }`}
@@ -62,7 +63,7 @@ function Header() {
             to="company"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
@@ -74,7 +75,7 @@ function Header() {
             to="/buildcv"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
@@ -86,7 +87,7 @@ function Header() {
             to="contact"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
@@ -98,7 +99,7 @@ function Header() {
             to="blogs"
             style={({ isActive }) => {
               return {
-                borderBottom: isActive ? '3px solid #1e40af' : '',
+                borderBottom: isActive ? "3px solid #1e40af" : "",
               };
             }}
             className="hover:border-b-[3px] rounded-sm pb-1 border-thm_root1_color hover:text-gray-800"
@@ -141,7 +142,7 @@ function Header() {
       <div
         data-testid="menu"
         className={`mr-auto lg:hidden bg-slate-600 flex-col gap-0 bg-thm_secondary_background flex-1 h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
-          collapseMenu ? 'flex' : 'hidden'
+          collapseMenu ? "flex" : "hidden"
         }`}
       >
         <div className="flex bg-thm_background dark:bg-thm_dark_background w-full shadow-md justify-between items-center py-4 px-7">
@@ -153,6 +154,7 @@ function Header() {
             Walia Jobs
           </NavLink>
           <svg
+            data-testid="close_menu_humberger"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             className="w-7"
