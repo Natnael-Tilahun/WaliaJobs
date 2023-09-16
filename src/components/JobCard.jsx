@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from '../features/jobs/favouriteJobsSlice';
-import { useDispatch } from 'react-redux';
+} from "../features/jobs/favouriteJobsSlice";
+import { useDispatch } from "react-redux";
 
 export const JobCard = ({
   title,
@@ -42,7 +42,9 @@ export const JobCard = ({
         <div className="flex gap-7 lg:gap-14 font-semibold text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
           <p>{companyName}</p>
           <p>
-            <span>{workMode}</span>, {location}
+            <span>{workMode}</span>
+            {location && <span>,</span>}
+            <span> {location}</span>
           </p>
           <p>{jobType}</p>
         </div>
@@ -58,12 +60,12 @@ export const JobCard = ({
             {/* <span>...</span> */}
           </div>
         )}
-        <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-sm">
+        {/* <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-sm">
           {jobTags &&
             jobTags.map(
               (item, index) => index < 3 && <span key={index}>{item}</span>
             )}
-        </div>
+        </div> */}
       </NavLink>
 
       <div className="flex justify-between gap-3 text-sm lg:text-base">

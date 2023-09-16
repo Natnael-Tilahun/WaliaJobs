@@ -19,6 +19,7 @@ import signupFormSlice from "../features/users/signupFormSlice";
 import loginFormSlice from "../features/users/loginFormSlice";
 import jobFilterSlice from "../features/jobs/jobFilterSlice";
 import cvThemeSlice from "../features/cv/cvThemeSlice";
+import { JobsApi } from "./jobsApi";
 
 export default configureStore({
   reducer: {
@@ -41,6 +42,9 @@ export default configureStore({
     contactForm: contactFormSlice,
     signupForm: signupFormSlice,
     loginForm: loginFormSlice,
-    cvTheme: cvThemeSlice
+    cvTheme: cvThemeSlice,
+    [JobsApi.reducerPath]: JobsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(JobsApi.middleware),
 });

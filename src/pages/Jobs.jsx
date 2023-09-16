@@ -2,94 +2,72 @@ import React, { useEffect, useState, useMemo } from "react";
 import { JobCard } from "../components/JobCard";
 import { Sidebar } from "../components/Sidebar";
 import { JobsData } from "../../data/jobs";
+import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useSearchParams } from "react-router-dom";
 import { NoResultFound } from "../components/NoResultFound";
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
+import { useGetJobsQuery } from "../app/jobsApi";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice";
+import SkeletonLoader from "../components/SkeletonLoader";
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { jobsList: jobs } = useSelector((state) => state.jobs);
   const queryParams = new URLSearchParams(window.location.search);
   const filters = useSelector((state) => state.jobFilter);
 
-  // const selectedFilters = {
-  //   experienceFilter: queryParams.getAll('experience'),
-  //   workModeFilter: queryParams.getAll('workMode'),
-  //   locationFilter: queryParams.getAll('location'),
-  //   departmentFilter: queryParams.getAll('department'),
-  //   companyTypeFilter: queryParams.getAll('companyType'),
-  // };
+  const {
+    data: jobs,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+  } = useGetJobsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
-  const displayedJobs = useMemo(() => {
-    return jobs.filter((job) => {
-      if (filters.workMode.length && !filters.workMode.includes(job.workMode)) {
-        return false;
-      }
-      if (filters.experience > 0 && filters.experience != job.experience) {
-        return false;
-      }
-      if (filters.location.length && !filters.location.includes(job.location)) {
-        return false;
-      }
-      if (
-        filters.department.length &&
-        !filters.department.includes(job.department)
-      ) {
-        return false;
-      }
-      if (
-        filters.companyType.length &&
-        !filters.companyType.includes(job.companyType)
-      ) {
-        return false;
-      }
-      return true;
-    });
-  }, [jobs, filters]);
-
-  // const displayedJobs = useMemo(() => {
-  //   // Assuming the job data is available in an array called 'jobs'
-  //   //   // 1. Initialize an empty array to store the filtered jobs
-  //   let filteredJobs = [];
-  //   if (
-  //     jobs != undefined &&
-  //     !selectedFilters.workModeFilter.length &&
-  //     !selectedFilters.experienceFilter.length &&
-  //     !selectedFilters.locationFilter.length &&
-  //     !selectedFilters.departmentFilter.length &&
-  //     !selectedFilters.companyTypeFilter.length
-  //   ) {
-  //     // No filters selected, return all jobs
-  //     filteredJobs = jobs;
-  //   } else {
-  //     filteredJobs =
-  //       jobs &&
-  //       jobs.filter(
-  //         (job) =>
-  //           (selectedFilters.workModeFilter.length
-  //             ? selectedFilters.workModeFilter.includes(job.workMode)
-  //             : true) &&
-  //           (selectedFilters.experienceFilter.length
-  //             ? selectedFilters.experienceFilter == job.experience
-  //             : true) &&
-  //           (selectedFilters.locationFilter.length
-  //             ? selectedFilters.locationFilter.includes(job.location)
-  //             : true) &&
-  //           (selectedFilters.departmentFilter.length
-  //             ? selectedFilters.departmentFilter.includes(job.department)
-  //             : true) &&
-  //           (selectedFilters.companyTypeFilter.length
-  //             ? selectedFilters.companyTypeFilter.includes(job.companyType)
-  //             : true)
-  //       );
-  //   }
-  //   return filteredJobs;
-  // }, [jobs, selectedFilters]);
+  const displayedJobs = () => {
+    if (!isLoading) {
+      return jobs.data
+        ? jobs.data.filter((job) => {
+            if (
+              filters.workMode.length &&
+              !filters.workMode.includes(job.workMode)
+            ) {
+              return false;
+            }
+            if (
+              filters.experience > 0 &&
+              filters.experience != job.experience
+            ) {
+              return false;
+            }
+            if (
+              filters.location.length &&
+              !filters.location.includes(job.location)
+            ) {
+              return false;
+            }
+            if (
+              filters.department.length &&
+              !filters.department.includes(job.department)
+            ) {
+              return false;
+            }
+            if (
+              filters.companyType.length &&
+              !filters.companyType.includes(job.companyType)
+            ) {
+              return false;
+            }
+            return true;
+          })
+        : null;
+    }
+  };
 
   return (
     <div className="w-full h-full text-center md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 gap-2 lg:gap-10">
@@ -110,29 +88,58 @@ export const Jobs = () => {
           </select>
         </div>
 
-        {displayedJobs && displayedJobs.length > 0 ? (
-          displayedJobs.map((job, index) => (
-            <JobCard
-              key={index}
-              id={job.id}
-              title={job.title}
-              companyName={job.companyName}
-              jobType={job.jobType}
-              workMode={job.workMode}
-              description={job.description}
-              location={job.location}
-              jobTags={job.jobTags}
-              timeLeft={job.timeLeft}
-              img={job.img}
-              className="min-w-[100%] bg-thm_background shadow-lg"
-              searchParams={searchParams.toString()}
-              showShareAndSaveBtn={true}
-              isFavorite={job.isFavorite}
-              jobDetail={job}
-            />
-          ))
+        {isError ? (
+          <ErrorMessageComponent
+            text="Oh no, there was an error."
+            msg={error}
+          />
+        ) : isLoading ? (
+          <SkeletonLoader className="flex flex-col gap-8">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <JobCard
+                key={i}
+                id={JobsData.id}
+                title={JobsData.title}
+                companyName={JobsData.companyName}
+                jobType={JobsData.jobType}
+                workMode={JobsData.workMode}
+                description={JobsData.description}
+                location={JobsData.location}
+                jobTags={JobsData.jobTags}
+                timeLeft={JobsData.timeLeft}
+                img={JobsData.img}
+                className="min-w-[100%] bg-thm_background shadow-lg h-36"
+                isFavorite={JobsData.isFavorite}
+                jobDetail={JobsData}
+              />
+            ))}
+          </SkeletonLoader>
         ) : (
-          <NoResultFound />
+          displayedJobs &&
+          (displayedJobs().length > 0 ? (
+            displayedJobs().map((job, index) => (
+              <JobCard
+                key={index}
+                id={job._id}
+                title={job.title}
+                companyName={job.companyName}
+                jobType={job.jobType}
+                workMode={job.workMode}
+                description={job.description}
+                location={job.location}
+                jobTags={job.jobTags}
+                timeLeft={job.timeLeft}
+                img={job.img}
+                className="min-w-[100%] bg-thm_background shadow-lg"
+                searchParams={searchParams.toString()}
+                showShareAndSaveBtn={true}
+                isFavorite={job.isFavorite}
+                jobDetail={job}
+              />
+            ))
+          ) : (
+            <NoResultFound />
+          ))
         )}
       </div>
     </div>

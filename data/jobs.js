@@ -9,8 +9,6 @@ export const JobsData = [
     workMode: "In Office",
     department: "IT",
     experience: 0,
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur aperiam numquam harum nisi fugit doloremque porro ipsam laudantium minus iusto aliquid beatae, sunt a accusantium in corrupti nihil assumenda corporis!",
     location: "Addis Abeba",
     jobTags: [
       "Programming",
@@ -19,12 +17,42 @@ export const JobsData = [
       "Excel",
       "Troublesheet",
     ],
-    timeLeft: "2 Days",
+    timeLeft: "2 Days", //make this job closing date
     img: "/cbelogo.jpg",
     isFavorite: false,
     reviews: 20,
     salary: "Not Disclosed",
     applicants: 200,
+    role: "Technical Lead",
+    education: ["Any Graduate"],
+    description: [
+      "Are you a budding frontend developer seeking an exceptional opportunity to gain hands-on experience while working with a prestigious Management Consulting firm? TalentKompass Deutschland, a leading Human Resources company based in Germany, is searching for a highly motivated Frontend Development Intern to join our esteemed client. This remote position offers a unique chance for someone who is passionate about web development and eager to learn in a dynamic and fast-paced environment. As a Frontend Development Intern, you will work closely with the development and consulting teams, where you will be responsible for a range of tasks, including coding, debugging, and collaborating on innovative web solutions. You will have the extraordinary opportunity to learn from experienced professionals who will provide mentorship and guidance throughout the internship. With this internship, you will gain valuable experience in frontend development, web design, and teamwork – all essential skills for a successful career in this field.",
+    ],
+    responsibilities: [
+      "Provide technical leadership in designing, developing and implementing Oracle ATG Commerce solutions and Endeca search engine",
+      "Design and architect highly scalable, reliable and available eCommerce systems",
+      "Conduct code review, performance tuning and provide guidance to development team",
+      "Develop custom solutions for Oracle ATG Commerce based on business requirements",
+      "Collaborate with cross-functional teams including business stakeholders, product owners, development teams, QA teams and other architects to drive technology decisions",
+      "Develop and maintain technical documentation and project artifacts",
+      "Stay up-to-date with emerging trends and technologies in eCommerce domain and provide thought leadership in this area",
+      "Provide guidance to junior team members and mentor them in developing their technical skills",
+    ],
+    requirements: [
+      "Strong hands-on experience in Oracle ATG Commerce (Version 11 or above) and Endeca search engine",
+      "Experience in Liferay CMS and eCommerce domain",
+      "Expertise in designing and architecting highly scalable and available eCommerce systems",
+      "Proven experience in code review and performance tuning of Oracle ATG Commerce applications",
+      "Excellent understanding of software design principles, patterns and architecture best practices",
+      "Strong knowledge of Java, J2EE, Spring, Hibernate, SQL and NoSQL databases",
+      "Experience in designing and implementing RESTful APIs and microservices architecture",
+      "Good understanding of DevOps practices, cloud technologies and containerization tools like Docker and Kubernetes",
+      "Excellent communication, collaboration and leadership skills",
+    ],
+    preferrdSkills: [
+      "Experience in integrating Oracle ATG Commerce with third-party systems such as payment gateways, shipping carriers and tax calculators",
+      "Knowledge of Agile methodologies and experience in working in Agile environments",
+    ],
   },
   {
     id: 1,
@@ -90,3 +118,15 @@ export const JobsData = [
     applicants: 10,
   },
 ];
+
+// Add those to the jobs model,
+// roles = string,
+// education = string,
+// make education = array of [string],
+// responsibilities = array of strings = [string]
+// requirements = array of strings = [string]
+// preferrdSkills = array of strings = [string]
+// make the timeLeft job closing date = date
+// jobPostDate = date
+// application form link = string
+// make jobTags = array of strings = [string]
