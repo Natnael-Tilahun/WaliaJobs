@@ -11,7 +11,7 @@ import {
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice";
 import SkeletonLoader from "../components/SkeletonLoader";
-import { useGetJobsQuery } from "../app/jobsApi.js";
+import { useGetJobsQuery } from "../app/jobsApi";
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
