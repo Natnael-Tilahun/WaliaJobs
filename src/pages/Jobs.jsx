@@ -6,12 +6,12 @@ import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useSearchParams } from "react-router-dom";
 import { NoResultFound } from "../components/NoResultFound";
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
-import { useGetJobsQuery } from "../app/jobsApi";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice";
 import SkeletonLoader from "../components/SkeletonLoader";
+import { useGetJobsQuery } from "../app/jobsApi";
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
