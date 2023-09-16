@@ -8,7 +8,7 @@ import {
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice.jsx";
 import SkeletonLoader from "../components/SkeletonLoader.jsx";
-import { useGetJobsQuery } from "../app/jobsApi.js";
+import { useGetJobsQuery } from "../app/JobsApi.js";
 
 function JobDetail({ job }) {
   return (

@@ -3,9 +3,9 @@ import { JobCard } from "../components/JobCard";
 import { NavLink } from "react-router-dom";
 import { JobsData } from "../../data/jobs";
 import { useSelector } from "react-redux";
-import { useGetJobsQuery } from "../app/jobsApi";
 import SkeletonLoader from "../components/SkeletonLoader";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
+import { useGetJobsQuery } from "../app/JobsApi.js";
 
 export const JobsList = () => {
   // const { jobsList: jobsData } = useSelector((state) => state.jobs);

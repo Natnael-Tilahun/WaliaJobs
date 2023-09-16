@@ -19,7 +19,7 @@ import signupFormSlice from "../features/users/signupFormSlice";
 import loginFormSlice from "../features/users/loginFormSlice";
 import jobFilterSlice from "../features/jobs/jobFilterSlice";
 import cvThemeSlice from "../features/cv/cvThemeSlice";
-import { JobsApi } from "./jobsApi.js";
+import { JobsApi } from "./JobsApi.js";
 
 export default configureStore({
   reducer: {
