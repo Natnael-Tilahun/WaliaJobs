@@ -33,11 +33,11 @@ export const JobDetails = () => {
   });
   let timeLeft;
 
-  if (!isLoading) {
+  if (!isLoading && !isError) {
     jobDetail = jobs.data.filter((job) => job._id == id)[0];
     // setIsFavorite(jobDetail.isFavorite);
     timeLeft = cauculateJobTimeLeft(jobDetail.closingDate);
-    console.log("job details", jobDetail, "currentURL", window.location.href);
+    // console.log("job details", jobDetail, "currentURL", window.location.href);
   }
 
   const handleShareClick = () => {
@@ -61,6 +61,8 @@ export const JobDetails = () => {
     <div className="w-full h-full z-50 text-center md:py-10 bg-thm_secondary_background py-5 flex-col md:flex-row my-0 flex md:my-0 px-2 md:px-3 lg:px-20 gap-6 md:gap-2 lg:gap-10">
       {isLoading ? (
         <JobDetailsSkeleton />
+      ) : isError ? (
+        <div>{error}</div>
       ) : jobDetail ? (
         //Job details main content
         <div className="h-full basis-full md:basis-[60%] lg:basis-[70%] rounded-xl w-full flex flex-col md:px-2 lg:px-0 justify-center gap-5 lg:gap-8">
@@ -270,7 +272,7 @@ export const JobDetails = () => {
             </div>
             <div className="flex flex-col gap-3 md:flex-row justify-between w-full">
               <ShareLinks shareUrl={window.location.href} />
-              <button className="bg-thm_root1_color shadow-md py-2 hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium px-6 rounded-3xl">
+              <button className="bg-thm_root1_color shadow-md py-2 hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium  lg:px-6 rounded-3xl">
                 Apply Now
               </button>
             </div>
@@ -333,6 +335,8 @@ export const JobDetails = () => {
               <RelatedJobsSkeleton i={i} />
             ))}
           </SkeletonLoader>
+        ) : isError ? (
+          <div>{error}</div>
         ) : jobs.data.length ? (
           jobs.data.map((job) => <RelatedJobs job={job} />)
         ) : (
