@@ -5,6 +5,7 @@ import {
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice";
 import { useDispatch } from "react-redux";
+import cauculateJobTimeLeft from "../utils/helperFunctions/calculateJobTimeLeft";
 
 export const JobCard = ({
   title,
@@ -14,7 +15,7 @@ export const JobCard = ({
   workMode,
   description,
   jobTags,
-  timeLeft,
+  closingDate,
   img,
   className,
   showShareAndSaveBtn,
@@ -69,9 +70,11 @@ export const JobCard = ({
       </NavLink>
 
       <div className="flex justify-between gap-3 text-sm lg:text-base">
-        <button className="bg-[#C9FEB1] px-3  lg:px-8 rounded-md font-medium text-gray-800">
-          {timeLeft}
-        </button>
+        {closingDate && (
+          <button className="bg-blue-100 px-3  lg:px-8 rounded-md font-medium text-gray-800">
+            {cauculateJobTimeLeft(closingDate)} Days Left
+          </button>
+        )}
         {showShareAndSaveBtn && (
           <div className="flex gap-10 text-[#18A0FB] font-medium cursor-pointer">
             <div className="flex gap-1 ">

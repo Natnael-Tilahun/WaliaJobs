@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import SkeletonLoader from "../components/SkeletonLoader";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useGetJobsQuery } from "../app/JobsApi.js";
+import { JobSkeleton } from "../components/JobSkeleton";
 
 export const JobsList = () => {
   // const { jobsList: jobsData } = useSelector((state) => state.jobs);
@@ -29,23 +30,9 @@ export const JobsList = () => {
             msg={error}
           />
         ) : isLoading ? (
-          <SkeletonLoader className="flex flex-row gap-16">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <JobCard
-                key={i}
-                title={JobsData.title}
-                companyName={JobsData.companyName}
-                jobType={JobsData.jobType}
-                workMode={JobsData.workMode}
-                description={JobsData.description}
-                location={JobsData.location}
-                jobTags={JobsData.jobTags}
-                timeLeft={JobsData.timeLeft}
-                img={JobsData.img}
-                className="min-w-[50%]  bg-thm_background shadow-lg h-40 animate-pulse"
-                isFavorite={JobsData.isFavorite}
-                jobDetail={JobsData}
-              />
+          <SkeletonLoader className="flex flex-col md:flex-row w-full gap-12 md:gap-16">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <JobSkeleton />
             ))}
           </SkeletonLoader>
         ) : jobsData.data ? (

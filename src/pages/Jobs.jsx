@@ -12,6 +12,7 @@ import {
 } from "../features/jobs/favouriteJobsSlice";
 import SkeletonLoader from "../components/SkeletonLoader";
 import { useGetJobsQuery } from "../app/JobsApi.js";
+import { JobSkeleton } from "../components/JobSkeleton";
 
 export const Jobs = () => {
   // const [jobs, setJobs] = useState();
@@ -96,22 +97,7 @@ export const Jobs = () => {
         ) : isLoading ? (
           <SkeletonLoader className="flex flex-col gap-8">
             {Array.from({ length: 4 }).map((_, i) => (
-              <JobCard
-                key={i}
-                id={JobsData.id}
-                title={JobsData.title}
-                companyName={JobsData.companyName}
-                jobType={JobsData.jobType}
-                workMode={JobsData.workMode}
-                description={JobsData.description}
-                location={JobsData.location}
-                jobTags={JobsData.jobTags}
-                timeLeft={JobsData.timeLeft}
-                img={JobsData.img}
-                className="min-w-[100%] bg-thm_background shadow-lg h-36"
-                isFavorite={JobsData.isFavorite}
-                jobDetail={JobsData}
-              />
+              <JobSkeleton />
             ))}
           </SkeletonLoader>
         ) : (
@@ -128,9 +114,9 @@ export const Jobs = () => {
                 description={job.description}
                 location={job.location}
                 jobTags={job.jobTags}
-                timeLeft={job.timeLeft}
+                closingDate={job.closingDate}
                 img={job.img}
-                className="min-w-[100%] bg-thm_background shadow-lg"
+                className="min-w-[100%] bg-thm_background shadow-lg transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
                 searchParams={searchParams.toString()}
                 showShareAndSaveBtn={true}
                 isFavorite={job.isFavorite}

@@ -29,13 +29,15 @@ import {
   WhatsappIcon,
   WorkplaceShareButton,
   TwitterIcon,
+  FacebookShareCount,
 } from "react-share";
 
-export const ShareLinks = () => {
-  const shareUrl = "http://localhost:5173/job_details"; // URL you want to share
+export const ShareLinks = ({ shareUrl }) => {
+  // const shareUrl = "http://localhost:5173/job_details"; // URL you want to share
 
   return (
-    <div className="share-popup gap-1 md:gap-4 flex">
+    <div className="share-popup gap-1 md:gap-4 items-center flex py-5">
+      <p className="text-xs  lg:text-lg font-medium">Share With: </p>
       <LinkedinShareButton url={shareUrl}>
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
@@ -57,6 +59,10 @@ export const ShareLinks = () => {
       <TwitterShareButton url={shareUrl}>
         <TwitterIcon size={32} round />
       </TwitterShareButton>
+      {/* <FacebookShareCount url={shareUrl}>
+        {(shareCount) => <span>{shareCount}</span>}
+      </FacebookShareCount> */}
+
       {/* <PinterestShareButton url={shareUrl}>
         <PinterestIcon size={32} round />
       </PinterestShareButton>
