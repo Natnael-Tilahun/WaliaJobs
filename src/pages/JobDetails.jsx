@@ -325,7 +325,7 @@ export const JobDetails = () => {
 
       {/* Side bar - related jobs */}
       <div className="flex basis-full md:basis-[40%] xl:basis-[30%]   bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col text-thm_primary_color shadow-lg gap-4 lg:gap-6 p-5 md:p-5 lg:p-10 ">
-        <h1 className="font-semibold md:text-xl lg:text-xl pb-2 md:py-2 w-full text-left capitalize">
+        <h1 className="font-semibold md:text-xl text-center lg:text-xl pb-2 md:py-2 w-full uppercase">
           Jobs you might be interested in
         </h1>
 

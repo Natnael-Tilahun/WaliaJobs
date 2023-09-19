@@ -11,7 +11,7 @@ import {
   removeFavouriteJobs,
 } from "../features/jobs/favouriteJobsSlice";
 import SkeletonLoader from "../components/SkeletonLoader";
-import { useGetJobsQuery } from "../app/JobsApi.js";
+import { useGetJobsQuery, useSearchJobsQuery } from "../app/JobsApi.js";
 import { JobSkeleton } from "../components/JobSkeleton";
 
 export const Jobs = () => {
@@ -19,16 +19,45 @@ export const Jobs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = new URLSearchParams(window.location.search);
   const filters = useSelector((state) => state.jobFilter);
+  var jobs;
+  var isLoading;
+  var isError;
+  var error;
+  var isFetching;
 
-  const {
-    data: jobs,
-    isLoading,
-    isError,
-    error,
-    isFetching,
-  } = useGetJobsQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
+  if (filters.searchValue) {
+    const {
+      data,
+      isLoading: searchIsLoading,
+      isError: searchIsError,
+      error: searchError,
+      isFetching: searchIsFetching,
+    } = useSearchJobsQuery(filters.searchValue, {
+      refetchOnMountOrArgChange: true,
+    });
+
+    jobs = data;
+    isLoading = searchIsLoading;
+    isError = searchIsError;
+    error = searchError;
+    isFetching = searchIsFetching;
+  } else {
+    const {
+      data,
+      isLoading: getIsLoading,
+      isError: getIsError,
+      error: getError,
+      isFetching: getIsFetching,
+    } = useGetJobsQuery(undefined, {
+      refetchOnMountOrArgChange: true,
+    });
+
+    jobs = data;
+    isLoading = getIsLoading;
+    isError = getIsError;
+    error = getError;
+    isFetching = getIsFetching;
+  }
 
   const displayedJobs = () => {
     if (!isLoading) {
@@ -89,19 +118,17 @@ export const Jobs = () => {
           </select>
         </div>
 
-        {isError ? (
-          <ErrorMessageComponent
-            text="Oh no, there was an error."
-            msg={error}
-          />
-        ) : isLoading ? (
+        {isLoading ? (
           <SkeletonLoader className="flex flex-col gap-8">
             {Array.from({ length: 4 }).map((_, i) => (
               <JobSkeleton />
             ))}
           </SkeletonLoader>
+        ) : isError && error.status == 500 ? (
+          <NoResultFound />
         ) : (
           displayedJobs &&
+          !isError &&
           (displayedJobs().length > 0 ? (
             displayedJobs().map((job, index) => (
               <JobCard

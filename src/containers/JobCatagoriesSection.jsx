@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SET_JOB_FILTERS_BY_DEPARTMENT } from "../features/jobs/jobFilterSlice";
+import { useGetJobsQuery } from "../app/JobsApi";
 
 export const JobCatagories = () => {
   const navigate = useNavigate();
@@ -16,6 +17,45 @@ export const JobCatagories = () => {
       search: `?department=${encodedDepartmentFilter}`,
     });
   };
+
+  const {
+    data: jobs = [],
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    isSuccess,
+  } = useGetJobsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const Banking_and_Insurance = jobs.data?.filter(
+    (job) => job.department === "Banking and Insurance"
+  );
+  const Sales_and_Markating = jobs.data?.filter(
+    (job) => job.department === "Sales and Markating"
+  );
+  const Management = jobs.data?.filter(
+    (job) => job.department === "Management"
+  );
+  const Software_Engineering = jobs.data?.filter(
+    (job) => job.department === "Software Engineering"
+  );
+  const Finance_and_Accounting = jobs.data?.filter(
+    (job) => job.department === "Finance and Accounting"
+  );
+  const Engineering = jobs.data?.filter(
+    (job) => job.department === "Engineering"
+  );
+  const Human_Resource = jobs.data?.filter(
+    (job) => job.department === "Human Resource"
+  );
+  const Health = jobs.data?.filter((job) => job.department === "Health");
+  const Legal = jobs.data?.filter((job) => job.department === "Legal");
+  const IT = jobs.data?.filter((job) => job.department === "IT");
+  const Teaching = jobs.data?.filter((job) => job.department === "Teaching");
+  const Analytics = jobs.data?.filter((job) => job.department === "Analytics");
+
   return (
     <div className="w-full grid bg-thm_background  auto-cols-max grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-4 gap-y-10 md:gap-y-16 md:gap-10 justify-evenly py-20 px-5 md:px-10 lg:px-20 text-xxs md:text-sm ">
       <div
@@ -34,7 +74,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Banking and Insurance</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Banking_and_Insurance.length} </span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -52,7 +94,10 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Sales and Markating</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Sales_and_Markating.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -70,7 +115,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Management</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Management.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -88,7 +135,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Software Engineering</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Software_Engineering.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -108,7 +157,9 @@ export const JobCatagories = () => {
             Finance and Accounting
           </h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Finance_and_Accounting.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -126,7 +177,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Engineering</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Engineering.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -144,7 +197,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Human Resource</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Human_Resource.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -162,7 +217,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Health</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Health.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -180,7 +237,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Legal</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Legal.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -198,7 +257,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">IT</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{IT.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -216,7 +277,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Teaching</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Teaching.length}</span>} Jobs
+        </p>
       </div>
       <div
         onClick={(e) => {
@@ -234,7 +297,9 @@ export const JobCatagories = () => {
           </svg>
           <h1 className="font-bold whitespace-nowrap">Analytics</h1>
         </div>
-        <p className="font-medium text-gray-800">10 Jobs</p>
+        <p className="font-medium text-gray-800">
+          {!isLoading && <span>{Analytics.length}</span>} Jobs
+        </p>
       </div>
     </div>
   );

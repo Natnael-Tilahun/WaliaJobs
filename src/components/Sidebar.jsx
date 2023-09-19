@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
 import {
   getFilterStateFromStorage,
   clearFilterFromStorage,
   isEmpty,
-} from '../utils/helperFunctions';
-import { useDispatch, useSelector } from 'react-redux';
+} from "../utils/helperFunctions";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SET_JOB_FILTERS_BY_WORKMODE,
   SET_JOB_FILTERS_BY_COMPANYTYPE,
@@ -13,7 +13,7 @@ import {
   SET_JOB_FILTERS_BY_LOCATION,
   SET_JOB_FILTERS_BY_EXPERIENCE,
   CLEAR_JOB_FILTERS,
-} from '../features/jobs/jobFilterSlice';
+} from "../features/jobs/jobFilterSlice";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -152,19 +152,19 @@ export const Sidebar = () => {
   // }, []);
 
   function handleFilterChange(key, value) {
-    if (key == 'workMode') {
+    if (key == "workMode") {
       dispatch(SET_JOB_FILTERS_BY_WORKMODE(value));
     }
-    if (key == 'experience') {
+    if (key == "experience") {
       dispatch(SET_JOB_FILTERS_BY_EXPERIENCE(value));
     }
-    if (key == 'department') {
+    if (key == "department") {
       dispatch(SET_JOB_FILTERS_BY_DEPARTMENT(value));
     }
-    if (key == 'companyType') {
+    if (key == "companyType") {
       dispatch(SET_JOB_FILTERS_BY_COMPANYTYPE(value));
     }
-    if (key == 'location') {
+    if (key == "location") {
       dispatch(SET_JOB_FILTERS_BY_LOCATION(value));
     }
 
@@ -176,7 +176,7 @@ export const Sidebar = () => {
 
   function removeFilterHandler() {
     dispatch(CLEAR_JOB_FILTERS());
-    setSearchParams('');
+    setSearchParams("");
     // clearFilterFromStorage();
   }
 
@@ -224,7 +224,7 @@ export const Sidebar = () => {
         </div>
         <ul
           className={`overflow-hidden transition-[max-height] text-left text-sm text-thm_secondary_color dark:text-thm_dark_secondary_color duration-100 ease-in flex flex-col pt-2 lg:pt-2 gap-2 md:gap-3 lg:gap-4 ${
-            workModeExpanded ? 'max-h-fit' : 'max-h-0 '
+            workModeExpanded ? "max-h-fit" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-0 ">
@@ -237,7 +237,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.workMode.length &&
-                  filters.workMode.includes('In Office')
+                  filters.workMode.includes("In Office")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -255,7 +255,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Remote"
                 checked={
-                  filters.workMode.length && filters.workMode.includes('Remote')
+                  filters.workMode.length && filters.workMode.includes("Remote")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -273,7 +273,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 value="Hybrid"
                 checked={
-                  filters.workMode.length && filters.workMode.includes('Hybrid')
+                  filters.workMode.length && filters.workMode.includes("Hybrid")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -291,7 +291,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 value="TWFH"
                 checked={
-                  filters.workMode.length && filters.workMode.includes('TWFH')
+                  filters.workMode.length && filters.workMode.includes("TWFH")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -333,7 +333,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`relative overflow-hidden transition-[max-height] duration-500 ease-in  ${
-            experienceExpanded ? 'max-h-fit' : 'max-h-0 '
+            experienceExpanded ? "max-h-fit" : "max-h-0 "
           } `}
         >
           <input
@@ -384,7 +384,7 @@ export const Sidebar = () => {
 
         <div
           className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            locationAccordionExpanded ? 'max-h-full' : 'max-h-0 '
+            locationAccordionExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs flex lg:gap-1">
@@ -397,7 +397,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.location.length &&
-                  filters.location.includes('Addis Abeba')
+                  filters.location.includes("Addis Abeba")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -416,7 +416,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.location.length &&
-                  filters.location.includes('Hawassa')
+                  filters.location.includes("Hawassa")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -434,7 +434,7 @@ export const Sidebar = () => {
                 id="adama"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Adama')
+                  filters.location.length && filters.location.includes("Adama")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -453,7 +453,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.location.length &&
-                  filters.location.includes('Dire Dawa')
+                  filters.location.includes("Dire Dawa")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -472,7 +472,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.location.length &&
-                  filters.location.includes('Bahir Dar')
+                  filters.location.includes("Bahir Dar")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -490,7 +490,7 @@ export const Sidebar = () => {
                 id="mekele"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Mekele')
+                  filters.location.length && filters.location.includes("Mekele")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -508,7 +508,7 @@ export const Sidebar = () => {
                 id="jimma"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Jimma')
+                  filters.location.length && filters.location.includes("Jimma")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -526,7 +526,7 @@ export const Sidebar = () => {
                 id="gondar"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Gondar')
+                  filters.location.length && filters.location.includes("Gondar")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -544,7 +544,7 @@ export const Sidebar = () => {
                 id="harar"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Harar')
+                  filters.location.length && filters.location.includes("Harar")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -562,7 +562,7 @@ export const Sidebar = () => {
                 id="jijiga"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Jijiga')
+                  filters.location.length && filters.location.includes("Jijiga")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -580,7 +580,7 @@ export const Sidebar = () => {
                 id="dessie"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Dessie')
+                  filters.location.length && filters.location.includes("Dessie")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -599,7 +599,7 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   filters.location.length &&
-                  filters.location.includes('Debre Birhan')
+                  filters.location.includes("Debre Birhan")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -617,7 +617,7 @@ export const Sidebar = () => {
                 id="aksum"
                 className="md:w-4 mr-2"
                 checked={
-                  filters.location.length && filters.location.includes('Aksum')
+                  filters.location.length && filters.location.includes("Aksum")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -657,7 +657,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`overflow-hidden transition-[max-height] text-left text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            departmentExpanded ? 'max-h-full' : 'max-h-0 '
+            departmentExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
@@ -670,7 +670,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Banking and Insurance')
+                  filters.department.includes("Banking and Insurance")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -689,7 +689,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Sales and Markating')
+                  filters.department.includes("Sales and Markating")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -708,7 +708,7 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Management')
+                  filters.department.includes("Management")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -727,7 +727,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Software Engineering')
+                  filters.department.includes("Software Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -746,7 +746,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Finance and Accounting')
+                  filters.department.includes("Finance and Accounting")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -765,7 +765,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Engineering')
+                  filters.department.includes("Engineering")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -784,7 +784,7 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Human Resource')
+                  filters.department.includes("Human Resource")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -802,7 +802,7 @@ export const Sidebar = () => {
                 id="it"
                 className=" md:w-4 mr-2"
                 checked={
-                  filters.department.length && filters.department.includes('IT')
+                  filters.department.length && filters.department.includes("IT")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -821,7 +821,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Health')
+                  filters.department.includes("Health")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -840,7 +840,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Legal')
+                  filters.department.includes("Legal")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -859,13 +859,32 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   filters.department.length &&
-                  filters.department.includes('Analytics')
+                  filters.department.includes("Analytics")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
                 }
               />
               Analytics
+            </label>
+          </li>
+          <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
+            <label htmlFor="teaching" className=" font-medium">
+              <input
+                type="checkbox"
+                name="department"
+                value="Teaching"
+                id="teaching"
+                className=" md:w-4 mr-2"
+                checked={
+                  filters.department.length &&
+                  filters.department.includes("Teaching")
+                }
+                onChange={(e) =>
+                  handleFilterChange(e.target.name, e.target.value)
+                }
+              />
+              Teaching
             </label>
           </li>
         </div>
@@ -899,7 +918,7 @@ export const Sidebar = () => {
         </div>
         <div
           className={`overflow-hidden transition-[max-height] text-thm_secondary_color dark:text-thm_dark_secondary_color duration-500 ease-in flex flex-col gap-2 md:gap-5 ${
-            companyExpanded ? 'max-h-full' : 'max-h-0 '
+            companyExpanded ? "max-h-full" : "max-h-0 "
           }`}
         >
           <li className="lg:text-base md:text-sm text-xs  flex lg:gap-1">
@@ -912,7 +931,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   filters.companyType.length &&
-                  filters.companyType.includes('Private')
+                  filters.companyType.includes("Private")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -931,7 +950,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2"
                 checked={
                   filters.companyType.length &&
-                  filters.companyType.includes('Governmental')
+                  filters.companyType.includes("Governmental")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -950,7 +969,7 @@ export const Sidebar = () => {
                 className=" md:w-4 mr-2"
                 checked={
                   filters.companyType.length &&
-                  filters.companyType.includes('Corporate')
+                  filters.companyType.includes("Corporate")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -969,7 +988,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   filters.companyType.length &&
-                  filters.companyType.includes('NGO')
+                  filters.companyType.includes("NGO")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
@@ -988,7 +1007,7 @@ export const Sidebar = () => {
                 className="md:w-4 mr-2 "
                 checked={
                   filters.companyType.length &&
-                  filters.companyType.includes('Startup')
+                  filters.companyType.includes("Startup")
                 }
                 onChange={(e) =>
                   handleFilterChange(e.target.name, e.target.value)
