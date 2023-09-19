@@ -69,7 +69,7 @@ export const JobDetails = () => {
           <div className="bg-white py-5 px-4 md:px-10 flex flex-col items-start rounded-xl">
             <div className="flex justify-between gap-2 w-full border-b-[1px]">
               <div className="flex flex-col items-start ">
-                <h1 className="font-medium text-lg md:text-xl">
+                <h1 className="font-medium capitalize text-lg md:text-xl">
                   {jobDetail.title}
                 </h1>
                 <div className="flex gap-4 text-thm_secondary_color text-sm font-medium items-center">
@@ -270,9 +270,9 @@ export const JobDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-3 md:flex-row justify-between w-full">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center justify-between w-full">
               <ShareLinks shareUrl={window.location.href} />
-              <button className="bg-thm_root1_color shadow-md py-2 hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium  lg:px-6 rounded-3xl">
+              <button className="bg-thm_root1_color shadow-md py-2 hover:bg-blue-600 shadow-thm_secondary_color text-white font-medium lg:font-semibold lg:w-fit lg:text-lg md:w-28 md:h-14 md:text-sm md:p-0  lg:px-6 rounded-3xl">
                 Apply Now
               </button>
             </div>
@@ -345,7 +345,7 @@ export const JobDetails = () => {
 
         <NavLink
           to="/jobs"
-          className="border-2  border-thm_root1_color mt-4 hover:shadow-lg hover:-translate-y-1 ease-in-out duration-300 delay-150 hover:bg-blue-100 px-6 transition py-1 mx-auto rounded-lg self-center text-thm_root1_color"
+          className="border-2 z-50 border-thm_root1_color mt-4 hover:shadow-lg hover:-translate-y-1 ease-in-out duration-300 delay-150 hover:bg-blue-100 px-6 transition py-1 mx-auto rounded-lg self-center text-thm_root1_color"
         >
           View All
         </NavLink>

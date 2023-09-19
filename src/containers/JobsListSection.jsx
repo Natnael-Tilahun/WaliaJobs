@@ -30,8 +30,8 @@ export const JobsList = () => {
             msg={error}
           />
         ) : isLoading ? (
-          <SkeletonLoader className="flex flex-col md:flex-row w-full gap-12 md:gap-16">
-            {Array.from({ length: 3 }).map((_, i) => (
+          <SkeletonLoader className="grid  md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-16">
+            {Array.from({ length: 4 }).map((_, i) => (
               <JobSkeleton />
             ))}
           </SkeletonLoader>

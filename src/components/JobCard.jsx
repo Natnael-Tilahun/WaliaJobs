@@ -35,12 +35,14 @@ export const JobCard = ({
         className="flex flex-col gap-2 "
       >
         <div className="flex justify-between items-center">
-          <h1 className="font-bold text-base lg:text-xl text-left">{title}</h1>
+          <h1 className="font-medium capitalize text-base lg:text-xl text-left">
+            {title}
+          </h1>
           {img && (
             <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
           )}
         </div>
-        <div className="flex gap-7 lg:gap-14 font-semibold text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
+        <div className="flex gap-7 lg:gap-14 font-medium text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
           <p>{companyName}</p>
           <p>
             <span>{workMode}</span>

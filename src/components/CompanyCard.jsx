@@ -8,13 +8,15 @@ export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
     >
       <img src={img} className="w-full h-32 bg-cover" alt="Company Logo" />
       <h1 className="font-bold py-3">{name}</h1>
-      <p className="font-semibold text-gray-600 flex items-center gap-1">
+      <p className=" text-gray-600 flex items-center gap-1">
         <img
           src="/rateIcon.png"
           className="w-5 h-5 inline-block mx-0"
           alt="Review Star"
         />
-        <span>{rate}</span> | <span>{reviews}</span>Reviews
+        <span className="text-thm_root1_color font-semibold">{rate}</span> |{" "}
+        <span className="text-thm_root1_color font-semibold">{reviews}</span>
+        Reviews
       </p>
       <NavLink
         to={`/company-details/${id}`}

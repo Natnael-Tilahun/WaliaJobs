@@ -5,15 +5,18 @@ import {
   SET_JOB_FILTERS_BY_DEPARTMENT,
   SET_JOB_FILTERS_BY_EXPERIENCE,
   SET_JOB_FILTERS_BY_LOCATION,
+  SET_JOB_FILTERS_BY_SEARCH_VALUE,
 } from "../features/jobs/jobFilterSlice";
+import { func } from "prop-types";
 
 function Hero() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const filters = useSelector(state => state.jobFilter)
+  const filters = useSelector((state) => state.jobFilter);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedExperience, setSelectedExperience] = useState("");
+  const [jobSearchValue, setJobSearchValue] = useState("");
 
   function setDepartmentFilter(value) {
     setSelectedDepartment(value);
@@ -27,6 +30,11 @@ function Hero() {
     setSelectedExperience(value);
     dispatch(SET_JOB_FILTERS_BY_EXPERIENCE(value));
   }
+  function setSearchValue(value) {
+    setJobSearchValue(value);
+    dispatch(SET_JOB_FILTERS_BY_SEARCH_VALUE(value));
+  }
+
   console.log(
     "selectedSkills",
     selectedDepartment,
@@ -48,14 +56,21 @@ function Hero() {
       ? encodeURIComponent(selectedExperience)
       : "";
 
-      if(filters.department.length || filters.location.length || filters.experience){
-        navigate({
-          pathname: "/jobs",
-          search: `?department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
-        });
-      }
+    const encodedJobSearchValue = jobSearchValue
+      ? encodeURIComponent(jobSearchValue)
+      : "";
 
-  
+    if (
+      filters.department.length ||
+      filters.location.length ||
+      filters.experience ||
+      filters.searchValue
+    ) {
+      navigate({
+        pathname: "/jobs",
+        search: `?searchValue=${encodedJobSearchValue}&department=${encodedDepartmentFilter}&experience=${encodedExperienceFilter}&location=${encodedLocationFilter}`,
+      });
+    }
   };
   return (
     <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
@@ -69,8 +84,8 @@ function Hero() {
         </p>
       </div>
 
-      <form className="border-l-2 border-2 text-base pb-3 bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl   flex items-center justify-between drop-shadow-xl">
-        <div className=" flex items-center pl-2 border-2 md:border-none gap-2 w-full md:w-[45%] h-full lg:pl-5 rounded-l-full bg-white">
+      <form className="border-l-2 border-2 text-base pb-3 bg-white p-6 md:p-0 md:h-12 md:gap-0 gap-8 w-full flex-col md:flex-row md:w-[90%] lg:w-3/4 rounded-3xl flex items-center justify-between drop-shadow-xl">
+        <div className=" flex items-center pl-2 border-2 md:border-none gap-2 w-full md:w-[25%] h-full lg:pl-5 rounded-l-full bg-white">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,46 +95,50 @@ function Hero() {
               <path d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z"></path>
             </svg>
           </span>
-
-          <select
-            name=""
-            id=""
-            value={selectedDepartment}
-            onChange={(e) => setDepartmentFilter(e.target.value)}
-            placeholder="Select Experience"
-            className="border-r-4 border-l-0  h-full w-full bg-white md:rounded-none rounded-l-full py-2  border-0 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-2 lg:mr-7 focus:outline-none text-gray-600 "
-          >
-            <option
-              className="text-slate-300"
-              value=""
-              defaultValue="select department"
-              disabled
-            >
-              Select Department{" "}
-            </option>
-            <option value="Banking and Insurance">Banking and Insurance</option>
-            <option value="Sales and Markating">Sales and Markating</option>
-            <option value="Management">Management</option>
-            <option value="Software Engineering">Software Engineering</option>
-            <option value="Finance and Accounting">
-              Finance and Accounting
-            </option>
-            <option value="Engineering">Engineering</option>
-            <option value="Human Resource">Human Resource</option>
-            <option value="IT">IT</option>
-            <option value="Health">Health</option>
-            <option value="Legal">Legal</option>
-            <option value="Analytics">Analytics</option>
-            <option value="Engineering">Engineering</option>
-          </select>
+          <input
+            type="text"
+            value={jobSearchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search here"
+            className="border-r-2  h-full w-full bg-white md:rounded-none rounded-l-full  py-2   md:border-t-0 md:border-r-0 md:border-b-0  pl-3  focus:outline-none text-gray-600"
+          />
         </div>
+        <select
+          name=""
+          id=""
+          value={selectedDepartment}
+          onChange={(e) => setDepartmentFilter(e.target.value)}
+          placeholder="Select Experience"
+          className="border-2 md:w-1/5  h-full w-full bg-white md:rounded-none rounded-l-full py-2  border-0 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-2 lg:mr-7 focus:outline-none text-gray-600 "
+        >
+          <option
+            className="text-slate-300"
+            value=""
+            defaultValue="select department"
+            disabled
+          >
+            Select Department
+          </option>
+          <option value="Banking and Insurance">Banking and Insurance</option>
+          <option value="Sales and Markating">Sales and Markating</option>
+          <option value="Management">Management</option>
+          <option value="Software Engineering">Software Engineering</option>
+          <option value="Finance and Accounting">Finance and Accounting</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resource">Human Resource</option>
+          <option value="IT">IT</option>
+          <option value="Health">Health</option>
+          <option value="Legal">Legal</option>
+          <option value="Analytics">Analytics</option>
+          <option value="Engineering">Engineering</option>
+        </select>
         <select
           name=""
           id=""
           value={selectedLocation}
           onChange={(e) => setLocationFilter(e.target.value)}
           placeholder="Select Experience"
-          className=" h-full w-full md:w-1/3 bg-white md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
+          className=" h-full w-full md:w-1/5 bg-white md:rounded-none rounded-l-full p-2  border-2 md:border-t-0 md:border-r-0 md:border-b-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option
             className="text-slate-300"
@@ -127,7 +146,7 @@ function Hero() {
             defaultValue="select location"
             disabled
           >
-            Select Location{" "}
+            Select Location
           </option>
           <option value="Addis Abeba">Addis Abeba</option>
           <option value="Hawassa">Hawassa</option>
@@ -143,7 +162,6 @@ function Hero() {
           <option value="Debre Birhan">Debre Birhan</option>
           <option value="Aksum">Aksum</option>
           <option value="Dessie">Dessie</option>
-
         </select>
         <select
           name=""
@@ -152,7 +170,7 @@ function Hero() {
           placeholder="Select Experience"
           value={selectedExperience}
           onChange={(e) => setExperienceFilter(e.target.value)}
-          className=" h-full bg-white w-full md:w-1/3 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
+          className=" h-full bg-white w-full md:w-1/6 border-l-2 md:rounded-none rounded-l-full p-2 border-2 md:border-t-0 md:border-b-0 md:border-r-0  pl-3 md:mr-5 lg:mr-7 focus:outline-none text-gray-600 "
         >
           <option
             className="text-slate-300"
@@ -160,7 +178,7 @@ function Hero() {
             defaultValue="select experience"
             disabled
           >
-            Select Experience{" "}
+            Select Experience
           </option>
           <option value="0">Fresher (Less than a year)</option>
           <option value="1">1 Year</option>
@@ -173,7 +191,7 @@ function Hero() {
         </select>
         <button
           onClick={goToPosts}
-          className="bg-thm_root1_color text-white py-2 px-10 rounded-3xl"
+          className="bg-thm_root1_color hover:shadow-lg hover:bg-blue-600 text-white py-2 px-10 rounded-3xl"
         >
           Search
         </button>
