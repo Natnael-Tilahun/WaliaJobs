@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { ShareLinks } from "../components/ShareLinks";
-import { BlogsData } from "../../data/blogs";
+import React, { useState, useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import { ShareLinks } from '../components/ShareLinks';
+import { BlogsData } from '../../data/blogs';
 
 export const BlogDetails = () => {
   const { id } = useParams();
@@ -28,7 +28,7 @@ export const BlogDetails = () => {
             </p>
           </div>
           <div className="flex gap-1 md:gap-3 text-xs items-center text-thm_secondary_color">
-            <p>share with:</p>
+            {/* <p>share with:</p> */}
             <ShareLinks />
           </div>
         </div>
@@ -73,7 +73,7 @@ export const BlogDetails = () => {
             and stress if I had listened to quality career advice.
           </p>
           <p className="py-2">
-            Here are my five best career tips for young people:{" "}
+            Here are my five best career tips for young people:{' '}
           </p>
           <p className="py-2">
             <strong>1. Taste test.</strong>
