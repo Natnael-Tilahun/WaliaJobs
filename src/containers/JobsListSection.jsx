@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { JobCard } from "../components/JobCard";
-import { NavLink } from "react-router-dom";
-import { JobsData } from "../../data/jobs";
-import { useSelector } from "react-redux";
-import SkeletonLoader from "../components/SkeletonLoader";
-import { ErrorMessageComponent } from "../components/ErrorMessage";
-import { useGetJobsQuery } from "../app/JobsApi.js";
-import { JobSkeleton } from "../components/JobSkeleton";
+import React, { useState, useEffect } from 'react';
+import { JobCard } from '../components/JobCard';
+import { NavLink } from 'react-router-dom';
+import { JobsData } from '../../data/jobs';
+import { useSelector } from 'react-redux';
+import SkeletonLoader from '../components/SkeletonLoader';
+import { ErrorMessageComponent } from '../components/ErrorMessage';
+import { useGetJobsQuery } from '../app/JobsApi.js';
+import { JobSkeleton } from '../components/JobSkeleton';
 
 export const JobsList = () => {
   // const { jobsList: jobsData } = useSelector((state) => state.jobs);
@@ -30,7 +30,7 @@ export const JobsList = () => {
             msg={error}
           />
         ) : isLoading ? (
-          <SkeletonLoader className="grid  md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-16">
+          <SkeletonLoader className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-8 lg:gap-16">
             {Array.from({ length: 4 }).map((_, i) => (
               <JobSkeleton />
             ))}

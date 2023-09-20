@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from "../features/jobs/favouriteJobsSlice";
-import { useDispatch } from "react-redux";
-import cauculateJobTimeLeft from "../utils/helperFunctions/calculateJobTimeLeft";
+} from '../features/jobs/favouriteJobsSlice';
+import { useDispatch } from 'react-redux';
+import cauculateJobTimeLeft from '../utils/helperFunctions/calculateJobTimeLeft';
 
 export const JobCard = ({
   title,
