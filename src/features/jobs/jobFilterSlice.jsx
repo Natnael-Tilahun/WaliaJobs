@@ -143,7 +143,8 @@ const jobFilterSlice = createSlice({
         ...state,
         companyType: [],
       };
-      localStorage.setItem("filteration", currentState);
+      console.log("current state", currentState);
+      localStorage.setItem("filteration", JSON.stringify(currentState));
       return currentState;
     },
   },

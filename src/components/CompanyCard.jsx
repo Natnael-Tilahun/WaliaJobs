@@ -1,10 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
   return (
     <div
-      className={`shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-82 gap-1 p-5 border-[1px] items-center ${className}`}
+      className={twMerge(
+        `shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-82 gap-1 p-5 border-[1px] items-center`,
+        className
+      )}
     >
       <img src={img} className="w-full h-32 bg-cover" alt="Company Logo" />
       <h1 className="font-bold py-3">{name}</h1>
