@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { NavLink } from "react-router-dom";
 import { CompaniesData } from "../../data/companies";
 import { useGetCompaniesQuery } from "../app/CompaniesApi";
+import SkeletonLoader from "../components/SkeletonLoader";
+import { CompanySkeleton } from "../components/CompanySkeleton";
 
 export const Companies = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
@@ -103,11 +105,27 @@ export const Companies = () => {
         Featured companies actively hiring
       </h1>
 
-      <Slider {...settings} className="py-10 mb-10 w-full ">
-        {isLoading ? (
-          <div>Loading....</div>
-        ) : (
-          CompaniesData.map(
+      {isLoading ? (
+        <SkeletonLoader className=" w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden xl:grid-cols-4 gap-8 py-10">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <CompanySkeleton
+              className={`hidden ${
+                i == 0
+                  ? "flex"
+                  : i == 1
+                  ? "md:flex"
+                  : i == 2
+                  ? "lg:flex"
+                  : i == 3
+                  ? "xl:flex"
+                  : "hidden"
+              }`}
+            />
+          ))}
+        </SkeletonLoader>
+      ) : (
+        <Slider {...settings} className="py-10 mb-10 w-full ">
+          {CompaniesData.map(
             ({ _id, img, companyLogo, name, rating, reviews }) => (
               <CompanyCard
                 key={_id}
@@ -123,10 +141,9 @@ export const Companies = () => {
                 } `}
               />
             )
-          )
-        )}
-      </Slider>
-
+          )}
+        </Slider>
+      )}
       <NavLink
         to="/company"
         className="text-[#2F6EFC] font-bold mt-10 hover:bg-[#5dbeff] border-2 border-[#97d1f8] px-5 py-1 rounded-lg"

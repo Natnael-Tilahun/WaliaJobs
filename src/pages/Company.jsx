@@ -9,6 +9,8 @@ import {
   SET_JOB_FILTERS_BY_COMPANYTYPE,
 } from "../features/jobs/jobFilterSlice";
 import { useGetCompaniesQuery } from "../app/CompaniesApi";
+import SkeletonLoader from "../components/SkeletonLoader";
+import { CompanySkeleton } from "../components/CompanySkeleton";
 
 export const Company = () => {
   const [companyExpanded, setCompanyExpanded] = useState(true);
@@ -202,9 +204,25 @@ export const Company = () => {
           </div>
         </ul>
       </div>
-      <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 lg:gap-8">
+      <div className="h-full py-5 md:py-0 basis-full grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  lg:basis-3/4 flex-wrap  rounded-xl w-full md:px-2 lg:px-10 gap-5 md:gap-1 lg:gap-8">
         {isLoading ? (
-          <div>Loading...</div>
+          <SkeletonLoader className=" w-full h-fit grid col-span-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-hidden gap-8 md:gap-0 ">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <CompanySkeleton
+                className={`hidden ${
+                  i == 0
+                    ? "flex"
+                    : i == 1
+                    ? "md:flex"
+                    : i == 2
+                    ? "lg:flex"
+                    : i == 3
+                    ? "xl:flex"
+                    : "hidden"
+                }`}
+              />
+            ))}
+          </SkeletonLoader>
         ) : displayedCompanies &&
           !isError &&
           displayedCompanies().length > 0 ? (

@@ -18,17 +18,19 @@ export const AboutCompany = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
+  if (!isLoading) {
+    companyDetails = companies.data.filter((company) => company._id == id)[0];
   }
-  companyDetails = companies.data.filter((company) => company._id == id)[0];
   // console.log("company detail", companyDetails);
 
   return (
     <div className="flex gap-10 text-xs tracking-wide leading-5 text-thm_secondary_color md:text-base md:py-10  py-5  md:px-5 lg:px-10 xl:px-20 px-5">
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-col gap-6 md:gap-10 lg:gap-10 xl:gap-14 md:flex-row py-5"> */}
-      <p>{companyDetails.about}</p>
-      {/* </div> */}
+      {isLoading ? (
+        <div className="h-full bg-slate-500">About Company Loading ...</div>
+      ) : (
+        <p>{companyDetails.about}</p>
+      )}
     </div>
   );
 };
