@@ -27,7 +27,7 @@ export const RecommendedCV = () => {
       </div>
       <NavLink
         to="alltemplates"
-        className=" text-[#2F6EFC] font-bold hover:bg-[#5dbeff] bg-[#97d1f8] px-5 py-1 rounded-lg w-auto self-center"
+        className="hover:bg-blue-500 bg-blue-400 rounded-lg w-auto self-center text-white transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300  font-bold  border-none px-5 py-3"
       >
         View all templates
       </NavLink>
