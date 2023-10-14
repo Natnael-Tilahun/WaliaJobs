@@ -21,6 +21,7 @@ import jobFilterSlice from "../features/jobs/jobFilterSlice";
 import cvThemeSlice from "../features/cv/cvThemeSlice";
 import { JobsApi } from "./JobsApi.js";
 import { CompaniesApi } from "./CompaniesApi";
+import { BlogsApi } from "./BlogsApi";
 
 export default configureStore({
   reducer: {
@@ -46,7 +47,12 @@ export default configureStore({
     cvTheme: cvThemeSlice,
     [JobsApi.reducerPath]: JobsApi.reducer,
     [CompaniesApi.reducerPath]: CompaniesApi.reducer,
+    [BlogsApi.reducerPath]: BlogsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(JobsApi.middleware, CompaniesApi.middleware),
+    getDefaultMiddleware().concat(
+      JobsApi.middleware,
+      CompaniesApi.middleware,
+      BlogsApi.middleware
+    ),
 });

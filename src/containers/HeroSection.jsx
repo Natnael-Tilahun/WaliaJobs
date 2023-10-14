@@ -73,7 +73,7 @@ function Hero() {
     }
   };
   return (
-    <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-orange-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
+    <div className="w-full h-[calc(100vh-66px)] md:h-[350px] bg-gradient-to-r from-blue-100 to-red-100  lg:rounded-b-[200px] rounded-b-[50px] flex flex-col md:justify-center py-10 gap-10 md:gap-2 items-center px-5 lg:px-10 xl:px-20 ">
       <div className="py-8 flex flex-col gap-3 items-center">
         <h1 className="text-center text-2xl md:text-4xl font-extrabold uppercase md:font-extrabold   tracking-widest">
           Find your dream

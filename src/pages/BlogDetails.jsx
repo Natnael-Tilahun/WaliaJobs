@@ -1,11 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
-import { ShareLinks } from '../components/ShareLinks';
-import { BlogsData } from '../../data/blogs';
+import React, { useState, useEffect } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import { ShareLinks } from "../components/ShareLinks";
+import { BlogsData } from "../../data/blogs";
+import { useGetBlogsQuery } from "../app/BlogsApi";
 
 export const BlogDetails = () => {
   const { id } = useParams();
-  const blogDetail = BlogsData.filter((blog) => blog.id == id);
+  // const blogDetail = BlogsData.filter((blog) => blog.id == id);
+  console.log("id", id);
+  const {
+    data: blogs = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetBlogsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  let blogDetail;
+
+  if (!isLoading) {
+    blogDetail = blogs.data.filter((blog) => blog._id == id)[0];
+  }
 
   return (
     <div className="w-full h-full  bg-thm_secondary_background  flex-col  my-0 flex md:my-0  gap-2 lg:gap-10">
@@ -16,15 +31,20 @@ export const BlogDetails = () => {
           className="shadow-md w-[65%] hidden xl:w-[35%] self-center bg-center "
         />
         <h1 className="text-2xl md:text-4xl pt-10 pb-3 text-center uppercase font-bold">
-          {blogDetail[0].title}
+          {blogDetail.title}
         </h1>
         <div className="flex flex-col md:flex-row justify-between md:items-center gap-5 md:gap-0">
           <div>
             <p className="text-xs md:text-sm text-thm_root1_color text-left underline py-1">
-              Author: {blogDetail[0].author}
+              Author: {blogDetail.author}
             </p>
             <p className="text-sm text-thm_secondary_color  text-left">
-              published {blogDetail[0].date}
+              published:{" "}
+              {new Date(blogDetail.createdAt).getDate() +
+                "-" +
+                new Date(blogDetail.createdAt).getUTCMonth() +
+                "-" +
+                new Date(blogDetail.createdAt).getFullYear()}
             </p>
           </div>
           <div className="flex gap-1 md:gap-3 text-xs items-center text-thm_secondary_color">
@@ -57,11 +77,11 @@ export const BlogDetails = () => {
       </div>
       <div className="flex flex-col lg:flex-row py-10 tracking-wide leading-8 text-thm_secondary_color  md:px-7 lg:px-32 gap-5 md:gap-10 px-5  w-full">
         <img
-          src={blogDetail[0].img}
+          src={blogDetail.img}
           alt="blog caption image"
           className="shadow-md w-[100%]  lg:w-[50%] xl:w-[100%] self-center bg-center "
         />
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <p className="py-2">
             I made a lot of mistakes at the beginning of my career.
           </p>
@@ -73,7 +93,7 @@ export const BlogDetails = () => {
             and stress if I had listened to quality career advice.
           </p>
           <p className="py-2">
-            Here are my five best career tips for young people:{' '}
+            Here are my five best career tips for young people:{" "}
           </p>
           <p className="py-2">
             <strong>1. Taste test.</strong>
@@ -114,7 +134,8 @@ export const BlogDetails = () => {
           Starting your career is an exciting time filled with opportunities.
           This advice will set you on the path to success and help you find the
           right career course for you.
-        </div>
+        </div> */}
+        <div>{blogDetail.description}</div>
       </div>
     </div>
   );
