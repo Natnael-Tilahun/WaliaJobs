@@ -110,7 +110,7 @@ export const Footer = () => {
               </NavLink>
 
               <NavLink
-                to="/privacy_policy"
+                to="/privacyPolicy"
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {

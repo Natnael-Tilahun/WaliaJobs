@@ -49,6 +49,7 @@ import { ReviewCV } from "./pages/ReviewCV";
 import store from "./app/store";
 import TrustAndSafety from "./pages/TrustAndSafety";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -146,6 +147,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               path="/termsAndConditions"
               element={<TermsAndConditions />}
             />
+            <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
             <Route path="*" element={<ErrorPage />} />;
           </Route>
         </Routes>

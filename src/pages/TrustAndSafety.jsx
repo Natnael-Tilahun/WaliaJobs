@@ -1,10 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const TrustAndSafety = () => {
   return (
     <div className="w-full h-full text-left md:py-10 bg-thm_secondary_background dark:bg-thm_dark_secondary_background py-5  flex-col my-0 flex md:my-0 px-2 md:px-3 lg:px-10 xl:px-20 ">
-      <h1 className="text-xl font-medium pt-10 pb-3">Trust and Safety</h1>
-      <p>Last Updated: Oct 16, 2023</p>
+      <h1 className="text-xl font-medium pt-5 pb-3">Trust and Safety</h1>
+      <p className="py-3">Last Updated: Oct 16, 2023</p>
       <p>
         Walia Jobs is committed to providing a safe and secure platform for job
         seekers and employers. This Trust and Safety Policy outlines our
@@ -18,28 +19,28 @@ const TrustAndSafety = () => {
       </p>
       <ol className="text-left space-y-3 py-3 list-decimal">
         <li>
-          <strong>Accurate Information:</strong> Provide accurate and truthful
+          <strong>Accurate Information: </strong> Provide accurate and truthful
           information in your profile and job listings.
         </li>
         <li>
-          <strong>Respect:</strong> Treat all other users with respect,
+          <strong>Respect: </strong> Treat all other users with respect,
           fairness, and professionalism. Discriminatory, harassing, or offensive
           behavior is strictly prohibited.
         </li>
         <li>
-          <strong>Privacy:</strong> Respect the privacy of other users and do
+          <strong>Privacy: </strong> Respect the privacy of other users and do
           not share their personal information without their consent.
         </li>
         <li>
-          <strong>Communication:</strong> Communicate promptly and
+          <strong>Communication: </strong> Communicate promptly and
           professionally with other users, including responding to messages and
           inquiries.
         </li>
         <li>
-          <strong>Payment:</strong> For employers, provide fair compensation and
-          adhere to all applicable labor laws and regulations. For job seekers,
-          do not accept payment or benefits that violate any laws or your
-          ethical standards.
+          <strong>Payment: </strong> For employers, provide fair compensation
+          and adhere to all applicable labor laws and regulations. For job
+          seekers, do not accept payment or benefits that violate any laws or
+          your ethical standards.
         </li>
       </ol>
 
@@ -47,31 +48,31 @@ const TrustAndSafety = () => {
       <p>The following conduct is strictly prohibited on Walia Jobs:</p>
       <ol className="text-left space-y-3 py-3 list-decimal">
         <li>
-          <strong>Fraud:</strong> Engaging in fraudulent activities, including
+          <strong>Fraud: </strong> Engaging in fraudulent activities, including
           misrepresentation of information, fake job listings, or financial
           scams.
         </li>
         <li>
-          <strong>Discrimination:</strong> Discrimination based on race, gender,
-          age, religion, disability, nationality, or any other characteristic is
-          not tolerated.
+          <strong>Discrimination: </strong> Discrimination based on race,
+          gender, age, religion, disability, nationality, or any other
+          characteristic is not tolerated.
         </li>
         <li>
-          <strong>Harassment:</strong> Harassment, bullying, or threats towards
+          <strong>Harassment: </strong> Harassment, bullying, or threats towards
           other users are prohibited.
         </li>
         <li>
-          <strong>Illegal Activities:</strong> Any involvement in illegal
+          <strong>Illegal Activities: </strong> Any involvement in illegal
           activities, including but not limited to money laundering, human
           trafficking, and drug-related offenses, is strictly prohibited.
         </li>
         <li>
-          <strong>Spam:</strong>
+          <strong>Spam: </strong>
           Sending unsolicited or inappropriate messages or content to other
           users.
         </li>
         <li>
-          <strong>False Reviews:</strong>
+          <strong>False Reviews: </strong>
           Posting fake or misleading reviews to manipulate a user's reputation
           or the perception of a job or employer.
         </li>
@@ -94,28 +95,28 @@ const TrustAndSafety = () => {
       </p>
       <ol className="text-left space-y-3 py-3 list-decimal">
         <li>
-          <strong>Verification:</strong> Verify the identity and legitimacy of
+          <strong>Verification: </strong> Verify the identity and legitimacy of
           potential employers or job seekers.
         </li>
         <li>
-          <strong>Meet in Public:</strong>
+          <strong>Meet in Public: </strong>
           When meeting in person, choose public places and inform someone you
           trust about the meeting.
         </li>
         <li>
-          <strong>Financial Caution:</strong>
+          <strong>Financial Caution: </strong>
           Be cautious about sharing financial information or making payments
           before verifying the legitimacy of a job or employer.Be cautious about
           sharing financial information or making payments before verifying the
           legitimacy of a job or employer.
         </li>
         <li>
-          <strong>Online Safety:</strong>
+          <strong>Online Safety: </strong>
           Protect your personal and financial information online, and be
           cautious about clicking on suspicious links or downloading files.
         </li>
         <li>
-          <strong>Spam:</strong>
+          <strong>Spam: </strong>
           Sending unsolicited or inappropriate messages or content to other
           users.
         </li>
@@ -123,8 +124,10 @@ const TrustAndSafety = () => {
       <h1 className="text-lg font-medium pt-10 pb-3">Contact Us</h1>
       <p>
         If you have any questions or concerns about our Trust and Safety Policy
-        or believe that a user has violated it, please contact us at
-        support.waliaJobs.com
+        or believe that a user has violated it, please contact us at{" "}
+        <NavLink className="text-thm_root1_color underline" to="/contact">
+          Contact Us
+        </NavLink>
       </p>
       <p>
         Thank you for using Walia Jobs. We appreciate your commitment to
