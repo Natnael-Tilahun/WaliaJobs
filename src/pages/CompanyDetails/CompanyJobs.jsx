@@ -37,9 +37,20 @@ export const CompanyJobs = () => {
   // }
   if (!isJobsLoading && !isCompaniesLoading) {
     const company = companies.data.filter((company) => company._id == id);
-    console.log("companies", company, "jobss", jobsList.data[0]);
-    companyJobs = jobsList.data.filter((job) =>
-      company.jobs?.includes(job._id)
+    console.log(
+      "companies",
+      company,
+      "jobss",
+      jobsList.data,
+      "companyJobss",
+      company[0].jobs
+    );
+    companyJobs = jobsList.data.filter(
+      (job) =>
+        // if (company.jobs) {
+        company[0].jobs?.includes(job._id)
+      // }
+      // return false;
     );
   }
   console.log("company jobss", companyJobs);
