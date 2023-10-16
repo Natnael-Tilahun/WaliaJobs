@@ -122,7 +122,7 @@ export const Footer = () => {
               </NavLink>
 
               <NavLink
-                to="/terms&conditions"
+                to="/termsAndConditions"
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
@@ -134,7 +134,7 @@ export const Footer = () => {
               </NavLink>
 
               <NavLink
-                to="/trust&safety"
+                to="/trustandsafety"
                 className="pb-[1px]"
                 style={({ isActive }) => {
                   return {
@@ -185,7 +185,7 @@ export const Footer = () => {
             />
           </ul>
           <p className="text-gray-200 tracking-wide text-sm">
-            @WaliaJobs, Inc 2023. We love our users!
+            Copyright © 2023 Walia Jobs. We love our users!
           </p>
         </div>
       </div>

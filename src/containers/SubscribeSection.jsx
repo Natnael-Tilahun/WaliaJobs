@@ -8,7 +8,7 @@ export const SubscribeSection = () => {
 
       <div className="flex relative  flex-col text-left gap-1 ">
         <h1 className="text-lg md:text-3xl font-semibold tracking-wider">
-          Get New Job Notificatonss
+          Get New Job Notifications
         </h1>
         <p className=" md:text-3xl tracking-wider text-center font-light">
           Free Subscribe Our Newsletter Now!

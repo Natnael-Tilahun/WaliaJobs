@@ -47,6 +47,8 @@ import { LanguagesReviewSection } from "./pages/CVDetails/LanguagesReviewSection
 import { ReferencesReviewSection } from "./pages/CVDetails/ReferencesReviewSection";
 import { ReviewCV } from "./pages/ReviewCV";
 import store from "./app/store";
+import TrustAndSafety from "./pages/TrustAndSafety";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -139,6 +141,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </Route>
             <Route path="/review-cv/:id" element={<ReviewCV />} />
             <Route path="/savedJobs" element={<SavedJobs />} />
+            <Route path="/trustandsafety" element={<TrustAndSafety />} />
+            <Route
+              path="/termsAndConditions"
+              element={<TermsAndConditions />}
+            />
             <Route path="*" element={<ErrorPage />} />;
           </Route>
         </Routes>
