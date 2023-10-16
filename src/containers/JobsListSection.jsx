@@ -22,7 +22,7 @@ export const JobsList = () => {
 
   return (
     <div className="w-full  text-center py-5   md:py-16  px-3 md:px-5 lg:px-10">
-      <div className="bg-red-100 rounded-[60px] lg:px-16 px-2 md:px-5  py-10 xl:py-20">
+      <div className="bg-[#faeded] rounded-[60px] lg:px-16 px-2 md:px-5  py-10 xl:py-20">
         <h1 className="font-bold text-3xl lg:text-4xl lg:pb-5">Recent Jobs</h1>
         <div className="flex gap-10 flex-wrap py-12 justify-center lg:justify-between">
           {isError ? (
@@ -62,7 +62,7 @@ export const JobsList = () => {
         </div>
         <NavLink
           to="/jobs"
-          className="text-white bg-red-500 hover:bg-red-600 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300  font-bold  border-none px-5 py-4 rounded-lg"
+          className="text-white bg-red-400 hover:bg-red-500 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300  font-bold  border-none px-5 py-4 rounded-lg"
         >
           View all jobs
         </NavLink>

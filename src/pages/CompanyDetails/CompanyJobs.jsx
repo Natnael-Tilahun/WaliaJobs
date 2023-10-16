@@ -36,9 +36,10 @@ export const CompanyJobs = () => {
   //   return <div className="w-full h-full bg-green-500">loading</div>;
   // }
   if (!isJobsLoading && !isCompaniesLoading) {
-    console.log("companies", companies.data[0], "jobss", jobsList.data[0]);
+    const company = companies.data.filter((company) => company._id == id);
+    console.log("companies", company, "jobss", jobsList.data[0]);
     companyJobs = jobsList.data.filter((job) =>
-      companies.data[0].jobs.includes(job._id)
+      company.jobs?.includes(job._id)
     );
   }
   console.log("company jobss", companyJobs);

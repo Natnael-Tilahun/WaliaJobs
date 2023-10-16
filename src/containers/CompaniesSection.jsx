@@ -101,7 +101,7 @@ export const Companies = () => {
 
   return (
     <div className="w-full text-center bg-thm_background md:py-5 py-10 px-3 md:px-5 lg:px-10">
-      <div className="bg-blue-100 rounded-[60px] lg:px-5  py-10 md:py-10 px-2 md:px-5 xl:py-20">
+      <div className="bg-[#ebf2ff] rounded-[60px] lg:px-5  py-10 md:py-10 px-2 md:px-5 xl:py-20">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl capitalize lg:pb-5">
           Featured companies actively hiring
         </h1>
@@ -126,7 +126,7 @@ export const Companies = () => {
           </SkeletonLoader>
         ) : (
           <Slider {...settings} className="py-10 mb-10 w-full ">
-            {CompaniesData.map(
+            {companies.data.map(
               ({ _id, img, companyLogo, name, rating, reviews }) => (
                 <CompanyCard
                   key={_id}
@@ -147,7 +147,7 @@ export const Companies = () => {
         )}
         <NavLink
           to="/company"
-          className="text-white bg-blue-500 hover:bg-blue-600 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300  font-bold  border-none px-5 py-4 rounded-lg"
+          className="text-white bg-blue-400 hover:bg-blue-500 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300  font-bold  border-none px-5 py-4 rounded-lg"
         >
           View all companies
         </NavLink>

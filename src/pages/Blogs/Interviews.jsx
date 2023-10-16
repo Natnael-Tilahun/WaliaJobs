@@ -19,7 +19,7 @@ export const Interviews = () => {
 
   if (!isLoading) {
     interviewBlogDatas = blogs.data.filter(
-      (blog) => blog.blogCategory == "interviews"
+      (blog) => blog.blogCategory == "interview"
     );
   }
 

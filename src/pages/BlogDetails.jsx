@@ -79,7 +79,7 @@ export const BlogDetails = () => {
         <img
           src={blogDetail.img}
           alt="blog caption image"
-          className="shadow-md w-[100%]  lg:w-[50%] xl:w-[100%] self-center bg-center "
+          className="shadow-md w-[100%]  lg:w-[50%] xl:w-[40%] self-center bg-center "
         />
         {/* <div className="flex flex-col gap-2">
           <p className="py-2">
