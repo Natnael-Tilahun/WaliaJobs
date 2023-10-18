@@ -138,8 +138,8 @@ export const Companies = () => {
                   reviews={reviews}
                   className={` self-center  shadow-sm hover:scale-105 hover:shadow-lg transition ease-in-out delay-150 duration-300 bg-thm_card ${
                     companies.data.length > 4
-                      ? "xl:w-[20%] lg:w-[20%] bg-slate-600 w-[75%]"
-                      : "xl:w-[65%] lg:w-[80%]  w-[75%]"
+                      ? "xl:w-[65%] lg:w-[70%] w-[75%]"
+                      : "xl:w-[65%] lg:w-[70%]  w-[75%]"
                   } `}
                 />
               )
