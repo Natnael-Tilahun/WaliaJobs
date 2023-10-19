@@ -24,17 +24,11 @@ export const CompanyJobs = () => {
     isLoading: isCompaniesLoading,
     isError,
     error,
-    isFetching,
-    isSuccess,
   } = useGetCompaniesQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
   const { id } = useParams();
-  console.log("searchParams", id);
-  // if (isJobsLoading && isCompaniesLoading) {
-  //   return <div className="w-full h-full bg-green-500">loading</div>;
-  // }
   if (!isJobsLoading && !isCompaniesLoading) {
     const company = companies.data.filter((company) => company._id == id);
     console.log(
@@ -45,15 +39,10 @@ export const CompanyJobs = () => {
       "companyJobss",
       company[0].jobs
     );
-    companyJobs = jobsList.data.filter(
-      (job) =>
-        // if (company.jobs) {
-        company[0].jobs?.includes(job._id)
-      // }
-      // return false;
+    companyJobs = jobsList.data.filter((job) =>
+      company[0].jobs?.includes(job._id)
     );
   }
-  console.log("company jobss", companyJobs);
   return (
     <div className="flex gap-10 md:py-10  py-5  md:px-5 lg:px-10 px-5">
       {isJobsLoading || isCompaniesLoading ? (
@@ -84,14 +73,10 @@ export const CompanyJobs = () => {
               title,
               companyName,
               companyType,
-              jobType,
               description,
               workMode,
-              department,
-              experience,
               location,
               timeLeft,
-              companyLogo,
               isFavorite,
               jobTags,
             }) => (
@@ -106,6 +91,7 @@ export const CompanyJobs = () => {
                 location={location}
                 jobTags={jobTags}
                 timeLeft={timeLeft}
+                showShareAndSaveBtn={true}
                 img={companies.data[0].companyLogo}
                 className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
               />

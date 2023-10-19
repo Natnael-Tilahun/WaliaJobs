@@ -15,8 +15,6 @@ export const CompanyDetails = () => {
     isLoading,
     isError,
     error,
-    isFetching,
-    isSuccess,
   } = useGetCompaniesQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
@@ -34,6 +32,14 @@ export const CompanyDetails = () => {
         </div>
       );
     }
+  }
+
+  if (isError && error.status == 500) {
+    return (
+      <div className="col-span-full h-screen items-center flex ">
+        <NoResultFound title="Error" message={error} className=" w-full" />
+      </div>
+    );
   }
 
   return (

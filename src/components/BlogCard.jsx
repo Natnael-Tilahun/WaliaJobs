@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import generateExcerpt from "../utils/helperFunctions/generateExcerpt";
 
 export const BlogCard = ({ blogId, img, title, date, description }) => {
   return (
@@ -12,19 +13,22 @@ export const BlogCard = ({ blogId, img, title, date, description }) => {
         alt="blog caption image"
         className="shadow-md rounded-t-3xl"
       />
-      <div className="p-4 flex flex-col gap-2 lg:gap-4">
-        <h1 className="font-medium text-thm_primary_color dark:text-thm_dark_primary_color lg:text-lg">
+      <div className="p-4 flex flex-col gap-2 lg:gap-2">
+        <h1 className="font-medium text-thm_primary_color dark:text-thm_dark_primary_color lg:text-lg pt-2">
           {title}
         </h1>
         <p className="text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs lg:text-sm tracking-wider">
           {date}
         </p>
-        <p className="text-thm_secondary_color dark:text-thm_dark_secondary_color text-sm lg:text-base tracking-wide">
-          {description}
+        <p className="text-thm_secondary_color dark:text-thm_dark_secondary_color text-sm lg:text-sm leading-loose tracking-wide">
+          {generateExcerpt(description, 450)}
         </p>
-        <p className="lg:text-lg text-thm_root1_color dark:text-thm_dark_root1_color font-medium tracking-wide">
+        <NavLink
+          to={`/blog-details/${blogId}`}
+          className="lg:text-base text-thm_root1_color dark:text-thm_dark_root1_color font-medium tracking-wide"
+        >
           Read More....
-        </p>
+        </NavLink>
       </div>
     </NavLink>
   );

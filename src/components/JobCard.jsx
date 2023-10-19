@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   addFavouriteJob,
   removeFavouriteJobs,
-} from '../features/jobs/favouriteJobsSlice';
-import { useDispatch } from 'react-redux';
-import cauculateJobTimeLeft from '../utils/helperFunctions/calculateJobTimeLeft';
+} from "../features/jobs/favouriteJobsSlice";
+import { useDispatch } from "react-redux";
+import cauculateJobTimeLeft from "../utils/helperFunctions/calculateJobTimeLeft";
+import generateExcerpt from "../utils/helperFunctions/generateExcerpt";
 
 export const JobCard = ({
   title,
@@ -35,14 +36,14 @@ export const JobCard = ({
         className="flex flex-col gap-2 "
       >
         <div className="flex justify-between items-center">
-          <h1 className="font-medium capitalize text-base lg:text-xl text-left">
+          <h1 className="font-medium capitalize text-base lg:text-lg text-left">
             {title}
           </h1>
           {img && (
             <img src={img} alt="Company Logo" className="w-16 md:w-20 h-12" />
           )}
         </div>
-        <div className="flex gap-7 lg:gap-14 font-medium text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-sm">
+        <div className="flex gap-7 lg:gap-14 font-medium text-thm_secondary_color dark:text-thm_dark_secondary_color text-xs md:text-xs">
           <p>{companyName}</p>
           <p>
             <span>{workMode}</span>
@@ -52,23 +53,28 @@ export const JobCard = ({
           <p>{jobType}</p>
         </div>
         {description && (
-          <div className="text-left text-gray-500 dark:text-thm_dark_secondary_color text-xs md:text-sm flex gap-0 h-4 md:h-6">
+          <div className="text-left text-gray-500 dark:text-thm_dark_secondary_color text-xs md:text-xs flex gap-1 h-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-8 h-6 fill-gray-400"
+              className="w-6 h-6 fill-gray-400"
             >
               <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path>
             </svg>
-            <p className="overflow-hidden w-full">{description}</p>
+            <p className="h-fit w-full">{generateExcerpt(description, 80)}</p>
             {/* <span>...</span> */}
           </div>
         )}
-        {/* <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-sm">
+        <div className="flex font-medium text-gray-600 dark:text-thm_dark_secondary_color gap-5 lg:gap-5 text-xxs md:text-xs lg:text-xs">
           {jobTags &&
             jobTags.map(
-              (item, index) => index < 3 && <span key={index}>{item}</span>
+              (item, index) =>
+                index < 3 && (
+                  <span className="border-[1px] px-2 rounded-lg" key={index}>
+                    {item}
+                  </span>
+                )
             )}
-        </div> */}
+        </div>
       </NavLink>
 
       <div className="flex justify-between gap-3 text-sm lg:text-base">

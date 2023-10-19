@@ -23,7 +23,6 @@ export const Jobs = () => {
   var isLoading;
   var isError;
   var error;
-  var isFetching;
 
   if (filters.searchValue) {
     const {
@@ -56,7 +55,6 @@ export const Jobs = () => {
     isLoading = getIsLoading;
     isError = getIsError;
     error = getError;
-    isFetching = getIsFetching;
   }
 
   const displayedJobs = () => {
@@ -125,7 +123,7 @@ export const Jobs = () => {
             ))}
           </SkeletonLoader>
         ) : isError && error.status == 500 ? (
-          <NoResultFound />
+          <NoResultFound title="Error" message={error} />
         ) : (
           displayedJobs &&
           !isError &&

@@ -1,36 +1,41 @@
-import React from 'react';
-import { ReviewData } from '../../../data/reviews';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { ReviewData } from "../../../data/reviews";
+import { useParams } from "react-router-dom";
+import { useGetCompaniesQuery } from "../../app/CompaniesApi";
 
 export const Benefits = () => {
   const { id } = useParams();
-  console.log('searchParams', id);
-  const reviewDetail = ReviewData.filter((review) => review.companyId == id);
-  const benefits = reviewDetail.length > 0 && reviewDetail[0].benefits;
-  //   .filter((benefit) => {
-  //     // Retrieve the first key of the benefit object
-  //     const key = Object.keys(benefit)[0];
-  //     // Retrieve the corresponding value
-  //     const value = benefit[key];
-  //     // Return true if the value is true
-  //     return value === true;
-  //   });
-  console.log('benefits', reviewDetail, 'benefits', benefits['Cafeteria']);
-  //   console.log("benefits", reviewDetail, benefits);
+  console.log("searchParams", id);
+  let benefits;
+  const {
+    data: companies = [],
+    isLoading,
+    isError,
+    error,
+    isSuccess,
+  } = useGetCompaniesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  if (!isLoading) {
+    benefits = companies.data.filter((company) => company._id == id)[0]
+      .benefits;
+  }
+
   return (
     <div className="flex gap-10 md:pb-10 flex-col  py-5  md:px-5 lg:px-20 px-5">
       <h1 className="font-semibold text-2xl text-center">
-        {reviewDetail.length > 0 && reviewDetail[0].companyName} Employee
-        Benefits
+        {/* {benefits?.length > 0 && reviewDetail[0].companyName}  */}
+        Employee Benefits
       </h1>
 
       <div className="grid grid-cols-1 shadow-xl border-[1px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 flex-col gap-6 md:gap-10 lg:gap-16 xl:gap-14 md:flex-row py-5 lg:py-14 px-5">
         {/* {benefits} */}
         <div
           className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
-            benefits['International Relocation']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["InternationalRelocation"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -44,9 +49,9 @@ export const Benefits = () => {
         </div>
         <div
           className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
-            benefits['Free Transport']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["FreeTransport"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -62,9 +67,9 @@ export const Benefits = () => {
         </div>
         <div
           className={` bg-thm_background shadow-lg p-3 flex flex-col items-center rounded-xl gap-2 ${
-            benefits['Child Care']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["ChildCare"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -78,9 +83,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Gymnasium']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["Gymnasium"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -94,9 +99,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Cafeteria']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["Cafeteria"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -110,9 +115,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Work From Home']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["WorkFromHome"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -126,9 +131,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Free Food']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["FreeFood"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -142,9 +147,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Team Outings']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["TeamOutings"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -158,9 +163,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Education Assistance']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["EducationAssistance"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -174,9 +179,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Soft Skill Training']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["SoftSkillTraining"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -190,9 +195,9 @@ export const Benefits = () => {
         </div>
         <div
           className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
-            benefits['Health Insurance']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+            benefits["HealthInsurance"]
+              ? "opacity-100 border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
@@ -205,10 +210,10 @@ export const Benefits = () => {
           <h1 className="font-medium text-center">Health Insurance</h1>
         </div>
         <div
-          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2${
-            benefits['Job Training']
-              ? 'opacity-100 border-2 bg-thm_card'
-              : 'opacity-30'
+          className={`bg-thm_background shadow-lg p-3 flex flex-col  items-center rounded-xl gap-2 ${
+            benefits["JobTraining"]
+              ? "opacity-100  border-2 bg-thm_card"
+              : "opacity-30"
           }`}
         >
           <svg
