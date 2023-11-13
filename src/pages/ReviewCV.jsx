@@ -1,70 +1,75 @@
-import React, { useRef } from 'react';
-import { CVTemplate } from './CVDetails/CVTemplate';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { FormSections } from '../utils/FormSections';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMPLETED } from '../features/cv/cvCompletionInfoSlice';
-import ReactToPrint, { useReactToPrint } from 'react-to-print';
-import { useState } from 'react';
-import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from '../features/cv/cvThemeSlice';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import React, { useRef } from "react";
+import { CVTemplate } from "./CVDetails/CVTemplate";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { FormSections } from "../utils/FormSections";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_COMPLETED } from "../features/cv/cvCompletionInfoSlice";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
+import { useState } from "react";
+import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from "../features/cv/cvThemeSlice";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export const ReviewCV = () => {
   const navigate = useNavigate();
   const { id: CV_ID } = useParams();
   const dispatch = useDispatch();
   const componentRef = useRef();
-  const [CVColor, setCVColor] = useState("bg-blue-500")
+  const [CVColor, setCVColor] = useState("bg-blue-500");
   const { firstName, lastName } = useSelector((state) => state.personalInfo);
-  const [downloadExpanded, setDownloadExpanded] = useState(false)
+  const [downloadExpanded, setDownloadExpanded] = useState(false);
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.FINALIZE));
     navigate(`/CV-Details/${CV_ID}`);
   };
-  const [fileType, setFileType] = useState('pdf')
-  const [loader, setLoader] = useState(false)
+  const [fileType, setFileType] = useState("pdf");
+  const [loader, setLoader] = useState(false);
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
   const handleDownload = async (element) => {
-    const fileName = (firstName == "") ? "Walia Jobs Resume" : `${firstName} ${lastName}'s Resume WaliaJobs`
-    setLoader(true)
-    if (fileType == 'png' || fileType == "jpg") {
-      const html = document.getElementsByTagName('HTML')[0];
-      const body = document.getElementsByTagName('BODY')[0]
+    const fileName =
+      firstName == ""
+        ? "Walia Jobs Resume"
+        : `${firstName} ${lastName}'s Resume WaliaJobs`;
+    setLoader(true);
+    if (fileType == "png" || fileType == "jpg") {
+      const html = document.getElementsByTagName("HTML")[0];
+      const body = document.getElementsByTagName("BODY")[0];
       let htmlWidth = html.clientWidth;
       let bodyWidth = body.clientWidth;
-      body.style.width = '1350px'
+      body.style.width = "1350px";
 
-      const canvas = await html2canvas(element)
-      const image = canvas.toDataURL(fileType, 1.0)
-      const a = window.document.createElement("a")
+      const canvas = await html2canvas(element);
+      const image = canvas.toDataURL(fileType, 1.0);
+      const a = window.document.createElement("a");
       a.href = image;
-      a.download = (fileName + `.${fileType}`)
+      a.download = fileName + `.${fileType}`;
       a.click();
-      html.style.width = 'auto'
-      body.style.width = 'auto'
-      setLoader(false)
+      html.style.width = "auto";
+      body.style.width = "auto";
+      setLoader(false);
+    } else if (fileType == "pdf") {
+      const canvas = await html2canvas(element);
+      const image = canvas.toDataURL("img/png");
+      const doc = new jsPDF("p", "mm", "a4");
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(image, "PNG", 0, 0, componentWidth, componentHeight);
+      doc.save(fileName + ".pdf");
+      setLoader(false);
     }
-    else if (fileType == 'pdf') {
-      const canvas = await html2canvas(element)
-      const image = canvas.toDataURL('img/png')
-      const doc = new jsPDF('p', 'mm', 'a4')
-      const componentWidth = doc.internal.pageSize.getWidth()
-      const componentHeight = doc.internal.pageSize.getHeight()
-      doc.addImage(image, 'PNG', 0, 0, componentWidth, componentHeight)
-      doc.save(fileName + ".pdf")
-      setLoader(false)
-    }
-
-  }
+  };
 
   const cvThemeColorChangeHandler = (color) => {
-    dispatch(SET_CV_LEFT_SECTION_BACKGROUND_COLOR(color))
-  }
+    dispatch(SET_CV_LEFT_SECTION_BACKGROUND_COLOR(color));
+  };
+
+  const handleSaveCvToProfile = () => {
+    console.log("Cv saved successfully!");
+  };
 
   return (
     <div className=" h-[1450px] py-4  lg:p-[40px] w-full  flex flex-col lg:flex-row lg:justify-evenly gap-0 lg:gap-10 px-3 md:px-5 ">
@@ -76,27 +81,81 @@ export const ReviewCV = () => {
       />
 
       <div className=" lg:order-2 py-5 basis-1/4  self-center lg:self-start md:px-10  lg:px-5 md:text-xl font-bold flex flex-col gap-4 md:gap-3 ">
-        <div className=' w-full'>
-          <h1 className='text-lg'>Choose A color</h1>
-          <div className='flex flex-wrap gap-3 py-3'>
-            <p className='w-6 h-6 rounded-full bg-slate-800' onClick={() => cvThemeColorChangeHandler("bg-slate-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-blue-800' onClick={() => cvThemeColorChangeHandler("bg-blue-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-orange-800' onClick={() => cvThemeColorChangeHandler("bg-orange-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-red-800' onClick={() => cvThemeColorChangeHandler("bg-red-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-green-800' onClick={() => cvThemeColorChangeHandler("bg-green-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-lime-800' onClick={() => cvThemeColorChangeHandler("bg-lime-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-teal-800' onClick={() => cvThemeColorChangeHandler("bg-teal-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-cyan-800' onClick={() => cvThemeColorChangeHandler("bg-cyan-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-sky-800' onClick={() => cvThemeColorChangeHandler("bg-sky-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-indigo-800' onClick={() => cvThemeColorChangeHandler("bg-indigo-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-violet-800 ' onClick={() => cvThemeColorChangeHandler("bg-violet-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-purple-800' onClick={() => cvThemeColorChangeHandler("bg-purple-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-fuchsia-800' onClick={() => cvThemeColorChangeHandler("bg-fuchsia-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-pink-800' onClick={() => cvThemeColorChangeHandler("bg-pink-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-rose-800' onClick={() => cvThemeColorChangeHandler("bg-rose-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-yellow-800' onClick={() => cvThemeColorChangeHandler("bg-yellow-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-zinc-800' onClick={() => cvThemeColorChangeHandler("bg-zinc-800")}></p>
-            <p className='w-6 h-6 rounded-full bg-neutral-800' onClick={() => cvThemeColorChangeHandler("bg-neutral-800")}></p>
+        <div className=" w-full">
+          <h1 className="text-lg">Choose A color</h1>
+          <div className="flex flex-wrap gap-3 py-3">
+            <p
+              className="w-6 h-6 rounded-full bg-slate-800"
+              onClick={() => cvThemeColorChangeHandler("bg-slate-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-blue-800"
+              onClick={() => cvThemeColorChangeHandler("bg-blue-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-orange-800"
+              onClick={() => cvThemeColorChangeHandler("bg-orange-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-red-800"
+              onClick={() => cvThemeColorChangeHandler("bg-red-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-green-800"
+              onClick={() => cvThemeColorChangeHandler("bg-green-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-lime-800"
+              onClick={() => cvThemeColorChangeHandler("bg-lime-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-teal-800"
+              onClick={() => cvThemeColorChangeHandler("bg-teal-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-cyan-800"
+              onClick={() => cvThemeColorChangeHandler("bg-cyan-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-sky-800"
+              onClick={() => cvThemeColorChangeHandler("bg-sky-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-indigo-800"
+              onClick={() => cvThemeColorChangeHandler("bg-indigo-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-violet-800 "
+              onClick={() => cvThemeColorChangeHandler("bg-violet-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-purple-800"
+              onClick={() => cvThemeColorChangeHandler("bg-purple-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-fuchsia-800"
+              onClick={() => cvThemeColorChangeHandler("bg-fuchsia-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-pink-800"
+              onClick={() => cvThemeColorChangeHandler("bg-pink-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-rose-800"
+              onClick={() => cvThemeColorChangeHandler("bg-rose-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-yellow-800"
+              onClick={() => cvThemeColorChangeHandler("bg-yellow-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-zinc-800"
+              onClick={() => cvThemeColorChangeHandler("bg-zinc-800")}
+            ></p>
+            <p
+              className="w-6 h-6 rounded-full bg-neutral-800"
+              onClick={() => cvThemeColorChangeHandler("bg-neutral-800")}
+            ></p>
           </div>
         </div>
         <button
@@ -114,8 +173,10 @@ export const ReviewCV = () => {
           </span>
           Print
         </button>
-        <button className="flex items-center gap-3 py-1 px-2 shadow-md rounded-lg md:gap-5 border-[1px] hover:border-thm_root1_color hover:bg-blue-50 hover:text-thm_root1_color cursor-pointer"
-          onClick={() => setDownloadExpanded(prevState => !prevState)}>
+        <button
+          className="flex items-center gap-3 py-1 px-2 shadow-md rounded-lg md:gap-5 border-[1px] hover:border-thm_root1_color hover:bg-blue-50 hover:text-thm_root1_color cursor-pointer"
+          onClick={() => setDownloadExpanded((prevState) => !prevState)}
+        >
           <span>
             <svg
               className="w-6"
@@ -125,26 +186,51 @@ export const ReviewCV = () => {
               <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path>
             </svg>
           </span>
-          <p className='mr-auto'>Download</p>
-          {!downloadExpanded ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='w-7'><path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z"></path></svg> :
-            <svg xmlns="http://www.w3.org/2000/svg" className='w-7' viewBox="0 0 24 24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z"></path></svg>}
+          <p className="mr-auto">Download</p>
+          {!downloadExpanded ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-7"
+            >
+              <path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z"></path>
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-7"
+              viewBox="0 0 24 24"
+            >
+              <path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z"></path>
+            </svg>
+          )}
         </button>
-        {downloadExpanded &&
-          <div className='flex rounded-lg flex-col gap-3 px-2 py-5 shadow-md border-2 bg-thm_card'>
-            <select onChange={(e) => { setFileType(e.currentTarget.value) }} className=' w-full border-2 py-2 rounded-xl px-2 focus:border-thm_root1_color focus:outline-none' name="" id="">
-              <option value="" disabled>File Type</option>
-              <option value="pdf">
-                PDF
+        {downloadExpanded && (
+          <div className="flex rounded-lg flex-col gap-3 px-2 py-5 shadow-md border-2 bg-thm_card">
+            <select
+              onChange={(e) => {
+                setFileType(e.currentTarget.value);
+              }}
+              className=" w-full border-2 py-2 rounded-xl px-2 focus:border-thm_root1_color focus:outline-none"
+              name=""
+              id=""
+            >
+              <option value="" disabled>
+                File Type
               </option>
-              <option value="png">
-                PNG
-              </option>
-              <option value="jpg">
-                JPG
-              </option>
+              <option value="pdf">PDF</option>
+              <option value="png">PNG</option>
+              <option value="jpg">JPG</option>
             </select>
-            <button disabled={!(loader === false)} onClick={() => handleDownload(componentRef.current)} className='w-full border-2 p-2 rounded-xl bg-thm_root1_color text-white'>{loader ? "Downloading" : "Download"}</button>
-          </div>}
+            <button
+              disabled={!(loader === false)}
+              onClick={() => handleDownload(componentRef.current)}
+              className="w-full border-2 p-2 rounded-xl bg-thm_root1_color text-white"
+            >
+              {loader ? "Downloading" : "Download"}
+            </button>
+          </div>
+        )}
         <button className="flex border-[1px] py-2 px-2 shadow-md rounded-lg hover:border-thm_root1_color hover:bg-blue-50 gap-3 md:gap-5 hover:text-thm_root1_color cursor-pointer">
           <span>
             <svg
@@ -156,6 +242,20 @@ export const ReviewCV = () => {
             </svg>
           </span>
           Email
+        </button>
+        <button
+          type="button"
+          onClick={handleSaveCvToProfile}
+          className="flex gap-3 border-[1px] py-2 px-2 shadow-md rounded-lg hover:border-thm_root1_color hover:bg-blue-50 md:gap-5 hover:text-thm_root1_color"
+        >
+          <svg
+            className="w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7 19V13H17V19H19V7.82843L16.1716 5H5V19H7ZM4 3H17L21 7V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM9 15V19H15V15H9Z"></path>
+          </svg>
+          Save to profile
         </button>
         <button
           type="button"
