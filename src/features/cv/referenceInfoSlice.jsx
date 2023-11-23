@@ -1,26 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
 const actionTypes = (() => {
-  const SET_REFERENECES = 'SET_REFERENECES';
-  const UPDATE_REFERENECE = 'UPDATE_REFERENECE';
-  const DELETE_REFERENECE = 'DELETE_REFERENECE';
+  const SET_REFERENECES = "SET_REFERENECES";
+  const GET_REFERENECES = "GET_REFERENECES";
+  const UPDATE_REFERENECE = "UPDATE_REFERENECE";
+  const DELETE_REFERENECE = "DELETE_REFERENECE";
 
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_REFERENECES,
+    GET_REFERENECES,
     UPDATE_REFERENECE,
     DELETE_REFERENECE,
     CLEAR_CV_DATA,
   };
 })();
 const referenceInfoSlice = createSlice({
-  name: 'referenceInfo',
+  name: "referenceInfo",
   initialState,
   reducers: {
     [actionTypes.SET_REFERENECES](state, action) {
       state.push(action.payload);
+    },
+    [actionTypes.GET_REFERENECES](state, action) {
+      return state;
     },
     [actionTypes.UPDATE_REFERENECE](state, action) {
       const { id, values } = action.payload;
@@ -41,6 +46,7 @@ const referenceInfoSlice = createSlice({
 
 export const {
   SET_REFERENECES,
+  GET_REFERENECES,
   UPDATE_REFERENECE,
   DELETE_REFERENECE,
   CLEAR_CV_DATA,

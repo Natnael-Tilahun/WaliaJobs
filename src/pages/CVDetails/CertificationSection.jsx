@@ -21,8 +21,8 @@ export const CertificationSection = () => {
 
   let initialValues = {
     certificationName: "",
-    certificateIssuedBy: "",
-    certificateIssuedDate: "",
+    issuedBy: "",
+    issuedDate: "",
   };
 
   if (certificateId) {
@@ -31,7 +31,6 @@ export const CertificationSection = () => {
     )[0];
     filteredCertificate && (initialValues = filteredCertificate);
   }
-
 
   const handleSubmit = (values, { resetForm }) => {
     if (certificateId > 0) {
@@ -47,7 +46,6 @@ export const CertificationSection = () => {
     }
   };
 
-  
   return (
     <div className="basis-full md:basis-[40%] lg:basis-1/2 flex flex-col gap-8 px-5 lg:p-5">
       <div className="text-center flex flex-col gap-3">
@@ -115,13 +113,13 @@ export const CertificationSection = () => {
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2"></div>
             <button
               onClick={handleBack}
-              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="z-50 text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Back
             </button>
             <button
               type="submit"
-              className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="border-2 z-50 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Continue
             </button>

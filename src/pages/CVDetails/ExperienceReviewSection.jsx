@@ -54,7 +54,9 @@ export const ExperienceReviewSection = () => {
                   key={id}
                 >
                   <div className="flex gap-3 lg:gap-10 ">
-                    <p className="font-medium text-sm md:text-lg">{index + 1}</p>
+                    <p className="font-medium text-sm md:text-lg">
+                      {index + 1}
+                    </p>
                     <div className="flex text-sm md:text-base flex-col gap-1">
                       <h1 className=" font-semibold">{employer}</h1>
                       <p className="lg:text-lg">{jobTitle}</p>
@@ -63,7 +65,8 @@ export const ExperienceReviewSection = () => {
                           {city}, {country}
                         </p>
                         <p>
-                          <span>{startDate}</span> - <span>{endDate == "" ? "Present" : endDate }</span>
+                          <span>{startDate}</span> -{" "}
+                          <span>{endDate == "" ? "Present" : endDate}</span>
                         </p>
                       </div>
                     </div>
@@ -108,13 +111,13 @@ export const ExperienceReviewSection = () => {
         </div>
         <NavLink
           to={-1}
-          className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+          className="z-50 text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-5  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Back
         </NavLink>
         <button
           onClick={handleContinue}
-          className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+          className="border-2 z-50 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
         >
           Continue
         </button>

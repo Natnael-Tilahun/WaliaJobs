@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { CVTemplate } from "./CVDetails/CVTemplate";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { FormSections } from "../utils/FormSections";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { SET_CV_LEFT_SECTION_BACKGROUND_COLOR } from "../features/cv/cvThemeSlice";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { usePostCvMutation } from "../app/CvApi";
 
 export const ReviewCV = () => {
   const navigate = useNavigate();
@@ -16,8 +17,35 @@ export const ReviewCV = () => {
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [CVColor, setCVColor] = useState("bg-blue-500");
-  const { firstName, lastName } = useSelector((state) => state.personalInfo);
+  const [cvData, setCvData] = useState({ user: "Natnael Tilahun" });
+  const { firstName, lastName, position, profilePic } = useSelector(
+    (state) => state.personalInfo
+  );
+  const { achievements } = useSelector((state) => state.achievementsInfo);
+  const certification = useSelector((state) => state.certificationInfo);
+  const { city, country, email, phone } = useSelector(
+    (state) => state.contactInfo
+  );
+  const educationInfo = useSelector((state) => state.educationInfo);
+  const experienceInfo = useSelector((state) => state.experienceInfo);
+  const { interests } = useSelector((state) => state.interestsInfo);
+  const languageInfo = useSelector((state) => state.languageInfo);
+  const personalProjectsInfo = useSelector(
+    (state) => state.personalProjectsInfo
+  );
+  const referenceInfo = useSelector((state) => state.referenceInfo);
+  const { skills } = useSelector((state) => state.skillsInfo);
+  const { summary } = useSelector((state) => state.summaryInfo);
+
   const [downloadExpanded, setDownloadExpanded] = useState(false);
+
+  const [postCv, { isLoading: cvSaving, isError: cvSaveError }] =
+    usePostCvMutation();
+
+  useEffect(() => {
+    console.log("Updated cvData:", cvData);
+  }, [cvData]);
+
   const handleSubmit = () => {
     dispatch(SET_COMPLETED(FormSections.FINALIZE));
     navigate(`/CV-Details/${CV_ID}`);
@@ -68,7 +96,138 @@ export const ReviewCV = () => {
   };
 
   const handleSaveCvToProfile = () => {
-    console.log("Cv saved successfully!");
+    if (
+      firstName ||
+      lastName ||
+      position ||
+      profilePic ||
+      city ||
+      country ||
+      email ||
+      phone
+    ) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          heading: {
+            headerFirstName: firstName,
+            headerLastName: lastName,
+            headerPosition: position,
+            headerCity: city,
+            headerRegion: country,
+            headerPhone: phone,
+            headerEmail: email,
+            profilePic: profilePic,
+          },
+        };
+      });
+      console.log(
+        "At least one field in personalInfo and contactInfo is filled:",
+        cvData
+      );
+      // console.log("Cv saved successfully!", cvData);
+    }
+    if (achievements) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          achievements: achievements,
+        };
+      });
+      console.log("At least one field in achievements is filled:", cvData);
+    }
+    if (certification.length) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          certification: certification,
+        };
+      });
+      console.log("At least one field in certification is filled:", cvData);
+    }
+    if (educationInfo.length) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          educationInfo: educationInfo,
+        };
+      });
+      console.log("At least one field in educationInfo is filled:", cvData);
+    }
+    if (experienceInfo.length) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          experience: experienceInfo,
+        };
+      });
+      console.log("At least one field in experienceInfo is filled:", cvData);
+    }
+    if (interests) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          interest: interests,
+        };
+      });
+      console.log("At least one field in interestsInfo is filled:", cvData);
+    }
+    if (languageInfo.length) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          language: languageInfo,
+        };
+      });
+      console.log("At least one field in languageInfo is filled:", cvData);
+    }
+    if (personalProjectsInfo.length) {
+      console.log(
+        "At least one field in personalProjectsInfo is filled:",
+        personalProjectsInfo
+      );
+    }
+    if (referenceInfo.length) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          reference: referenceInfo,
+        };
+      });
+      console.log("At least one field in referenceInfo is filled:", cvData);
+    }
+    if (skills) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          skills: skills,
+        };
+      });
+      console.log("At least one field in skillsInfo is filled:", cvData);
+    }
+    if (summary) {
+      setCvData((prevState) => {
+        return {
+          ...prevState,
+          summary: summary,
+        };
+      });
+      console.log("At least one field in summaryInfo is filled:", cvData);
+    }
+
+    postCv(cvData)
+      .unwrap() // Ensure you're unwrapping the result for easier access to response data
+      .then((response) => {
+        console.log("CV data sent successfully:", response.data);
+        // Perform any actions upon successful data submission
+      })
+      .catch((error) => {
+        console.error("Error sending CV data:", error);
+        // Handle errors here
+      });
+    // else {
+    //   console.log("Personal info is empty. Please fill in the details.");
+    // }
   };
 
   return (
@@ -248,14 +407,20 @@ export const ReviewCV = () => {
           onClick={handleSaveCvToProfile}
           className="flex gap-3 border-[1px] py-2 px-2 shadow-md rounded-lg hover:border-thm_root1_color hover:bg-blue-50 md:gap-5 hover:text-thm_root1_color"
         >
-          <svg
-            className="w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path d="M7 19V13H17V19H19V7.82843L16.1716 5H5V19H7ZM4 3H17L21 7V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM9 15V19H15V15H9Z"></path>
-          </svg>
-          Save to profile
+          {cvSaving ? (
+            "Saving CV .. . "
+          ) : (
+            <span className="inline-block">
+              <svg
+                className="w-6 inline-block mr-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7 19V13H17V19H19V7.82843L16.1716 5H5V19H7ZM4 3H17L21 7V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM9 15V19H15V15H9Z"></path>
+              </svg>
+              Save to profile
+            </span>
+          )}
         </button>
         <button
           type="button"

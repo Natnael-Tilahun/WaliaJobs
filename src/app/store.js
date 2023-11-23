@@ -23,6 +23,8 @@ import { JobsApi } from "./JobsApi.js";
 import { CompaniesApi } from "./CompaniesApi";
 import { BlogsApi } from "./BlogsApi";
 import { ReviewsApi } from "./ReviewsApi";
+import { UsersApi } from "./UsersApi";
+import { CvApi } from "./CvApi";
 
 export default configureStore({
   reducer: {
@@ -50,12 +52,16 @@ export default configureStore({
     [CompaniesApi.reducerPath]: CompaniesApi.reducer,
     [BlogsApi.reducerPath]: BlogsApi.reducer,
     [ReviewsApi.reducerPath]: ReviewsApi.reducer,
+    [UsersApi.reducerPath]: UsersApi.reducer,
+    [CvApi.reducerPath]: CvApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       JobsApi.middleware,
       CompaniesApi.middleware,
       BlogsApi.middleware,
-      ReviewsApi.middleware
+      ReviewsApi.middleware,
+      UsersApi.middleware,
+      CvApi.middleware
     ),
 });

@@ -17,16 +17,15 @@ export const ExperienceSection = () => {
   const { id: experienceId } = useParams();
   const experiences = useSelector((state) => state.experienceInfo);
 
-
   let filterdExperience;
   let initialValues = {
-    jobTitle: "",
+    expJobTitle: "",
     employer: "",
-    city: "",
+    expCity: "",
     country: "",
-    startDate: "",
-    endDate: "",
-    isCurrentlyWorkingThere: false,
+    exStartDate: "",
+    expEndDate: "",
+    currentlyWorkHere: false,
   };
   if (experienceId) {
     filterdExperience = experiences.filter((exp) => exp.id == experienceId)[0];
@@ -34,8 +33,8 @@ export const ExperienceSection = () => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
-    if (values.isCurrentlyWorkingThere) {
-      values.endDate = "";
+    if (values.currentlyWorkHere) {
+      values.expEndDate = "";
     }
     if (experienceId > 0) {
       dispatch(UPDATE_EXPERIENCE({ values: values, id: experienceId }));
@@ -74,18 +73,18 @@ export const ExperienceSection = () => {
         {(formik) => (
           <Form className="flex  justify-between gap-3 md:gap-5 lg:gap-10 flex-wrap w-full">
             <div className="flex flex-col gap-1 md:gap-2 basis-[100%] lg:basis-[45%]">
-              <label htmlFor="jobTitle">Job Title</label>
+              <label htmlFor="expJobTitle">Job Title</label>
               <Field
                 type="text"
-                name="jobTitle"
-                id="jobTitle"
+                name="expJobTitle"
+                id="expJobTitle"
                 placeholder="Developer"
                 className="p-2 border-2 rounded-md"
-              // defaultValue={filterdExperience?.jobTitle}
+                // defaultValue={filterdExperience?.jobTitle}
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="jobTitle"
+                name="expJobTitle"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
@@ -103,17 +102,17 @@ export const ExperienceSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="city">City - State</label>
+              <label htmlFor="expCity">City - State</label>
               <Field
                 type="text"
-                name="city"
-                id="city"
+                name="expCity"
+                id="expCity"
                 placeholder="Addis Abeba"
                 className="p-2 border-2 rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="city"
+                name="expCity"
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
@@ -131,60 +130,58 @@ export const ExperienceSection = () => {
               />
             </div>
             <div className="flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2">
-              <label htmlFor="startDate">Start Date</label>
+              <label htmlFor="exStartDate">Start Date</label>
               <Field
                 type="date"
-                name="startDate"
-                id="startDate"
+                name="exStartDate"
+                id="exStartDate"
                 placeholder="Start Date"
                 className="p-2 border-2 w-full rounded-md focus:border-thm_root1_color focus:outline-none"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="startDate"
+                name="exStartDate"
               />
             </div>
             <div
               className={`flex flex-col basis-[100%] lg:basis-[45%] gap-1 md:gap-2`}
             >
-              <label htmlFor="endDate">End Date</label>
+              <label htmlFor="expEndDate">End Date</label>
               <Field
                 type="date"
-                name="endDate"
-                id="endDate"
+                name="expEndDate"
+                id="expEndDate"
                 placeholder="End Date"
-                disabled={formik.values.isCurrentlyWorkingThere}
+                disabled={formik.values.currentlyWorkHere}
                 className="p-2 border-2 focus:border-thm_root1_color focus:outline-none w-full rounded-md disabled:cursor-not-allowed"
               />
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="endDate"
+                name="expEndDate"
               />
             </div>
             <div className="basis-full justify-end flex gap-3 items-center">
               <Field
                 type="checkbox"
-                id="isCurrentlyWorkingThere"
-                name="isCurrentlyWorkingThere"
+                id="currentlyWorkHere"
+                name="currentlyWorkHere"
                 className="w-6 h-6"
               />
-              <label htmlFor="isCurrentlyWorkingThere">
-                I Currently Work Here
-              </label>
+              <label htmlFor="currentlyWorkHere">I Currently Work Here</label>
               <ErrorMessage
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
-                name="isCurrentlyWorkingThere"
+                name="currentlyWorkHere"
               />
             </div>
             <button
               onClick={handleBack}
-              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="z-50 text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Back
             </button>
             <button
               type="submit"
-              className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="border-2 z-50 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Continue
             </button>

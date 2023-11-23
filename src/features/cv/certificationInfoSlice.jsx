@@ -1,32 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
 const actionTypes = (() => {
-  const SET_CERTIFICATION = 'SET_CERTIFICATION';
-  const UPDATE_CERTIFICATE = 'UPDATE_CERTIFICATE';
-  const DELETE_CERTIFICATE = 'DELETE_CERTIFICATE';
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const SET_CERTIFICATION = "SET_CERTIFICATION";
+  const GET_CERTIFICATION = "GET_CERTIFICATION";
+  const UPDATE_CERTIFICATE = "UPDATE_CERTIFICATE";
+  const DELETE_CERTIFICATE = "DELETE_CERTIFICATE";
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_CERTIFICATION,
+    GET_CERTIFICATION,
     UPDATE_CERTIFICATE,
     DELETE_CERTIFICATE,
     CLEAR_CV_DATA,
   };
 })();
 const certificationInfoSlice = createSlice({
-  name: 'certificationInfo',
+  name: "certificationInfo",
   initialState,
   reducers: {
     [actionTypes.SET_CERTIFICATION](state, action) {
       // alert('Certification info submitted');
       state.push(action.payload);
     },
+    [actionTypes.GET_CERTIFICATION](state, action) {
+      return state;
+    },
     [actionTypes.UPDATE_CERTIFICATE](state, action) {
       const { id, values } = action.payload;
       const index = state.findIndex((cert) => cert.id == id);
       state[index] = values;
-      console.log('updatedd cert', state);
+      console.log("updatedd cert", state);
       return state;
     },
     [actionTypes.DELETE_CERTIFICATE](state, action) {
@@ -42,6 +47,7 @@ const certificationInfoSlice = createSlice({
 
 export const {
   SET_CERTIFICATION,
+  GET_CERTIFICATION,
   UPDATE_CERTIFICATE,
   DELETE_CERTIFICATE,
   CLEAR_CV_DATA,

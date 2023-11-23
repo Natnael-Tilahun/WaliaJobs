@@ -4,9 +4,11 @@ const initialState = [];
 
 const actionTypes = (() => {
   const SET_PERSONAL_PROJECTS = "personalProjectsInfo/SET_PERSONAL_PROJECTS";
+  const GET_PERSONAL_PROJECTS = "personalProjectsInfo/GET_PERSONAL_PROJECTS";
   const CLEAR_CV_DATA = "personalProjectsInfo/CLEAR_CV_DATA";
   return {
     SET_PERSONAL_PROJECTS,
+    GET_PERSONAL_PROJECTS,
     CLEAR_CV_DATA,
   };
 })();
@@ -18,12 +20,15 @@ const personalProjectsInfoSlice = createSlice({
     [actionTypes.SET_PERSONAL_PROJECTS](state, action) {
       state.personalProjects = action.payload;
     },
+    [actionTypes.GET_PERSONAL_PROJECTS](state, action) {
+      return state;
+    },
     [actionTypes.CLEAR_CV_DATA](state) {
       return { ...initialState };
     },
   },
 });
 
-export const { SET_PERSONAL_PROJECTS, CLEAR_CV_DATA } =
+export const { SET_PERSONAL_PROJECTS, GET_PERSONAL_PROJECTS, CLEAR_CV_DATA } =
   personalProjectsInfoSlice.actions;
 export default personalProjectsInfoSlice.reducer;

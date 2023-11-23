@@ -3,7 +3,10 @@ import { useNavigate, useParams } from "react-router";
 import { languageValidationSchema } from "../../validations/languageSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_LANGUAGE, UPDATE_LANGUAGE } from "../../features/cv/languageInfoSlice";
+import {
+  SET_LANGUAGE,
+  UPDATE_LANGUAGE,
+} from "../../features/cv/languageInfoSlice";
 import { ErrorMessageComponent } from "../../components/ErrorMessage";
 import { SET_COMPLETED } from "../../features/cv/cvCompletionInfoSlice";
 import { FormSections } from "../../utils/FormSections";
@@ -98,13 +101,13 @@ export const LanguageSection = () => {
 
             <button
               onClick={handleBack}
-              className=" text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="z-50 text-center mr-auto self-center border-2 uppercase border-thm_primary_color font-bold w-auto px-10  md:px-20 py-1 my-5 md:my-0 md:mt-2  rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Back
             </button>
             <button
               type="submit"
-              className="border-2 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
+              className="border-2 z-50 self-center text-center uppercase bg-thm_root1_color text-white font-bold px-5  md:px-20 py-2 lg:my-5 rounded-md basis-[40%] md:basis-[100%] lg:basis-[45%] xl:basis-[25%]"
             >
               Continue
             </button>

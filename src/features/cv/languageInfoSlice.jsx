@@ -1,26 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
 const actionTypes = (() => {
-  const SET_LANGUAGE = 'SET_LANGUAGE';
-  const UPDATE_LANGUAGE = 'UPDATE_LANGUAGE';
-  const DELETE_LANGUAGE = 'DELETE_LANGUAGE';
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const SET_LANGUAGE = "SET_LANGUAGE";
+  const GET_LANGUAGE = "GET_LANGUAGE";
+  const UPDATE_LANGUAGE = "UPDATE_LANGUAGE";
+  const DELETE_LANGUAGE = "DELETE_LANGUAGE";
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_LANGUAGE,
+    GET_LANGUAGE,
     UPDATE_LANGUAGE,
     DELETE_LANGUAGE,
     CLEAR_CV_DATA,
   };
 })();
 const languageInfoSlice = createSlice({
-  name: 'languageInfo',
+  name: "languageInfo",
   initialState,
   reducers: {
     [actionTypes.SET_LANGUAGE](state, action) {
-      // alert('Language info submitted');
       state.push(action.payload);
+    },
+    [actionTypes.GET_LANGUAGE](state, action) {
+      return state;
     },
     [actionTypes.UPDATE_LANGUAGE](state, action) {
       const { id, values } = action.payload;
@@ -40,6 +44,11 @@ const languageInfoSlice = createSlice({
   },
 });
 
-export const { SET_LANGUAGE, UPDATE_LANGUAGE, DELETE_LANGUAGE, CLEAR_CV_DATA } =
-  languageInfoSlice.actions;
+export const {
+  SET_LANGUAGE,
+  GET_LANGUAGE,
+  UPDATE_LANGUAGE,
+  DELETE_LANGUAGE,
+  CLEAR_CV_DATA,
+} = languageInfoSlice.actions;
 export default languageInfoSlice.reducer;

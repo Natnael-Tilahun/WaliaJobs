@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 // const initialState = {
@@ -61,24 +61,29 @@ const initialState = [];
 //   }, // TODO define type of CV object here or use interface?
 // };
 const actionTypes = (() => {
-  const SET_EDUCATION = 'SET_EDUCATION';
-  const UPDATE_EDUCATION = 'UPDATE_EDUCATION';
-  const DELETE_EDUCATION = 'DELETE_EDUCATION';
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const SET_EDUCATION = "SET_EDUCATION";
+  const GET_EDUCATION = "GET_EDUCATION";
+  const UPDATE_EDUCATION = "UPDATE_EDUCATION";
+  const DELETE_EDUCATION = "DELETE_EDUCATION";
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_EDUCATION,
+    GET_EDUCATION,
     UPDATE_EDUCATION,
     DELETE_EDUCATION,
     CLEAR_CV_DATA,
   };
 })();
 const educationInfoSlice = createSlice({
-  name: 'educationInfo',
+  name: "educationInfo",
   initialState,
   reducers: {
     [actionTypes.SET_EDUCATION](state, action) {
       // alert('set education info');
       state.push(action.payload);
+    },
+    [actionTypes.GET_EDUCATION](state, action) {
+      return state;
     },
     [actionTypes.UPDATE_EDUCATION](state, action) {
       const { id, values } = action.payload;
@@ -99,6 +104,7 @@ const educationInfoSlice = createSlice({
 
 export const {
   SET_EDUCATION,
+  GET_EDUCATION,
   UPDATE_EDUCATION,
   DELETE_EDUCATION,
   CLEAR_CV_DATA,

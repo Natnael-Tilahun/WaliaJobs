@@ -1,15 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
 const actionTypes = (() => {
-  const SET_EXPERIENCE = 'SET_EXPERIENCE';
-  const SET_EXPERIENCE_DETAILS = 'SET_EXPERIENCE_DETAILS';
-  const UPDATE_EXPERIENCE = 'UPDATE_EXPERIENCE';
-  const DELETE_EXPERIENCE = 'DELETE_EXPERIENCE';
-  const CLEAR_CV_DATA = 'CLEAR_CV_DATA';
+  const SET_EXPERIENCE = "SET_EXPERIENCE";
+  const GET_EXPERIENCE = "GET_EXPERIENCE";
+  const SET_EXPERIENCE_DETAILS = "SET_EXPERIENCE_DETAILS";
+  const UPDATE_EXPERIENCE = "UPDATE_EXPERIENCE";
+  const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
+  const CLEAR_CV_DATA = "CLEAR_CV_DATA";
   return {
     SET_EXPERIENCE,
+    GET_EXPERIENCE,
     SET_EXPERIENCE_DETAILS,
     UPDATE_EXPERIENCE,
     DELETE_EXPERIENCE,
@@ -17,7 +19,7 @@ const actionTypes = (() => {
   };
 })();
 const experienceInfoSlice = createSlice({
-  name: 'experienceInfo',
+  name: "experienceInfo",
   initialState,
   reducers: {
     [actionTypes.SET_EXPERIENCE](state, action) {
@@ -25,7 +27,9 @@ const experienceInfoSlice = createSlice({
       // state.push({ ...action.payload, id: state.length });
       state.push(action.payload);
     },
-
+    [actionTypes.GET_EXPERIENCE](state, action) {
+      return state;
+    },
     [actionTypes.SET_EXPERIENCE_DETAILS](state, action) {
       // console.log('acitons', action.payload);
       const latestExperience = state[state.length - 1];
@@ -62,6 +66,7 @@ const experienceInfoSlice = createSlice({
 
 export const {
   SET_EXPERIENCE,
+  GET_EXPERIENCE,
   SET_EXPERIENCE_DETAILS,
   UPDATE_EXPERIENCE,
   DELETE_EXPERIENCE,
