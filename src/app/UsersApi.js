@@ -10,7 +10,7 @@ export const UsersApi = createApi({
     getProfile: builder.query({
       query: () => "/profile",
     }),
-    getUser: builder.query({
+    login: builder.mutation({
       query: (credentials) => ({
         url: "/login",
         method: "POST",
@@ -30,5 +30,5 @@ export const UsersApi = createApi({
   }),
 });
 
-export const { useGetUserQuery, usePostUserMutation, useGetProfileQuery } =
+export const { useLoginMutation, usePostUserMutation, useGetProfileQuery } =
   UsersApi;
