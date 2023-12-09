@@ -284,7 +284,7 @@ function Header() {
 
       <div
         data-testid="menu"
-        className={`mr-auto lg:hidden bg-thm_secondary_background flex-col py-10 shadow-md gap-0 bg-thm_secondary_background flex-1 min-h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
+        className={`mr-auto lg:hidden flex-col pb-10 shadow-md gap-0 bg-thm_secondary_background flex-1 min-h-screen z-50 absolute top-0 w-screen left-0 right-0  dark:bg-thm_dark_secondary_background dark:text-thm_dark_primary_color  ${
           collapseMenu ? "flex" : "hidden"
         }`}
       >
