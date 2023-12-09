@@ -44,7 +44,6 @@ export const Login = () => {
           position: toast.POSITION.TOP_CENTER,
         });
         resetForm();
-        alert(from);
         navigate(from, { replace: true });
       })
       .catch((loginError) => {
