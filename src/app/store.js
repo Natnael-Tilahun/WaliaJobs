@@ -16,15 +16,16 @@ import referenceInfoSlice from "../features/cv/referenceInfoSlice";
 import cvCompletionInfoSlice from "../features/cv/cvCompletionInfoSlice";
 import contactFormSlice from "../features/contact/contactFormSlice";
 import signupFormSlice from "../features/users/signupFormSlice";
-import loginFormSlice from "../features/users/loginFormSlice";
+import loginFormSlice from "../features/users/authSlice";
 import jobFilterSlice from "../features/jobs/jobFilterSlice";
 import cvThemeSlice from "../features/cv/cvThemeSlice";
 import { JobsApi } from "./JobsApi.js";
 import { CompaniesApi } from "./CompaniesApi";
 import { BlogsApi } from "./BlogsApi";
 import { ReviewsApi } from "./ReviewsApi";
-import { UsersApi } from "./UsersApi";
+import { AuthApi } from "./AuthApi";
 import { CvApi } from "./CvApi";
+import authSlice from "../features/users/authSlice";
 
 export default configureStore({
   reducer: {
@@ -46,13 +47,13 @@ export default configureStore({
     cvCompletionInfo: cvCompletionInfoSlice,
     contactForm: contactFormSlice,
     signupForm: signupFormSlice,
-    loginForm: loginFormSlice,
+    auth: authSlice,
     cvTheme: cvThemeSlice,
     [JobsApi.reducerPath]: JobsApi.reducer,
     [CompaniesApi.reducerPath]: CompaniesApi.reducer,
     [BlogsApi.reducerPath]: BlogsApi.reducer,
     [ReviewsApi.reducerPath]: ReviewsApi.reducer,
-    [UsersApi.reducerPath]: UsersApi.reducer,
+    [AuthApi.reducerPath]: AuthApi.reducer,
     [CvApi.reducerPath]: CvApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -61,7 +62,7 @@ export default configureStore({
       CompaniesApi.middleware,
       BlogsApi.middleware,
       ReviewsApi.middleware,
-      UsersApi.middleware,
+      AuthApi.middleware,
       CvApi.middleware
     ),
 });

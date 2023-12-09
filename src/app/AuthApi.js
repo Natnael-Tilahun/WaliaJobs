@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const UsersApi = createApi({
+export const AuthApi = createApi({
   reducerPath: "users",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://walia-jobs-server.onrender.com/api/v1/user",
@@ -17,7 +17,7 @@ export const UsersApi = createApi({
         body: credentials,
       }),
     }),
-    postUser: builder.mutation({
+    signup: builder.mutation({
       query: (userData) => ({
         url: "/register",
         method: "POST",
@@ -30,5 +30,5 @@ export const UsersApi = createApi({
   }),
 });
 
-export const { useLoginMutation, usePostUserMutation, useGetProfileQuery } =
-  UsersApi;
+export const { useLoginMutation, useSignupMutation, useGetProfileQuery } =
+  AuthApi;

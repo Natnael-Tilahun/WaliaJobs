@@ -13,8 +13,14 @@ import { Jobs } from "./pages/Jobs";
 import { Outlet } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { Analytics } from "@vercel/analytics/react";
+import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { SET_USER } from "./features/users/authSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
   const TRACKING_ID = "G-QPPSENWWKM";
   ReactGA.initialize(TRACKING_ID);
 
@@ -47,10 +53,12 @@ function App() {
       hitType: "pageview",
       page: window.location.pathname + window.location.search,
     });
+    dispatch(SET_USER(user));
   }, []);
 
   return (
     <div className="App w-full m-0 box-border bg-thm_secondary_background">
+      <ToastContainer />
       <Header />
       <Outlet />
       <Footer />

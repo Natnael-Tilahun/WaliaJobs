@@ -50,6 +50,7 @@ import store from "./app/store";
 import TrustAndSafety from "./pages/TrustAndSafety";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PrivateRoute from "./components/PrivateRoute";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -82,7 +83,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route index element={<RecommendedCV />} />
               <Route path="alltemplates" element={<CVTemplates />} />
             </Route>
-            <Route path="CV-Details/:id" element={<CVDetails />}>
+            <Route
+              path="CV-Details/:id"
+              element={
+                <PrivateRoute>
+                  <CVDetails />
+                </PrivateRoute>
+              }
+            >
               <Route index element={<ContactSection />} />
               <Route
                 path="Experience-Section/:id"
