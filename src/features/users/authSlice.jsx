@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userId: "",
-  token: "",
+  name: "",
 };
 
 const actionTypes = (() => {
@@ -28,20 +28,20 @@ const authSlice = createSlice({
         "user",
         JSON.stringify({
           userId: action.payload.userId,
-          token: action.payload.token,
+          name: action.payload.name,
         })
       );
-      state.name = action.payload.userId;
-      state.token = action.payload.token;
+      state.userId = action.payload.userId;
+      state.name = action.payload.name;
     },
     [actionTypes.SET_LOGOUT](state, action) {
       localStorage.clear();
-      (state.userId = ""), (state.token = "");
+      state.userId = "";
+      state.name = "";
     },
     [actionTypes.SELECT_AUTH](state) {
       const token = state.token || null; // Return null if token doesn't exist
-
-      return state;
+      return token;
     },
   },
 });

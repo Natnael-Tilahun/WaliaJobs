@@ -36,19 +36,25 @@ export const Login = () => {
       .unwrap() // Ensure you're unwrapping the result for easier access to response data
       .then((response) => {
         console.log("User logged in successfully:", response.data);
+        //         const cookies = new Cookies();
+        // const checkToken = cookies.get("checkToken");
+        // console.log("cookie: ", )
         dispatch(
-          SET_USER({ userId: response.data.userId, token: response.token })
+          SET_USER({ userId: response.data.userId, name: response.data })
         );
         // Perform any actions upon successful data submission
-        toast.success(`Welcome back ${response.data.userId}.`, {
+        toast.success(`Welcome back ${response.data}.`, {
           position: toast.POSITION.TOP_CENTER,
         });
         resetForm();
         navigate(from, { replace: true });
       })
-      .catch((loginError) => {
-        console.error("Error logging user:", loginError);
-        toast.error(`${loginError.data.message}`, {
+      .catch((err) => {
+        console.error(
+          "Error logging user:",
+          err?.data?.message || loginError?.message
+        );
+        toast.error(`${err?.data?.message || loginError?.message} `, {
           position: toast.POSITION.TOP_CENTER,
         });
         // Handle errors here

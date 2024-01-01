@@ -8,8 +8,9 @@ function Header() {
   const [collapseProfileMenu, setCollapseProfileMenu] = useState(true);
   const dispatch = useDispatch();
   const profileMenuRef = useRef(null);
-  const token = useSelector((state) => state.auth.token);
-  const isLoggedin = !!token; // true if token exists, false if token is falsy
+  const user = useSelector((state) => state.auth);
+  const isLoggedin = !!user.name; // true if token exists, false if token is falsy
+
   const navigate = useNavigate();
   const menuHandler = () => {
     setCollapseMenu(!collapseMenu);
@@ -210,7 +211,7 @@ function Header() {
                     className="w-20 h-20 self-center"
                   />
                   <h1 className="text-center text-lg font-medium">
-                    Natnael Tilahun
+                    {user.name}{" "}
                   </h1>
                   <hr className="my-2" />
                   <NavLink

@@ -61,8 +61,8 @@ export const Signup = () => {
         navigate("/login");
       })
       .catch((error) => {
-        console.error("Error registering user:", error);
-        toast.error(`${error.data.message}`, {
+        console.error("Error registering user:", error || signupError?.message);
+        toast.error(`${error?.data?.message || signupError?.message}`, {
           position: toast.POSITION.TOP_CENTER,
           toastId: customId,
         });
