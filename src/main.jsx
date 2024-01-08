@@ -51,6 +51,8 @@ import TrustAndSafety from "./pages/TrustAndSafety";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PrivateRoute from "./components/PrivateRoute";
+import { Profile } from "./pages/Profile";
+import { Settings } from "./pages/Settings";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -62,6 +64,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/company" element={<Company />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blogs" element={<Blogs />}>

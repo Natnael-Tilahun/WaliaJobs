@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SET_JOB_FILTERS_BY_DEPARTMENT } from "../features/jobs/jobFilterSlice";
 import { useGetJobsQuery } from "../app/JobsApi";
+import Aos from "aos";
 
 export const JobCatagories = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ export const JobCatagories = () => {
       search: `?department=${encodedDepartmentFilter}`,
     });
   };
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   const {
     data: jobs = [],
@@ -62,7 +67,8 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
-        className="flex flex-col hover:shadow-xl border-2 justify-center shadow-md items-center px-5 text-xxs md:text-sm py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
+        data-aos="zoom-in-up"
+        className="flex  flex-col hover:shadow-xl border-2 justify-center shadow-md items-center px-5 text-xxs md:text-sm py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
           <svg
@@ -82,6 +88,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 hover:shadow-xl justify-center shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -103,6 +110,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 hover:shadow-xl justify-center shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -123,6 +131,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 hover:shadow-xl justify-center shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -143,6 +152,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 hover:shadow-xl justify-center shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -165,6 +175,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 hover:shadow-xl justify-center shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -185,6 +196,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -205,6 +217,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -225,6 +238,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl shadow-md items-center px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -245,6 +259,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl items-center shadow-md px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -265,6 +280,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl items-center shadow-md px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">
@@ -285,6 +301,7 @@ export const JobCatagories = () => {
         onClick={(e) => {
           goToPosts(e);
         }}
+        data-aos="zoom-in-up"
         className="flex flex-col border-2 justify-center hover:shadow-xl items-center shadow-md px-5 py-3 border-blue-300 rounded-bl-3xl rounded-tr-3xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 bg-thm_card"
       >
         <div className="flex gap-1 md:gap-2">

@@ -1,8 +1,17 @@
-import React from "react";
+import Aos from "aos";
+import React, { useEffect } from "react";
 
 export const SubscribeSection = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
-    <div className="w-full h-full overflow-hidden relative text-center md:py-20 py-16 px-10 lg:justify-evenly md:items-center md:px-10 bg-thm_secondary_background items-center md:justify-between lg:px-20 flex flex-col lg:flex-row gap-5 md:gap-8">
+    <div
+      data-aos="fade-right"
+      data-aos-offset="300"
+      data-aos-easing="ease-in-sine"
+      className="w-full h-full overflow-hidden relative text-center md:py-20 py-16 px-10 lg:justify-evenly md:items-center md:px-10 bg-thm_secondary_background items-center md:justify-between lg:px-20 flex flex-col lg:flex-row gap-5 md:gap-8"
+    >
       <div className="bg-orange-200  opacity-30 hidden md:flex -right-24 -top-20  -z-0 md:absolute  h-64  w-96  rounded-t-[51%] rounded-r-[41%] rounded-b-[59%] rounded-l-[49%]"></div>
       <div className="bg-blue-100 opacity-50 -bottom-10 -left-48 md:-left-20 z-0 absolute  h-64  w-96  rounded-t-[61%] rounded-r-[59%] rounded-b-[38%] rounded-l-[62%]"></div>
 

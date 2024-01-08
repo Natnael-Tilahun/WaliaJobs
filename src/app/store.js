@@ -26,6 +26,7 @@ import { ReviewsApi } from "./ReviewsApi";
 import { AuthApi } from "./AuthApi";
 import { CvApi } from "./CvApi";
 import authSlice from "../features/users/authSlice";
+import { ProfileApi } from "./ProfileApi";
 
 export default configureStore({
   reducer: {
@@ -55,6 +56,7 @@ export default configureStore({
     [ReviewsApi.reducerPath]: ReviewsApi.reducer,
     [AuthApi.reducerPath]: AuthApi.reducer,
     [CvApi.reducerPath]: CvApi.reducer,
+    [ProfileApi.reducerPath]:ProfileApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -63,6 +65,7 @@ export default configureStore({
       BlogsApi.middleware,
       ReviewsApi.middleware,
       AuthApi.middleware,
-      CvApi.middleware
+      CvApi.middleware,
+      ProfileApi.middleware
     ),
 });

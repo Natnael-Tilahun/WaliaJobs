@@ -1,10 +1,15 @@
-import React from "react";
+import Aos from "aos";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <div
+      data-aos="flip-down"
       className={twMerge(
         `shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-82 gap-1 p-5 border-[1px] items-center`,
         className

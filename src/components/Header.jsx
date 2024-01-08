@@ -215,7 +215,7 @@ function Header() {
                   </h1>
                   <hr className="my-2" />
                   <NavLink
-                    to="#"
+                    to="profile"
                     className="hover:text-thm_primary_color w-full px-4 py-2 text-left  inline-flex gap-4 items-center hover:bg-slate-100"
                     role="menuitem"
                     tabIndex="-1"
@@ -234,7 +234,7 @@ function Header() {
                     Profile
                   </NavLink>
                   <NavLink
-                    to="#"
+                    to="settings"
                     className="hover:text-thm_primary_color  w-full px-4 py-2 text-left  inline-flex gap-4 items-center hover:bg-slate-100"
                     role="menuitem"
                     tabIndex="-1"
