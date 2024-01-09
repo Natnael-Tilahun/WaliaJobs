@@ -185,11 +185,11 @@ function Header() {
 
             {/* profile menu  */}
             <div
-              className="relative inline-block text-left"
+              className="relative inline-block  text-left"
               ref={profileMenuRef}
             >
               <img
-                src="/profile1.jpg"
+                src="/profileAvatar.png"
                 alt="Profile Photo image"
                 className="w-12 h-12 rounded-full shadow-lg cursor-pointer hover:border-2 hover:shadow-xl"
                 onClick={toggleProfileMenuHandler}

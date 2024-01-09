@@ -3,7 +3,7 @@ import React from "react";
 export const NoResultFound = ({ className, title, message }) => {
   return (
     <div
-      className={`w-full h-56 md:h-96 px-5 bg-thm_background dark:bg-thm_dark_background rounded-lg shadow-md max-h-screen flex flex-col gap-2 justify-center items-center ${className}`}
+      className={`w-full h-56 md:h-96 px-5 bg-[#ebf2ff] dark:bg-thm_dark_background rounded-lg shadow-md max-h-screen flex flex-col gap-2 justify-center items-center ${className}`}
     >
       <h1 className="font-medium lg:text-lg dark:text-thm_dark_primary_color">
         {title ? title : "No result found"}

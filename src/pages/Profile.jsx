@@ -62,14 +62,8 @@ export const Profile = () => {
   };
 
   return (
-    <div className="w-full h-full text-left md:py-10 bg-thm_secondary_background py-5 flex-col  justify-center items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-5">
-      <div className="w-full md:w-[80%] lg:w-[90%] xl:w-[80%] shadow-md gap-10 bg-thm_card flex flex-col justify-center py-10 px-10 rounded-md">
-        <div>
-          <h1 className="text-2xl pb-1 font-medium">Profile</h1>
-          <p className="text-sm text-thm_secondary_color">
-            Update your profile{" "}
-          </p>
-        </div>
+    <div className="w-full md:w-[80%] lg:w-[90%] xl:w-[80%] min-h-[96]  text-left md:py-10 bg-thm_secondary_background py-5 flex-col mx-auto  items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-10">
+      <div className="w-full h-96 bg-thm_card gap-10 border-[1px] shadow-sm flex flex-col  p-10 rounded-xl">
         <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
@@ -77,52 +71,16 @@ export const Profile = () => {
         >
           {(form) => (
             <Form className="grid md:grid-cols-2 w-full gap-6">
-              <div className="flex flex-col gap-3">
-                <label htmlFor="email">
-                  Full Name{" "}
-                  <span className="text-red-500 font-medium text-lg"> *</span>
-                </label>
-                <Field
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
-                  placeholder="Enter your full name"
-                />
-                <ErrorMessage
-                  name="fullName"
-                  render={(msg) => <ErrorMessageComponent msg={msg} />}
-                />
-              </div>
-
-              <div className="flex flex-col gap-3">
-                <label htmlFor="email">
-                  Email Address{" "}
-                  <span className="text-red-500 font-medium text-lg"> *</span>
-                </label>
-                <Field
-                  type="email"
-                  id="email"
-                  name="email"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
-                  placeholder="Enter your email address"
-                />
-                <ErrorMessage
-                  name="email"
-                  render={(msg) => <ErrorMessageComponent msg={msg} />}
-                />
-              </div>
-
-              <div className="w-ful col-span-full flex justify-between py-4">
+              <div className="w-full col-span-full flex justify-between pb-4">
+                <div>
+                  <h1 className="text-2xl  font-medium">Profile</h1>
+                  <p className="text-sm text-thm_secondary_color">
+                    Update your profile{" "}
+                  </p>
+                </div>
                 <button
                   type="submit"
-                  className={`bg-gray-400 px-4 py-2  rounded-lg font-medium text-white   w-fit`}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className={`bg-thm_root1_color py-2 px-4 rounded-lg font-medium text-white flex justify-center items-center gap-  ${
+                  className={`bg-thm_root1_color h-fit py-2 px-4 text-sm rounded-lg font-medium text-white flex justify-center items-center gap-  ${
                     isLoginLoading
                       ? "disabled cursor-not-allowed bg-thm_secondary_background"
                       : ""
@@ -140,7 +98,7 @@ export const Profile = () => {
                     </svg>
                   </span>
                   <span className={`${isLoginLoading && "hidden"}`}>
-                    Update{" "}
+                    Save Changes{" "}
                   </span>
                   <span
                     className={`${
@@ -150,6 +108,46 @@ export const Profile = () => {
                     Loging
                   </span>
                 </button>
+              </div>
+              <div className="flex  flex-col col-span-full gap-3">
+                <label htmlFor="profilePicture">Profile Picture </label>
+                <Field
+                  type="file"
+                  id="profilePicture"
+                  name="profilePicture"
+                  className=" border-2 border-thm_root1_color rounded-md py-1 px-5 w-fit focus:border-thm_root1_color focus:outline-none"
+                  placeholder="Select your photo"
+                />
+              </div>
+              <div className="flex  flex-col gap-3">
+                <label htmlFor="email">Full Name </label>
+                <Field
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  placeholder="Enter your full name"
+                />
+                <ErrorMessage
+                  name="fullName"
+                  render={(msg) => <ErrorMessageComponent msg={msg} />}
+                />
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label htmlFor="email">Email Address </label>
+                <Field
+                  type="email"
+                  id="email"
+                  disabled
+                  name="email"
+                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  placeholder="Enter your email address"
+                />
+                <ErrorMessage
+                  name="email"
+                  render={(msg) => <ErrorMessageComponent msg={msg} />}
+                />
               </div>
             </Form>
           )}
