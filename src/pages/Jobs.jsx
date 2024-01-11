@@ -141,7 +141,7 @@ export const Jobs = () => {
                 jobTags={job.jobTags}
                 closingDate={job.closingDate}
                 img={job.img}
-                className="min-w-[100%] bg-thm_background shadow-lg transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 "
+                className="min-w-[100%] bg-thm_background shadow-sm transition ease-in-out delay-150  hover:-translate-y-1 hover:shadow-md hover:scale-105 duration-300 border-[1px]"
                 searchParams={searchParams.toString()}
                 showShareAndSaveBtn={true}
                 isFavorite={job.isFavorite}

@@ -5,7 +5,7 @@ import { loginFormValidationSchema } from "../validations/loginFormSchema";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { SET_USER } from "../features/users/authSlice";
-import { useLoginMutation } from "../app/AuthApi";
+import { useGetProfileQuery, useLoginMutation } from "../app/AuthApi";
 import { toast } from "react-toastify";
 
 export const Profile = () => {
@@ -18,10 +18,31 @@ export const Profile = () => {
     password: "",
   };
 
+  const {
+    data: profileDetail = [],
+    isLoading: profileIsLoading,
+    isError: profileIsError,
+    error: profileError,
+    isFetching: profileIsFetching,
+  } = useGetProfileQuery();
+
   const [
     login,
     { isLoading: isLoginLoading, isError: isLoginError, error: loginError },
   ] = useLoginMutation();
+
+  if (!profileIsLoading && !profileIsError) {
+    // profileDetails = profile.data.filter((job) => job._id == id)[0];
+    // setIsFavorite(jobDetail.isFavorite);
+    console.log(
+      "profile details",
+      profileDetail,
+      "currentURL",
+      window.location.href
+    );
+  } else {
+    console.log("error:", profileError);
+  }
 
   const handleSubmit = (values, { resetForm }) => {
     // dispatch(SET_EMAIL(values.email));

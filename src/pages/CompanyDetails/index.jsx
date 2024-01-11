@@ -25,7 +25,7 @@ export const CompanyDetails = () => {
       return (
         <div className="col-span-full h-screen items-center flex ">
           <NoResultFound
-            title="No company details found"
+            title="Sorry, No company details found"
             message="No company details found. You'll got as soon as they’re posted"
             className="w-full"
           />

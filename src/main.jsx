@@ -53,6 +53,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PrivateRoute from "./components/PrivateRoute";
 import { Profile } from "./pages/Profile";
 import { Settings } from "./pages/Settings";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { ResetPassword } from "./pages/ResetPassword";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -64,6 +66,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/company" element={<Company />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/password-recovery" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/signup" element={<Signup />} />

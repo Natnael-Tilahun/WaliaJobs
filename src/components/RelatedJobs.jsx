@@ -6,7 +6,7 @@ const RelatedJobs = ({ job }) => {
   return (
     <NavLink
       to={`/job_details/${job._id}`}
-      className="flex flex-col text-thm_secondary_color border-[1px] hover:shadow-xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300   shadow-lg p-4  rounded-lg bg-thm_card items-start w-full"
+      className="flex flex-col text-thm_secondary_color border-[1px] hover:shadow-sm transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-100 duration-300  p-4  rounded-lg bg-thm_card items-start w-full"
     >
       <div className="flex justify-between w-full">
         <div className="text-left">

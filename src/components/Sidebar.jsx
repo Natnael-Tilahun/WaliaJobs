@@ -181,23 +181,31 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col border-2 text-thm_primary_color shadow-lg gap-2 lg:gap-3 p-2 md:p-5 lg:p-8 ">
-      <div className="flex justify-between w-full items-center">
-        <h1 className="border-b-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb-7 w-full text-left">
-          All Filters
+    <div className="flex basis-full md:basis-[35%] dark:text-thm_dark_primary_color  dark:bg-thm_dark_background dark:border-gray-700 lg:basis-[25%] xl:basis-[25%] bg-thm_card items-start rounded-xl h-full flex-wrap md:flex-col border-[1px] text-thm_primary_color gap-2 lg:gap-3 p-2 md:p-5 lg:p-8 ">
+      <div className="flex border-b-2  justify-between w-full items-center">
+        <h1 className="items-center flex gap-2 text-base font-medium md:text-xl lg:text-xl pb-2 md:pb-4 lg:pb- w-full text-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="h-6 inline"
+          >
+            <path d="M6.17071 18C6.58254 16.8348 7.69378 16 9 16C10.3062 16 11.4175 16.8348 11.8293 18H22V20H11.8293C11.4175 21.1652 10.3062 22 9 22C7.69378 22 6.58254 21.1652 6.17071 20H2V18H6.17071ZM12.1707 11C12.5825 9.83481 13.6938 9 15 9C16.3062 9 17.4175 9.83481 17.8293 11H22V13H17.8293C17.4175 14.1652 16.3062 15 15 15C13.6938 15 12.5825 14.1652 12.1707 13H2V11H12.1707ZM6.17071 4C6.58254 2.83481 7.69378 2 9 2C10.3062 2 11.4175 2.83481 11.8293 4H22V6H11.8293C11.4175 7.16519 10.3062 8 9 8C7.69378 8 6.58254 7.16519 6.17071 6H2V4H6.17071ZM9 6C9.55228 6 10 5.55228 10 5C10 4.44772 9.55228 4 9 4C8.44772 4 8 4.44772 8 5C8 5.55228 8.44772 6 9 6ZM15 13C15.5523 13 16 12.5523 16 12C16 11.4477 15.5523 11 15 11C14.4477 11 14 11.4477 14 12C14 12.5523 14.4477 13 15 13ZM9 20C9.55228 20 10 19.5523 10 19C10 18.4477 9.55228 18 9 18C8.44772 18 8 18.4477 8 19C8 19.5523 8.44772 20 9 20Z"></path>
+          </svg>
+          Filters
         </h1>
         <h1
           onClick={() => {
             removeFilterHandler();
           }}
-          className="border-b-2 cursor-pointer hover:text-blue-400 text-base text-right font-medium md:text-lg lg:text-base text-thm_root1_color dark:text-thm_dark_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
+          className=" cursor-pointer hover:text-blue-400 pt-2 text-sm text-right font-light underline  text-thm_root1_color dark:text-thm_dark_root1_color pb-2 md:pb-4 lg:pb-7 w-full"
         >
           Clear Filters
         </h1>
       </div>
       <div className="flex flex-col mx-auto border-b-2 pb-2 md:pb-5 lg:pb-3 w-full ">
         <div
-          className="font-medium md:text-lg text-sm lg:text-base flex items-center justify-between w-full "
+          className="font-medium md:text-lg py-2 text-sm lg:text-base flex items-center justify-between w-full "
           onClick={workModeAccordionToggleExpanded}
         >
           <h1 className="md:text-lg text-base">Work Mode</h1>
@@ -304,7 +312,7 @@ export const Sidebar = () => {
       </div>
       <div className="flex flex-col md:gap-1  border-b-2 md:pb-5 lg:pb-5 pb-3 w-full">
         <div
-          className="font-medium md:text-xl lg:text-xl flex items-center justify-between w-full"
+          className="font-medium md:text-xl lg:text-xl flex items-center pb-2 justify-between w-full"
           onClick={experienceAccordionToggleExpanded}
         >
           <h1 className="font-medium  md:text-lg lg:text-lg text-left">
@@ -356,7 +364,7 @@ export const Sidebar = () => {
       </div>
       <ul className="flex flex-col gap-2 md:gap-3 lg:gap-3 items-start w-full border-b-2 md:pb-5 lg:pb-2">
         <div
-          className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
+          className="font-medium text-xl lg:text-xl flex items-center justify-between py-2 w-full"
           onClick={locationAccordionToggleExpanded}
         >
           <h1 className="font-medium text-base lg:text-lg">Location</h1>
@@ -630,7 +638,7 @@ export const Sidebar = () => {
       </ul>
       <ul className="flex flex-col gap-2 md:gap-3 lg:gap-3 items-start w-full border-b-2 md:pb-5 lg:pb-2">
         <div
-          className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
+          className="font-medium text-xl lg:text-xl flex items-center py-2 justify-between w-full"
           onClick={departmentAccordionToggleExpanded}
         >
           <h1 className="font-medium md:text-lg text-base">Department</h1>
@@ -891,7 +899,7 @@ export const Sidebar = () => {
       </ul>
       <ul className="flex flex-col gap-2 md:gap-3 lg:gap-3 items-start w-full border-b-2 md:pb-5 lg:pb-2">
         <div
-          className="font-medium text-xl lg:text-xl flex items-center justify-between w-full"
+          className="font-medium text-xl lg:text-xl flex py-2 items-center justify-between w-full"
           onClick={companyAccordionToggleExpanded}
         >
           <h1 className="font-medium md:text-lg text-base">Company Type</h1>

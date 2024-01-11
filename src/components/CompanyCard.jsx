@@ -11,7 +11,7 @@ export const CompanyCard = ({ id, name, rate, reviews, img, className }) => {
     <div
       data-aos="flip-down"
       className={twMerge(
-        `shadow-md rounded-lg mx-10 shadow-gray-400 flex flex-col h-82 gap-1 p-5 border-[1px] items-center`,
+        `shadow-sm rounded-lg mx-10 shadow-gray-200 flex flex-col h-82 gap-1 p-5 border-[1px] items-center`,
         className
       )}
     >

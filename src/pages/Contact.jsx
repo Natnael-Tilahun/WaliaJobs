@@ -4,7 +4,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { contactFormValidationSchema } from "../validations/contactFormSchema";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { SET_EMAIL, SET_MESSAGE, SET_NAME } from "../features/contact/contactFormSlice";
+import {
+  SET_EMAIL,
+  SET_MESSAGE,
+  SET_NAME,
+} from "../features/contact/contactFormSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SkeletonLoader from "../components/SkeletonLoader";
@@ -37,7 +41,7 @@ export const Contact = () => {
   return (
     <div className="w-full h-full text-left md:py-10 bg-thm_secondary_background py-5 flex-col  justify-center items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-5">
       <ToastContainer />
-      <NavLink
+      {/* <NavLink
         to="/"
         className="font-black  basis-full md:basis-auto text-[#f8451d] self-center text-xl md:text-3xl -order-1 md:-order-none"
         style={({ isActive }) => {
@@ -47,9 +51,9 @@ export const Contact = () => {
         }}
       >
         Walia Jobs
-      </NavLink>
+      </NavLink> */}
       <div className="w-full md:w-2/3 lg:w-1/2 xl:w-[30%] shadow-md gap-1 bg-thm_card flex flex-col justify-center py-10 px-7 md:px-10 rounded-md">
-        <h1 className="text-xl pb-2 font-medium text-thm_primary_color">
+        <h1 className="text-xl uppercase pb-2 font-medium text-thm_primary_color">
           Send us a message
         </h1>
         <p className=" text-thm_secondary_color">
