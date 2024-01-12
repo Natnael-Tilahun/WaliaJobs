@@ -86,7 +86,7 @@ export const ResetPassword = () => {
                 type="password"
                 id="newPassword"
                 name="newPassword"
-                className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                className=" border-[1px] rounded-md py-2 border-thm_input px-5 focus:border-thm_root1_color focus:outline-none"
                 placeholder="Enter new password"
               />
               <ErrorMessage
@@ -101,7 +101,7 @@ export const ResetPassword = () => {
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
-                className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                className=" border-[1px] rounded-md py-2 border-thm_input px-5 focus:border-thm_root1_color focus:outline-none"
                 placeholder="Re-enter new password"
               />
               <ErrorMessage

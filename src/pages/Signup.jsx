@@ -109,7 +109,7 @@ export const Signup = () => {
                   type="text"
                   id="fullName"
                   name="fullName"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  className=" border-[1px] border-thm_input rounded-md py-2 px-5 focus:border-thm_root1_color focus:outline-none"
                   placeholder="Enter your full name"
                 />
                 <ErrorMessage
@@ -124,7 +124,7 @@ export const Signup = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  className=" border-[1px] border-thm_input rounded-md py-2 px-5 focus:border-thm_root1_color focus:outline-none"
                   placeholder="Enter your email address"
                 />
                 <ErrorMessage
@@ -139,7 +139,7 @@ export const Signup = () => {
                   type="tel"
                   id="phone"
                   name="phone"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  className=" border-[1px] border-thm_input rounded-md py-2 px-5 focus:border-thm_root1_color focus:outline-none"
                   placeholder="Enter your phone number"
                 />
                 <ErrorMessage
@@ -154,7 +154,7 @@ export const Signup = () => {
                   type="password"
                   id="password"
                   name="password"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  className=" border-[1px] border-thm_input rounded-md py-2 px-5 focus:border-thm_root1_color focus:outline-none"
                   placeholder="Create new password"
                 />
                 <ErrorMessage
@@ -169,7 +169,7 @@ export const Signup = () => {
                   type="password"
                   name="confirmPassword"
                   id="confirmPassword"
-                  className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                  className=" border-[1px] border-thm_input rounded-md py-2 px-5 focus:border-thm_root1_color focus:outline-none"
                   placeholder="Confirm your password"
                 />
                 <ErrorMessage
@@ -242,7 +242,7 @@ export const Signup = () => {
                 <hr className="w-28" />
               </div>
               <div className="flex flex-col gap-4 py-5 items-center justify-center text-sm min-w-max">
-                <NavLink className="border-[1px] rounded-md  px-5 font-medium text-center md:px-10 py-2 text-thm_primary_color  flex items-center justify-center gap-3 w-full">
+                <NavLink className="border-[1px] border-thm_input rounded-md  px-5 font-medium text-center md:px-10 py-2 text-thm_primary_color  flex items-center justify-center gap-3 w-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -252,7 +252,7 @@ export const Signup = () => {
                   </svg>
                   <span>Continue with Google</span>
                 </NavLink>
-                <NavLink className="border-[1px] rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 w-full">
+                <NavLink className="border-[1px] border-thm_input rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 w-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -262,7 +262,7 @@ export const Signup = () => {
                   </svg>
                   <span>Continue with Facebook</span>
                 </NavLink>
-                <NavLink className="border-[1px] rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 w-full">
+                <NavLink className="border-[1px] border-thm_input rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 w-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

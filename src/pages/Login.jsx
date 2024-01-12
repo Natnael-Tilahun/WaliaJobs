@@ -83,7 +83,7 @@ export const Login = () => {
                 type="email"
                 id="email"
                 name="email"
-                className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                className=" border-[1px] rounded-md py-2 px-5 border-thm_input focus:border-thm_root1_color focus:outline-none"
                 placeholder="Enter your email address"
               />
               <ErrorMessage
@@ -98,7 +98,7 @@ export const Login = () => {
                 type="password"
                 id="password"
                 name="password"
-                className=" border-2 rounded-md py-1 px-5 focus:border-thm_root1_color focus:outline-none"
+                className=" border-[1px] rounded-md py-2 border-thm_input  px-5 focus:border-thm_root1_color focus:outline-none"
                 placeholder="Enter your password"
               />
               <ErrorMessage
@@ -163,7 +163,7 @@ export const Login = () => {
           <hr className="w-36" />
         </div>
         <div className="flex flex-col gap-4 py-5 text-sm">
-          <NavLink className="border-[1px] rounded-md  px-5 font-medium text-center md:px-10 py-2 text-thm_primary_color  flex items-center justify-center gap-3">
+          <NavLink className="border-[1px] border-thm_input rounded-md  px-5 font-medium text-center md:px-10 py-2 text-thm_primary_color  flex items-center justify-center gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -173,7 +173,7 @@ export const Login = () => {
             </svg>
             <span>Continue with Google</span>
           </NavLink>
-          <NavLink className="border-[1px] rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3">
+          <NavLink className="border-[1px] border-thm_input rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -183,7 +183,7 @@ export const Login = () => {
             </svg>
             <span>Continue with Facebook</span>
           </NavLink>
-          <NavLink className="border-[1px] rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 ">
+          <NavLink className="border-[1px] border-thm_input rounded-md px-5 text-center font-medium md:px-10 py-2 text-thm_primary_color flex items-center justify-center gap-3 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
