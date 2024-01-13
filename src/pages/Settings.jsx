@@ -63,7 +63,7 @@ export const Settings = () => {
 
   return (
     <div className="w-full h-full text-left md:py-10 bg-thm_secondary_background py-5 flex-col  justify-center items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-5">
-      <div className="w-full border-[1px] md:w-[80%] lg:w-[90%] xl:w-[80%] gap-10 bg-thm_card flex flex-col justify-center py-10 px-10 rounded-lg">
+      <div className="w-full border-[1px] md:w-[80%] lg:w-[90%] xl:w-[80%] gap-10 bg-thm_card flex flex-col justify-center py-8 px-6 md:px-10 rounded-lg">
         <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
@@ -73,14 +73,16 @@ export const Settings = () => {
             <Form className="grid md:grid-cols-2 w-full gap-6 pb-10">
               <div className="w-full col-span-full flex justify-between pb-5">
                 <div>
-                  <h1 className="text-2xl pb-1 font-medium">Settings</h1>
-                  <p className="text-sm text-thm_secondary_color">
+                  <h1 className="md:text-2xl text-xl pb-1 font-medium">
+                    Settings
+                  </h1>
+                  <p className="md:text-sm text-xs text-thm_secondary_color">
                     Update your settings{" "}
                   </p>
                 </div>
                 <button
                   type="submit"
-                  className={`bg-thm_root1_color py-2 px-6 rounded-lg text-sm h-fit font-medium text-white flex justify-center items-center gap-  ${
+                  className={`bg-thm_root1_color  py-2 px-6 rounded-lg text-xs md:text-sm h-fit font-medium text-white flex justify-center items-center  ${
                     isLoginLoading
                       ? "disabled cursor-not-allowed bg-thm_secondary_background"
                       : ""

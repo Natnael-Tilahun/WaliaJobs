@@ -54,39 +54,39 @@ export const Profile = () => {
       password: values.password,
     };
 
-    // login(credentials)
-    //   .unwrap() // Ensure you're unwrapping the result for easier access to response data
-    //   .then((response) => {
-    //     console.log("User logged in successfully:", response.data);
-    //     //         const cookies = new Cookies();
-    //     // const checkToken = cookies.get("checkToken");
-    //     // console.log("cookie: ", )
-    //     dispatch(
-    //       SET_USER({ userId: response.data.userId, name: response.data })
-    //     );
-    //     // Perform any actions upon successful data submission
-    //     toast.success(`Welcome back ${response.data}.`, {
-    //       position: toast.POSITION.TOP_CENTER,
-    //     });
-    //     resetForm();
-    //     navigate(from, { replace: true });
-    //   })
-    //   .catch((err) => {
-    //     console.error(
-    //       "Error logging user:",
-    //       err?.data?.message || loginError?.message
-    //     );
-    //     toast.error(`${err?.data?.message || loginError?.message} `, {
-    //       position: toast.POSITION.TOP_CENTER,
-    //     });
-    //     // Handle errors here
-    //   });
+    login(credentials)
+      .unwrap() // Ensure you're unwrapping the result for easier access to response data
+      .then((response) => {
+        console.log("User logged in successfully:", response.data);
+        //         const cookies = new Cookies();
+        // const checkToken = cookies.get("checkToken");
+        // console.log("cookie: ", )
+        dispatch(
+          SET_USER({ userId: response.data.userId, name: response.data })
+        );
+        // Perform any actions upon successful data submission
+        toast.success(`Welcome back ${response.data}.`, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        resetForm();
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.error(
+          "Error logging user:",
+          err?.data?.message || loginError?.message
+        );
+        toast.error(`${err?.data?.message || loginError?.message} `, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        // Handle errors here
+      });
   };
 
   return (
-    <div className="w-full md:w-[80%] lg:w-[90%] xl:w-[80%] min-h-[96]  text-left md:py-10 bg-thm_secondary_background py-5 flex-col mx-auto  items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-10">
-      <div className="w-full h-96 bg-thm_card gap-10 border-[1px] shadow-sm flex flex-col  p-10 rounded-xl">
-        {/* <Formik
+    <div className="w-full md:w-[80%] lg:w-[90%] xl:w-[80%] min-h-[96] h-full  text-left md:py-10 bg-thm_secondary_background py-5 flex-col mx-auto  items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-10">
+      <div className="w-full h-full bg-thm_card gap-10 border-[1px] shadow-sm flex flex-col  px-6 py-8 rounded-xl">
+        <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
           // validationSchema={loginFormValidationSchema}
@@ -95,14 +95,14 @@ export const Profile = () => {
             <Form className="grid md:grid-cols-2 w-full gap-6">
               <div className="w-full col-span-full flex justify-between pb-4">
                 <div>
-                  <h1 className="text-2xl  font-medium">Profile</h1>
-                  <p className="text-sm text-thm_secondary_color">
+                  <h1 className="md:text-2xl text-xl  font-medium">Profile</h1>
+                  <p className="md:text-sm text-xs text-thm_secondary_color">
                     Update your profile{" "}
                   </p>
                 </div>
                 <button
                   type="submit"
-                  className={`bg-thm_root1_color h-fit py-2 px-4 text-sm rounded-lg font-medium text-white flex justify-center items-center gap-  ${
+                  className={`bg-thm_root1_color h-fit py-2 px-4 text-xs md:text-sm rounded-lg font-medium text-white flex justify-center items-center gap-  ${
                     isLoginLoading
                       ? "disabled cursor-not-allowed bg-thm_secondary_background"
                       : ""
@@ -146,16 +146,20 @@ export const Profile = () => {
               <div className="flex  flex-col gap-3">
                 <label htmlFor="profilePicture">CV </label>
                 <div className="flex gap-6">
-                  <img src="/pdf.png" className="w-16 h-12" alt="Pdf Image" />
+                  <img
+                    src="/pdf.png"
+                    className="md:w-16 md:h-12 h-8 w-8"
+                    alt="Pdf Image"
+                  />
                   <button
                     type="button"
-                    className="border-2 flex gap-2 p-2 bg-thm_root1_color hover:bg-blue-500 text-white px-4 rounded-lg"
+                    className="border-2 flex gap-2 p-2 h-fit bg-thm_root1_color md:text-sm text-xs hover:bg-blue-500 text-white px-4 rounded-lg"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="w-6"
+                      className="md:w-6 w-4"
                     >
                       <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z"></path>
                     </svg>
@@ -163,13 +167,13 @@ export const Profile = () => {
                   </button>
                   <button
                     type="button"
-                    className="border-2 hover:bg-blue-500 flex gap-2 p-2 px-6 rounded-lg"
+                    className="border-2 hover:bg-blue-500 md:text-sm text-xs h-fit flex gap-2 p-2 px-6 rounded-lg"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="w-6"
+                      className="md:w-6 w-4"
                     >
                       <path d="M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z"></path>
                     </svg>
@@ -209,7 +213,7 @@ export const Profile = () => {
               </div>
             </Form>
           )}
-        </Formik> */}
+        </Formik>
       </div>
     </div>
   );
