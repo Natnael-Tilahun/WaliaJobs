@@ -5,8 +5,9 @@ import { loginFormValidationSchema } from "../validations/loginFormSchema";
 import { ErrorMessageComponent } from "../components/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { SET_USER } from "../features/users/authSlice";
-import { useGetProfileQuery, useLoginMutation } from "../app/AuthApi";
+import { useLoginMutation } from "../app/AuthApi";
 import { toast } from "react-toastify";
+import { useGetProfileQuery } from "../app/ProfileApi";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -53,39 +54,39 @@ export const Profile = () => {
       password: values.password,
     };
 
-    login(credentials)
-      .unwrap() // Ensure you're unwrapping the result for easier access to response data
-      .then((response) => {
-        console.log("User logged in successfully:", response.data);
-        //         const cookies = new Cookies();
-        // const checkToken = cookies.get("checkToken");
-        // console.log("cookie: ", )
-        dispatch(
-          SET_USER({ userId: response.data.userId, name: response.data })
-        );
-        // Perform any actions upon successful data submission
-        toast.success(`Welcome back ${response.data}.`, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        resetForm();
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        console.error(
-          "Error logging user:",
-          err?.data?.message || loginError?.message
-        );
-        toast.error(`${err?.data?.message || loginError?.message} `, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        // Handle errors here
-      });
+    // login(credentials)
+    //   .unwrap() // Ensure you're unwrapping the result for easier access to response data
+    //   .then((response) => {
+    //     console.log("User logged in successfully:", response.data);
+    //     //         const cookies = new Cookies();
+    //     // const checkToken = cookies.get("checkToken");
+    //     // console.log("cookie: ", )
+    //     dispatch(
+    //       SET_USER({ userId: response.data.userId, name: response.data })
+    //     );
+    //     // Perform any actions upon successful data submission
+    //     toast.success(`Welcome back ${response.data}.`, {
+    //       position: toast.POSITION.TOP_CENTER,
+    //     });
+    //     resetForm();
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((err) => {
+    //     console.error(
+    //       "Error logging user:",
+    //       err?.data?.message || loginError?.message
+    //     );
+    //     toast.error(`${err?.data?.message || loginError?.message} `, {
+    //       position: toast.POSITION.TOP_CENTER,
+    //     });
+    //     // Handle errors here
+    //   });
   };
 
   return (
     <div className="w-full md:w-[80%] lg:w-[90%] xl:w-[80%] min-h-[96]  text-left md:py-10 bg-thm_secondary_background py-5 flex-col mx-auto  items-center my-0 flex md:my-0 px-5 md:px-3 lg:px-20 gap-2 lg:gap-10">
       <div className="w-full h-96 bg-thm_card gap-10 border-[1px] shadow-sm flex flex-col  p-10 rounded-xl">
-        <Formik
+        {/* <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
           // validationSchema={loginFormValidationSchema}
@@ -208,7 +209,7 @@ export const Profile = () => {
               </div>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
       </div>
     </div>
   );
