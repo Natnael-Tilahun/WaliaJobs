@@ -37,7 +37,6 @@ export const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include", // Include this line to include credentials in the request
       body: JSON.stringify(credentials),
     })
       .then((res) => res.json())
