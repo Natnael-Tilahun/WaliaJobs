@@ -18,10 +18,10 @@ export const Login = () => {
     password: "",
   };
 
-  // const [
-  //   login,
-  //   { isLoading: isLoginLoading, isError: isLoginError, error: loginError },
-  // ] = useLoginMutation();
+  const [
+    login,
+    { isLoading: isLoginLoading, isError: isLoginError, error: loginError },
+  ] = useLoginMutation();
 
   const handleSubmit = (values, { resetForm }) => {
     // dispatch(SET_EMAIL(values.email));
@@ -32,46 +32,46 @@ export const Login = () => {
       password: values.password,
     };
 
-    fetch("https://walia-jobs-server.onrender.com/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("login data: ", data);
-      })
-      .catch((e) => console.log(e));
-
-    // login(credentials)
-    //   .unwrap() // Ensure you're unwrapping the result for easier access to response data
-    //   .then((response) => {
-    //     console.log("User logged in successfully:", response.data);
-    //     //         const cookies = new Cookies();
-    //     // const checkToken = cookies.get("checkToken");
-    //     // console.log("cookie: ", )
-    //     dispatch(
-    //       SET_USER({ userId: response.data.userId, name: response.data })
-    //     );
-    //     // Perform any actions upon successful data submission
-    //     toast.success(`Welcome back ${response.data}.`, {
-    //       position: toast.POSITION.TOP_CENTER,
-    //     });
-    //     resetForm();
-    //     navigate(from, { replace: true });
+    // fetch("https://walia-jobs-server.onrender.com/api/v1/user/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(credentials),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("login data: ", data);
     //   })
-    //   .catch((err) => {
-    //     console.error(
-    //       "Error logging user:",
-    //       err?.data?.message || loginError?.message
-    //     );
-    //     toast.error(`${err?.data?.message || loginError?.message} `, {
-    //       position: toast.POSITION.TOP_CENTER,
-    //     });
-    //     // Handle errors here
-    //   });
+    //   .catch((e) => console.log(e));
+
+    login(credentials)
+      .unwrap() // Ensure you're unwrapping the result for easier access to response data
+      .then((response) => {
+        console.log("User logged in successfully:", response.data);
+        //         const cookies = new Cookies();
+        // const checkToken = cookies.get("checkToken");
+        // console.log("cookie: ", )
+        dispatch(
+          SET_USER({ userId: response.data.userId, name: response.data })
+        );
+        // Perform any actions upon successful data submission
+        toast.success(`Welcome back ${response.data}.`, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        resetForm();
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.error(
+          "Error logging user:",
+          err?.data?.message || loginError?.message
+        );
+        toast.error(`${err?.data?.message || loginError?.message} `, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        // Handle errors here
+      });
   };
 
   return (
@@ -118,8 +118,7 @@ export const Login = () => {
                 name="password"
                 render={(msg) => <ErrorMessageComponent msg={msg} />}
               />
-              <button type="submit">login</button>
-              {/* <button
+              <button
                 type="submit"
                 className={`bg-thm_root1_color py-2 my-3 rounded-lg font-medium uppercase text-white flex justify-center items-center gap-4  ${
                   isLoginLoading
@@ -148,7 +147,7 @@ export const Login = () => {
                 >
                   Loging
                 </span>
-              </button> */}
+              </button>
 
               <NavLink
                 to="/password-recovery"
