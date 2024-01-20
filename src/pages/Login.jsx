@@ -63,10 +63,7 @@ export const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((err) => {
-        console.error(
-          "Error logging user:",
-          err?.data?.message || loginError?.message
-        );
+        console.error("Error logging user:", err);
         toast.error(`${err?.data?.message || loginError?.message} `, {
           position: toast.POSITION.TOP_CENTER,
         });

@@ -49,38 +49,51 @@ export const Profile = () => {
     // dispatch(SET_EMAIL(values.email));
     // dispatch(SET_PASSWORD(values.password));
 
-    const credentials = {
-      email: values.email,
-      password: values.password,
-    };
-
-    login(credentials)
-      .unwrap() // Ensure you're unwrapping the result for easier access to response data
-      .then((response) => {
-        console.log("User logged in successfully:", response.data);
-        //         const cookies = new Cookies();
-        // const checkToken = cookies.get("checkToken");
-        // console.log("cookie: ", )
-        dispatch(
-          SET_USER({ userId: response.data.userId, name: response.data })
-        );
-        // Perform any actions upon successful data submission
-        toast.success(`Welcome back ${response.data}.`, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        resetForm();
-        navigate(from, { replace: true });
+    fetch("https://walia-jobs-server.onrender.com/api/v1/user/profile", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Profile data: ", data);
       })
-      .catch((err) => {
-        console.error(
-          "Error logging user:",
-          err?.data?.message || loginError?.message
-        );
-        toast.error(`${err?.data?.message || loginError?.message} `, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        // Handle errors here
-      });
+      .catch((e) => console.log(e));
+
+    // const credentials = {
+    //   email: values.email,
+    //   password: values.password,
+    // };
+
+    // login(credentials)
+    //   .unwrap() // Ensure you're unwrapping the result for easier access to response data
+    //   .then((response) => {
+    //     console.log("User logged in successfully:", response.data);
+    //     //         const cookies = new Cookies();
+    //     // const checkToken = cookies.get("checkToken");
+    //     // console.log("cookie: ", )
+    //     dispatch(
+    //       SET_USER({ userId: response.data.userId, name: response.data })
+    //     );
+    //     // Perform any actions upon successful data submission
+    //     toast.success(`Welcome back ${response.data}.`, {
+    //       position: toast.POSITION.TOP_CENTER,
+    //     });
+    //     resetForm();
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((err) => {
+    //     console.error(
+    //       "Error logging user:",
+    //       err?.data?.message || loginError?.message
+    //     );
+    //     toast.error(`${err?.data?.message || loginError?.message} `, {
+    //       position: toast.POSITION.TOP_CENTER,
+    //     });
+    //     // Handle errors here
+    //   });
   };
 
   return (
